@@ -1,7 +1,7 @@
 import React from 'react'
-import './css/game.css'
+import './css/Game.css'
 
-function game() {
+function Game() {
     return (
         <div className='gameBody'>
             {/* -- DECK -- */}
@@ -11,10 +11,9 @@ function game() {
             </div>
             {/* -- HAND -- */}
             <div className='playerArea'>
-
             </div>
         </div>
     )
 }
 
-export default game
+export default Game
