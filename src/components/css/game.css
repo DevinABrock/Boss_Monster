@@ -5,14 +5,56 @@ body{
 .gameBody{
     background-color: black;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.cardSlot{
+    height: 90%;
+    width: 130px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+    margin: 10px;
+    text-align: center;
+}
+.emptyCardSlot{
+    height: 90%;
+    width: 130px;
+    margin: 10px;
+}
+.sectionTitle{
+    color: white;
+    width: 60vw;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 5px;
 }
 
-.deckArea{
 
+.deckArea{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 360px;
+}
+.decks{
+    background-color: gray;
+    width: 60vw;
+    height: 175px;
+    display: flex;
+}
+.town{
+    background-color: gray;
+    width: 60vw;
+    height: 175px;
+    display: flex;
 }
 
 
 
 .playerArea{
-    
+
 }
