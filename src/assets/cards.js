@@ -1,16 +1,16 @@
 // -------------------- 8 Boss Cards -------------------- //
 
 const bossDeck = [
-  {
-    id: "B1",
-    name: "Draculord",
-    subtitle: "Hypnotic Vampire",
-    xp: 900,
-    treasure: "Cleric",
-    description:
-      "Target opponent reveals his or her hand. Take one card and put it into your hand.",
-    image: "",
-  },
+  // {
+  //   id: "B1",
+  //   name: "Draculord",
+  //   subtitle: "Hypnotic Vampire",
+  //   xp: 900,
+  //   treasure: "Cleric",
+  //   description:
+  //     "Target opponent reveals his or her hand. Take one card and put it into your hand.",
+  //   image: "",
+  // },
   {
     id: "B2",
     name: "Xyzax",
@@ -31,25 +31,25 @@ const bossDeck = [
       "You may search the Room Deck or discard pile for an Advanced Monster Room. You may immediately build the room (over a room with a matching Treasure type).",
     image: "",
   },
-  {
-    id: "B4",
-    name: "Robobo",
-    subtitle: "Angry Golem",
-    xp: 400,
-    treasure: "Fighter",
-    description:
-      "Each opponent must choose and destroy one Room in his or her dungeon.",
-    image: "",
-  },
-  {
-    id: "B5",
-    name: "Cerebellus",
-    subtitle: "Father Brain",
-    xp: 650,
-    treasure: "Mage",
-    description: "You may draw three Spell cards, then discard a Spell card.",
-    image: "",
-  },
+  // {
+  //   id: "B4",
+  //   name: "Robobo",
+  //   subtitle: "Angry Golem",
+  //   xp: 400,
+  //   treasure: "Fighter",
+  //   description:
+  //     "Each opponent must choose and destroy one Room in his or her dungeon.",
+  //   image: "",
+  // },
+  // {
+  //   id: "B5",
+  //   name: "Cerebellus",
+  //   subtitle: "Father Brain",
+  //   xp: 650,
+  //   treasure: "Mage",
+  //   description: "You may draw three Spell cards, then discard a Spell card.",
+  //   image: "",
+  // },
   {
     id: "B6",
     name: "Seducia",
@@ -138,67 +138,67 @@ const roomDeck = [
     image: "",
   },
   // ----- Specter's Sanctum 3 ----- //
-  {
-    id: "R6",
-    name: "Specter's Sanctum",
-    subtitle: "Monster Room",
-    dmg: 2,
-    treasure: "Cleric",
-    description:
-      "When you build this room, choose an opponent. That opponent discards a random Spell card.",
-    image: "",
-  },
-  {
-    id: "R7",
-    name: "Specter's Sanctum",
-    subtitle: "Monster Room",
-    dmg: 2,
-    treasure: "Cleric",
-    description:
-      "When you build this room, choose an opponent. That opponent discards a random Spell card.",
-    image: "",
-  },
-  {
-    id: "R8",
-    name: "Specter's Sanctum",
-    subtitle: "Monster Room",
-    dmg: 2,
-    treasure: "Cleric",
-    description:
-      "When you build this room, choose an opponent. That opponent discards a random Spell card.",
-    image: "",
-  },
+  // {
+  //   id: "R6",
+  //   name: "Specter's Sanctum",
+  //   subtitle: "Monster Room",
+  //   dmg: 2,
+  //   treasure: "Cleric",
+  //   description:
+  //     "When you build this room, choose an opponent. That opponent discards a random Spell card.",
+  //   image: "",
+  // },
+  // {
+  //   id: "R7",
+  //   name: "Specter's Sanctum",
+  //   subtitle: "Monster Room",
+  //   dmg: 2,
+  //   treasure: "Cleric",
+  //   description:
+  //     "When you build this room, choose an opponent. That opponent discards a random Spell card.",
+  //   image: "",
+  // },
+  // {
+  //   id: "R8",
+  //   name: "Specter's Sanctum",
+  //   subtitle: "Monster Room",
+  //   dmg: 2,
+  //   treasure: "Cleric",
+  //   description:
+  //     "When you build this room, choose an opponent. That opponent discards a random Spell card.",
+  //   image: "",
+  // },
   // ----- Succubus Spa 3 ----- //
-  {
-    id: "R9",
-    name: "Succubus Spa",
-    subtitle: "Monster Room",
-    dmg: 1,
-    treasure: "Cleric",
-    description:
-      "Once per turn, If a Hero Dies in this room, choose an opponent. Take a random Room or Spell card from that opponent's hand.",
-    image: "",
-  },
-  {
-    id: "R10",
-    name: "Succubus Spa",
-    subtitle: "Monster Room",
-    dmg: 1,
-    treasure: "Cleric",
-    description:
-      "Once per turn, If a Hero Dies in this room, choose an opponent. Take a random Room or Spell card from that opponent's hand.",
-    image: "",
-  },
-  {
-    id: "R11",
-    name: "Succubus Spa",
-    subtitle: "Monster Room",
-    dmg: 1,
-    treasure: "Cleric",
-    description:
-      "Once per turn, If a Hero Dies in this room, choose an opponent. Take a random Room or Spell card from that opponent's hand.",
-    image: "",
-  },
+  // {
+  //   id: "R9",
+  //   name: "Succubus Spa",
+  //   subtitle: "Monster Room",
+  //   dmg: 1,
+  //   treasure: "Cleric",
+  //   description:
+  //     "Once per turn, If a Hero Dies in this room, choose an opponent. Take a random Room or Spell card from that opponent's hand.",
+  //   image: "",
+  // },
+  // {
+  //   id: "R10",
+  //   name: "Succubus Spa",
+  //   subtitle: "Monster Room",
+  //   dmg: 1,
+  //   treasure: "Cleric",
+  //   description:
+  //     "Once per turn, If a Hero Dies in this room, choose an opponent. Take a random Room or Spell card from that opponent's hand.",
+  //   image: "",
+  // },
+  // {
+  //   id: "R11",
+  //   name: "Succubus Spa",
+  //   subtitle: "Monster Room",
+  //   dmg: 1,
+  //   treasure: "Cleric",
+  //   description:
+  //     "Once per turn, If a Hero Dies in this room, choose an opponent. Take a random Room or Spell card from that opponent's hand.",
+  //   image: "",
+  // },
   // ----- Dracolich Lair 2 ----- //
   {
     id: "R12",
@@ -391,161 +391,161 @@ const roomDeck = [
       "This room's damage is equal to the number of Monster rooms in your dungeon.",
     image: "",
   },
-  // ----- Brainsucker Hive 3 ----- //
-  {
-    id: "R31",
-    name: "Brainsucker Hive",
-    subtitle: "Monster Room",
-    dmg: 2,
-    treasure: "Mage",
-    description:
-      "Once per turn, if a Hero dies in this room, you may draw a Spell card.",
-    image: "",
-  },
-  {
-    id: "R32",
-    name: "Brainsucker Hive",
-    subtitle: "Monster Room",
-    dmg: 2,
-    treasure: "Mage",
-    description:
-      "Once per turn, if a Hero dies in this room, you may draw a Spell card.",
-    image: "",
-  },
-  {
-    id: "R33",
-    name: "Brainsucker Hive",
-    subtitle: "Monster Room",
-    dmg: 2,
-    treasure: "Mage",
-    description:
-      "Once per turn, if a Hero dies in this room, you may draw a Spell card.",
-    image: "",
-  },
-  // ----- Dark Laboratory 3 ----- //
-  {
-    id: "R34",
-    name: "Dark Laboratory",
-    subtitle: "Trap Room",
-    dmg: 1,
-    treasure: "Mage*2",
-    description:
-      "When you build this room, draw two spell cards, then discard a Spell card.",
-    image: "",
-  },
-  {
-    id: "R35",
-    name: "Dark Laboratory",
-    subtitle: "Trap Room",
-    dmg: 1,
-    treasure: "Mage*2",
-    description:
-      "When you build this room, draw two spell cards, then discard a Spell card.",
-    image: "",
-  },
-  {
-    id: "R36",
-    name: "Dark Laboratory",
-    subtitle: "Trap Room",
-    dmg: 1,
-    treasure: "Mage*2",
-    description:
-      "When you build this room, draw two spell cards, then discard a Spell card.",
-    image: "",
-  },
+  // // ----- Brainsucker Hive 3 ----- //
+  // {
+  //   id: "R31",
+  //   name: "Brainsucker Hive",
+  //   subtitle: "Monster Room",
+  //   dmg: 2,
+  //   treasure: "Mage",
+  //   description:
+  //     "Once per turn, if a Hero dies in this room, you may draw a Spell card.",
+  //   image: "",
+  // },
+  // {
+  //   id: "R32",
+  //   name: "Brainsucker Hive",
+  //   subtitle: "Monster Room",
+  //   dmg: 2,
+  //   treasure: "Mage",
+  //   description:
+  //     "Once per turn, if a Hero dies in this room, you may draw a Spell card.",
+  //   image: "",
+  // },
+  // {
+  //   id: "R33",
+  //   name: "Brainsucker Hive",
+  //   subtitle: "Monster Room",
+  //   dmg: 2,
+  //   treasure: "Mage",
+  //   description:
+  //     "Once per turn, if a Hero dies in this room, you may draw a Spell card.",
+  //   image: "",
+  // },
+  // // ----- Dark Laboratory 3 ----- //
+  // {
+  //   id: "R34",
+  //   name: "Dark Laboratory",
+  //   subtitle: "Trap Room",
+  //   dmg: 1,
+  //   treasure: "Mage*2",
+  //   description:
+  //     "When you build this room, draw two spell cards, then discard a Spell card.",
+  //   image: "",
+  // },
+  // {
+  //   id: "R35",
+  //   name: "Dark Laboratory",
+  //   subtitle: "Trap Room",
+  //   dmg: 1,
+  //   treasure: "Mage*2",
+  //   description:
+  //     "When you build this room, draw two spell cards, then discard a Spell card.",
+  //   image: "",
+  // },
+  // {
+  //   id: "R36",
+  //   name: "Dark Laboratory",
+  //   subtitle: "Trap Room",
+  //   dmg: 1,
+  //   treasure: "Mage*2",
+  //   description:
+  //     "When you build this room, draw two spell cards, then discard a Spell card.",
+  //   image: "",
+  // },
   // ----- Haunted Library 2 ----- //
-  {
-    id: "R37",
-    name: "Haunted Library",
-    subtitle: "Trap Room",
-    dmg: 1,
-    treasure: "Mage",
-    description:
-      "At the beginning of your turn, you may draw from the Spell deck instead of the Room deck.",
-    image: "",
-  },
-  {
-    id: "R38",
-    name: "Haunted Library",
-    subtitle: "Trap Room",
-    dmg: 1,
-    treasure: "Mage",
-    description:
-      "At the beginning of your turn, you may draw from the Spell deck instead of the Room deck.",
-    image: "",
-  },
-  // ----- Witch's Kitchen 3 ----- //
-  {
-    id: "R39",
-    name: "Witch's Kitchen",
-    subtitle: "Monster Room",
-    dmg: 1,
-    treasure: "Mage",
-    description:
-      "Once per turn, you may discard a Monster Room card to draw a Spell card.",
-    image: "",
-  },
-  {
-    id: "R40",
-    name: "Witch's Kitchen",
-    subtitle: "Monster Room",
-    dmg: 1,
-    treasure: "Mage",
-    description:
-      "Once per turn, you may discard a Monster Room card to draw a Spell card.",
-    image: "",
-  },
-  {
-    id: "R41",
-    name: "Witch's Kitchen",
-    subtitle: "Monster Room",
-    dmg: 1,
-    treasure: "Mage",
-    description:
-      "Once per turn, you may discard a Monster Room card to draw a Spell card.",
-    image: "",
-  },
-  // ----- All-Seeing Eye 2 ----- //
-  {
-    id: "R42",
-    name: "All-Seeing Eye",
-    subtitle: "Advanced Trap Room",
-    dmg: 3,
-    treasure: "Mage",
-    description:
-      "Once per turn when an opponent plays a Spell card, you may discard a Spell card to cancel its effect.",
-    image: "",
-  },
-  {
-    id: "R43",
-    name: "All-Seeing Eye",
-    subtitle: "Advanced Trap Room",
-    dmg: 3,
-    treasure: "Mage",
-    description:
-      "Once per turn when an opponent plays a Spell card, you may discard a Spell card to cancel its effect.",
-    image: "",
-  },
-  // ----- Liger's Den 2 ----- //
-  {
-    id: "R44",
-    name: "Liger's Den",
-    subtitle: "Advanced Monster Room",
-    dmg: 2,
-    treasure: "Mage",
-    description: "Once per turn when you play a Spell card, draw a Spell card.",
-    image: "",
-  },
-  {
-    id: "R45",
-    name: "Liger's Den",
-    subtitle: "Advanced Monster Room",
-    dmg: 2,
-    treasure: "Mage",
-    description: "Once per turn when you play a Spell card, draw a Spell card.",
-    image: "",
-  },
-  // ----- Bottomless Pit 3 ----- //
+  // {
+  //   id: "R37",
+  //   name: "Haunted Library",
+  //   subtitle: "Trap Room",
+  //   dmg: 1,
+  //   treasure: "Mage",
+  //   description:
+  //     "At the beginning of your turn, you may draw from the Spell deck instead of the Room deck.",
+  //   image: "",
+  // },
+  // {
+  //   id: "R38",
+  //   name: "Haunted Library",
+  //   subtitle: "Trap Room",
+  //   dmg: 1,
+  //   treasure: "Mage",
+  //   description:
+  //     "At the beginning of your turn, you may draw from the Spell deck instead of the Room deck.",
+  //   image: "",
+  // },
+  // // ----- Witch's Kitchen 3 ----- //
+  // {
+  //   id: "R39",
+  //   name: "Witch's Kitchen",
+  //   subtitle: "Monster Room",
+  //   dmg: 1,
+  //   treasure: "Mage",
+  //   description:
+  //     "Once per turn, you may discard a Monster Room card to draw a Spell card.",
+  //   image: "",
+  // },
+  // {
+  //   id: "R40",
+  //   name: "Witch's Kitchen",
+  //   subtitle: "Monster Room",
+  //   dmg: 1,
+  //   treasure: "Mage",
+  //   description:
+  //     "Once per turn, you may discard a Monster Room card to draw a Spell card.",
+  //   image: "",
+  // },
+  // {
+  //   id: "R41",
+  //   name: "Witch's Kitchen",
+  //   subtitle: "Monster Room",
+  //   dmg: 1,
+  //   treasure: "Mage",
+  //   description:
+  //     "Once per turn, you may discard a Monster Room card to draw a Spell card.",
+  //   image: "",
+  // },
+  // // ----- All-Seeing Eye 2 ----- //
+  // {
+  //   id: "R42",
+  //   name: "All-Seeing Eye",
+  //   subtitle: "Advanced Trap Room",
+  //   dmg: 3,
+  //   treasure: "Mage",
+  //   description:
+  //     "Once per turn when an opponent plays a Spell card, you may discard a Spell card to cancel its effect.",
+  //   image: "",
+  // },
+  // {
+  //   id: "R43",
+  //   name: "All-Seeing Eye",
+  //   subtitle: "Advanced Trap Room",
+  //   dmg: 3,
+  //   treasure: "Mage",
+  //   description:
+  //     "Once per turn when an opponent plays a Spell card, you may discard a Spell card to cancel its effect.",
+  //   image: "",
+  // },
+  // // ----- Liger's Den 2 ----- //
+  // {
+  //   id: "R44",
+  //   name: "Liger's Den",
+  //   subtitle: "Advanced Monster Room",
+  //   dmg: 2,
+  //   treasure: "Mage",
+  //   description: "Once per turn when you play a Spell card, draw a Spell card.",
+  //   image: "",
+  // },
+  // {
+  //   id: "R45",
+  //   name: "Liger's Den",
+  //   subtitle: "Advanced Monster Room",
+  //   dmg: 2,
+  //   treasure: "Mage",
+  //   description: "Once per turn when you play a Spell card, draw a Spell card.",
+  //   image: "",
+  // },
+  // // ----- Bottomless Pit 3 ----- //
   {
     id: "R46",
     name: "Bottomless Pit",
@@ -810,48 +810,48 @@ const roomDeck = [
       "When you build this room, choose one Monster Room from the discard pile and put it in your hand.",
     image: "",
   },
-  // ----- Torture Chamber 2 ----- //
-  {
-    id: "R72",
-    name: "Torture Chamber",
-    subtitle: "Trap Room",
-    dmg: 1,
-    treasure: "Cleric + Thief",
-    description:
-      "Destroy this room: Choose an opponent. That opponent discards a random Room card.	",
-    image: "",
-  },
-  {
-    id: "R73",
-    name: "Torture Chamber",
-    subtitle: "Trap Room",
-    dmg: 1,
-    treasure: "Cleric + Thief",
-    description:
-      "Destroy this room: Choose an opponent. That opponent discards a random Room card.	",
-    image: "",
-  },
-  // ----- Zombie Prison 2 ----- //
-  {
-    id: "R74",
-    name: "Zombie Prison",
-    subtitle: "Monster Room",
-    dmg: 1,
-    treasure: "Cleric + Mage",
-    description:
-      "Destroy this room: Choose a dead Hero in an opponent's scorekeeping area. Send it back to the entrance of that player's dungeon",
-    image: "",
-  },
-  {
-    id: "R75",
-    name: "Zombie Prison",
-    subtitle: "Monster Room",
-    dmg: 1,
-    treasure: "Cleric + Mage",
-    description:
-      "Destroy this room: Choose a dead Hero in an opponent's scorekeeping area. Send it back to the entrance of that player's dungeon",
-    image: "",
-  },
+  // // ----- Torture Chamber 2 ----- //
+  // {
+  //   id: "R72",
+  //   name: "Torture Chamber",
+  //   subtitle: "Trap Room",
+  //   dmg: 1,
+  //   treasure: "Cleric + Thief",
+  //   description:
+  //     "Destroy this room: Choose an opponent. That opponent discards a random Room card.	",
+  //   image: "",
+  // },
+  // {
+  //   id: "R73",
+  //   name: "Torture Chamber",
+  //   subtitle: "Trap Room",
+  //   dmg: 1,
+  //   treasure: "Cleric + Thief",
+  //   description:
+  //     "Destroy this room: Choose an opponent. That opponent discards a random Room card.	",
+  //   image: "",
+  // },
+  // // ----- Zombie Prison 2 ----- //
+  // {
+  //   id: "R74",
+  //   name: "Zombie Prison",
+  //   subtitle: "Monster Room",
+  //   dmg: 1,
+  //   treasure: "Cleric + Mage",
+  //   description:
+  //     "Destroy this room: Choose a dead Hero in an opponent's scorekeeping area. Send it back to the entrance of that player's dungeon",
+  //   image: "",
+  // },
+  // {
+  //   id: "R75",
+  //   name: "Zombie Prison",
+  //   subtitle: "Monster Room",
+  //   dmg: 1,
+  //   treasure: "Cleric + Mage",
+  //   description:
+  //     "Destroy this room: Choose a dead Hero in an opponent's scorekeeping area. Send it back to the entrance of that player's dungeon",
+  //   image: "",
+  // },
 ];
 
 // -------------------- 31 Spell Cards -------------------- //
