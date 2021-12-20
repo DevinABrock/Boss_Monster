@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
 import App from './App'
 import Game from './components/Game'
+import Front from './components/Front'
 import Sample from "./components/Sample"
 
 const saveToLocalStorage = (reduxGlobalState) => {
@@ -57,6 +58,7 @@ ReactDOM.render(
           <Routes>
             <Route path="/" element={<App />} />
             <Route path="/game" element={<Game />} />
+            <Route path="/front" element={<Front />} />
           </Routes>
         </BaseLayout>
       </Router>
