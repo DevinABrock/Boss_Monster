@@ -1,0 +1,34 @@
+.navBar{
+    background-color: black;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.navIcon{
+    height: 23px;
+}
+.navTitle{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+.navTitle:hover{
+    color: #E8632C;
+}
+
+.navList{
+    display: flex;
+    justify-content: space-between;
+    width: 20rem;
+}
+.navItem{
+    text-decoration: none;
+    color: white;
+}
+.navItem:hover{
+    color: #90BA5A;
+}
