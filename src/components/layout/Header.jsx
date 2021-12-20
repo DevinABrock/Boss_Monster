@@ -1,14 +1,19 @@
 
 import React from 'react'
+import '../css/Header.css'
 import {Link} from 'react-router-dom';
+import icon from '../../images/favicon.ico'
 
 function Header() {
     return (
-        <>
-            <Link to="/">Home Page</Link>
-            &nbsp;
-            <Link to="game">Game</Link>
-        </>
+        <div className='navBar'>
+            <Link className='navTitle' to="/">B<img className='navIcon' src={icon} />SS MONSTER</Link>
+            <div className='navList'>
+                <Link className='navItem' to="game">Dungeon Masters</Link>
+                <Link className='navItem' to="game">How To Play</Link>
+                <Link className='navItem'to="game">Credits</Link>
+            </div>
+        </div>
     )
 }
 

@@ -9,8 +9,7 @@ import reducer from "./reducers"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
 import App from './App'
-import Game from './components/Game'
-import Front from './components/Front'
+import Game from './components/Game.jsx'
 import Sample from "./components/Sample"
 
 const saveToLocalStorage = (reduxGlobalState) => {

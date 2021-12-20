@@ -1,37 +1,42 @@
 import React from 'react'
 import './css/game.css'
+import Info from './gameComponents/Info'
+import Hand from './gameComponents/Hand'
+import Event from './gameComponents/Event'
+import Town from './gameComponents/Town'
+import Username from './gameComponents/Username'
+import Dungeon from './gameComponents/Dungeon'
 
 function Game() {
     return (
         <div className='gameBody'>
-            <div className='sectionTitle'>Decks</div>
-            <div className='deckArea'>
-            {/* -- DECKS -- */}
-                <div className='decks'>
-                <div className='cardSlot'>Epic Heroes</div>
-                <div className='cardSlot'>Heroes</div>
-                <div className='emptyCardSlot'></div>
-                <div className='cardSlot'>Room Deck</div>
-                <div className='cardSlot'>Discard</div>
-                <div className='cardSlot'>Spell Deck</div>
+
+            {/* -- INFO SIDE -- */}
+            <div className='infoSide'>
+                <div className='usernameArea'>
+                    <Username />
                 </div>
-            {/* -- TOWN -- */}
-            <div className='sectionTitle'>Town</div>
-                <div className='town'>
-                    <div className='cardSlot'>Ex.Hero</div>
-                    <div className='cardSlot'>Ex.Hero</div>
-                    <div className='cardSlot'>Ex.Hero</div>
-                    <div className='cardSlot'>Ex.Hero</div>
-                    <div className='cardSlot'>Ex.Hero</div>
-                    <div className='cardSlot'>Ex.Hero</div>
-        
+                <div className='infoArea'>
+                    <Info />
                 </div>
             </div>
 
-
-
-            {/* -- HAND -- */}
-            <div className='playerArea'>
+            {/* -- GAME SIDE -- */}
+            <div className='gameSide'>
+                <div className='progressionArea'>
+                    <div className='eventArea'>
+                        <Event />
+                    </div>
+                    <div className='townArea'>
+                        <Town />
+                    </div>
+                </div>
+                <div className='dungeonArea'>
+                    <Dungeon />
+                </div>
+                <div className='handArea'>
+                    <Hand />
+                </div>
             </div>
         </div>
     )

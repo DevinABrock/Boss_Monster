@@ -1,0 +1,90 @@
+.dungeonBody{
+    height: 100%;
+    width: 95%;
+}
+
+/* -- HERO AREA -- */
+.heroDisplay{
+    height: 40%;
+    width: 80%;
+    display: flex;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.hero{
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+    border-radius: 5px;
+    height: 90%;
+    width: 16%;
+    margin-left: .6%;
+}
+.hero:hover{
+    border-color: #4F93B3;
+    border-radius: 0px;
+    border-width: 2px;
+    cursor: pointer;
+}
+
+/* -- DUNGEON AREA -- */
+.dungeonDisplay{
+    height: 60%;
+    display: flex;
+}
+.roomArea{
+    height: 70%;
+    width: 80%;
+    background-color: #5B5B5B;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #534125;
+}
+.room{
+    border-style: solid;
+    border-width: 3px;
+    border-color: #5B5B5B;
+    border-radius: 5px;
+    height: 85%;
+    width: 16%;
+    margin-left: .7%;
+}
+.room:hover{
+    border-style: solid;
+    border-width: 2px;
+    border-color: #D93104;
+    border-radius: 0px;
+    cursor: pointer;
+}
+
+.bossArea{
+    height: 90%;
+    width: 20%;
+    background-color: #474747;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.boss{
+    height: 87%;
+    width: 85%;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #474747;
+}
+.boss:hover{
+    border-style: solid;
+    border-width: 2px;
+    border-color: #BD8810;
+    border-radius: 0px;
+    cursor: pointer;
+}
