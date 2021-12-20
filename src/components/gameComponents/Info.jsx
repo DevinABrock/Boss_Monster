@@ -1,6 +1,5 @@
 import React from 'react'
 import '../css/Info.css'
-import Drac from '../../images/card-images/bosses/draculord.svg'
 
 function Info() {
     return (
@@ -9,7 +8,7 @@ function Info() {
             {/* -- INFO AREA -- */}
             <div className='cardInfoArea'>
                 <div className='displaySection'>
-                    <img src={Drac} className='cardDisplay'></img>
+                    <img src="" className='cardDisplay'></img>
                 </div>
                 <div className='infoSection'>
                     <div className='title'>Draculord</div>
