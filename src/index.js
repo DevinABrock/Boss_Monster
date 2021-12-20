@@ -57,6 +57,7 @@ ReactDOM.render(
           <Routes>
             <Route path="/" element={<App />} />
             <Route path="/game" element={<Game />} />
+            <Route path="/front" element={<Front />} />
           </Routes>
         </BaseLayout>
       </Router>
