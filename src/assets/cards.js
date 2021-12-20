@@ -9,7 +9,7 @@ const bossDeck = [
   //   treasure: "Cleric",
   //   description:
   //     "Target opponent reveals his or her hand. Take one card and put it into your hand.",
-  //   image: "",
+  //   image: "/card-images/bosses/",
   // },
   {
     id: "B2",
