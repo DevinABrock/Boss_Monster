@@ -1,30 +1,41 @@
-.body{
-    margin: 0px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P');
 
-.homeContainer{
-    margin: 0px;
-    background-color: #1f1011;
-    height: 125vh;
+
+.homeBody{
+    /* background-color: #1f1011; */
+    height: 95vh;
+    /* width: 100vw; */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    font-family: 'Press Start 2P', cursive;
+}
+.homeBanner{
+    height: 75%;
     width: 100vw;
+    background-color: pink;
+    /* background-image: url(""); */
 }
 
 .imgOne{
-    height: 70vh;
-    width: 70vw;
-    margin-left: 15%;
-    border-radius: 10px;
+    height: 100%;
+    width: 100vw;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: repeat;
+    filter: blur(3px);
 }
 
-.inputName{
+/* .inputName{
     height: 60px;
     width: 300px;
     border-radius: 10px;
     margin-top: 5%;
     margin-left: 40%;
-}
+} */
 
-.playGame{
+/* .playGame{
     display: flex;
     flex-direction: row;
     height: 5%;
@@ -34,5 +45,21 @@
     color: #1f1011;
     margin-top: 5%;
     margin-left: 42%;
-}
+} */
 
+.homeButtonContainer{
+    height: 25%;
+    width: 100vw;
+    background-color: #1f1011;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    font-size: 35px;
+}
+.homeButton{
+    
+}
+.homeButton:hover{
+    color: #90BA34;
+}
