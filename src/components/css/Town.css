@@ -1,0 +1,33 @@
+.townBody{
+    height: 100%;
+    width: 100%;
+    color: white;
+}
+
+.townTitle{
+    height: 20%;
+    font-size: 20px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.townList{  
+    height: 80%;
+    display: flex;
+    align-items: center;
+}
+.townCard{
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+    border-radius: 5px;
+    height: 100%;
+    width: 18%;
+    margin-right: 5px;
+}
+.townCard:hover{
+    border-color: #4F93B3;
+    border-width: 2px;
+    border-radius: 0px;
+    cursor: pointer;
+}

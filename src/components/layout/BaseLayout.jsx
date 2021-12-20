@@ -6,9 +6,6 @@ function BaseLayout({children}) {
     return (
         <>
             <Header />
-
-            <br />
-
             {children}
         </>
     )

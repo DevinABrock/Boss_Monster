@@ -1,60 +1,67 @@
-body{
-    margin: 0px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P');
+
 
 .gameBody{
-    background-color: black;
+    background-color: #0e0e0e;
     height: 100vh;
     display: flex;
-    flex-direction: column;
+    font-family: 'Press Start 2P', cursive;
+    /* background-image: url(../../images/dungeon_wall.jpg);  */
+    background-size: 100%;
+    background-position: center;
+}
+
+
+/* -- INFO SIDE -- */
+.infoSide{
+    height: 100%;
+    width: 40vw;
+}
+.usernameArea{
+    display: flex;
+    align-items: flex-end;
+    height: 10vh;
+}
+.infoArea{
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* -- GAME SIDE -- */
+.gameSide{
+    height: 100%;
+    width: 60vw;
+}
+.progressionArea{
+    height: 20vh;
+    display: flex;
+}
+.eventArea{
+    width: 45%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.townArea{
+    width: 55%;
+    height: 100%;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
-.cardSlot{
-    height: 90%;
-    width: 130px;
-    border-style: solid;
-    border-width: 3px;
-    border-color: black;
-    margin: 10px;
-    text-align: center;
-}
-.emptyCardSlot{
-    height: 90%;
-    width: 130px;
-    margin: 10px;
-}
-.sectionTitle{
-    color: white;
-    width: 60vw;
-    font-size: 20px;
-    margin-top: 10px;
-    margin-bottom: 5px;
-}
 
-
-.deckArea{
+.dungeonArea{
+    height: 55vh;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    height: 360px;
 }
-.decks{
-    background-color: gray;
-    width: 60vw;
-    height: 175px;
+.handArea{
+    height: 25vh;
     display: flex;
-}
-.town{
-    background-color: gray;
-    width: 60vw;
-    height: 175px;
-    display: flex;
-}
-
-
-
-.playerArea{
-
+    justify-content: center;
+    align-items: center;
 }
