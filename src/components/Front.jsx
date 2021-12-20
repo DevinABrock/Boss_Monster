@@ -1,14 +1,19 @@
 import React from 'react';
-import ReactDom from 'react-dom'
+import ReactDom from 'react-dom';
 import './css/front.css';
-import img1 from './images/bossMonster.png'
+// import banner from '/favicon.ico'
 
 function Front() {
     return (
-        <div className="homeContainer">
-        <img className="imgOne" src={img1} alt="" />
-        <input className="inputName" type="text" placeholder='Enter your name' />
-        <button className="playGame" type="submit" >Play Boss Monster</button>
+        <div className="homeBody">
+            <div className="homeBanner">
+                <img className="imgOne" src='/bossMonster.png' alt="" />
+            </div>
+            <div className='homeButtonContainer'>
+                <div className='homeButton'>Dungeon Masters</div>
+                <div className='homeButton'>How To Play</div>
+                <div className='homeButton'>Credits</div>
+            </div>
         </div>
     )
 }
