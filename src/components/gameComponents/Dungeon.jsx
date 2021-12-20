@@ -18,9 +18,6 @@ function Dungeon() {
                     <img src='/card-images/heroes/cleric-ordinary(6).svg' className='room'></img>
                     <img src='/card-images/heroes/cleric-ordinary(6).svg' className='room'></img>
                     <img src='/card-images/heroes/cleric-ordinary(6).svg' className='room'></img>
-                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='room'></img>
-                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='room'></img>
-                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='room'></img>
                 </div>
                 <div className='bossArea'>
                     <img src='/card-images/heroes/cleric-ordinary(6).svg' className='boss'></img>

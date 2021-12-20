@@ -1,20 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P');
+
+
 .navBar{
     background-color: black;
-    height: 5vh;
+    height: 6.5vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-left: 1%;
     padding-right: 1%;
+    font-family: 'Press Start 2P', cursive;
 }
 
 .navIcon{
-    height: 23px;
+    height: 2.2rem;
+    margin-left: 2px;
+    margin-right: 5px;
 }
 .navTitle{
     text-decoration: none;
     color: white;
-    font-size: 20px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
 }
 .navTitle:hover{
     color: #E8632C;
@@ -23,11 +31,12 @@
 .navList{
     display: flex;
     justify-content: space-between;
-    width: 20rem;
+    width: 30rem;
 }
 .navItem{
     text-decoration: none;
     color: white;
+    font-size: .7rem;
 }
 .navItem:hover{
     color: #90BA5A;
