@@ -8,7 +8,7 @@ function Info() {
             {/* -- INFO AREA -- */}
             <div className='cardInfoArea'>
                 <div className='displaySection'>
-                    <img src="" className='cardDisplay'></img>
+                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='cardDisplay'></img>
                 </div>
                 <div className='infoSection'>
                     <div className='title'>Draculord</div>

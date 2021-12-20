@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 function Header() {
     return (
         <div className='navBar'>
-            <Link className='navTitle' to="/">B<img className='navIcon' src="/favicon.ico" />SS MONSTER</Link>
+            <Link className='navTitle' to="/">B<img className='navIcon' src='/favicon.ico' />SS MONSTER</Link>
             <div className='navList'>
                 <Link className='navItem' to="game">Dungeon Masters</Link>
                 <Link className='navItem' to="game">How To Play</Link>
