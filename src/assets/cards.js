@@ -1281,7 +1281,7 @@ export const heroDeck = [
     name: "Mage",
     subtitle: "Ordinary-Hero",
     HP: 6,
-    treasure: "Ma",
+    treasure: "Mage",
     description:
       "Mitchell, the Judge He has wandered the planes, hopelessly lost... ever since his wife, Nikki, sent him to the store for diamond dust sugar.",
     players: 2,

@@ -8,9 +8,7 @@ function Card({cardObj, className}) {
   const dispatch = useDispatch()
 
   return (
-      <div className='heroDisplay' >
-          <img src={cardObj.image} className={className} onClick={()=>dispatch(selectCard(cardObj))}/>
-      </div>
+    <img src={cardObj.image} className={className} onClick={()=>dispatch(selectCard(cardObj))}/>
   )
 }
 

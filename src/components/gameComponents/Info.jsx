@@ -27,7 +27,8 @@ function Info() {
                         <div className='title'>{selectedCard.name}</div>
                         <div className='information'>{selectedCard.subtitle}</div>
                         {selectedCard.HP && <div className='information'>HP: {selectedCard.HP}</div>}
-                        
+                        {selectedCard.dmg && <div className='information'>DMG: {selectedCard.dmg}</div>}
+                        {selectedCard.xp && <div className='information'>XP: {selectedCard.xp}</div>}
                         <div className='information'>Treasure: {selectedCard.treasure}</div>
                         <div className='cardDescription'>{selectedCard.description}</div>
                     </>

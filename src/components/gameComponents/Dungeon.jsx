@@ -1,32 +1,29 @@
 import React from 'react'
 import '../css/Dungeon.css'
-import { epicHeroDeck } from "../../assets/cards"
+import { bossDeck, roomDeck, heroDeck } from "../../assets/cards"
 import Card from './Card'
 
 function Dungeon() {
-
-    console.log(epicHeroDeck);
 
     return (
         <div className='dungeonBody'>
 
             {/* -- HERO AREA -- */}
-            <Card cardObj={epicHeroDeck[0]} className="hero"/>
-            {/* <div className='heroDisplay' >
-                    <img src={epicHeroDeck[7].image} className='hero' onClick={()=>dispatch(selectCard(epicHeroDeck[7]))}/>
-            </div> */}
+            <div className='heroDisplay' >
+                <Card cardObj={heroDeck[10]} className="hero"/>
+            </div>
             {/* -- DUNGEON AREA -- */}
             <div className='dungeonDisplay'>
                 <div className='roomArea'>
-                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='room'/>
-                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='room'/>
-                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='room'/>
-                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='room'/>
-                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='room'/>
-                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='room'/>
+                    <Card cardObj={roomDeck[4]} className="room"/>
+                    <Card cardObj={roomDeck[35]} className="room"/>
+                    <Card cardObj={roomDeck[10]} className="room"/>
+                    <Card cardObj={roomDeck[24]} className="room"/>
+                    <Card cardObj={roomDeck[40]} className="room"/>
+                    <Card cardObj={roomDeck[23]} className="room"/>
                 </div>
                 <div className='bossArea'>
-                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='boss'/>
+                <Card cardObj={bossDeck[0]} className="boss"/>
                 </div>
             </div>
         </div>
