@@ -1,6 +1,6 @@
 import React from 'react'
 import '../css/Dungeon.css'
-import Drac from '../../images/card-images/bosses/draculord.svg'
+
 
 
 function Dungeon() {
@@ -9,21 +9,20 @@ function Dungeon() {
 
             {/* -- HERO AREA -- */}
             <div className='heroDisplay'>
-                    <img src={Drac} className='hero'></img>
+                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='hero'></img>
             </div>
-
             {/* -- DUNGEON AREA -- */}
             <div className='dungeonDisplay'>
                 <div className='roomArea'>
-                    <img src={Drac} className='room'></img>
-                    <img src={Drac} className='room'></img>
-                    <img src={Drac} className='room'></img>
-                    <img src={Drac} className='room'></img>
-                    <img src={Drac} className='room'></img>
-                    <img src={Drac} className='room'></img>
+                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='room'></img>
+                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='room'></img>
+                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='room'></img>
+                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='room'></img>
+                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='room'></img>
+                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='room'></img>
                 </div>
                 <div className='bossArea'>
-                    <img src={Drac} className='boss'></img>
+                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='boss'></img>
                 </div>
             </div>
         </div>
