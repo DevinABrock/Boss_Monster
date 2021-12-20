@@ -1,6 +1,6 @@
 // -------------------- 8 Boss Cards -------------------- //
 
-const bossDeck = [
+export const bossDeck = [
   // {
   //   id: "B1",
   //   name: "Draculord",
@@ -84,7 +84,7 @@ const bossDeck = [
 
 // -------------------- 75 Room Cards -------------------- //
 
-const roomDeck = [
+export const roomDeck = [
   // ----- Dark Altar 3 ----- //
   {
     id: "R1",
@@ -856,7 +856,7 @@ const roomDeck = [
 
 // -------------------- 31 Spell Cards -------------------- //
 
-const spellDeck = [
+export const spellDeck = [
   // ----- Annihilator 2 ----- //
   {
     id: "S1",
@@ -1117,7 +1117,7 @@ const spellDeck = [
 
 // -------------------- 25 Hero Cards -------------------- //
 
-const heroDeck = [
+export const heroDeck = [
   {
     id: "H1",
     name: "Cleric",
@@ -1397,7 +1397,7 @@ const heroDeck = [
 
 // -------------------- 16 Epic Hero Cards -------------------- //
 
-const epicHeroDeck = [
+export const epicHeroDeck = [
   {
     id: "E1",
     name: "Cleric",
