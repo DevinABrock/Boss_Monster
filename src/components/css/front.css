@@ -1,30 +1,49 @@
-.body{
-    margin: 0px;
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P');
+
+body{
+    background-color: black;
 }
 
-.homeContainer{
-    margin: 0px;
-    background-color: #1f1011;
-    height: 125vh;
+.homeBody{
+    /* background-color: #1f1011; */
+    height: 93.5vh;
+    /* width: 100vw; */
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    font-family: 'Press Start 2P', cursive;
+}
+.homeBanner{
+    height: 100%;
     width: 100vw;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .imgOne{
-    height: 70vh;
-    width: 70vw;
-    margin-left: 15%;
-    border-radius: 10px;
+    /* height: 100vh; */
+    width: 100vw;
+    /* background-size: 100%; */
+    /* background-position: center; */
+    /* background-size: 100%; */
+    /* background-repeat: repeat; */
+    position: relative;
+    top: 5rem;
 }
 
-.inputName{
+/* .inputName{
     height: 60px;
     width: 300px;
     border-radius: 10px;
     margin-top: 5%;
     margin-left: 40%;
-}
+} */
 
-.playGame{
+/* .playGame{
     display: flex;
     flex-direction: row;
     height: 5%;
@@ -34,5 +53,33 @@
     color: #1f1011;
     margin-top: 5%;
     margin-left: 42%;
-}
+} */
 
+.startButtonContainer{
+    height: 35%;
+    width: 100vw;
+    /* background-color: #0F0505; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    font-size: 35px;
+    position: absolute;
+    padding-top: 35rem;
+}
+.homeButton{
+    
+}
+.homeButton:hover{
+    color: #90BA34;
+}
+.homeBottomContainer{
+    background-color: #0E0E0E;
+    height: 35%;
+    width: 100%;
+}
+.rocks{
+    width: 100vw;
+    height: 35vh;
+
+}
