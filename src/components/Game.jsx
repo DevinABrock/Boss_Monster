@@ -27,7 +27,7 @@ function Game() {
         initializeDeck();
     }, [])
     
-    console.log(bossDeck, heroDeck, epicHeroDeck, roomDeck);
+    console.log("bossDeck: ", bossDeck,"heroDeck: ", heroDeck,"epicHeroDeck: ", epicHeroDeck,"roomDeck: ", roomDeck);
     return (
         <div className='gameBody'>
 
