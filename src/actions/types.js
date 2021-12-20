@@ -1,2 +1,3 @@
 
-export const INCREMENT = "INCREMENT"
+
+export const SHUFFLE_ALL_DECKS = "SHUFFLE_ALL_DECKS";

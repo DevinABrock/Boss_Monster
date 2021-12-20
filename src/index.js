@@ -4,6 +4,7 @@ import {createStore} from "redux"
 import {Provider} from 'react-redux'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import BaseLayout from "./components/layout/BaseLayout"
+import Front from "./components/Front"
 import reducer from "./reducers"
 
 import 'bootstrap/dist/css/bootstrap.min.css'

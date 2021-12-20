@@ -1,10 +1,10 @@
 
 import { combineReducers } from "redux"
-import sampleReducer from "./sampleReducer"
+import cardDecks from "./cardDecks"
 
 // EX: access sampleReducer count by using "state.sampleCR.count"
 const rootReducer = combineReducers({
-    sampleCR: sampleReducer
+    cardDecks
     // add additional reducer key-value pairs
 })
 

@@ -1,11 +1,12 @@
 
-import { INCREMENT } from "./types"
+import { SHUFFLE_ALL_DECKS } from "./types"
 
 // !add multiple actions to this file
 
-export const sampleAction = (sampleData) => {
+export const shuffleAllDecksAction = (allDecksObj) => {
     return {
-        type: INCREMENT,
-        data: sampleData
+        type: SHUFFLE_ALL_DECKS,
+        data: allDecksObj
     }
 }
+
