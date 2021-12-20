@@ -11,7 +11,6 @@ import './index.css'
 import App from './App'
 import Game from './components/Game.jsx'
 import Front from './components/Front.jsx'
-import Sample from "./components/Sample"
 
 const saveToLocalStorage = (reduxGlobalState) => {
 
