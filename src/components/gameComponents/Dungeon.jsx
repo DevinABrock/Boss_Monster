@@ -1,17 +1,16 @@
 import React from 'react'
 import '../css/Dungeon.css'
-import { bossDeck } from "../../assets/cards"
+import { epicHeroDeck } from "../../assets/cards"
 
 
 function Dungeon() {
 
-  console.log(bossDeck);
     return (
         <div className='dungeonBody'>
 
             {/* -- HERO AREA -- */}
             <div className='heroDisplay'>
-                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='hero'></img>
+                    <img src={epicHeroDeck[7].image} className='hero'></img>
             </div>
             {/* -- DUNGEON AREA -- */}
             <div className='dungeonDisplay'>
