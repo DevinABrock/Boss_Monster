@@ -1,5 +1,6 @@
 // -------------------- 8 Boss Cards -------------------- //
 
+// shuffling algorithm is mutating array
 export const bossDeck = [
   // {
   //   id: "B1",
@@ -84,6 +85,7 @@ export const bossDeck = [
 
 // -------------------- 75 Room Cards -------------------- //
 
+// shuffling algorithm is mutating array
 export const roomDeck = [
   // ----- Dark Altar 3 ----- //
   {
@@ -856,6 +858,7 @@ export const roomDeck = [
 
 // -------------------- 31 Spell Cards -------------------- //
 
+// shuffling algorithm is mutating array
 export const spellDeck = [
   // // ----- Annihilator 2 ----- //
   // {
@@ -1117,6 +1120,7 @@ export const spellDeck = [
 
 // -------------------- 25 Hero Cards -------------------- //
 
+// shuffling algorithm is mutating array
 export const heroDeck = [
   {
     id: "H1",
@@ -1397,6 +1401,7 @@ export const heroDeck = [
 
 // -------------------- 16 Epic Hero Cards -------------------- //
 
+// shuffling algorithm is mutating array
 export const epicHeroDeck = [
   {
     id: "E1",

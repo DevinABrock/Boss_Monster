@@ -1,5 +1,5 @@
 
-import { CURRENT_SELECTION, SHUFFLE_ALL_DECKS } from "./types"
+import { SELECT_CARD, SHUFFLE_ALL_DECKS } from "./types"
 
 export const shuffleAllDecksAction = (allDecksObj) => {
     return {
@@ -8,9 +8,9 @@ export const shuffleAllDecksAction = (allDecksObj) => {
     }
 }
 
-export const currentSelection = (cardObj) => {
+export const selectCard = (cardObj) => {
   return {
-    type: CURRENT_SELECTION,
+    type: SELECT_CARD,
     card: cardObj
   }
 }
