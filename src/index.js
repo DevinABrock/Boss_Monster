@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
 import App from './App'
 import Game from './components/Game.jsx'
-import Sample from "./components/Sample"
+import Front from './components/Front'
 
 const saveToLocalStorage = (reduxGlobalState) => {
 
