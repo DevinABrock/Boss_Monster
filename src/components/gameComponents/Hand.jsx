@@ -1,9 +1,5 @@
 import React from 'react'
 import '../css/Hand.css'
-<<<<<<< HEAD
-
-=======
->>>>>>> d3c4e199285d47df7f542a3a4c4422eefb310601
 
 function Hand() {
     return (
