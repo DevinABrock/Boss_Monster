@@ -7,13 +7,14 @@ function Front() {
     return (
         <div className="homeBody">
             <div className="homeBanner">
-                <img className="imgOne" src='/bossMonster.png' alt="" />
+                <img className="imgOne" src='/homeBanner3.png' alt="" />
+                <div className='startButtonContainer'>
+                    <div className='homeButton'>Start Game</div>
+                </div>
             </div>
-            <div className='homeButtonContainer'>
-                <div className='homeButton'>Dungeon Masters</div>
-                <div className='homeButton'>How To Play</div>
-                <div className='homeButton'>Credits</div>
-            </div>
+            {/* <div className='homeBottomContainer'>
+                <img className="rocks" src='/rocks.png' alt="" />
+            </div> */}
         </div>
     )
 }
