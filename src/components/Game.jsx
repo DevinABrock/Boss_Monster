@@ -7,27 +7,38 @@ import Event from './gameComponents/Event'
 import Town from './gameComponents/Town'
 import Username from './gameComponents/Username'
 import Dungeon from './gameComponents/Dungeon'
-import { shuffleAllDecks } from './gameLogic/initializingDeck';
-import {shuffleAllDecksAction} from '../actions/actions';
+import { shuffleAllDecks, dealInitialCards } from './gameLogic/initializingDeck';
+import {shuffleAllDecksAction, dealInitialCardsAction} from '../actions/sampleActions';
 
 function Game() {
 
     const dispatch = useDispatch();
+    const gamePhase = useSelector(state => state.gamePhase.gamePhase)
     const bossDeck = useSelector(state => state.cardDecks.bossDeck)
     const heroDeck = useSelector(state => state.cardDecks.heroDeck)
     const epicHeroDeck = useSelector(state => state.cardDecks.epicHeroDeck)
     const roomDeck = useSelector(state => state.cardDecks.roomDeck)
+    const playerBoss = useSelector(state => state.cardDecks.playerBoss)
+    const playerRooms = useSelector(state => state.cardDecks.playerRooms)
     
     // this is the initialization setup to shuffle decks etc.
     useEffect(() => {
+        console.log('use effect');
         const initializeDeck = () => {
             let shuffledDecks = shuffleAllDecks();
             dispatch(shuffleAllDecksAction(shuffledDecks));
         }
         initializeDeck();
     }, [])
+
+    if(!playerRooms.length && roomDeck.length && gamePhase===1){
+        console.log('dealing');
+        dealInitialCards(bossDeck, roomDeck, dealInitialCardsAction, dispatch);
+    }
     
-    console.log("bossDeck: ", bossDeck,"heroDeck: ", heroDeck,"epicHeroDeck: ", epicHeroDeck,"roomDeck: ", roomDeck);
+    // console.log(playerBoss, playerRooms);
+    // console.log(gamePhase);
+    // console.log("bossDeck: ", bossDeck,"heroDeck: ", heroDeck,"epicHeroDeck: ", epicHeroDeck,"roomDeck: ", roomDeck);
     return (
         <div className='gameBody'>
 
