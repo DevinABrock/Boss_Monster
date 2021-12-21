@@ -21,7 +21,9 @@ function DungeonMasters() {
                             <div className='dmGuideItem'>Rank</div>
                         </div>
                         <div className='dmUser'>
-                            <div className='dmUserItem'></div>
+                            <div className='dmUserItem'>
+                                <div></div>
+                            </div>
                         </div>
                     </div>
             </div>
