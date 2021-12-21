@@ -10,9 +10,14 @@ export const NEXT_GAME_PHASE = "NEXT_GAME_PHASE";
 
 export const DECREASE_HEALTH = "DECREASE_HEALTH";
 
+export const DEAL_ROOM_CARD = "DEAL_ROOM_CARD";
+
+export const BAIT_HEROES = "BAIT_HEROES";
+
+export const UPDATE_PLAYER_TREASURE = "UPDATE_PLAYER_TREASURE";
+
 export const BUILD_DUNGEON = "BUILD_DUNGEON"
 
-export const DEAL_ROOM_CARD = "DEAL_ROOM_CARD"
 
 // type for currently selected card
 export const SELECT_CARD = "SELECT_CARD"

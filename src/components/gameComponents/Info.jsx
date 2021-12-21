@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import '../css/Info.css'
-import { nextGamePhase, dealHeroesToTown, buildDungeon, selectCard, dealRoomCard } from '../../actions/sampleActions';
+import { nextGamePhase, dealHeroesToTown, buildDungeon, selectCard, dealRoomCard, updatePlayerTreasure, baitHeroes } from '../../actions/sampleActions';
 import { diceRoll } from '../gameLogic/diceRoll';
 
 function Info() {
@@ -11,6 +11,11 @@ function Info() {
     const gamePhase = useSelector(state => state.gamePhase.gamePhase)
     const gameRound = useSelector(state => state.gamePhase.gameRound)
     const playerRooms = useSelector(state => state.cardDecks.playerRooms)
+    const playerDungeon = useSelector(state => state.cardDecks.playerDungeon)
+    const treasureCleric = useSelector(state => state.playerStats.treasureCleric)
+    const treasureFighter = useSelector(state => state.playerStats.treasureFighter)
+    const treasureThief = useSelector(state => state.playerStats.treasureThief)
+    const heroesAtStartOfDungeon = useSelector(state => state.cardDecks.heroesAtStartOfDungeon)
 
     const [switchRanThisGamePhase, setSwitchRanThisGamePhase] = useState(false);
     
@@ -21,20 +26,25 @@ function Info() {
         // if 1 and player has rooms in their hand
         console.log(gamePhase, playerRooms.length);
         if(gamePhase===1 && playerRooms.length){
+            dispatch(updatePlayerTreasure(playerDungeon))
             dispatch(nextGamePhase())
         }
         // if 2 and user clicks next this will update whether a spell card takes effect for the round
         if(gamePhase===2){
             dispatch(nextGamePhase())
         }
-        // if 3
+        // if 3 moving to heroes to town phase
         if(gamePhase===3){
             dispatch(dealHeroesToTown('ordinary', 2))
             dispatch(nextGamePhase())
         }
-        // if 4
+        // if 4 moving to build phase
         if(gamePhase===4){
             dispatch(dealRoomCard())
+            dispatch(nextGamePhase())
+        }
+        if(gamePhase===5){
+            dispatch(baitHeroes(treasureCleric, treasureFighter, treasureThief))
             dispatch(nextGamePhase())
         }
     }
@@ -59,9 +69,9 @@ function Info() {
                 case 4:
                     return <div className='messageBox'><div className='message'>Adventurers wandering into Town.</div></div>
                 case 5:
-                    console.log('running case 5');
                     return <div className='messageBox'><div className='message'>You were dealt one Room Card.</div><div className='message'>You can build one Room in your dungeon.</div></div>
-                    
+                case 6:
+                    return <div className='messageBox'><div className='message'>The Heroes are decide whether it's worth it to steal your stuff.</div> {heroesAtStartOfDungeon.length} heroes enter your dungeon.<div className='message'></div></div>
                 default:
                     break;
             }
@@ -78,6 +88,8 @@ function Info() {
                 return `Dealing Heroes ${gamePhase}`
             case 5:
                 return `Build Room ${gamePhase}`
+            case 6:
+                return `Adventure ${gamePhase}`
             default:
                 break;
         }
