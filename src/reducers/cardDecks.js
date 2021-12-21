@@ -9,7 +9,35 @@ const initialState = {
     herosInTown: [],
     playerBoss: {},
     playerRooms: [],
-    playerDungeon: [],
+    playerDungeon: [
+        // {
+        //     id: "R47",
+        //     name: "Bottomless Pit",
+        //     subtitle: "Trap Room",
+        //     dmg: 1,
+        //     treasure: "Thief",
+        //     description: "Destroy this room: Kill a Hero in this room.",
+        //     image: "/card-images/rooms/bottomless-pit.svg",
+        // },
+        // {
+        //     id: "R58",
+        //     name: "Recycling Center",
+        //     subtitle: "Advanced Trap Room",
+        //     dmg: 3,
+        //     treasure: "Thief",
+        //     description:"When another room in your dungeon is destroyed, you may draw two Room cards.",
+        //     image: "/card-images/rooms/recycling-center.svg",
+        // },
+        // {
+        //     id: "R63",
+        //     name: "Construction Zone",
+        //     subtitle: "Trap Room",
+        //     dmg: 1,
+        //     treasure: "Fighter + Thief",
+        //     description:"When you build this room, you may immediately build an additional Room.",
+        //     image: "/card-images/rooms/construction-zone.svg",
+        // }
+    ],
 }
 
 const cardDecks = (state = initialState, action) => {

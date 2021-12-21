@@ -17,13 +17,6 @@ function Info() {
     
     const selectedCard = useSelector(state => state.misc.card)
 
-    console.log("running info");
-
-    useEffect(() => {
-        console.log("inside useEffect");
-        console.log(selectedCard);
-    }, [selectedCard])
-
     const handleChangeGamePhase = () => {
         // if 1 and player has rooms in their hand
         console.log(gamePhase, playerRooms.length);
