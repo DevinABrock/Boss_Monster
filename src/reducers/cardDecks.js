@@ -45,20 +45,18 @@ const cardDecks = (state = initialState, action) => {
                 playerBoss: action.data.chosenBoss,
                 playerRooms: [...action.data.chosenRooms]
             }
-<<<<<<< HEAD
         case BUILD_DUNGEON:
             console.log("action.card", action.card)
             return {
                 ...state,
                 playerDungeon: [[action.card], ...state.playerDungeon],
                 playerRooms: state.playerRooms.filter(cardObj=>cardObj.id !== action.card.id)
-=======
+            }
         case DEAL_ROOM_CARD:
             return {
                 ...state,
                 roomDeck: state.roomDeck.slice(0, -1),
                 playerRooms: state.playerRooms.concat(state.roomDeck.slice(-1))
->>>>>>> 6d5c11bcfa3e61d80d3607754cc284192e7631b4
             }
         default:
             return state
