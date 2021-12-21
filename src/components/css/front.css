@@ -32,7 +32,7 @@ body{
     /* background-size: 100%; */
     /* background-repeat: repeat; */
     position: relative;
-    top: 5rem;
+    top: 7rem;
 }
 
 /* .inputName{
@@ -65,7 +65,7 @@ body{
     color: white;
     font-size: 35px;
     position: absolute;
-    padding-top: 35rem;
+    padding-top: 36%;
 }
 .homeButton{
     

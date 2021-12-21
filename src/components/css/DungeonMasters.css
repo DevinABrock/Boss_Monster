@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P');
+
+.dmBody{
+    height: 93.5vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Press Start 2P', cursive;
+}
+.dmBanner{
+    height: 100%;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.dmBackground{
+    width: 100vw;
+    position: relative;
+    top: 2rem;
+}
+
+/* -- TITLE AREA -- */
+.dmTitle{
+    margin-top: 14.5%;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    color: gold;
+    font-size: 3.8rem;
+    position: absolute;
+}
+.dmIcon{
+    height: 5rem;
+    padding-bottom: 1%;
+    margin-right: 10px;
+}
+
+/* -- LEADERBOARD AREA -- */
+.leaderBoardContainer{
+    background-color: #6C6D73;
+    height: 55%;
+    width: 60vw;
+    position: absolute;
+    margin-top: 20%;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 10px;
+    border-color: #474747;
+    color: black;
+}
+.dmGuide{
+    padding-left: 5%;
+    padding-right: 5%;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    height: 8%;
+}
+
+.dmUserDisplay{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 8%;
+    overflow-y: scroll;
+    height: 90%;
+}
+
+/* -- SEPERATE USER -- */
+.dmUserItem{
+    padding-left: 5%;
+    padding-right: 5%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.dmRank{
+    width: 10%;
+}
+.dmUsername{
+    width: 40%;
+}
+.dmWL{
+    width: 10%;
+}
+.dmSouls{
+    width: 15%;
+}
+.dmBadge{
+    width: 20%;
+}
