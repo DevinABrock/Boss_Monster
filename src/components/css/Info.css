@@ -55,6 +55,12 @@
     font-weight: lighter;
 }
 
+.cardDescription{
+    font-size: 12px;
+    margin-bottom: 5px;
+    font-weight: lighter;
+}
+
 /* -- BUTTON AREA -- */
 .buttonArea{
     height: 15%;

@@ -9,3 +9,5 @@ export const DEAL_INITIAL_CARDS = "DEAL_INITIAL_CARDS";
 export const NEXT_GAME_PHASE = "NEXT_GAME_PHASE";
 
 
+// type for currently selected card
+export const SELECT_CARD = "SELECT_CARD"

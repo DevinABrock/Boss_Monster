@@ -1,5 +1,5 @@
 
-import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, NEXT_GAME_PHASE } from "./types"
+import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, NEXT_GAME_PHASE, SELECT_CARD } from "./types"
 
 // !add multiple actions to this file
 
@@ -12,13 +12,13 @@ export const shuffleAllDecksAction = (allDecksObj) => {
 export const dealHeroesToTown = (heroType, number) => {
     return {
         type: DEAL_HEROES_TO_TOWN,
-        data: {heroType, number}
+        data: { heroType, number }
     }
 }
 export const dealInitialCardsAction = (chosenBoss, chosenRooms) => {
     return {
         type: DEAL_INITIAL_CARDS,
-        data: {chosenBoss, chosenRooms}
+        data: { chosenBoss, chosenRooms }
     }
 }
 export const nextGamePhase = () => {
@@ -26,5 +26,10 @@ export const nextGamePhase = () => {
         type: NEXT_GAME_PHASE,
     }
 }
-
+export const selectCard = (cardObj) => {
+    return {
+        type: SELECT_CARD,
+        card: cardObj
+    }
+}
 

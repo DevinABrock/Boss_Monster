@@ -15,6 +15,15 @@ function Info() {
 
     const [switchRanThisGamePhase, setSwitchRanThisGamePhase] = useState(false);
     
+    const selectedCard = useSelector(state => state.misc.card)
+
+    console.log("running info");
+
+    useEffect(() => {
+        console.log("inside useEffect");
+        console.log(selectedCard);
+    }, [selectedCard])
+
     const handleChangeGamePhase = () => {
         // if 1 and player has rooms in their hand
         console.log(gamePhase, playerRooms.length);
@@ -77,14 +86,20 @@ function Info() {
             {/* -- INFO AREA -- */}
             <div className='cardInfoArea'>
                 <div className='displaySection'>
-                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='cardDisplay'></img>
+                    <img src={selectedCard.image} className='cardDisplay'></img>
                 </div>
                 <div className='infoSection'>
-                    <div className='title'>Draculord</div>
-                    <div className='information'>Hypnotic Vampire</div>
-                    <div className='information'>900</div>
-                    <div className='information'>Cleric</div>
-                    <div className='information'>Target opponent reveals his or her hand. Take one card and put it into your hand.</div>
+                    {selectedCard && 
+                    <>
+                        <div className='title'>{selectedCard.name}</div>
+                        <div className='information'>{selectedCard.subtitle}</div>
+                        {selectedCard.HP && <div className='information'>HP: {selectedCard.HP}</div>}
+                        {selectedCard.dmg && <div className='information'>DMG: {selectedCard.dmg}</div>}
+                        {selectedCard.xp && <div className='information'>XP: {selectedCard.xp}</div>}
+                        <div className='information'>Treasure: {selectedCard.treasure}</div>
+                        <div className='cardDescription'>{selectedCard.description}</div>
+                    </>
+                    }
                 </div>
             </div>
 
