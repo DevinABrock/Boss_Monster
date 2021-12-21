@@ -8,7 +8,7 @@ import Town from './gameComponents/Town'
 import Username from './gameComponents/Username'
 import Dungeon from './gameComponents/Dungeon'
 import { shuffleAllDecks } from './gameLogic/initializingDeck';
-import {shuffleAllDecksAction} from '../actions/sampleActions';
+import {shuffleAllDecksAction} from '../actions/actions';
 
 function Game() {
 

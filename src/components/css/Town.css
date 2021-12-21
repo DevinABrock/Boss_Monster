@@ -15,6 +15,7 @@
     height: 80%;
     display: flex;
     align-items: center;
+    overflow-x: scroll
 }
 .townCard{
     border-style: solid;
