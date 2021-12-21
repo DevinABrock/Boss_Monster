@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { selectCard } from '../../actions/actions'
+import { selectCard } from '../../actions/sampleActions'
 
 function Card({cardObj, className}) {
 
