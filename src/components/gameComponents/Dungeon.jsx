@@ -1,14 +1,12 @@
 import React from 'react'
 import '../css/Dungeon.css'
-import { bossDeck, roomDeck, heroDeck } from "../../assets/cards"
+import { bossDeck, heroDeck } from "../../assets/cards"
 import { useSelector } from 'react-redux';
 import Card from './Card'
 
 function Dungeon() {
 
     const playerDungeon = useSelector(state => state.cardDecks.playerDungeon)
-
-    console.log(playerDungeon);
 
     return (
         <div className='dungeonBody'>
@@ -21,7 +19,7 @@ function Dungeon() {
             <div className='dungeonDisplay'>
                 <div className='roomArea'>
                     {playerDungeon && playerDungeon.map(roomCard=>{
-                            return <Card cardObj={roomCard} className="room"/>
+                            return <Card cardObj={roomCard[0]} className="room"/>
                         })
                     }
                 </div>

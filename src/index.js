@@ -13,42 +13,46 @@ import Game from './components/Game.jsx'
 import Front from './components/Front.jsx'
 import Progress from './components/Progress'
 
-const saveToLocalStorage = (reduxGlobalState) => {
+// const saveToLocalStorage = (reduxGlobalState) => {
 
-  //serialization = converting js object to string
-  try{
-    const serializedState = JSON.stringify(reduxGlobalState)
-    localStorage.setItem("state", serializedState)
-  }
-  catch(e){
-    console.log(e)
-  }
-}
+//   //serialization = converting js object to string
+//   try{
+//     const serializedState = JSON.stringify(reduxGlobalState)
+//     localStorage.setItem("state", serializedState)
+//   }
+//   catch(e){
+//     console.log(e)
+//   }
+// }
 
-const loadFromLocalStorage = () => {
+// const loadFromLocalStorage = () => {
   
-  // deserialize = converting string to js object
-  const serializedState = localStorage.getItem("state")
+//   // deserialize = converting string to js object
+//   const serializedState = localStorage.getItem("state")
 
-  if(serializedState === null){
-    return undefined
-  }
-  else{
-    return JSON.parse(serializedState)
-  }
+//   if(serializedState === null){
+//     return undefined
+//   }
+//   else{
+//     return JSON.parse(serializedState)
+//   }
 
-}
+// }
 
-const persistedState = loadFromLocalStorage()
+// const persistedState = loadFromLocalStorage()
 
-const store = createStore(reducer, persistedState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+// const store = createStore(reducer, persistedState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()) 
 
-store.subscribe(()=>{
 
-  // happens everytime there is a change to global state
-  saveToLocalStorage(store.getState())
+//! to persist state uncomment code above and below and comment out this code
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()) 
 
-})
+// store.subscribe(()=>{
+
+//   // happens everytime there is a change to global state
+//   saveToLocalStorage(store.getState())
+
+// })
 
 ReactDOM.render(
   <React.StrictMode>
