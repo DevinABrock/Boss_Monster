@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import '../css/Info.css'
-import { nextGamePhase, dealHeroesToTown } from '../../actions/sampleActions';
+import { nextGamePhase, dealHeroesToTown, dealRoomCard } from '../../actions/sampleActions';
 import { diceRoll } from '../gameLogic/diceRoll';
 
 
@@ -17,12 +17,6 @@ function Info() {
     
     const selectedCard = useSelector(state => state.misc.card)
 
-    console.log("running info");
-
-    useEffect(() => {
-        console.log("inside useEffect");
-        console.log(selectedCard);
-    }, [selectedCard])
 
     const handleChangeGamePhase = () => {
         // if 1 and player has rooms in their hand
@@ -34,15 +28,27 @@ function Info() {
         if(gamePhase===2){
             dispatch(nextGamePhase())
         }
+        // if 3
+        if(gamePhase===3){
+            dispatch(dealHeroesToTown('ordinary', 2))
+            dispatch(nextGamePhase())
+        }
+        // if 4
+        if(gamePhase===4){
+            dispatch(dealRoomCard())
+            dispatch(nextGamePhase())
+        }
     }
 
     const renderMessageSwitch = (gamePhase) => {
         console.log('running switch');
             switch (gamePhase) {
                 case 1:
-                    
-                    return <div className='messageBox'><div className='message'>Build a room in your dungeon!</div></div>
+                    return <div className='messageBox'><div className='message'>You were dealt 5 Room cards and 1 Boss Card.</div></div>
                 case 2:
+                    
+                    return <div className='messageBox'><div className='message'>This is the start of round {gameRound}.</div></div>
+                case 3:
                     
                     let {rollNumber, isHit} = diceRoll(gameRound);
                     
@@ -51,12 +57,12 @@ function Info() {
                         <div className='message'>Dice Result: {rollNumber}</div>
                         {isHit? <div className='message'>You are Hit!</div>: <div className='message'>You manage to avoid the spell!</div>}
                         </div>
-                case 3:
-                    if(!switchRanThisGamePhase){
-                        setSwitchRanThisGamePhase(true)
-                        dispatch(dealHeroesToTown('ordinary', 2))
-                    }
+                case 4:
                     return <div className='messageBox'><div className='message'>Adventurers wandering into Town.</div></div>
+                case 5:
+                    console.log('running case 5');
+                    return <div className='messageBox'><div className='message'>You were dealt one Room Card.</div><div className='message'>You can build one Room in your dungeon.</div></div>
+                    
                 default:
                     break;
             }
@@ -64,11 +70,15 @@ function Info() {
     const renderGamePhaseSwitch = (gamePhase) => {
         switch (gamePhase) {
             case 1:
-                return `Pre-Game Phase ${gamePhase}`
+                return `Pre-Game ${gamePhase}`
             case 2:
-                return `Dice-Roll Phase ${gamePhase}`
+                return `Beginning of Round ${gamePhase}`
             case 3:
-                return `Dealing Heroes Phase ${gamePhase}`
+                return `Dice-Roll ${gamePhase}`
+            case 4:
+                return `Dealing Heroes ${gamePhase}`
+            case 5:
+                return `Build Room ${gamePhase}`
             default:
                 break;
         }
