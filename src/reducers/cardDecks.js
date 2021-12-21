@@ -1,5 +1,5 @@
 
-import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS } from "../actions/types"
+import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, DEAL_ROOM_CARD } from "../actions/types"
 
 const initialState = {
     bossDeck: [],
@@ -34,13 +34,22 @@ const cardDecks = (state = initialState, action) => {
                 ...state,
                 herosInTown: [...chosenHeros],
                 // not sure why this works since it should not need to be divided by 2 ( i think this runs twice is why? )
-                heroDeck: [...state.heroDeck.slice(0, - (action.data.number/2))]
+                heroDeck: state.heroDeck.slice(0, - (action.data.number))
             }
         case DEAL_INITIAL_CARDS:
+            
             return {
                 ...state,
+                bossDeck: state.bossDeck.slice(0, -1),
+                roomDeck: state.roomDeck.slice(0, -5),
                 playerBoss: action.data.chosenBoss,
                 playerRooms: [...action.data.chosenRooms]
+            }
+        case DEAL_ROOM_CARD:
+            return {
+                ...state,
+                roomDeck: state.roomDeck.slice(0, -1),
+                playerRooms: state.playerRooms.concat(state.roomDeck.slice(-1))
             }
         default:
             return state
