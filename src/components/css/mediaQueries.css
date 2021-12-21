@@ -1,0 +1,105 @@
+
+
+/* Home Page */
+
+@media only screen and (max-width: 887px) {
+    .imgOne{
+        /* height: 100vh; */
+        width: 110vw;
+        /* background-size: 100%; */
+        /* background-position: center; */
+        /* background-size: 100%; */
+        /* background-repeat: repeat; */
+        position: relative;
+        top: 10.5rem;
+    }
+
+    .startButtonContainer{
+        display: block;
+        position: absolute;
+        background: none;
+        background-color: none;
+        padding-top: 425px;
+        padding-right: 25px;
+    }
+    
+    .inputUsername{
+        display: flex;
+        flex-direction: row;
+        height: 50px;
+        width: auto;
+        text-align: center;
+        outline: none;
+        border-radius: 50px;
+    }
+    
+    .homeButton{
+        display: flex;
+        flex-direction: row;
+        cursor: pointer;
+        color: white;
+        font-size: 20px;
+        text-decoration: none;
+        padding-top: 50px;
+        padding-left: 67px;
+    }
+    .homeButton:hover{
+        color: #89B550;
+    }
+    .homeBottomContainer{
+        background-color: #0E0E0E;
+        height: 35%;
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 887px) {
+    .imgOne{
+        /* height: 100vh; */
+        width: 110vw;
+        /* background-size: 100%; */
+        /* background-position: center; */
+        /* background-size: 100%; */
+        /* background-repeat: repeat; */
+        position: relative;
+        top: 10.5rem;
+    }
+
+    .startButtonContainer{
+        display: block;
+        position: absolute;
+        background: none;
+        background-color: none;
+        padding-top: 425px;
+        padding-right: 25px;
+    }
+    
+    .inputUsername{
+        display: flex;
+        flex-direction: row;
+        height: 50px;
+        width: auto;
+        text-align: center;
+        outline: none;
+        border-radius: 50px;
+    }
+    
+    .homeButton{
+        display: flex;
+        flex-direction: row;
+        cursor: pointer;
+        color: white;
+        font-size: 20px;
+        text-decoration: none;
+        padding-top: 50px;
+        padding-left: 67px;
+    }
+    .homeButton:hover{
+        color: #89B550;
+    }
+    .homeBottomContainer{
+        background-color: #0E0E0E;
+        height: 35%;
+        width: 100%;
+    }
+}
