@@ -33,6 +33,7 @@ const cardDecks = (state = initialState, action) => {
             return {
                 ...state,
                 herosInTown: [...chosenHeros],
+                // not sure why this works since it should not need to be divided by 2 ( i think this runs twice is why? )
                 heroDeck: [...state.heroDeck.slice(0, - (action.data.number/2))]
             }
         case DEAL_INITIAL_CARDS:
