@@ -1,9 +1,5 @@
 
-<<<<<<< HEAD
-import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON } from "../actions/types"
-=======
-import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, DEAL_ROOM_CARD } from "../actions/types"
->>>>>>> 6d5c11bcfa3e61d80d3607754cc284192e7631b4
+import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD } from "../actions/types"
 
 const initialState = {
     bossDeck: [],
