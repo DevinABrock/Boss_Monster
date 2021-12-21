@@ -1,43 +1,15 @@
 
-import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS } from "../actions/types"
+import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON } from "../actions/types"
 
 const initialState = {
     bossDeck: [],
     heroDeck: [],
     epicHeroDeck: [],
     roomDeck: [],
-    herosInTown: [],
+    heroesInTown: [],
     playerBoss: {},
     playerRooms: [],
-    playerDungeon: [
-        [{
-            id: "R47",
-            name: "Bottomless Pit",
-            subtitle: "Trap Room",
-            dmg: 1,
-            treasure: "Thief",
-            description: "Destroy this room: Kill a Hero in this room.",
-            image: "/card-images/rooms/bottomless-pit.svg",
-        }],
-        [{
-            id: "R58",
-            name: "Recycling Center",
-            subtitle: "Advanced Trap Room",
-            dmg: 3,
-            treasure: "Thief",
-            description:"When another room in your dungeon is destroyed, you may draw two Room cards.",
-            image: "/card-images/rooms/recycling-center.svg",
-        }],
-        [{
-            id: "R58",
-            name: "Recycling Center",
-            subtitle: "Advanced Trap Room",
-            dmg: 3,
-            treasure: "Thief",
-            description:"When another room in your dungeon is destroyed, you may draw two Room cards.",
-            image: "/card-images/rooms/recycling-center.svg",
-        }],
-    ],
+    playerDungeon: [],
 }
 
 const cardDecks = (state = initialState, action) => {
@@ -54,13 +26,13 @@ const cardDecks = (state = initialState, action) => {
             }
         case DEAL_HEROES_TO_TOWN:
             console.log('dealing heroes to town', action.data.number)
-            let chosenHeros = state.heroDeck.slice(0, action.data.number);
+            let chosenHeroes = state.heroDeck.slice(0, action.data.number);
             let newHeroDeck = state.heroDeck.slice(0, - (action.data.number/2))
-            console.log('chosenHeros', chosenHeros)
+            console.log('chosenHeroes', chosenHeroes)
             console.log('newHeroDeck', newHeroDeck)
             return {
                 ...state,
-                herosInTown: [...chosenHeros],
+                heroesInTown: [...chosenHeroes],
                 // not sure why this works since it should not need to be divided by 2 ( i think this runs twice is why? )
                 heroDeck: [...state.heroDeck.slice(0, - (action.data.number/2))]
             }
@@ -69,6 +41,13 @@ const cardDecks = (state = initialState, action) => {
                 ...state,
                 playerBoss: action.data.chosenBoss,
                 playerRooms: [...action.data.chosenRooms]
+            }
+        case BUILD_DUNGEON:
+            console.log("action.card", action.card)
+            return {
+                ...state,
+                playerDungeon: [[action.card], ...state.playerDungeon],
+                playerRooms: state.playerRooms.filter(cardObj=>cardObj.id !== action.card.id)
             }
         default:
             return state

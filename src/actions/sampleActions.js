@@ -1,5 +1,5 @@
 
-import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, NEXT_GAME_PHASE, SELECT_CARD, DECREASE_HEALTH } from "./types"
+import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, NEXT_GAME_PHASE, SELECT_CARD, DECREASE_HEALTH, BUILD_DUNGEON } from "./types"
 
 // !add multiple actions to this file
 
@@ -31,9 +31,18 @@ export const decreaseHealth = () => {
         type: DECREASE_HEALTH,
     }
 }
-export const selectCard = (cardObj) => {
+export const selectCard = (cardObj, className) => {
     return {
         type: SELECT_CARD,
+        card: cardObj,
+        className: className
+    }
+}
+export const buildDungeon = (cardObj) => {
+
+    console.log("cardObj", cardObj)
+    return {
+        type: BUILD_DUNGEON, 
         card: cardObj
     }
 }

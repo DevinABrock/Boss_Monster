@@ -10,6 +10,8 @@ export const NEXT_GAME_PHASE = "NEXT_GAME_PHASE";
 
 export const DECREASE_HEALTH = "DECREASE_HEALTH";
 
+export const BUILD_DUNGEON = "BUILD_DUNGEON"
+
 
 // type for currently selected card
 export const SELECT_CARD = "SELECT_CARD"

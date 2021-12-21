@@ -18,8 +18,8 @@ function Dungeon() {
             {/* -- DUNGEON AREA -- */}
             <div className='dungeonDisplay'>
                 <div className='roomArea'>
-                    {playerDungeon && playerDungeon.map(roomCard=>{
-                            return <Card cardObj={roomCard[0]} className="room"/>
+                    {playerDungeon && playerDungeon.map((roomCard, index)=>{
+                            return <Card cardObj={roomCard[0]} className="room" key={index}/>
                         })
                     }
                 </div>
