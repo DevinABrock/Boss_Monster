@@ -14,7 +14,7 @@ function Event() {
             <div className='health'>
                 HP:
                 {Array.from(Array(health), (e, i) => {
-                    return <img src='/heart.png' className='heart'></img>
+                    return <img src='/heart.png' className='heart' key={i}></img>
                 })}
                 {/* <img src='/heart.png' className='heart'></img> */}
             </div>
