@@ -1,7 +1,7 @@
 import React from 'react'
 import '../css/Dungeon.css'
-import { epicHeroDeck } from "../../assets/cards"
-
+import { bossDeck, roomDeck, heroDeck } from "../../assets/cards"
+import Card from './Card'
 
 function Dungeon() {
 
@@ -9,18 +9,21 @@ function Dungeon() {
         <div className='dungeonBody'>
 
             {/* -- HERO AREA -- */}
-            <div className='heroDisplay'>
-                    <img src={epicHeroDeck[7].image} className='hero'></img>
+            <div className='heroDisplay' >
+                <Card cardObj={heroDeck[10]} className="hero"/>
             </div>
             {/* -- DUNGEON AREA -- */}
             <div className='dungeonDisplay'>
                 <div className='roomArea'>
-                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='room'></img>
-                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='room'></img>
-                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='room'></img>
+                    <Card cardObj={roomDeck[4]} className="room"/>
+                    <Card cardObj={roomDeck[35]} className="room"/>
+                    <Card cardObj={roomDeck[10]} className="room"/>
+                    <Card cardObj={roomDeck[24]} className="room"/>
+                    <Card cardObj={roomDeck[40]} className="room"/>
+                    <Card cardObj={roomDeck[23]} className="room"/>
                 </div>
                 <div className='bossArea'>
-                    <img src='/card-images/heroes/cleric-ordinary(6).svg' className='boss'></img>
+                <Card cardObj={bossDeck[0]} className="boss"/>
                 </div>
             </div>
         </div>

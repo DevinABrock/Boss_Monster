@@ -1,5 +1,6 @@
 // -------------------- 8 Boss Cards -------------------- //
 
+// shuffling algorithm is mutating array
 export const bossDeck = [
   // {
   //   id: "B1",
@@ -84,6 +85,7 @@ export const bossDeck = [
 
 // -------------------- 75 Room Cards -------------------- //
 
+// shuffling algorithm is mutating array
 export const roomDeck = [
   // ----- Dark Altar 3 ----- //
   {
@@ -91,7 +93,7 @@ export const roomDeck = [
     name: "Dark Altar",
     subtitle: "Trap Room",
     dmg: 1,
-    treasure: "Cleric*2",
+    treasure: "Cleric x2",
     description:
       "Destroy this Room: Choose one card from the discard pile and put it into your hand.",
     image: "/card-images/rooms/dark-altar.svg",
@@ -101,7 +103,7 @@ export const roomDeck = [
     name: "Dark Altar",
     subtitle: "Trap Room",
     dmg: 1,
-    treasure: "Cleric*2",
+    treasure: "Cleric x2",
     description:
       "Destroy this Room: Choose one card from the discard pile and put it into your hand.",
     image: "/card-images/rooms/dark-altar.svg",
@@ -111,7 +113,7 @@ export const roomDeck = [
     name: "Dark Altar",
     subtitle: "Trap Room",
     dmg: 1,
-    treasure: "Cleric*2",
+    treasure: "Cleric x2",
     description:
       "Destroy this Room: Choose one card from the discard pile and put it into your hand.",
     image: "/card-images/rooms/dark-altar.svg",
@@ -247,7 +249,7 @@ export const roomDeck = [
     name: "Goblin Armory",
     subtitle: "Monster Room",
     dmg: 1,
-    treasure: "Fighter*2",
+    treasure: "Fighter x2",
     description: "Monster Rooms adjacent to this room deal +1 damage.",
     image: "/card-images/rooms/goblin-armory.svg",
   },
@@ -256,7 +258,7 @@ export const roomDeck = [
     name: "Goblin Armory",
     subtitle: "Monster Room",
     dmg: 1,
-    treasure: "Fighter*2",
+    treasure: "Fighter x2",
     description: "Monster Rooms adjacent to this room deal +1 damage.",
     image: "/card-images/rooms/goblin-armory.svg",
   },
@@ -265,7 +267,7 @@ export const roomDeck = [
     name: "Goblin Armory",
     subtitle: "Monster Room",
     dmg: 1,
-    treasure: "Fighter*2",
+    treasure: "Fighter x2",
     description: "Monster Rooms adjacent to this room deal +1 damage.",
     image: "/card-images/rooms/goblin-armory.svg",
   },
@@ -428,7 +430,7 @@ export const roomDeck = [
   //   name: "Dark Laboratory",
   //   subtitle: "Trap Room",
   //   dmg: 1,
-  //   treasure: "Mage*2",
+  //   treasure: "Mage x2",
   //   description:
   //     "When you build this room, draw two spell cards, then discard a Spell card.",
   //   image: "/card-images/rooms/",
@@ -438,7 +440,7 @@ export const roomDeck = [
   //   name: "Dark Laboratory",
   //   subtitle: "Trap Room",
   //   dmg: 1,
-  //   treasure: "Mage*2",
+  //   treasure: "Mage x2",
   //   description:
   //     "When you build this room, draw two spell cards, then discard a Spell card.",
   //   image: "/card-images/rooms/",
@@ -448,7 +450,7 @@ export const roomDeck = [
   //   name: "Dark Laboratory",
   //   subtitle: "Trap Room",
   //   dmg: 1,
-  //   treasure: "Mage*2",
+  //   treasure: "Mage x2",
   //   description:
   //     "When you build this room, draw two spell cards, then discard a Spell card.",
   //   image: "/card-images/rooms/",
@@ -631,7 +633,7 @@ export const roomDeck = [
     name: "Jackpot Stash",
     subtitle: "Trap Room",
     dmg: 1,
-    treasure: "Thief*2",
+    treasure: "Thief x2",
     description:
       "Destroy this room: Double the treasure value of your dungeon's Rooms until end of turn.",
     image: "/card-images/rooms/jackpot-stash.svg",
@@ -641,7 +643,7 @@ export const roomDeck = [
     name: "Jackpot Stash",
     subtitle: "Trap Room",
     dmg: 1,
-    treasure: "Thief*2",
+    treasure: "Thief x2",
     description:
       "Destroy this room: Double the treasure value of your dungeon's Rooms until end of turn.",
     image: "/card-images/rooms/jackpot-stash.svg",
@@ -651,7 +653,7 @@ export const roomDeck = [
     name: "Jackpot Stash",
     subtitle: "Trap Room",
     dmg: 1,
-    treasure: "Thief*2",
+    treasure: "Thief x2",
     description:
       "Destroy this room: Double the treasure value of your dungeon's Rooms until end of turn.",
     image: "/card-images/rooms/jackpot-stash.svg",
@@ -856,6 +858,7 @@ export const roomDeck = [
 
 // -------------------- 31 Spell Cards -------------------- //
 
+// shuffling algorithm is mutating array
 export const spellDeck = [
   // // ----- Annihilator 2 ----- //
   // {
@@ -1117,6 +1120,7 @@ export const spellDeck = [
 
 // -------------------- 25 Hero Cards -------------------- //
 
+// shuffling algorithm is mutating array
 export const heroDeck = [
   {
     id: "H1",
@@ -1277,7 +1281,7 @@ export const heroDeck = [
     name: "Mage",
     subtitle: "Ordinary-Hero",
     HP: 6,
-    treasure: "Ma",
+    treasure: "Mage",
     description:
       "Mitchell, the Judge He has wandered the planes, hopelessly lost... ever since his wife, Nikki, sent him to the store for diamond dust sugar.",
     players: 2,
@@ -1397,6 +1401,7 @@ export const heroDeck = [
 
 // -------------------- 16 Epic Hero Cards -------------------- //
 
+// shuffling algorithm is mutating array
 export const epicHeroDeck = [
   {
     id: "E1",
