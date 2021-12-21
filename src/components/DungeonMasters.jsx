@@ -14,15 +14,37 @@ function DungeonMasters() {
 
                 {/* -- LEADERBOARD AREA -- */}
                     <div className='leaderBoardContainer'>
+                        {/* -- SEPERATE USER -- */}
                         <div className='dmGuide'>
                             <div className='dmGuideItem'>User</div>
                             <div className='dmGuideItem'>W/L</div>
                             <div className='dmGuideItem'>Souls</div>
                             <div className='dmGuideItem'>Rank</div>
                         </div>
-                        <div className='dmUser'>
+                        <div className='dmUsers'>
                             <div className='dmUserItem'>
-                                <div></div>
+                                <div className='dmUserInfo'>Username</div>
+                                <div className='dmUserInfo'>L</div>
+                                <div className='dmUserInfo'>4</div>
+                                <div className='dmUserInfo'>Legend</div>
+                            </div>
+                            <div className='dmUserItem'>
+                                <div className='dmUserInfo'>Username</div>
+                                <div className='dmUserInfo'>L</div>
+                                <div className='dmUserInfo'>4</div>
+                                <div className='dmUserInfo'>Legend</div>
+                            </div>
+                            <div className='dmUserItem'>
+                                <div className='dmUserInfo'>Username</div>
+                                <div className='dmUserInfo'>L</div>
+                                <div className='dmUserInfo'>4</div>
+                                <div className='dmUserInfo'>Legend</div>
+                            </div>
+                            <div className='dmUserItem'>
+                                <div className='dmUserInfo'>Username</div>
+                                <div className='dmUserInfo'>L</div>
+                                <div className='dmUserInfo'>4</div>
+                                <div className='dmUserInfo'>Legend</div>
                             </div>
                         </div>
                     </div>

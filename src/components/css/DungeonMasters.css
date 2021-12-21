@@ -46,7 +46,7 @@
     border-style: solid;
     border-width: 10px;
     border-color: #474747;
-    color: #1e1e1e;
+    color: black;
 }
 .dmGuide{
     display: flex;
@@ -57,8 +57,28 @@
     height: 8%;
 }
 .dmGuideItem{
-
+    width: 25%;
+    align-items: center;
 }
-.dmUser{
-    
+.dmUsers{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    height: 8%;
+    overflow-y: scroll;
+    height: 90%;
+}
+.dmUserItem{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.dmUserInfo{
+    width: 25%;
+    align-items: center;
+    color: black;
 }
