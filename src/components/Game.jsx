@@ -19,7 +19,7 @@ function Game() {
     const epicHeroDeck = useSelector(state => state.cardDecks.epicHeroDeck)
     const roomDeck = useSelector(state => state.cardDecks.roomDeck)
     const playerBoss = useSelector(state => state.cardDecks.playerBoss)
-    const playerRoomHand = useSelector(state => state.cardDecks.playerRoomHand)
+    const playerRooms = useSelector(state => state.cardDecks.playerRooms)
     
     // this is the initialization setup to shuffle decks etc.
     useEffect(() => {
@@ -31,12 +31,12 @@ function Game() {
         initializeDeck();
     }, [])
 
-    if(!playerRoomHand.length && roomDeck.length && gamePhase===1){
+    if(!playerRooms.length && roomDeck.length && gamePhase===1){
         console.log('dealing');
         dealInitialCards(bossDeck, roomDeck, dealInitialCardsAction, dispatch);
     }
     
-    // console.log(playerBoss, playerRoomHand);
+    // console.log(playerBoss, playerRooms);
     // console.log(gamePhase);
     // console.log("bossDeck: ", bossDeck,"heroDeck: ", heroDeck,"epicHeroDeck: ", epicHeroDeck,"roomDeck: ", roomDeck);
     return (

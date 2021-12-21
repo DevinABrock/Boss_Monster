@@ -17,7 +17,7 @@ export const shuffleAllDecks = () => {
     let shuffledRooms = shuffleDeck(roomDeck);
     let shuffledHeroes = shuffleDeck(heroDeck);
     let shuffledEpicHeroes = shuffleDeck(epicHeroDeck);
-    let shuffledSpells = shuffleDeck(spellDeck)
+    let shuffledSpells = shuffleDeck(spellDeck);
 
     let deckObj = { bossDeck: shuffledBosses, roomDeck: shuffledRooms, heroDeck: shuffledHeroes, epicHeroDeck: shuffledEpicHeroes, spellDeck: shuffledSpells }
     return deckObj;

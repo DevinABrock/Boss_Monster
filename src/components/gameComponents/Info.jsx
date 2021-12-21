@@ -11,13 +11,14 @@ function Info() {
 
     const gamePhase = useSelector(state => state.gamePhase.gamePhase)
     const gameRound = useSelector(state => state.gamePhase.gameRound)
-    const playerRoomHand = useSelector(state => state.cardDecks.playerRoomHand)
+    const playerRooms = useSelector(state => state.cardDecks.playerRooms)
 
     const [switchRanThisGamePhase, setSwitchRanThisGamePhase] = useState(false);
     
     const handleChangeGamePhase = () => {
         // if 1 and player has rooms in their hand
-        if(gamePhase===1 && playerRoomHand.length){
+        console.log(gamePhase, playerRooms.length);
+        if(gamePhase===1 && playerRooms.length){
             dispatch(nextGamePhase())
         }
         // if 2 and user clicks next this will update whether a spell card takes effect for the round
