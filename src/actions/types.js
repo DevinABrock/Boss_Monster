@@ -12,6 +12,7 @@ export const DECREASE_HEALTH = "DECREASE_HEALTH";
 
 export const BUILD_DUNGEON = "BUILD_DUNGEON"
 
+export const DEAL_ROOM_CARD = "DEAL_ROOM_CARD"
 
 // type for currently selected card
 export const SELECT_CARD = "SELECT_CARD"
