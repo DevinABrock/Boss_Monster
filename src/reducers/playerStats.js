@@ -1,10 +1,13 @@
 
-import { DECREASE_HEALTH } from "../actions/types"
+import { DECREASE_HEALTH, UPDATE_PLAYER_TREASURE } from "../actions/types"
 
 const initialState = {
     username: "username",
     health: 5,
     souls: 0,
+    treasureCleric: 0,
+    treasureFighter: 0,
+    treasureThief: 0,
 }
 
 const playerStats = (state = initialState, action) => {
@@ -15,9 +18,45 @@ const playerStats = (state = initialState, action) => {
                 ...state,
                 health: state.health - 1,
             }
+        case UPDATE_PLAYER_TREASURE:
+            let thiefTreasure = 0;
+            let clericTreasure = 0;
+            let fighterTreasure = 0;
+            action.data.forEach(room => {
+                if(room[0]){
+                    let treasureTypesArr = room[0].treasure.split(" + ");
+                    treasureTypesArr.forEach(treasureString => {
+                        if(treasureString === "Thief"){
+                            thiefTreasure++
+                        }
+                        if(treasureString === "Thief x2"){
+                            thiefTreasure = thiefTreasure + 2;
+                        }
+                        if(treasureString === "Cleric"){
+                            clericTreasure++
+                        }
+                        if(treasureString === "Cleric x2"){
+                            clericTreasure = clericTreasure + 2;
+                        }
+                        if(treasureString === "Fighter"){
+                            fighterTreasure++
+                        }
+                        if(treasureString === "Fighter x2"){
+                            fighterTreasure = fighterTreasure + 2;
+                        }
+                    })
+                }
+            });
+            return {
+                ...state,
+                treasureCleric: clericTreasure,
+                treasureFighter: fighterTreasure,
+                treasureThief: thiefTreasure
+            }
         default:
             return state
     }
 }
+
 
 export default playerStats
