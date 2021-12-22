@@ -25,12 +25,7 @@ body{
 }
 
 .imgOne{
-    /* height: 100vh; */
     width: 100vw;
-    /* background-size: 100%; */
-    /* background-position: center; */
-    /* background-size: 100%; */
-    /* background-repeat: repeat; */
     position: relative;
     top: 7rem;
 }
@@ -68,7 +63,8 @@ body{
     padding-top: 36%;
 }
 .homeButton{
-    
+    text-decoration: none;
+    color: white;
 }
 .homeButton:hover{
     color: #90BA34;
@@ -77,9 +73,4 @@ body{
     background-color: #0E0E0E;
     height: 35%;
     width: 100%;
-}
-.rocks{
-    width: 100vw;
-    height: 35vh;
-
 }
