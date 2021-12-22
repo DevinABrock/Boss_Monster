@@ -27,7 +27,7 @@ body{
 .imgOne{
     width: 100vw;
     position: relative;
-    top: 7rem;
+    top: 5rem;
 }
 
 /* .inputName{
@@ -51,23 +51,37 @@ body{
 } */
 
 .startButtonContainer{
-    height: 35%;
-    width: 100vw;
-    /* background-color: #0F0505; */
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    color: white;
-    font-size: 35px;
+    display: block;
     position: absolute;
-    padding-top: 36%;
+    background: none;
+    background-color: none;
+    padding-top: 475px;
+    padding-right: 25px;
 }
+
+.inputUsername{
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    width: auto;
+    text-align: center;
+    outline: none;
+    border-radius: 50px;
+}
+
 .homeButton{
-    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
     color: white;
+    font-size: 20px;
+    text-decoration: none;
+    padding-top: 50px;
+    padding-left: 67px;
 }
 .homeButton:hover{
-    color: #90BA34;
+    cursor: pointer;
+    color: #89B550;
 }
 .homeBottomContainer{
     background-color: #0E0E0E;
