@@ -97,6 +97,22 @@
     color: #c1c1c1;
     cursor: pointer;
 }
+/* class for BUILD button when buildingModeState is true */
+.buttonBuild{
+    background-color: #474747;
+    border-color: #c1c1c1;
+    color: #c1c1c1;
+    font-size: 20px;
+    min-width: 7rem;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 5px;
+    text-align: center;
+}
+.buttonBuild:hover{
+    border-color: #313131;
+    cursor: pointer;
+}
 
 /* -- MESSAGE AREA -- */
 .messageArea{
