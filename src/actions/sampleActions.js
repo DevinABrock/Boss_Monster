@@ -50,7 +50,6 @@ export const decreaseHealth = () => {
 }
 export const buildDungeon = (cardObj) => {
 
-    console.log("cardObj", cardObj)
     return {
         type: BUILD_DUNGEON, 
         card: cardObj

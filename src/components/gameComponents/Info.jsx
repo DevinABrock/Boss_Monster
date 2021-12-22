@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import '../css/Info.css'
-import { nextGamePhase, dealHeroesToTown, buildDungeon, dealRoomCard, updatePlayerTreasure, baitHeroes } from '../../actions/sampleActions';
-import { selectCard, buildingMode } from '../../actions/miscActions';
+import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, baitHeroes } from '../../actions/sampleActions';
+import { buildingMode } from '../../actions/miscActions';
 import { diceRoll } from '../gameLogic/diceRoll';
 
 function Info() {
@@ -102,11 +102,15 @@ function Info() {
         setSwitchRanThisGamePhase(false);
     }
 
-    const handleBuildButtonClick = () => {
+    const handleBuildButtonClick = (className) => {
 
-        // turns building mode on
-        dispatch(buildingMode())
-
+        if(className === "handCard"){
+            // turns building mode on and off
+            dispatch(buildingMode())
+        }
+        else{
+            alert("You can only build cards from your hand.")
+        }
     }
 
     return (
@@ -115,7 +119,7 @@ function Info() {
             {/* -- INFO AREA -- */}
             <div className='cardInfoArea'>
                 <div className='displaySection'>
-                    <img src={selectedCard.image} className='cardDisplay'></img>
+                    <img src={selectedCard && selectedCard.image} className='cardDisplay'></img>
                 </div>
                 <div className='infoSection'>
                     {selectedCard && 
@@ -125,7 +129,7 @@ function Info() {
                         {selectedCard.HP && <div className='information'>HP: {selectedCard.HP}</div>}
                         {selectedCard.dmg && <div className='information'>DMG: {selectedCard.dmg}</div>}
                         {selectedCard.xp && <div className='information'>XP: {selectedCard.xp}</div>}
-                        <div className='information'>Treasure: {selectedCard.treasure}</div>
+                        {selectedCard.treasure && <div className='information'>Treasure: {selectedCard.treasure}</div>}
                         <div className='cardDescription'>{selectedCard.description}</div>
                     </>
                     }
@@ -138,7 +142,7 @@ function Info() {
                 <div className='buttonList'>
                     <div className='button'>STORE</div>
                     {/* <div className='button'>CANCEL</div> */}
-                    <div className='button'onClick={()=>handleBuildButtonClick()}>BUILD</div>
+                    <div className='button'onClick={()=>handleBuildButtonClick(selectedCardClass)}>BUILD</div>
                     <div onClick={()=>handleNextButtonClick()} className='button'>NEXT</div>
                 </div>
             </div>
