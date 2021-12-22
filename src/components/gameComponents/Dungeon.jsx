@@ -3,18 +3,42 @@ import '../css/Dungeon.css'
 import { bossDeck, heroDeck } from "../../assets/cards"
 import { useSelector } from 'react-redux';
 import Card from './Card'
+import { cardBack } from '../../assets/cards';
 
 function Dungeon() {
 
     const playerDungeon = useSelector(state => state.cardDecks.playerDungeon)
     const heroesAtStartOfDungeon = useSelector(state => state.cardDecks.heroesAtStartOfDungeon)
+    const heroRoomPosition = useSelector(state => state.heroStats.heroRoomPosition)
+
+    console.log(heroRoomPosition);
+
+    const renderHeroAtPosition = () => {
+        // return [<Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>,<Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>]
+        let renderHeroArray = []
+        for (let roomIndex = 6; roomIndex > 0; roomIndex--) {
+
+            if (heroRoomPosition===roomIndex) {
+                renderHeroArray.push(<Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>)
+                
+            }
+            else{
+                renderHeroArray.push(<Card cardObj={cardBack} className="hero hero_blank"/>)
+                
+            }
+        }
+        return renderHeroArray;
+    }
 
     return (
         <div className='dungeonBody'>
 
             {/* -- HERO AREA -- */}
             <div className='heroDisplay' >
-                { <Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>}
+                {heroesAtStartOfDungeon.length ? 
+                renderHeroAtPosition()
+                // <Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>
+                :null}
                 
             </div>
             {/* -- DUNGEON AREA -- */}

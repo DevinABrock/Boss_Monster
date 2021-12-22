@@ -22,4 +22,8 @@ export const NEXT_ROUND = "NEXT_ROUND";
 
 
 // type for currently selected card
-export const SELECT_CARD = "SELECT_CARD"
+export const SELECT_CARD = "SELECT_CARD";
+
+
+// hero positioning
+export const SET_HERO_START_OF_DUNGEON = "SET_HERO_START_OF_DUNGEON";
