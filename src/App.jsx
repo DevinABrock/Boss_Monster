@@ -8,10 +8,11 @@ function App() {
     <>
       <div className="homeBody">
             <div className="homeBanner">
-                <img className="imgOne" src='/homeBanner3.png' alt="" />
-                <div className='startButtonContainer'>
+                <img className="imgOne" src='/bossMonsterFinal.png' alt="" />
+                <form className='startButtonContainer'>
+                  <input className="inputUsername" type="text" placeholder='Enter Username' />
                     <Link to="/progress" className='homeButton'><div >Start Game</div></Link>
-                </div>
+                </form>
             </div>
             {/* <div className='homeBottomContainer'>
                 <img className="rocks" src='/rocks.png' alt="" />

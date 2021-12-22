@@ -84,7 +84,6 @@ const cardDecks = (state = initialState, action) => {
                 playerRooms: [...action.data.chosenRooms]
             }
         case BUILD_DUNGEON:
-            console.log("action.card", action.card)
             return {
                 ...state,
                 playerDungeon: [[action.card], ...state.playerDungeon],

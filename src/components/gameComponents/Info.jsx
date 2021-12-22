@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import '../css/Info.css'
-import { nextGamePhase, dealHeroesToTown, buildDungeon, selectCard, dealRoomCard, updatePlayerTreasure, baitHeroes, nextRound, setHeroStartOfDungeon } from '../../actions/sampleActions';
+import { buildingMode } from '../../actions/miscActions';
+import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, baitHeroes, nextRound, setHeroStartOfDungeon } from '../../actions/sampleActions';
 import { diceRoll } from '../gameLogic/diceRoll';
 
 function Info() {
@@ -17,6 +18,8 @@ function Info() {
     const treasureThief = useSelector(state => state.playerStats.treasureThief)
     const heroesAtStartOfDungeon = useSelector(state => state.cardDecks.heroesAtStartOfDungeon)
     const heroRoomPosition = useSelector(state => state.heroRoomPosition)
+    const buildingModeState = useSelector(state => state.misc.buildingMode)
+
     
     const selectedCard = useSelector(state => state.misc.card)
     const selectedCardClass = useSelector(state => state.misc.className)
@@ -131,17 +134,15 @@ function Info() {
         
     }
 
-    const handleBuildButtonClick = (cardObj, className) => {
+    const handleBuildButtonClick = (className) => {
 
         if(className === "handCard"){
-            dispatch(buildDungeon(cardObj))
+            // turns building mode on and off
+            dispatch(buildingMode())
         }
         else{
             alert("You can only build cards from your hand.")
         }
-
-        // keeps players from building the same repeatedly
-        dispatch(selectCard(cardObj, "builtRoom"))
     }
 
     return (
@@ -150,7 +151,7 @@ function Info() {
             {/* -- INFO AREA -- */}
             <div className='cardInfoArea'>
                 <div className='displaySection'>
-                    <img src={selectedCard.image} className='cardDisplay'></img>
+                    <img src={selectedCard.image} className='cardDisplay'/>
                 </div>
                 <div className='infoSection'>
                     {selectedCard && 
@@ -160,7 +161,7 @@ function Info() {
                         {selectedCard.HP && <div className='information'>HP: {selectedCard.HP}</div>}
                         {selectedCard.dmg && <div className='information'>DMG: {selectedCard.dmg}</div>}
                         {selectedCard.xp && <div className='information'>XP: {selectedCard.xp}</div>}
-                        <div className='information'>Treasure: {selectedCard.treasure}</div>
+                        {selectedCard.treasure && <div className='information'>Treasure: {selectedCard.treasure}</div>}
                         <div className='cardDescription'>{selectedCard.description}</div>
                     </>
                     }
@@ -171,10 +172,10 @@ function Info() {
             <div className='buttonArea'>
                 <div className='phaseInfo'>Phase: {renderGamePhaseSwitch(gamePhase)}</div>
                 <div className='buttonList'>
-                    <div onClick={()=>handleNextButtonClick()} className='button'>NEXT</div>
-                    <div className='button'>CANCEL</div>
-                    <div className='button'onClick={()=>handleBuildButtonClick(selectedCard, selectedCardClass)}>BUILD</div>
                     <div className='button'>STORE</div>
+                    <div className='button'>USE EFFECT</div>
+                    <div className={buildingModeState ? 'buttonBuild' : 'button'} onClick={()=>handleBuildButtonClick(selectedCardClass)}>BUILD</div>
+                    <div onClick={()=>handleNextButtonClick()} className='button'>NEXT</div>
                 </div>
             </div>
 
