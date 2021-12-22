@@ -5,14 +5,36 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectCard, buildingMode } from '../../actions/miscActions';
 import { buildDungeon } from '../../actions/sampleActions';
 import Card from './Card'
+import { cardBack } from '../../assets/cards';
 
 function Dungeon() {
 
     const dispatch = useDispatch()
 
     const playerDungeon = useSelector(state => state.cardDecks.playerDungeon)
+    const heroesAtStartOfDungeon = useSelector(state => state.cardDecks.heroesAtStartOfDungeon)
+    const heroRoomPosition = useSelector(state => state.heroStats.heroRoomPosition)
     const buildingModeState = useSelector(state => state.misc.buildingMode)
     const selectedCard = useSelector(state => state.misc.card)
+
+    console.log(heroRoomPosition);
+
+    const renderHeroAtPosition = () => {
+        // return [<Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>,<Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>]
+        let renderHeroArray = []
+        for (let roomIndex = 6; roomIndex > 0; roomIndex--) {
+
+            if (heroRoomPosition===roomIndex) {
+                renderHeroArray.push(<Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>)
+                
+            }
+            else{
+                renderHeroArray.push(<Card cardObj={cardBack} className="hero hero_blank"/>)
+                
+            }
+        }
+        return renderHeroArray;
+    }
 
 
     const handleBuild = (cardObj) => {
@@ -33,7 +55,11 @@ function Dungeon() {
 
             {/* -- HERO AREA -- */}
             <div className='heroDisplay' >
-                <Card cardObj={heroDeck[10]} className="hero"/>
+                {heroesAtStartOfDungeon.length ? 
+                renderHeroAtPosition()
+                // <Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>
+                :null}
+                
             </div>
             {/* -- DUNGEON AREA -- */}
             <div className='dungeonDisplay'>

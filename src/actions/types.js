@@ -16,9 +16,15 @@ export const BAIT_HEROES = "BAIT_HEROES";
 
 export const UPDATE_PLAYER_TREASURE = "UPDATE_PLAYER_TREASURE";
 
+
+export const NEXT_ROUND = "NEXT_ROUND";
 export const BUILDING_MODE = "BUILDING_MODE"
 
 export const BUILD_DUNGEON = "BUILD_DUNGEON"
 
 // type for currently selected card
-export const SELECT_CARD = "SELECT_CARD"
+export const SELECT_CARD = "SELECT_CARD";
+
+
+// hero positioning
+export const SET_HERO_START_OF_DUNGEON = "SET_HERO_START_OF_DUNGEON";

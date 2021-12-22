@@ -1,0 +1,17 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 361 503" width="361" height="503">
+	<title>Clip-Path: Page 1</title>
+	<defs>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp1">
+			<path d="m-74-1039h1224v1584h-1224v-1584z" />
+		</clipPath>
+		<image  width="361" height="503" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWkAAAH3AQMAAABD2Tw+AAAAAXNSR0IB2cksfwAAAANQTFRFDg4O1N8QWQAAAC5JREFUeJztwTEBAAAAwqD1T20ND6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgHsDXFkAATg26fIAAAAASUVORK5CYII="/>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+	</style>
+	<g id="Clip-Path: Page 1" clip-path="url(#cp1)">
+		<g id="Page 1">
+			<use id="img1" href="#img1" x="0" y="0" />
+		</g>
+	</g>
+</svg>

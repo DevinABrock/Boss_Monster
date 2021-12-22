@@ -1,3 +1,10 @@
+
+export const cardBack = {
+  id: "A1",
+  name: "cardBack",
+  image: "/card-images/card-backs/blank_hero.svg",
+}
+
 // -------------------- 8 Boss Cards -------------------- //
 
 // shuffling algorithm is mutating array

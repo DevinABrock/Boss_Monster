@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import '../css/Info.css'
-import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, baitHeroes } from '../../actions/sampleActions';
 import { buildingMode } from '../../actions/miscActions';
+import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, baitHeroes, nextRound, setHeroStartOfDungeon } from '../../actions/sampleActions';
 import { diceRoll } from '../gameLogic/diceRoll';
 
 function Info() {
@@ -17,12 +17,17 @@ function Info() {
     const treasureFighter = useSelector(state => state.playerStats.treasureFighter)
     const treasureThief = useSelector(state => state.playerStats.treasureThief)
     const heroesAtStartOfDungeon = useSelector(state => state.cardDecks.heroesAtStartOfDungeon)
+    const heroRoomPosition = useSelector(state => state.heroRoomPosition)
     const buildingModeState = useSelector(state => state.misc.buildingMode)
 
-    const [switchRanThisGamePhase, setSwitchRanThisGamePhase] = useState(false);
     
     const selectedCard = useSelector(state => state.misc.card)
     const selectedCardClass = useSelector(state => state.misc.className)
+
+    useEffect(() => {
+        dispatch(updatePlayerTreasure(playerDungeon))
+        console.log('updating treasure');
+    }, [playerDungeon])
 
     const handleChangeGamePhase = () => {
         // if 1 and player has rooms in their hand
@@ -42,12 +47,34 @@ function Info() {
         }
         // if 4 moving to build phase
         if(gamePhase===4){
-            dispatch(dealRoomCard())
+            dispatch(updatePlayerTreasure(playerDungeon))
             dispatch(nextGamePhase())
         }
         if(gamePhase===5){
+            // if build moving to bait
+            
             dispatch(baitHeroes(treasureCleric, treasureFighter, treasureThief))
             dispatch(nextGamePhase())
+        }
+        if(gamePhase===6){
+            // if bait moving to adventure
+            if(!heroesAtStartOfDungeon.length){
+                dispatch(nextRound())
+            }
+            else{
+                dispatch(setHeroStartOfDungeon(playerDungeon))
+                dispatch(nextGamePhase())
+            }
+        }
+        if(gamePhase===7){
+            // if adventure and heroes fighting
+            if(!heroesAtStartOfDungeon.length){
+                dispatch(nextRound())
+            }
+            else{
+                // dispatch(setHeroStartOfDungeon(playerDungeon))
+                dispatch(nextGamePhase())
+            }
         }
     }
 
@@ -73,7 +100,9 @@ function Info() {
                 case 5:
                     return <div className='messageBox'><div className='message'>You were dealt one Room Card.</div><div className='message'>You can build one Room in your dungeon.</div></div>
                 case 6:
-                    return <div className='messageBox'><div className='message'>The Heroes are decide whether it's worth it to steal your stuff.</div> {heroesAtStartOfDungeon.length} heroes enter your dungeon.<div className='message'></div></div>
+                    return <div className='messageBox'><div className='message'>The Heroes decide whether it's worth it to steal your stuff.</div> {heroesAtStartOfDungeon.length} heroes enter your dungeon. {(heroesAtStartOfDungeon.length)?`A ${heroesAtStartOfDungeon[0].name} enters first.`: `Since no heroes entered your dungeon, this is the end of round ${gameRound}.`}<div className='message'></div></div>
+                case 7:
+                    return <div className='messageBox'><div className='message'>The hero is fighting your dungeon. Use spells or effect to help your rooms.</div></div>
                 default:
                     break;
             }
@@ -92,6 +121,8 @@ function Info() {
                 return `Build Room ${gamePhase}`
             case 6:
                 return `Adventure ${gamePhase}`
+            case 7:
+                return `Adventure ${gamePhase}`
             default:
                 break;
         }
@@ -100,7 +131,7 @@ function Info() {
     const handleNextButtonClick = () => {
         
         handleChangeGamePhase();
-        setSwitchRanThisGamePhase(false);
+        
     }
 
     const handleBuildButtonClick = (className) => {
