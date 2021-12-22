@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import '../css/Info.css'
-import { nextGamePhase, dealHeroesToTown, buildDungeon, selectCard, dealRoomCard, updatePlayerTreasure, baitHeroes } from '../../actions/sampleActions';
+import { nextGamePhase, dealHeroesToTown, buildDungeon, dealRoomCard, updatePlayerTreasure, baitHeroes } from '../../actions/sampleActions';
+import { selectCard, buildingMode } from '../../actions/miscActions';
 import { diceRoll } from '../gameLogic/diceRoll';
 
 function Info() {
@@ -18,7 +19,6 @@ function Info() {
     const heroesAtStartOfDungeon = useSelector(state => state.cardDecks.heroesAtStartOfDungeon)
 
     const [switchRanThisGamePhase, setSwitchRanThisGamePhase] = useState(false);
-    const [isBuilding, setIsBuilding] = useState(false)
     
     const selectedCard = useSelector(state => state.misc.card)
     const selectedCardClass = useSelector(state => state.misc.className)
@@ -102,19 +102,11 @@ function Info() {
         setSwitchRanThisGamePhase(false);
     }
 
-    const handleBuildButtonClick = (cardObj, className) => {
+    const handleBuildButtonClick = () => {
 
-        setIsBuilding(true)
+        // turns building mode on
+        dispatch(buildingMode())
 
-        if(className === "handCard"){
-            dispatch(buildDungeon(cardObj))
-        }
-        else{
-            alert("You can only build cards from your hand.")
-        }
-
-        // keeps players from building the same repeatedly
-        dispatch(selectCard(cardObj, "builtRoom"))
     }
 
     return (
@@ -144,10 +136,10 @@ function Info() {
             <div className='buttonArea'>
                 <div className='phaseInfo'>Phase: {renderGamePhaseSwitch(gamePhase)}</div>
                 <div className='buttonList'>
-                    <div onClick={()=>handleNextButtonClick()} className='button'>NEXT</div>
-                    <div className='button'>CANCEL</div>
-                    <div className='button'onClick={()=>handleBuildButtonClick(selectedCard, selectedCardClass)}>BUILD</div>
                     <div className='button'>STORE</div>
+                    {/* <div className='button'>CANCEL</div> */}
+                    <div className='button'onClick={()=>handleBuildButtonClick()}>BUILD</div>
+                    <div onClick={()=>handleNextButtonClick()} className='button'>NEXT</div>
                 </div>
             </div>
 

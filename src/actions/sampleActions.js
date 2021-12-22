@@ -1,5 +1,5 @@
 
-import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, NEXT_GAME_PHASE, SELECT_CARD, DECREASE_HEALTH, DEAL_ROOM_CARD, BAIT_HEROES, UPDATE_PLAYER_TREASURE, BUILD_DUNGEON } from "./types"
+import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, NEXT_GAME_PHASE, DECREASE_HEALTH, DEAL_ROOM_CARD, BAIT_HEROES, UPDATE_PLAYER_TREASURE, BUILD_DUNGEON } from "./types"
 
 // !add multiple actions to this file
 
@@ -46,13 +46,6 @@ export const updatePlayerTreasure = (playerDungeon) => {
 export const decreaseHealth = () => {
     return {
         type: DECREASE_HEALTH,
-    }
-}
-export const selectCard = (cardObj, className) => {
-    return {
-        type: SELECT_CARD,
-        card: cardObj,
-        className: className
     }
 }
 export const buildDungeon = (cardObj) => {
