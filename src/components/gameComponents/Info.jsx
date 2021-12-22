@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import '../css/Info.css'
-import { nextGamePhase, dealHeroesToTown, buildDungeon, selectCard, dealRoomCard, updatePlayerTreasure, baitHeroes } from '../../actions/sampleActions';
+import { nextGamePhase, dealHeroesToTown, buildDungeon, selectCard, dealRoomCard, updatePlayerTreasure, baitHeroes, nextRound } from '../../actions/sampleActions';
 import { diceRoll } from '../gameLogic/diceRoll';
 
 function Info() {
@@ -22,6 +22,11 @@ function Info() {
     const selectedCard = useSelector(state => state.misc.card)
     const selectedCardClass = useSelector(state => state.misc.className)
 
+    useEffect(() => {
+        dispatch(updatePlayerTreasure(playerDungeon))
+        console.log('updating treasure');
+    }, [playerDungeon])
+
     const handleChangeGamePhase = () => {
         // if 1 and player has rooms in their hand
         console.log(gamePhase, playerRooms.length);
@@ -40,12 +45,23 @@ function Info() {
         }
         // if 4 moving to build phase
         if(gamePhase===4){
-            dispatch(dealRoomCard())
+            dispatch(updatePlayerTreasure(playerDungeon))
             dispatch(nextGamePhase())
         }
         if(gamePhase===5){
+            // updating the player treasure doesn't work quick enough so the heroes aren't baited correctly
+            
             dispatch(baitHeroes(treasureCleric, treasureFighter, treasureThief))
             dispatch(nextGamePhase())
+        }
+        if(gamePhase===6){
+            // updating the player treasure doesn't work quick enough so the heroes aren't baited correctly
+            if(!heroesAtStartOfDungeon.length){
+                dispatch(nextRound())
+            }
+            else{
+                dispatch(nextGamePhase())
+            }
         }
     }
 
@@ -71,7 +87,7 @@ function Info() {
                 case 5:
                     return <div className='messageBox'><div className='message'>You were dealt one Room Card.</div><div className='message'>You can build one Room in your dungeon.</div></div>
                 case 6:
-                    return <div className='messageBox'><div className='message'>The Heroes are decide whether it's worth it to steal your stuff.</div> {heroesAtStartOfDungeon.length} heroes enter your dungeon.<div className='message'></div></div>
+                    return <div className='messageBox'><div className='message'>The Heroes decide whether it's worth it to steal your stuff.</div> {heroesAtStartOfDungeon.length} heroes enter your dungeon. {(heroesAtStartOfDungeon.length)?`A ${heroesAtStartOfDungeon[0].name} enters first.`: `Since no heroes entered your dungeon, this is the end of round ${gameRound}.`}<div className='message'></div></div>
                 default:
                     break;
             }

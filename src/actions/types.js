@@ -16,7 +16,9 @@ export const BAIT_HEROES = "BAIT_HEROES";
 
 export const UPDATE_PLAYER_TREASURE = "UPDATE_PLAYER_TREASURE";
 
-export const BUILD_DUNGEON = "BUILD_DUNGEON"
+export const BUILD_DUNGEON = "BUILD_DUNGEON";
+
+export const NEXT_ROUND = "NEXT_ROUND";
 
 
 // type for currently selected card

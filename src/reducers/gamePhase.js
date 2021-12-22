@@ -1,5 +1,5 @@
 
-import { NEXT_GAME_PHASE } from "../actions/types"
+import { NEXT_GAME_PHASE, NEXT_ROUND } from "../actions/types"
 
 const initialState = {
     gamePhase: 1,
@@ -13,6 +13,13 @@ const gamePhase = (state = initialState, action) => {
             return {
                 ...state,
                 gamePhase: state.gamePhase+1
+            }
+        case NEXT_ROUND:
+            console.log('changing round')
+            return {
+                ...state,
+                gamePhase: 2,
+                gameRound: state.gameRound + 1,
             }
         default:
             return state

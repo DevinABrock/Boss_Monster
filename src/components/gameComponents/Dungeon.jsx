@@ -7,13 +7,15 @@ import Card from './Card'
 function Dungeon() {
 
     const playerDungeon = useSelector(state => state.cardDecks.playerDungeon)
+    const heroesAtStartOfDungeon = useSelector(state => state.cardDecks.heroesAtStartOfDungeon)
 
     return (
         <div className='dungeonBody'>
 
             {/* -- HERO AREA -- */}
             <div className='heroDisplay' >
-                <Card cardObj={heroDeck[10]} className="hero"/>
+                { <Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>}
+                
             </div>
             {/* -- DUNGEON AREA -- */}
             <div className='dungeonDisplay'>
