@@ -95,6 +95,7 @@
         padding-left: 67px;
     }
     .homeButton:hover{
+        cursor: pointer;
         color: #89B550;
     }
     .homeBottomContainer{
