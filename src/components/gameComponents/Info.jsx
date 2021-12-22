@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import '../css/Info.css'
 import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, baitHeroes } from '../../actions/sampleActions';
@@ -17,6 +17,7 @@ function Info() {
     const treasureFighter = useSelector(state => state.playerStats.treasureFighter)
     const treasureThief = useSelector(state => state.playerStats.treasureThief)
     const heroesAtStartOfDungeon = useSelector(state => state.cardDecks.heroesAtStartOfDungeon)
+    const buildingModeState = useSelector(state => state.misc.buildingMode)
 
     const [switchRanThisGamePhase, setSwitchRanThisGamePhase] = useState(false);
     
@@ -119,7 +120,7 @@ function Info() {
             {/* -- INFO AREA -- */}
             <div className='cardInfoArea'>
                 <div className='displaySection'>
-                    <img src={selectedCard && selectedCard.image} className='cardDisplay'></img>
+                    <img src={selectedCard.image} className='cardDisplay'/>
                 </div>
                 <div className='infoSection'>
                     {selectedCard && 
@@ -141,8 +142,8 @@ function Info() {
                 <div className='phaseInfo'>Phase: {renderGamePhaseSwitch(gamePhase)}</div>
                 <div className='buttonList'>
                     <div className='button'>STORE</div>
-                    {/* <div className='button'>CANCEL</div> */}
-                    <div className='button'onClick={()=>handleBuildButtonClick(selectedCardClass)}>BUILD</div>
+                    <div className='button'>USE EFFECT</div>
+                    <div className={buildingModeState ? 'buttonBuild' : 'button'} onClick={()=>handleBuildButtonClick(selectedCardClass)}>BUILD</div>
                     <div onClick={()=>handleNextButtonClick()} className='button'>NEXT</div>
                 </div>
             </div>
