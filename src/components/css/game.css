@@ -6,7 +6,6 @@
     height: 100vh;
     display: flex;
     font-family: 'Press Start 2P', cursive;
-    /* background-image: url(../../images/dungeon_wall.jpg);  */
     background-size: 100%;
     background-position: center;
 }

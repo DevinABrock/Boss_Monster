@@ -1,5 +1,6 @@
 import React from 'react'
 import '../src/components/css/front.css';
+import {Link} from 'react-router-dom'
 
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
             <div className="homeBanner">
                 <img className="imgOne" src='/homeBanner3.png' alt="" />
                 <div className='startButtonContainer'>
-                    <div className='homeButton'>Start Game</div>
+                    <Link to="/progress" className='homeButton'><div >Start Game</div></Link>
                 </div>
             </div>
             {/* <div className='homeBottomContainer'>

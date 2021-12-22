@@ -23,10 +23,9 @@
 
 /* -- TITLE AREA -- */
 .dmTitle{
-    margin-top: 14.5%;
+    margin-top: 14.6%;
     width: 100vw;
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: flex-end;
     color: gold;
@@ -56,7 +55,7 @@
     padding-left: 5%;
     padding-right: 5%;
     display: flex;
-    /* justify-content: space-between; */
+    width: 100%;
     align-items: center;
     height: 8%;
 }
@@ -67,7 +66,7 @@
     justify-content: flex-start;
     align-items: center;
     height: 8%;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     height: 90%;
 }
 
@@ -75,23 +74,132 @@
 .dmUserItem{
     padding-left: 5%;
     padding-right: 5%;
-    width: 100%;
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
+    align-items: center;
+    width: 100%;
+    height: 18%;
+    /* margin-bottom: .5rem; */
 }
 .dmRank{
     width: 10%;
+    color: black;
 }
 .dmUsername{
     width: 40%;
+    color: black;
 }
 .dmWL{
     width: 10%;
+    color: black;
 }
 .dmSouls{
-    width: 15%;
+    width: 20%;
+    color: black;
 }
 .dmBadge{
     width: 20%;
+    color: black;
+}
+
+.dmRank1{
+    width: 10%;
+    color: gold;
+    font-size: 1.4rem;
+}
+.dmUsername1{
+    width: 40%;
+    color: gold;
+    font-size: 1.4rem;
+
+}
+.dmWL1{
+    width: 10%;
+    color: gold;
+    font-size: 1.4rem;
+
+}
+.dmSouls1{
+    width: 20%;
+    color: gold;
+    font-size: 1.4rem;
+
+}
+.dmBadge1{
+    width: 20%;
+    color: gold;
+    font-size: 1.4rem;
+
+}
+
+.dmRank2{
+    width: 10%;
+    color: silver;
+    font-size: 1.2rem;
+
+}
+.dmUsername2{
+    width: 40%;
+    color: silver;
+    font-size: 1.2rem;
+
+}
+.dmWL2{
+    width: 10%;
+    color: silver;
+    font-size: 1.2rem;
+
+}
+.dmSouls2{
+    width: 20%;
+    color: silver;
+    font-size: 1.2rem;
+
+}
+.dmBadge2{
+    width: 20%;
+    color: silver;
+    font-size: 1.2rem;
+
+}
+
+.dmRank3{
+    width: 10%;
+    color: #412013;
+    font-size: 1.1rem;
+
+}
+.dmUsername3{
+    width: 40%;
+    color: #412013;
+    font-size: 1.1rem;
+
+}
+.dmWL3{
+    width: 10%;
+    color: #412013;
+    font-size: 1.1rem;
+
+}
+.dmSouls3{
+    width: 20%;
+    color: #412013;
+    font-size: 1.1rem;
+
+}
+.dmBadge3{
+    width: 20%;
+    color: #412013;
+    font-size: 1.1rem;
+
+}
+
+.dmGoldBanner{
+    position: absolute;
+    height: 5.8rem;
+    margin-top: 19.6%;
+    margin-right: 58%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
 }
