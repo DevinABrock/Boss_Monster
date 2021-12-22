@@ -18,6 +18,7 @@ function Info() {
     const heroesAtStartOfDungeon = useSelector(state => state.cardDecks.heroesAtStartOfDungeon)
 
     const [switchRanThisGamePhase, setSwitchRanThisGamePhase] = useState(false);
+    const [isBuilding, setIsBuilding] = useState(false)
     
     const selectedCard = useSelector(state => state.misc.card)
     const selectedCardClass = useSelector(state => state.misc.className)
@@ -102,6 +103,8 @@ function Info() {
     }
 
     const handleBuildButtonClick = (cardObj, className) => {
+
+        setIsBuilding(true)
 
         if(className === "handCard"){
             dispatch(buildDungeon(cardObj))
