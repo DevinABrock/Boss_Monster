@@ -15,7 +15,7 @@ function Progress() {
                 if (100 == oldProgress) return navigate('/game');;
                 return Math.min(oldProgress + Math.random() * 10, 100);
             });
-        }, 1999);
+        }, 70);
 
     }, []);
 

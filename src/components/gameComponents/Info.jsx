@@ -151,13 +151,6 @@ function Info() {
             {/* -- MESSAGE AREA -- */}
             <div className='messageArea'>
                     {renderMessageSwitch(gamePhase)}
-                {/* <div className='messageBox'> */}
-                    {/* <div className='message'>:New Heroes Are In Town.</div>
-                    <div className='message'>:Golem Factory Has Been Built!</div>
-                    <div className='message'>:You Are Now In Adventure Phase. Happy Hunting.</div>
-                    <div className='message'>:Mage Killed! 1 Soul Acquired.</div>
-                    <div className='message'>:You Have Been Wounded!</div> */}
-                {/* </div> */}
             </div>
         </div>
     )
