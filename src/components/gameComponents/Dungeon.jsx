@@ -1,6 +1,6 @@
 import React from 'react'
 import '../css/Dungeon.css'
-import { bossDeck, heroDeck } from "../../assets/cards"
+import { bossDeck } from "../../assets/cards"
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCard, buildingMode } from '../../actions/miscActions';
 import { buildDungeon } from '../../actions/sampleActions';
@@ -36,14 +36,15 @@ function Dungeon() {
         return renderHeroArray;
     }
 
+    const handleBuild = (e) => {
 
-    const handleBuild = (cardObj) => {
+        console.log(e.target.id);
 
         if(buildingModeState){
-            dispatch(buildDungeon(cardObj))
+            dispatch(buildDungeon(selectedCard))
             
             // keeps players from building the same repeatedly
-            dispatch(selectCard(cardObj, "builtRoom"))
+            dispatch(selectCard(selectedCard, "builtRoom"))
 
             // turns buildingMode off after building room
             dispatch(buildingMode())
@@ -63,8 +64,8 @@ function Dungeon() {
             </div>
             {/* -- DUNGEON AREA -- */}
             <div className='dungeonDisplay'>
-                <div  className={buildingModeState ? 'roomAreaBuilding' : 'roomArea'} onClick={()=>handleBuild(selectedCard)}>
-                    {playerDungeon && playerDungeon.map((roomCard, index)=>{
+                <div  className={buildingModeState ? 'roomAreaBuilding' : 'roomArea'} onClick={(e)=>handleBuild(e)}>
+                    {playerDungeon && playerDungeon.slice(0).reverse().map((roomCard, index)=>{
                             return <Card cardObj={roomCard[0]} className="room" key={index}/>
                         })
                     }

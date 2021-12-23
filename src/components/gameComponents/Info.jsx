@@ -48,6 +48,7 @@ function Info() {
         // if 4 moving to build phase
         if(gamePhase===4){
             dispatch(updatePlayerTreasure(playerDungeon))
+            dispatch(dealRoomCard())
             dispatch(nextGamePhase())
         }
         if(gamePhase===5){
@@ -135,7 +136,7 @@ function Info() {
     }
 
     const handleBuildButtonClick = (className) => {
-
+            
         if(className === "handCard"){
             // turns building mode on and off
             dispatch(buildingMode())
@@ -143,6 +144,7 @@ function Info() {
         else{
             alert("You can only build cards from your hand.")
         }
+
     }
 
     return (
