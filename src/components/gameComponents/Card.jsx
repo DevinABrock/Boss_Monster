@@ -8,7 +8,10 @@ function Card({cardObj, className}) {
   const dispatch = useDispatch()
 
   return (
-    <img src={cardObj.image} className={className} onClick={()=>dispatch(selectCard(cardObj, className))}/>
+    <>
+      <img id={cardObj.id} src={cardObj.image} className={className} onClick={()=>dispatch(selectCard(cardObj, className))}/>
+      <div></div>
+    </>
   )
 }
 

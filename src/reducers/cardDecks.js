@@ -1,5 +1,6 @@
 
 import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES } from "../actions/types"
+import { dungeonBack } from "../assets/cards"
 
 const initialState = {
     bossDeck: [],
@@ -10,7 +11,7 @@ const initialState = {
     heroesAtStartOfDungeon: [],
     playerBoss: {},
     playerRooms: [],
-    playerDungeon: [
+    playerDungeon: [ [dungeonBack], [dungeonBack], [dungeonBack], [dungeonBack], [dungeonBack], [dungeonBack]
         // [{
         //     id: "R47",
         //     name: "Bottomless Pit",
@@ -84,9 +85,25 @@ const cardDecks = (state = initialState, action) => {
                 playerRooms: [...action.data.chosenRooms]
             }
         case BUILD_DUNGEON:
+
+            let newPlayerDungeon = []
+
+            // custom filter function to filter out cards with id of "D1"
+            for(let i = 0; i < state.playerDungeon.length; i ++){
+                if(state.playerDungeon[i][0].id !== "D1"){
+                    newPlayerDungeon.push(state.playerDungeon[i])
+                }
+            }
+                
+            newPlayerDungeon.push([action.card])
+
+            for(let i = newPlayerDungeon.length; i < 6; i++){
+                newPlayerDungeon.push([dungeonBack])
+            }
+
             return {
                 ...state,
-                playerDungeon: [[action.card], ...state.playerDungeon],
+                playerDungeon: newPlayerDungeon,
                 playerRooms: state.playerRooms.filter(cardObj=>cardObj.id !== action.card.id)
             }
         case DEAL_ROOM_CARD:
@@ -97,7 +114,7 @@ const cardDecks = (state = initialState, action) => {
             }
         case BAIT_HEROES:
 
-            
+
             // accidentally did baiting based off hero treasures instead of room treasures (not removing bc could potentially reference in future)
             let heroesToPlayerDungeon = state.heroesInTown.filter(hero=> {
                 console.log(hero)
