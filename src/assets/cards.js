@@ -65,16 +65,16 @@ export const bossDeck = [
   //   description: "You may draw three Spell cards, then discard a Spell card.",
   //   image: "",
   // },
-  {
-    id: "B6",
-    name: "Seducia",
-    subtitle: "Sorceress of Sexiness",
-    xp: 600,
-    treasure: "Mage",
-    description:
-      "You may search through town or the Hero decks, choose one Hero, and put it at the entrance to your dungeon.",
-    image: "/card-images/bosses/seducia.svg",
-  },
+  // {
+  //   id: "B6",
+  //   name: "Seducia",
+  //   subtitle: "Sorceress of Sexiness",
+  //   xp: 600,
+  //   treasure: "Mage",
+  //   description:
+  //     "You may search through town or the Hero decks, choose one Hero, and put it at the entrance to your dungeon.",
+  //   image: "/card-images/bosses/seducia.svg",
+  // },
   {
     id: "B7",
     name: "Cleopatra",
@@ -267,24 +267,24 @@ export const roomDeck = [
     description: "Monster Rooms adjacent to this room deal +1 damage.",
     image: "/card-images/rooms/goblin-armory.svg",
   },
-  {
-    id: "R17",
-    name: "Goblin Armory",
-    subtitle: "Monster Room",
-    dmg: 1,
-    treasure: "Fighter x2",
-    description: "Monster Rooms adjacent to this room deal +1 damage.",
-    image: "/card-images/rooms/goblin-armory.svg",
-  },
-  {
-    id: "R18",
-    name: "Goblin Armory",
-    subtitle: "Monster Room",
-    dmg: 1,
-    treasure: "Fighter x2",
-    description: "Monster Rooms adjacent to this room deal +1 damage.",
-    image: "/card-images/rooms/goblin-armory.svg",
-  },
+  // {
+  //   id: "R17",
+  //   name: "Goblin Armory",
+  //   subtitle: "Monster Room",
+  //   dmg: 1,
+  //   treasure: "Fighter x2",
+  //   description: "Monster Rooms adjacent to this room deal +1 damage.",
+  //   image: "/card-images/rooms/goblin-armory.svg",
+  // },
+  // {
+  //   id: "R18",
+  //   name: "Goblin Armory",
+  //   subtitle: "Monster Room",
+  //   dmg: 1,
+  //   treasure: "Fighter x2",
+  //   description: "Monster Rooms adjacent to this room deal +1 damage.",
+  //   image: "/card-images/rooms/goblin-armory.svg",
+  // },
   // ----- Goblin Factory 3 ----- //
   {
     id: "R19",
@@ -306,16 +306,16 @@ export const roomDeck = [
       "Once per turn, if a hero dies in this room, draw a Room card.",
     image: "/card-images/rooms/golem-factory.svg",
   },
-  {
-    id: "R21",
-    name: "Golem Factory",
-    subtitle: "Monster Room",
-    dmg: 2,
-    treasure: "Fighter",
-    description:
-      "Once per turn, if a hero dies in this room, draw a Room card.",
-    image: "/card-images/rooms/golem-factory.svg",
-  },
+  // {
+  //   id: "R21",
+  //   name: "Golem Factory",
+  //   subtitle: "Monster Room",
+  //   dmg: 2,
+  //   treasure: "Fighter",
+  //   description:
+  //     "Once per turn, if a hero dies in this room, draw a Room card.",
+  //   image: "/card-images/rooms/golem-factory.svg",
+  // },
   // ----- Minotaur's Maze 2 ----- //
   {
     id: "R22",
@@ -327,16 +327,16 @@ export const roomDeck = [
       "The first time a Hero enters this room, send it back to the previous room.",
     image: "/card-images/rooms/minotaurs-maze(1).svg",
   },
-  {
-    id: "R23",
-    name: "Minotaur's Maze",
-    subtitle: "Monster Room",
-    dmg: 0,
-    treasure: "Fighter",
-    description:
-      "The first time a Hero enters this room, send it back to the previous room.",
-    image: "/card-images/rooms/minotaurs-maze(2).svg",
-  },
+  // {
+  //   id: "R23",
+  //   name: "Minotaur's Maze",
+  //   subtitle: "Monster Room",
+  //   dmg: 0,
+  //   treasure: "Fighter",
+  //   description:
+  //     "The first time a Hero enters this room, send it back to the previous room.",
+  //   image: "/card-images/rooms/minotaurs-maze(2).svg",
+  // },
   // ----- Neanderthal Cave 3 ----- //
   {
     id: "R24",
@@ -347,24 +347,24 @@ export const roomDeck = [
     description: "You cannot build an Advanced Room on Neanderthal Cave.",
     image: "/card-images/rooms/neanderthal-cave.svg",
   },
-  {
-    id: "R25",
-    name: "Neanderthal Cave",
-    subtitle: "Monster Room",
-    dmg: 3,
-    treasure: "Fighter",
-    description: "You cannot build an Advanced Room on Neanderthal Cave.",
-    image: "/card-images/rooms/neanderthal-cave.svg",
-  },
-  {
-    id: "R26",
-    name: "Neanderthal Cave",
-    subtitle: "Monster Room",
-    dmg: 3,
-    treasure: "Fighter",
-    description: "You cannot build an Advanced Room on Neanderthal Cave.",
-    image: "/card-images/rooms/neanderthal-cave.svg",
-  },
+  // {
+  //   id: "R25",
+  //   name: "Neanderthal Cave",
+  //   subtitle: "Monster Room",
+  //   dmg: 3,
+  //   treasure: "Fighter",
+  //   description: "You cannot build an Advanced Room on Neanderthal Cave.",
+  //   image: "/card-images/rooms/neanderthal-cave.svg",
+  // },
+  // {
+  //   id: "R26",
+  //   name: "Neanderthal Cave",
+  //   subtitle: "Monster Room",
+  //   dmg: 3,
+  //   treasure: "Fighter",
+  //   description: "You cannot build an Advanced Room on Neanderthal Cave.",
+  //   image: "/card-images/rooms/neanderthal-cave.svg",
+  // },
   // ----- Beast Menagerie 2 ----- //
   {
     id: "R27",
@@ -376,16 +376,16 @@ export const roomDeck = [
       "Once per turn when you build another Monster room, draw a Room card.",
     image: "/card-images/rooms/beast-menagerie.svg",
   },
-  {
-    id: "R28",
-    name: "Beast Menagerie",
-    subtitle: "Advanced Monster Room",
-    dmg: 4,
-    treasure: "Fighter",
-    description:
-      "Once per turn when you build another Monster room, draw a Room card.",
-    image: "/card-images/rooms/beast-menagerie.svg",
-  },
+  // {
+  //   id: "R28",
+  //   name: "Beast Menagerie",
+  //   subtitle: "Advanced Monster Room",
+  //   dmg: 4,
+  //   treasure: "Fighter",
+  //   description:
+  //     "Once per turn when you build another Monster room, draw a Room card.",
+  //   image: "/card-images/rooms/beast-menagerie.svg",
+  // },
   // ----- Monster's Ballroom 2 ----- //
   {
     id: "R29",
@@ -397,16 +397,16 @@ export const roomDeck = [
       "This room's damage is equal to the number of Monster rooms in your dungeon.",
     image: "/card-images/rooms/monsters-ballroom.svg",
   },
-  {
-    id: "R30",
-    name: "Monster's Ballroom",
-    subtitle: "Advanced Monster Room",
-    dmg: "*",
-    treasure: "Fighter",
-    description:
-      "This room's damage is equal to the number of Monster rooms in your dungeon.",
-    image: "/card-images/rooms/monsters-ballroom.svg",
-  },
+  // {
+  //   id: "R30",
+  //   name: "Monster's Ballroom",
+  //   subtitle: "Advanced Monster Room",
+  //   dmg: "*",
+  //   treasure: "Fighter",
+  //   description:
+  //     "This room's damage is equal to the number of Monster rooms in your dungeon.",
+  //   image: "/card-images/rooms/monsters-ballroom.svg",
+  // },
   // // ----- Brainsucker Hive 3 ----- //
   // {
   //   id: "R31",
@@ -571,24 +571,24 @@ export const roomDeck = [
     description: "Destroy this room: Kill a Hero in this room.",
     image: "/card-images/rooms/bottomless-pit.svg",
   },
-  {
-    id: "R47",
-    name: "Bottomless Pit",
-    subtitle: "Trap Room",
-    dmg: 1,
-    treasure: "Thief",
-    description: "Destroy this room: Kill a Hero in this room.",
-    image: "/card-images/rooms/bottomless-pit.svg",
-  },
-  {
-    id: "R48",
-    name: "Bottomless Pit",
-    subtitle: "Trap Room",
-    dmg: 1,
-    treasure: "Thief",
-    description: "Destroy this room: Kill a Hero in this room.",
-    image: "/card-images/rooms/bottomless-pit.svg",
-  },
+  // {
+  //   id: "R47",
+  //   name: "Bottomless Pit",
+  //   subtitle: "Trap Room",
+  //   dmg: 1,
+  //   treasure: "Thief",
+  //   description: "Destroy this room: Kill a Hero in this room.",
+  //   image: "/card-images/rooms/bottomless-pit.svg",
+  // },
+  // {
+  //   id: "R48",
+  //   name: "Bottomless Pit",
+  //   subtitle: "Trap Room",
+  //   dmg: 1,
+  //   treasure: "Thief",
+  //   description: "Destroy this room: Kill a Hero in this room.",
+  //   image: "/card-images/rooms/bottomless-pit.svg",
+  // },
   // ----- Monster's Ballroom 2 ----- //
   {
     id: "R49",
@@ -631,16 +631,16 @@ export const roomDeck = [
       "If the next room in your dungeon is a Trap room, it has +2 damage.",
     image: "/card-images/rooms/dizzygas-hallway.svg",
   },
-  {
-    id: "R53",
-    name: "Dizzygas Hallway",
-    subtitle: "Trap Room",
-    dmg: 1,
-    treasure: "Thief",
-    description:
-      "If the next room in your dungeon is a Trap room, it has +2 damage.",
-    image: "/card-images/rooms/dizzygas-hallway.svg",
-  },
+  // {
+  //   id: "R53",
+  //   name: "Dizzygas Hallway",
+  //   subtitle: "Trap Room",
+  //   dmg: 1,
+  //   treasure: "Thief",
+  //   description:
+  //     "If the next room in your dungeon is a Trap room, it has +2 damage.",
+  //   image: "/card-images/rooms/dizzygas-hallway.svg",
+  // },
   // ----- Jackpot Stash 3 ----- //
   {
     id: "R54",
@@ -652,26 +652,26 @@ export const roomDeck = [
       "Destroy this room: Double the treasure value of your dungeon's Rooms until end of turn.",
     image: "/card-images/rooms/jackpot-stash.svg",
   },
-  {
-    id: "R55",
-    name: "Jackpot Stash",
-    subtitle: "Trap Room",
-    dmg: 1,
-    treasure: "Thief x2",
-    description:
-      "Destroy this room: Double the treasure value of your dungeon's Rooms until end of turn.",
-    image: "/card-images/rooms/jackpot-stash.svg",
-  },
-  {
-    id: "R56",
-    name: "Jackpot Stash",
-    subtitle: "Trap Room",
-    dmg: 1,
-    treasure: "Thief x2",
-    description:
-      "Destroy this room: Double the treasure value of your dungeon's Rooms until end of turn.",
-    image: "/card-images/rooms/jackpot-stash.svg",
-  },
+  // {
+  //   id: "R55",
+  //   name: "Jackpot Stash",
+  //   subtitle: "Trap Room",
+  //   dmg: 1,
+  //   treasure: "Thief x2",
+  //   description:
+  //     "Destroy this room: Double the treasure value of your dungeon's Rooms until end of turn.",
+  //   image: "/card-images/rooms/jackpot-stash.svg",
+  // },
+  // {
+  //   id: "R56",
+  //   name: "Jackpot Stash",
+  //   subtitle: "Trap Room",
+  //   dmg: 1,
+  //   treasure: "Thief x2",
+  //   description:
+  //     "Destroy this room: Double the treasure value of your dungeon's Rooms until end of turn.",
+  //   image: "/card-images/rooms/jackpot-stash.svg",
+  // },
   // ----- Recycling Center 2 ----- //
   {
     id: "R57",
@@ -704,16 +704,16 @@ export const roomDeck = [
       "Destroy another room in your dungeon: Until end of turn, your Rooms have +2 damage. Revised: Once per turn, you may destroy another Room in your dungeon to give all your Rooms +2 until end of turn.",
     image: "/card-images/rooms/the-crushinator.svg",
   },
-  {
-    id: "R60",
-    name: "The Crushinator",
-    subtitle: "Advanced Trap Room",
-    dmg: 2,
-    treasure: "Thief",
-    description:
-      "Destroy another room in your dungeon: Until end of turn, your Rooms have +2 damage. Revised: Once per turn, you may destroy another Room in your dungeon to give all your Rooms +2 until end of turn.",
-    image: "/card-images/rooms/the-crushinator.svg",
-  },
+  // {
+  //   id: "R60",
+  //   name: "The Crushinator",
+  //   subtitle: "Advanced Trap Room",
+  //   dmg: 2,
+  //   treasure: "Thief",
+  //   description:
+  //     "Destroy another room in your dungeon: Until end of turn, your Rooms have +2 damage. Revised: Once per turn, you may destroy another Room in your dungeon to give all your Rooms +2 until end of turn.",
+  //   image: "/card-images/rooms/the-crushinator.svg",
+  // },
   // ----- Centipede Tunnel 2 ----- //
   {
     id: "R61",
@@ -880,14 +880,14 @@ export const spellDeck = [
   //   name: "Annihilator",
   //   phase: "Adventure",
   //   description: "Give one Trap Room +3 damage until end of turn.",
-  //   image: "/card-images/spells/,
+  //   image: "/card-images/spells/",
   // },
   // {
   //   id: "S2",
   //   name: "Annihilator",
   //   phase: "Adventure",
   //   description: "Give one Trap Room +3 damage until end of turn.",
-  //   image: "/card-images/spells/,
+  //   image: "/card-images/spells/",
   // },
   // ----- Assassin 3 ----- //
   {
@@ -920,14 +920,14 @@ export const spellDeck = [
   //   name: "Cave-In",
   //   phase: "Adventure",
   //   description: "Destroy a room in your dungeon. Kill any Hero in that Room.",
-  //   image: "/card-images/spells/,
+  //   image: "/card-images/spells/",
   // },
   // {
   //   id: "S7",
   //   name: "Cave-In",
   //   phase: "Adventure",
   //   description: "Destroy a room in your dungeon. Kill any Hero in that Room.",
-  //   image: "/card-images/spells/,
+  //   image: "/card-images/spells/",
   // },
   // // ----- Counterspell 2 ----- //
   // {
@@ -936,7 +936,7 @@ export const spellDeck = [
   //   phase: "Build & Adventure",
   //   description:
   //     "Choose a Spell card that has just been declared. Cancel the effects of that Spell card. (The canceled Spell card is sent to the discard pile.)",
-  //   image: "/card-images/spells/,
+  //   image: "/card-images/spells/",
   // },
   // {
   //   id: "S9",
@@ -944,7 +944,7 @@ export const spellDeck = [
   //   phase: "Build & Adventure",
   //   description:
   //     "Choose a Spell card that has just been declared. Cancel the effects of that Spell card. (The canceled Spell card is sent to the discard pile.)",
-  //   image: "/card-images/spells/,
+  //   image: "/card-images/spells/",
   // },
   // // ----- Exhaustion 1 ----- //
   // {
@@ -953,7 +953,7 @@ export const spellDeck = [
   //   phase: "Adventure",
   //   description:
   //     "Deal X damage to one Hero in your dungeon, where X is equal to the number of rooms in your dungeon.",
-  //   image: "/card-images/spells/,
+  //   image: "/card-images/spells/",
   // },
   // // ----- Fear 2 ----- //
   // {
@@ -961,48 +961,48 @@ export const spellDeck = [
   //   name: "Fear",
   //   phase: "Adventure",
   //   description: "Choose a Hero in any dungeon and send it back to town.",
-  //   image: "/card-images/spells/,
+  //   image: "/card-images/spells/",
   // },
   // {
   //   id: "S12",
   //   name: "Fear",
   //   phase: "Adventure",
   //   description: "Choose a Hero in any dungeon and send it back to town.",
-  //   image: "/card-images/spells/,
+  //   image: "/card-images/spells/",
   // },
   // // ----- Freeze 4 ----- //
-  // {
-  //   id: "S13",
-  //   name: "Freeze",
-  //   phase: "Build & Adventure",
-  //   description:
-  //     "Choose and deactivate one Room in any dungeon. (It has no damage, treasure, or abilities until end of turn.)",
-  //   image: "/card-images/spells/,
-  // },
-  // {
-  //   id: "S14",
-  //   name: "Freeze",
-  //   phase: "Build & Adventure",
-  //   description:
-  //     "Choose and deactivate one Room in any dungeon. (It has no damage, treasure, or abilities until end of turn.)",
-  //   image: "/card-images/spells/,
-  // },
-  // {
-  //   id: "S15",
-  //   name: "Freeze",
-  //   phase: "Build & Adventure",
-  //   description:
-  //     "Choose and deactivate one Room in any dungeon. (It has no damage, treasure, or abilities until end of turn.)",
-  //   image: "/card-images/spells/,
-  // },
-  // {
-  //   id: "S16",
-  //   name: "Freeze",
-  //   phase: "Build & Adventure",
-  //   description:
-  //     "Choose and deactivate one Room in any dungeon. (It has no damage, treasure, or abilities until end of turn.)",
-  //   image: "/card-images/spells/,
-  // },
+  {
+    id: "S13",
+    name: "Freeze",
+    phase: "Build & Adventure",
+    description:
+      "Choose and deactivate one Room in any dungeon. (It has no damage, treasure, or abilities until end of turn.)",
+    image: "/card-images/spells/freeze.svg",
+  },
+  {
+    id: "S14",
+    name: "Freeze",
+    phase: "Build & Adventure",
+    description:
+      "Choose and deactivate one Room in any dungeon. (It has no damage, treasure, or abilities until end of turn.)",
+    image: "/card-images/spells/freeze.svg",
+  },
+  {
+    id: "S15",
+    name: "Freeze",
+    phase: "Build & Adventure",
+    description:
+      "Choose and deactivate one Room in any dungeon. (It has no damage, treasure, or abilities until end of turn.)",
+    image: "/card-images/spells/freeze.svg",
+  },
+  {
+    id: "S16",
+    name: "Freeze",
+    phase: "Build & Adventure",
+    description:
+      "Choose and deactivate one Room in any dungeon. (It has no damage, treasure, or abilities until end of turn.)",
+    image: "/card-images/spells/freeze.svg",
+  },
   // // ----- Giant Size 2 ----- //
   // {
   //   id: "S17",
@@ -1147,17 +1147,17 @@ export const heroDeck = [
     players: 2,
     image: "/card-images/heroes/cleric-ordinary(1).svg",
   },
-  // {
-  //   id: "H2",
-  //   name: "Cleric",
-  //   subtitle: "Ordinary-Hero",
-  //   HP: 4,
-  //   treasure: "Cleric",
-  //   description:
-  //     "Pugi the Druidess A defender of the wilderness, she wields the power of Nature. Flowers blossom in her footsteps, and life grows anew.",
-  //   players: 4,
-  //   image: "/card-images/heroes/",
-  // },
+  {
+    id: "H2",
+    name: "Cleric",
+    subtitle: "Ordinary-Hero",
+    HP: 4,
+    treasure: "Cleric",
+    description:
+      "Pugi the Druidess A defender of the wilderness, she wields the power of Nature. Flowers blossom in her footsteps, and life grows anew.",
+    players: 4,
+    image: "/card-images/heroes/",
+  },
   {
     id: "H3",
     name: "Cleric",
@@ -1169,17 +1169,17 @@ export const heroDeck = [
     players: 2,
     image: "/card-images/heroes/cleric-ordinary(3).svg",
   },
-  // {
-  //   id: "H4",
-  //   name: "Cleric",
-  //   subtitle: "Ordinary-Hero",
-  //   HP: 6,
-  //   treasure: "Cleric",
-  //   description:
-  //     "Charles the Young Charles has mother's permission to go adventuring, but he has to return before sundown.",
-  //   players: 3,
-  //   image: "/card-images/heroes",
-  // },
+  {
+    id: "H4",
+    name: "Cleric",
+    subtitle: "Ordinary-Hero",
+    HP: 6,
+    treasure: "Cleric",
+    description:
+      "Charles the Young Charles has mother's permission to go adventuring, but he has to return before sundown.",
+    players: 3,
+    image: "/card-images/heroes",
+  },
   {
     id: "H5",
     name: "Cleric",
@@ -1191,17 +1191,17 @@ export const heroDeck = [
     players: 2,
     image: "/card-images/heroes/cleric-ordinary(5).svg",
   },
-  // {
-  //   id: "H6",
-  //   name: "Cleric",
-  //   subtitle: "Ordinary-Hero",
-  //   HP: 8,
-  //   treasure: "Cleric",
-  //   description:
-  //     "Romero, the Indigo Friar He is a dedicated man of the cloth who wants to see the world coated in blue. You might think he's depressed, but he's actually very, very happy.",
-  //   players: 4,
-  //   image: "/card-images/heroes/",
-  // },
+  {
+    id: "H6",
+    name: "Cleric",
+    subtitle: "Ordinary-Hero",
+    HP: 8,
+    treasure: "Cleric",
+    description:
+      "Romero, the Indigo Friar He is a dedicated man of the cloth who wants to see the world coated in blue. You might think he's depressed, but he's actually very, very happy.",
+    players: 4,
+    image: "/card-images/heroes/",
+  },
   {
     id: "H7",
     name: "Fighter",
@@ -1213,17 +1213,17 @@ export const heroDeck = [
     players: 2,
     image: "/card-images/heroes/fighter-ordinary(1).svg",
   },
-  // {
-  //   id: "H8",
-  //   name: "Fighter",
-  //   subtitle: "Ordinary-Hero",
-  //   HP: 4,
-  //   treasure: "Fighter",
-  //   description:
-  //     "Jarek, Squire to the Lion Knights As a squire, Jarek loved nothing more than stories and legends. He had no idea that someday, he would become one.",
-  //   players: 4,
-  //   image: "/card-images/heroes/",
-  // },
+  {
+    id: "H8",
+    name: "Fighter",
+    subtitle: "Ordinary-Hero",
+    HP: 4,
+    treasure: "Fighter",
+    description:
+      "Jarek, Squire to the Lion Knights As a squire, Jarek loved nothing more than stories and legends. He had no idea that someday, he would become one.",
+    players: 4,
+    image: "/card-images/heroes/",
+  },
   {
     id: "H9",
     name: "Fighter",
@@ -1235,17 +1235,17 @@ export const heroDeck = [
     players: 2,
     image: "/card-images/heroes/fighter-ordinary(3).svg",
   },
-  // {
-  //   id: "H10",
-  //   name: "Fighter",
-  //   subtitle: "Ordinary-Hero",
-  //   HP: 6,
-  //   treasure: "Fighter",
-  //   description:
-  //     "Samurai Tom Not truly a samurai, this masterless ronin seeks honor and glory.",
-  //   players: 3,
-  //   image: "/card-images/heroes/",
-  // },
+  {
+    id: "H10",
+    name: "Fighter",
+    subtitle: "Ordinary-Hero",
+    HP: 6,
+    treasure: "Fighter",
+    description:
+      "Samurai Tom Not truly a samurai, this masterless ronin seeks honor and glory.",
+    players: 3,
+    image: "/card-images/heroes/",
+  },
   {
     id: "H11",
     name: "Fighter",
@@ -1257,28 +1257,28 @@ export const heroDeck = [
     players: 2,
     image: "/card-images/heroes/fighter-ordinary(5).svg",
   },
-  // {
-  //   id: "H12",
-  //   name: "Fighter",
-  //   subtitle: "Ordinary-Hero",
-  //   HP: 8,
-  //   treasure: "Fighter",
-  //   description:
-  //     "Crystol and A'lan of Gerd Bound by the unbreakable Ring of Gerd, these lovers became the most dangerous husband-wife team in the adventuring business.",
-  //   players: 4,
-  //   image: "/card-images/heroes/",
-  // },
   {
-    id: "H13",
-    name: "Mage",
+    id: "H12",
+    name: "Fighter",
     subtitle: "Ordinary-Hero",
-    HP: 4,
-    treasure: "Mage",
+    HP: 8,
+    treasure: "Fighter",
     description:
-      "Tieg and the Magic Bubble Armed with his trusty bubble, Tieg braves dangerous castles and dungeons in search of the musical instruments stolen from his people.",
-    players: 2,
-    image: "/card-images/heroes/mage-ordinary(1).svg",
+      "Crystol and A'lan of Gerd Bound by the unbreakable Ring of Gerd, these lovers became the most dangerous husband-wife team in the adventuring business.",
+    players: 4,
+    image: "/card-images/heroes/",
   },
+  // {
+  //   id: "H13",
+  //   name: "Mage",
+  //   subtitle: "Ordinary-Hero",
+  //   HP: 4,
+  //   treasure: "Mage",
+  //   description:
+  //     "Tieg and the Magic Bubble Armed with his trusty bubble, Tieg braves dangerous castles and dungeons in search of the musical instruments stolen from his people.",
+  //   players: 2,
+  //   image: "/card-images/heroes/mage-ordinary(1).svg",
+  // },
   // {
   //   id: "H14",
   //   name: "Mage",
@@ -1290,17 +1290,17 @@ export const heroDeck = [
   //   players: 4,
   //   image: "/card-images/heroes/",
   // },
-  {
-    id: "H15",
-    name: "Mage",
-    subtitle: "Ordinary-Hero",
-    HP: 6,
-    treasure: "Mage",
-    description:
-      "Mitchell, the Judge He has wandered the planes, hopelessly lost... ever since his wife, Nikki, sent him to the store for diamond dust sugar.",
-    players: 2,
-    image: "/card-images/heroes/mage-ordinary(3).svg",
-  },
+  // {
+  //   id: "H15",
+  //   name: "Mage",
+  //   subtitle: "Ordinary-Hero",
+  //   HP: 6,
+  //   treasure: "Mage",
+  //   description:
+  //     "Mitchell, the Judge He has wandered the planes, hopelessly lost... ever since his wife, Nikki, sent him to the store for diamond dust sugar.",
+  //   players: 2,
+  //   image: "/card-images/heroes/mage-ordinary(3).svg",
+  // },
   // {
   //   id: "H16",
   //   name: "Mage",
@@ -1312,17 +1312,17 @@ export const heroDeck = [
   //   players: 3,
   //   image: "/card-images/heroes/",
   // },
-  {
-    id: "H17",
-    name: "Mage",
-    subtitle: "Ordinary-Hero",
-    HP: 8,
-    treasure: "Mage",
-    description:
-      "Dartteon, Elf Pyromancer Some elves just want to watch the world burn.",
-    players: 2,
-    image: "/card-images/heroes/mage-ordinary(5).svg",
-  },
+  // {
+  //   id: "H17",
+  //   name: "Mage",
+  //   subtitle: "Ordinary-Hero",
+  //   HP: 8,
+  //   treasure: "Mage",
+  //   description:
+  //     "Dartteon, Elf Pyromancer Some elves just want to watch the world burn.",
+  //   players: 2,
+  //   image: "/card-images/heroes/mage-ordinary(5).svg",
+  // },
   // {
   //   id: "H18",
   //   name: "Mage",
@@ -1345,17 +1345,17 @@ export const heroDeck = [
     players: 2,
     image: "/card-images/heroes/thief-ordinary(1).svg",
   },
-  // {
-  //   id: "H20",
-  //   name: "Thief",
-  //   subtitle: "Ordinary-Hero",
-  //   HP: 4,
-  //   treasure: "Thief",
-  //   description:
-  //     "Lance Uppercut, Treasure Hunter With a bent blade and a clenched fist, he gathers shining treasures for the glory of the Keonish Empire.",
-  //   players: 4,
-  //   image: "/card-images/heroes/",
-  // },
+  {
+    id: "H20",
+    name: "Thief",
+    subtitle: "Ordinary-Hero",
+    HP: 4,
+    treasure: "Thief",
+    description:
+      "Lance Uppercut, Treasure Hunter With a bent blade and a clenched fist, he gathers shining treasures for the glory of the Keonish Empire.",
+    players: 4,
+    image: "/card-images/heroes/",
+  },
   {
     id: "H21",
     name: "Thief",
@@ -1367,17 +1367,17 @@ export const heroDeck = [
     players: 2,
     image: "/card-images/heroes/thief-ordinary(3).svg",
   },
-  // {
-  //   id: "H22",
-  //   name: "Thief",
-  //   subtitle: "Ordinary-Hero",
-  //   HP: 6,
-  //   treasure: "Thief",
-  //   description:
-  //     "Kins Klauski, Mad Conquistador \"It's hard for me to think about death, how insects and worms will eat me... I never think about death. I haven't even properly started to live yet.\"",
-  //   players: 3,
-  //   image: "/card-images/heroes/",
-  // },
+  {
+    id: "H22",
+    name: "Thief",
+    subtitle: "Ordinary-Hero",
+    HP: 6,
+    treasure: "Thief",
+    description:
+      "Kins Klauski, Mad Conquistador \"It's hard for me to think about death, how insects and worms will eat me... I never think about death. I haven't even properly started to live yet.\"",
+    players: 3,
+    image: "/card-images/heroes/",
+  },
   {
     id: "H23",
     name: "Thief",
@@ -1389,17 +1389,17 @@ export const heroDeck = [
     players: 2,
     image: "/card-images/heroes/thief-ordinary(5).svg",
   },
-  // {
-  //   id: "H24",
-  //   name: "Thief",
-  //   subtitle: "Ordinary-Hero",
-  //   HP: 8,
-  //   treasure: "Thief",
-  //   description:
-  //     "Jerome, Kung Fu Monkey A Visitor from a distant land, his hyperactive monkey studied martial arts under the legendary Sifu Wang.",
-  //   players: 4,
-  //   image: "/card-images/heroes/",
-  // },
+  {
+    id: "H24",
+    name: "Thief",
+    subtitle: "Ordinary-Hero",
+    HP: 8,
+    treasure: "Thief",
+    description:
+      "Jerome, Kung Fu Monkey A Visitor from a distant land, his hyperactive monkey studied martial arts under the legendary Sifu Wang.",
+    players: 4,
+    image: "/card-images/heroes/",
+  },
   {
     id: "H25",
     name: "The Fool",
@@ -1428,17 +1428,17 @@ export const epicHeroDeck = [
     players: 2,
     image: "card-images/epic-heroes/cleric-epic(1).svg",
   },
-  // {
-  //   id: "E2",
-  //   name: "Cleric",
-  //   subtitle: "Epic Hero",
-  //   HP: 11,
-  //   treasure: "Cleric",
-  //   description:
-  //     "Kerberos Dirtbeard, Canine Cleric Hailing from the Highlands, this flea-bitten friar never turns down a fetch quest.",
-  //   players: 3,
-  //   image: "card-images/epic-heroes/
-  // },
+  {
+    id: "E2",
+    name: "Cleric",
+    subtitle: "Epic Hero",
+    HP: 11,
+    treasure: "Cleric",
+    description:
+      "Kerberos Dirtbeard, Canine Cleric Hailing from the Highlands, this flea-bitten friar never turns down a fetch quest.",
+    players: 3,
+    image: "card-images/epic-heroes/cleric-epic(2).svg"
+  },
   {
     id: "E3",
     name: "Cleric",
@@ -1450,17 +1450,17 @@ export const epicHeroDeck = [
     players: 2,
     image: "card-images/epic-heroes/cleric-epic(3).svg"
   },
-  // {
-  //   id: "E4",
-  //   name: "Cleric",
-  //   subtitle: "Epic Hero",
-  //   HP: 13,
-  //   treasure: "Cleric",
-  //   description:
-  //     "Jejune & Everlea, Holy SistersTenacious and vivacious, each is a threat on her own. But woe betide any who stand against the sisters' united power.",
-  //   players: 4,
-  //   image: "card-images/epic-heroes/"
-  // },
+  {
+    id: "E4",
+    name: "Cleric",
+    subtitle: "Epic Hero",
+    HP: 13,
+    treasure: "Cleric",
+    description:
+      "Jejune & Everlea, Holy SistersTenacious and vivacious, each is a threat on her own. But woe betide any who stand against the sisters' united power.",
+    players: 4,
+    image: "card-images/epic-heroes/cleric-epic(4).svg"
+  },
   {
     id: "E5",
     name: "Fighter",
@@ -1472,17 +1472,17 @@ export const epicHeroDeck = [
     players: 2,
     image: "card-images/epic-heroes/fighter-epic(1).svg"
   },
-  // {
-  //   id: "E6",
-  //   name: "Fighter",
-  //   subtitle: "Epic Hero",
-  //   HP: 11,
-  //   treasure: "Fighter",
-  //   description:
-  //     "Nate the Squidslayer This surly warrior defeated the mighty Squib, Lord of the Rocktopi. Now he seeks to destroy King Croak himself...",
-  //   players: 3,
-  //   image: "card-images/epic-heroes/"
-  // },
+  {
+    id: "E6",
+    name: "Fighter",
+    subtitle: "Epic Hero",
+    HP: 11,
+    treasure: "Fighter",
+    description:
+      "Nate the Squidslayer This surly warrior defeated the mighty Squib, Lord of the Rocktopi. Now he seeks to destroy King Croak himself...",
+    players: 3,
+    image: "card-images/epic-heroes/fighter-epic(2)"
+  },
   {
     id: "E7",
     name: "Fighter",
@@ -1494,28 +1494,28 @@ export const epicHeroDeck = [
     players: 2,
     image: "card-images/epic-heroes/fighter-epic(3).svg"
   },
-  // {
-  //   id: "E8",
-  //   name: "Fighter",
-  //   subtitle: "Epic Hero",
-  //   HP: 13,
-  //   treasure: "Fighter",
-  //   description:
-  //     "Asmor the Aweless What Asmor lacks in tactical acuity, he more than makes up for in impulsiveness. There's no door he won't kick down, much to the frustration of Arcadia's innkeepers.",
-  //   players: 4,
-  //   image: "card-images/epic-heroes/"
-  // },
   {
-    id: "E9",
-    name: "Mage",
+    id: "E8",
+    name: "Fighter",
     subtitle: "Epic Hero",
-    HP: 11,
-    treasure: "Mage",
+    HP: 13,
+    treasure: "Fighter",
     description:
-      "Tempros the Time Marauder He would use his control over time to end all crime. In his hands, this world could be a utopia.",
-    players: 2,
-    image: "card-images/epic-heroes/mage-epic(1).svg"
+      "Asmor the Aweless What Asmor lacks in tactical acuity, he more than makes up for in impulsiveness. There's no door he won't kick down, much to the frustration of Arcadia's innkeepers.",
+    players: 4,
+    image: "card-images/epic-heroes/fighter-epic(4).svg"
   },
+  // {
+  //   id: "E9",
+  //   name: "Mage",
+  //   subtitle: "Epic Hero",
+  //   HP: 11,
+  //   treasure: "Mage",
+  //   description:
+  //     "Tempros the Time Marauder He would use his control over time to end all crime. In his hands, this world could be a utopia.",
+  //   players: 2,
+  //   image: "card-images/epic-heroes/mage-epic(1).svg"
+  // },
   // {
   //   id: "E10",
   //   name: "Mage",
@@ -1527,17 +1527,17 @@ export const epicHeroDeck = [
   //   players: 3,
   //   image: "card-images/epic-heroes/"
   // },
-  {
-    id: "E11",
-    name: "Mage",
-    subtitle: "Epic Hero",
-    HP: 13,
-    treasure: "Mage",
-    description:
-      'Terric Warhelm, Half-Elf Archmage "Weakened by an evil curse, this once-mighty warrior donned the red robes and turned to magic. His spells are chnneled through a magical helmet of untold power."',
-    players: 2,
-    image: "card-images/epic-heroes/mage-epic(2).svg"
-  },
+  // {
+  //   id: "E11",
+  //   name: "Mage",
+  //   subtitle: "Epic Hero",
+  //   HP: 13,
+  //   treasure: "Mage",
+  //   description:
+  //     'Terric Warhelm, Half-Elf Archmage "Weakened by an evil curse, this once-mighty warrior donned the red robes and turned to magic. His spells are chnneled through a magical helmet of untold power."',
+  //   players: 2,
+  //   image: "card-images/epic-heroes/mage-epic(2).svg"
+  // },
   // {
   //   id: "E12",
   //   name: "Mage",
@@ -1560,17 +1560,17 @@ export const epicHeroDeck = [
     players: 2,
     image: "card-images/epic-heroes/thief-epic(1).svg"
   },
-  // {
-  //   id: "E14",
-  //   name: "Thief",
-  //   subtitle: "Epic Hero",
-  //   HP: 11,
-  //   treasure: "Thief",
-  //   description:
-  //     "Blackbeard Jake He hid the treasure he won from insult swordfighting in a booty-trap filled cave on the coast of a town called Astoria.",
-  //   players: 3,
-  //   image: "card-images/epic-heroes/"
-  // },
+  {
+    id: "E14",
+    name: "Thief",
+    subtitle: "Epic Hero",
+    HP: 11,
+    treasure: "Thief",
+    description:
+      "Blackbeard Jake He hid the treasure he won from insult swordfighting in a booty-trap filled cave on the coast of a town called Astoria.",
+    players: 3,
+    image: "card-images/epic-heroes/thief-epic(2).svg"
+  },
   {
     id: "E15",
     name: "Thief",
@@ -1582,15 +1582,15 @@ export const epicHeroDeck = [
     players: 2,
     image: "card-images/epic-heroes/thief-epic(3).svg"
   },
-  // {
-  //   id: "E14",
-  //   name: "Thief",
-  //   subtitle: "Epic Hero",
-  //   HP: 13,
-  //   treasure: "Thief",
-  //   description:
-  //     "Wallbanger Basketweaver This humble halfing world rather spend his days weaving baskets and eating crumbly cookies. But when adventure calls, he proves a first-rate burglar",
-  //   players: 4,
-  //   image: "card-images/epic-heroes/"
-  // },
+  {
+    id: "E14",
+    name: "Thief",
+    subtitle: "Epic Hero",
+    HP: 13,
+    treasure: "Thief",
+    description:
+      "Wallbanger Basketweaver This humble halfing world rather spend his days weaving baskets and eating crumbly cookies. But when adventure calls, he proves a first-rate burglar",
+    players: 4,
+    image: "card-images/epic-heroes/thief-epic(4).svg"
+  },
 ];
