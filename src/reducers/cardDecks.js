@@ -65,7 +65,7 @@ const cardDecks = (state = initialState, action) => {
         case DEAL_HEROES_TO_TOWN:
             console.log('dealing heroes to town', action.data.number)
             let chosenHeroes = state.heroDeck.slice(0, action.data.number);
-            let newHeroDeck = state.heroDeck.slice(0, - (action.data.number/2))
+            let newHeroDeck = state.heroDeck.slice(0, - (action.data.number/2));
             console.log('chosenHeroes', chosenHeroes)
             console.log('newHeroDeck', newHeroDeck)
             return {

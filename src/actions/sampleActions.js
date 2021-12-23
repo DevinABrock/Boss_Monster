@@ -1,5 +1,5 @@
 
-import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, NEXT_GAME_PHASE, DECREASE_HEALTH, DEAL_ROOM_CARD, BAIT_HEROES, UPDATE_PLAYER_TREASURE, BUILD_DUNGEON, NEXT_ROUND, SET_HERO_START_OF_DUNGEON } from "./types"
+import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, NEXT_GAME_PHASE, DECREASE_HEALTH, DEAL_ROOM_CARD, BAIT_HEROES, UPDATE_PLAYER_TREASURE, BUILD_DUNGEON, NEXT_ROUND, SET_HERO_START_OF_DUNGEON, MOVE_HERO_NUMBER_OF_STEPS, DAMAGE_HERO } from "./types"
 
 // !add multiple actions to this file
 
@@ -60,10 +60,22 @@ export const buildDungeon = (cardObj) => {
         card: cardObj
     }
 }
-export const setHeroStartOfDungeon = (playerDungeon) => {
+export const setHeroStartOfDungeon = (playerDungeon, heroesAtStartOfDungeon) => {
     return {
         type: SET_HERO_START_OF_DUNGEON, 
-        playerDungeon
+        playerDungeon,
+        heroesAtStartOfDungeon
     }
 }
-
+export const moveHeroNumberOfSteps = (steps) => {
+    return {
+        type: MOVE_HERO_NUMBER_OF_STEPS,
+        steps
+    }
+}
+export const damageHero = (damage) => {
+    return {
+        type: DAMAGE_HERO,
+        damage
+    }
+}

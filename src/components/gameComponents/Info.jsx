@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import '../css/Info.css'
 import { buildingMode } from '../../actions/miscActions';
-import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, baitHeroes, nextRound, setHeroStartOfDungeon } from '../../actions/sampleActions';
+import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, baitHeroes, nextRound, setHeroStartOfDungeon, damageHero, moveHeroNumberOfSteps } from '../../actions/sampleActions';
 import { diceRoll } from '../gameLogic/diceRoll';
+import { MOVE_HERO_NUMBER_OF_STEPS } from '../../actions/types';
 
 function Info() {
 
@@ -17,7 +18,7 @@ function Info() {
     const treasureFighter = useSelector(state => state.playerStats.treasureFighter)
     const treasureThief = useSelector(state => state.playerStats.treasureThief)
     const heroesAtStartOfDungeon = useSelector(state => state.cardDecks.heroesAtStartOfDungeon)
-    const heroRoomPosition = useSelector(state => state.heroRoomPosition)
+    const heroRoomPosition = useSelector(state => state.heroStats.heroRoomPosition)
     const buildingModeState = useSelector(state => state.misc.buildingMode)
 
     
@@ -62,7 +63,7 @@ function Info() {
                 dispatch(nextRound())
             }
             else{
-                dispatch(setHeroStartOfDungeon(playerDungeon))
+                dispatch(setHeroStartOfDungeon(playerDungeon, heroesAtStartOfDungeon))
                 dispatch(nextGamePhase())
             }
         }
@@ -73,7 +74,12 @@ function Info() {
             }
             else{
                 // dispatch(setHeroStartOfDungeon(playerDungeon))
-                dispatch(nextGamePhase())
+                dispatch(moveHeroNumberOfSteps(-1))
+                console.log(playerDungeon);
+                console.log(heroRoomPosition);
+                let damage = playerDungeon[heroRoomPosition][0].dmg
+                console.log(damage);
+                dispatch(damageHero(damage))
             }
         }
     }
@@ -100,7 +106,7 @@ function Info() {
                 case 5:
                     return <div className='messageBox'><div className='message'>You were dealt one Room Card.</div><div className='message'>You can build one Room in your dungeon.</div></div>
                 case 6:
-                    return <div className='messageBox'><div className='message'>The Heroes decide whether it's worth it to steal your stuff.</div> {heroesAtStartOfDungeon.length} heroes enter your dungeon. {(heroesAtStartOfDungeon.length)?`A ${heroesAtStartOfDungeon[0].name} enters first.`: `Since no heroes entered your dungeon, this is the end of round ${gameRound}.`}<div className='message'></div></div>
+                    return <div className='messageBox'><div className='message'>The Heroes decide whether it's worth it to steal your stuff.</div> {heroesAtStartOfDungeon.length} heroes are heading towards your dungeon. {(heroesAtStartOfDungeon.length)?`A ${heroesAtStartOfDungeon[0].name} enters first.`: `Since no heroes entered your dungeon, this is the end of round ${gameRound}.`}<div className='message'></div></div>
                 case 7:
                     return <div className='messageBox'><div className='message'>The hero is fighting your dungeon. Use spells or effect to help your rooms.</div></div>
                 default:

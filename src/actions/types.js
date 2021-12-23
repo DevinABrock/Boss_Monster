@@ -28,3 +28,5 @@ export const SELECT_CARD = "SELECT_CARD";
 
 // hero positioning
 export const SET_HERO_START_OF_DUNGEON = "SET_HERO_START_OF_DUNGEON";
+export const MOVE_HERO_NUMBER_OF_STEPS = "MOVE_HERO_NUMBER_OF_STEPS";
+export const DAMAGE_HERO = "DAMAGE_HERO";

@@ -22,29 +22,22 @@ function Dungeon() {
     const renderHeroAtPosition = () => {
         // return [<Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>,<Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>]
         let renderHeroArray = []
-        for (let roomIndex = 6; roomIndex > 0; roomIndex--) {
-
+        for (let roomIndex = 5; roomIndex >= 0; roomIndex--) {
             if (heroRoomPosition===roomIndex) {
                 renderHeroArray.push(<Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>)
-                
             }
             else{
                 renderHeroArray.push(<Card cardObj={cardBack} className="hero hero_blank"/>)
-                
             }
         }
         return renderHeroArray;
     }
 
-
     const handleBuild = (cardObj) => {
-
         if(buildingModeState){
             dispatch(buildDungeon(cardObj))
-            
             // keeps players from building the same repeatedly
             dispatch(selectCard(cardObj, "builtRoom"))
-
             // turns buildingMode off after building room
             dispatch(buildingMode())
         }
@@ -52,14 +45,12 @@ function Dungeon() {
 
     return (
         <div className='dungeonBody'>
-
             {/* -- HERO AREA -- */}
             <div className='heroDisplay' >
                 {heroesAtStartOfDungeon.length ? 
                 renderHeroAtPosition()
                 // <Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>
                 :null}
-                
             </div>
             {/* -- DUNGEON AREA -- */}
             <div className='dungeonDisplay'>
