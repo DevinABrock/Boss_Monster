@@ -85,7 +85,7 @@ const cardDecks = (state = initialState, action) => {
                 playerRooms: [...action.data.chosenRooms]
             }
         case BUILD_DUNGEON:
-
+            action.card.durability = 100
             // adds new room to dungeon if blank spot is clicked
             if(action.targetID === "D1"){
 
