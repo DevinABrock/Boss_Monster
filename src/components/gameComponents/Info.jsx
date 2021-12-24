@@ -17,6 +17,7 @@ function Info() {
     const playerRooms = useSelector(state => state.cardDecks.playerRooms)
     const playerDungeon = useSelector(state => state.cardDecks.playerDungeon)
     const playerHealth = useSelector(state => state.playerStats.health)
+    const playerSouls = useSelector(state => state.playerStats.souls)
     const treasureCleric = useSelector(state => state.playerStats.treasureCleric)
     const treasureFighter = useSelector(state => state.playerStats.treasureFighter)
     const treasureThief = useSelector(state => state.playerStats.treasureThief)
@@ -45,6 +46,7 @@ function Info() {
         // if 2 and user clicks next this will update whether a spell card takes effect for the round
         if (gamePhase === 2) {
             dispatch(nextGamePhase())
+            setTempMessage("")
         }
         // if 3 moving to heroes to town phase
         if (gamePhase === 3) {
@@ -116,23 +118,23 @@ function Info() {
                         console.log('hero damage to boss', remainingHealth);
                         dispatch(decreasePlayerHealth(remainingHealth))
                         dispatch(heroKilled())
+                        setTempMessage("")
                         if (heroesAtStartOfDungeon.length > 1) {
                             dispatch(setHeroStartOfDungeon(playerDungeon, heroesAtStartOfDungeon))
                         }
                         else {
                             dispatch(nextRound())
-                            setTempMessage("")
                         }
                     }
                 }
-                // if hero is not in last room
+                // if hero is not in the last room or has no health after passing the last room
                 else {
                     // if hero hit and still has health
                     if (remainingHealth > 0) {
                         // console.log('HERO Wounded');
                         dispatch(damageHero(damage))
                         dispatch(moveHeroNumberOfSteps(-1))
-                        setTempMessage("The Hero is wounded but passes the room.")
+                        setTempMessage(`The Hero is wounded but passes the room. He now has ${heroHealth - damage} health.`)
                     }
                     // if hero passes through room that deals no damage
                     else if (damage === "*") {
@@ -144,13 +146,12 @@ function Info() {
                     else {
                         console.log('hero killed');
                         dispatch(heroKilled())
+                        setTempMessage("The Hero was slain in your dungeon.")
                         if (heroesAtStartOfDungeon.length > 1) {
                             dispatch(setHeroStartOfDungeon(playerDungeon, heroesAtStartOfDungeon))
-                            setTempMessage("The Hero was slain in your dungeon.")
                         }
                         else {
                             dispatch(nextRound())
-                            setTempMessage("")
                         }
                     }
 
@@ -174,7 +175,7 @@ function Info() {
                 return <div className='messageBox'><div className='message'>You were dealt 5 Room cards and 1 Boss Card.</div></div>
             case 2:
 
-                return <div className='messageBox'><div className='message'>This is the start of round {gameRound}.</div></div>
+                return <div className='messageBox'><div className='message'>{tempMessage} This is the start of round {gameRound}.</div></div>
             case 3:
 
                 let { rollNumber, isHit } = diceRoll(gameRound);
@@ -193,7 +194,7 @@ function Info() {
             case 7:
                 return <div className='messageBox'><div className='message'>{tempMessage ? tempMessage : "The hero is fighting your dungeon. Use spells or effect to help your rooms."}</div></div>
             case 10:
-                return <div className='messageBox'><div className='message'>You have been defeated and your loot looted! You made it through {gameRound - 1} {(gameRound !== 2) ? "rounds" : "round"}.</div></div>
+                return <div className='messageBox'><div className='message'>You have been defeated and your loot looted! You made it through {gameRound - 1} {(gameRound !== 2) ? "rounds" : "round"} and collected {playerSouls} {(playerSouls !== 1) ? "souls" : "soul"}.</div></div>
             default:
                 break;
         }

@@ -143,7 +143,7 @@ const cardDecks = (state = initialState, action) => {
             console.log("boss treasure", state.playerBoss.treasure)
             let bossTreasure = state.playerBoss.treasure;
             let thiefTreasure = action.data.treasureThief;
-            let clericTreasure = action.data.clericTreasure;
+            let clericTreasure = action.data.treasureCleric;
             let fighterTreasure = action.data.treasureFighter;
             console.log("thiefTreasure", thiefTreasure, "clericTreasure", clericTreasure, "fighterTreasure", fighterTreasure)
             // adding the boss treasure to the treasure type depending on the boss

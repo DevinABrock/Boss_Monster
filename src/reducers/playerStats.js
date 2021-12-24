@@ -1,5 +1,5 @@
 
-import { DECREASE_PLAYER_HEALTH, UPDATE_PLAYER_TREASURE, RESET_GAME } from "../actions/types"
+import { DECREASE_PLAYER_HEALTH, UPDATE_PLAYER_TREASURE, RESET_GAME, HERO_KILLED } from "../actions/types"
 
 const initialState = {
     username: "username",
@@ -22,6 +22,11 @@ const playerStats = (state = initialState, action) => {
             return {
                 ...state,
                 health: 5,
+            }
+        case HERO_KILLED:
+            return {
+                ...state,
+                souls: state.souls + 1,
             }
         case UPDATE_PLAYER_TREASURE:
             let thiefTreasure = 0;
