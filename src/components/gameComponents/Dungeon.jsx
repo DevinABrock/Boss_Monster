@@ -1,6 +1,6 @@
 import React from 'react'
 import '../css/Dungeon.css'
-import { bossDeck, heroDeck } from "../../assets/cards"
+import { bossDeck } from "../../assets/cards"
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCard, buildingMode } from '../../actions/miscActions';
 import { buildDungeon } from '../../actions/sampleActions';
@@ -16,6 +16,7 @@ function Dungeon() {
     const heroRoomPosition = useSelector(state => state.heroStats.heroRoomPosition)
     const buildingModeState = useSelector(state => state.misc.buildingMode)
     const selectedCard = useSelector(state => state.misc.card)
+    const playerBoss = useSelector(state => state.cardDecks.playerBoss)
 
     console.log(heroRoomPosition);
 
@@ -33,11 +34,16 @@ function Dungeon() {
         return renderHeroArray;
     }
 
-    const handleBuild = (cardObj) => {
+    const handleBuild = (e) => {
+
+        console.log(e.target.id);
+
         if(buildingModeState){
-            dispatch(buildDungeon(cardObj))
+            dispatch(buildDungeon(selectedCard))
+            
             // keeps players from building the same repeatedly
-            dispatch(selectCard(cardObj, "builtRoom"))
+            dispatch(selectCard(selectedCard, "builtRoom"))
+
             // turns buildingMode off after building room
             dispatch(buildingMode())
         }
@@ -54,14 +60,14 @@ function Dungeon() {
             </div>
             {/* -- DUNGEON AREA -- */}
             <div className='dungeonDisplay'>
-                <div  className={buildingModeState ? 'roomAreaBuilding' : 'roomArea'} onClick={()=>handleBuild(selectedCard)}>
-                    {playerDungeon && playerDungeon.map((roomCard, index)=>{
+                <div  className={buildingModeState ? 'roomAreaBuilding' : 'roomArea'} onClick={(e)=>handleBuild(e)}>
+                    {playerDungeon && playerDungeon.slice(0).reverse().map((roomCard, index)=>{
                             return <Card cardObj={roomCard[0]} className="room" key={index}/>
                         })
                     }
                 </div>
                 <div className='bossArea'>
-                <Card cardObj={bossDeck[0]} className="boss"/>
+                <Card cardObj={playerBoss} className="boss"/>
                 </div>
             </div>
         </div>

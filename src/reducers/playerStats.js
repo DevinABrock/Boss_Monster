@@ -1,5 +1,5 @@
 
-import { DECREASE_HEALTH, UPDATE_PLAYER_TREASURE } from "../actions/types"
+import { DECREASE_PLAYER_HEALTH, UPDATE_PLAYER_TREASURE, RESET_GAME } from "../actions/types"
 
 const initialState = {
     username: "username",
@@ -13,10 +13,15 @@ const initialState = {
 const playerStats = (state = initialState, action) => {
 
     switch(action.type){
-        case DECREASE_HEALTH:
+        case DECREASE_PLAYER_HEALTH:
             return {
                 ...state,
-                health: state.health - 1,
+                health: state.health - action.points,
+            }
+        case RESET_GAME:
+            return {
+                ...state,
+                health: 5,
             }
         case UPDATE_PLAYER_TREASURE:
             let thiefTreasure = 0;

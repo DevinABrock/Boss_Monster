@@ -31,6 +31,7 @@ function Game() {
         initializeDeck();
     }, [])
 
+    // if the player has no rooms but does have a roomDeck and the gamePhase is 1
     if(!playerRooms.length && roomDeck.length && gamePhase===1){
         console.log('dealing');
         dealInitialCards(bossDeck, roomDeck, dealInitialCardsAction, dispatch);
