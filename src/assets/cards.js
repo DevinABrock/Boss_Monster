@@ -1156,7 +1156,7 @@ export const heroDeck = [
     description:
       "Pugi the Druidess A defender of the wilderness, she wields the power of Nature. Flowers blossom in her footsteps, and life grows anew.",
     players: 4,
-    image: "/card-images/heroes/",
+    image: "/card-images/heroes/cleric-ordinary(2).svg",
   },
   {
     id: "H3",
@@ -1178,7 +1178,7 @@ export const heroDeck = [
     description:
       "Charles the Young Charles has mother's permission to go adventuring, but he has to return before sundown.",
     players: 3,
-    image: "/card-images/heroes",
+    image: "/card-images/heroes/cleric-ordinary(4).svg",
   },
   {
     id: "H5",
@@ -1200,7 +1200,7 @@ export const heroDeck = [
     description:
       "Romero, the Indigo Friar He is a dedicated man of the cloth who wants to see the world coated in blue. You might think he's depressed, but he's actually very, very happy.",
     players: 4,
-    image: "/card-images/heroes/",
+    image: "/card-images/heroes/cleric-ordinary(6).svg",
   },
   {
     id: "H7",
@@ -1222,7 +1222,7 @@ export const heroDeck = [
     description:
       "Jarek, Squire to the Lion Knights As a squire, Jarek loved nothing more than stories and legends. He had no idea that someday, he would become one.",
     players: 4,
-    image: "/card-images/heroes/",
+    image: "/card-images/heroes/fighter-ordinary(2).svg",
   },
   {
     id: "H9",
@@ -1244,7 +1244,7 @@ export const heroDeck = [
     description:
       "Samurai Tom Not truly a samurai, this masterless ronin seeks honor and glory.",
     players: 3,
-    image: "/card-images/heroes/",
+    image: "/card-images/heroes/fighter-ordinary(4).svg",
   },
   {
     id: "H11",
@@ -1266,7 +1266,7 @@ export const heroDeck = [
     description:
       "Crystol and A'lan of Gerd Bound by the unbreakable Ring of Gerd, these lovers became the most dangerous husband-wife team in the adventuring business.",
     players: 4,
-    image: "/card-images/heroes/",
+    image: "/card-images/heroes/fighter-ordinary(6).svg",
   },
   // {
   //   id: "H13",
