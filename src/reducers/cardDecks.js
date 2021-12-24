@@ -1,5 +1,5 @@
 
-import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES } from "../actions/types"
+import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES, HERO_KILLED, SET_HERO_START_OF_DUNGEON, RESET_PLAYER_CARDS } from "../actions/types"
 import { dungeonBack } from "../assets/cards"
 
 const initialState = {
@@ -11,17 +11,9 @@ const initialState = {
     heroesAtStartOfDungeon: [],
     playerBoss: {},
     playerRooms: [],
-    playerDungeon: [ [dungeonBack], [dungeonBack], [dungeonBack], [dungeonBack], [dungeonBack], [dungeonBack]
+    playerDungeon: [
+
         // [{
-        //     id: "R47",
-        //     name: "Bottomless Pit",
-        //     subtitle: "Trap Room",
-        //     dmg: 1,
-        //     treasure: "Thief",
-        //     description: "Destroy this room: Kill a Hero in this room.",
-        //     image: "/card-images/rooms/bottomless-pit.svg",
-        // },
-        // {
         //     id: "R47",
         //     name: "Bottomless Pit",
         //     subtitle: "Trap Room",
@@ -36,24 +28,38 @@ const initialState = {
         //     subtitle: "Advanced Trap Room",
         //     dmg: 3,
         //     treasure: "Thief",
-        //     description:"When another room in your dungeon is destroyed, you may draw two Room cards.",
+        //     description: "When another room in your dungeon is destroyed, you may draw two Room cards.",
         //     image: "/card-images/rooms/recycling-center.svg",
         // }],
         // [{
-        //     id: "R58",
-        //     name: "Recycling Center",
-        //     subtitle: "Advanced Trap Room",
-        //     dmg: 3,
-        //     treasure: "Thief",
-        //     description:"When another room in your dungeon is destroyed, you may draw two Room cards.",
-        //     image: "/card-images/rooms/recycling-center.svg",
-        // }]
+        //     id: "R29",
+        //     name: "Monster's Ballroom",
+        //     subtitle: "Advanced Monster Room",
+        //     dmg: "*",
+        //     treasure: "Fighter",
+        //     description:
+        //         "This room's damage is equal to the number of Monster rooms in your dungeon.",
+        //     image: "/card-images/rooms/monsters-ballroom.svg",
+        // }],
+        // [{
+        //     id: "R28",
+        //     name: "Beast Menagerie",
+        //     subtitle: "Advanced Monster Room",
+        //     dmg: 4,
+        //     treasure: "Fighter",
+        //     description:
+        //         "Once per turn when you build another Monster room, draw a Room card.",
+        //     image: "/card-images/rooms/beast-menagerie.svg",
+        // }],
+        [dungeonBack], [dungeonBack],
+        [dungeonBack], [dungeonBack],
+        [dungeonBack], [dungeonBack]
     ]
 }
 
 const cardDecks = (state = initialState, action) => {
 
-    switch(action.type){
+    switch (action.type) {
         case SHUFFLE_ALL_DECKS:
             console.log('shuffling deck')
             return {
@@ -64,19 +70,32 @@ const cardDecks = (state = initialState, action) => {
                 roomDeck: [...action.data.roomDeck],
             }
         case DEAL_HEROES_TO_TOWN:
-            console.log('dealing heroes to town', action.data.number)
-            let chosenHeroes = state.heroDeck.slice(0, action.data.number);
-            let newHeroDeck = state.heroDeck.slice(0, - (action.data.number/2))
-            console.log('chosenHeroes', chosenHeroes)
-            console.log('newHeroDeck', newHeroDeck)
-            return {
-                ...state,
-                heroesInTown: [...chosenHeroes],
-                // not sure why this works since it should not need to be divided by 2 ( i think this runs twice is why? )
-                heroDeck: state.heroDeck.slice(0, - (action.data.number))
+            if (action.data.heroType === "ordinary") {
+                console.log('dealing heroes to town', action.data.number)
+                let chosenHeroes = state.heroDeck.slice(-action.data.number);
+                let newHeroDeck = state.heroDeck.slice(0, - (action.data.number));
+                console.log('chosenHeroes', chosenHeroes)
+                console.log('newHeroDeck', newHeroDeck)
+                return {
+                    ...state,
+                    heroesInTown: [...chosenHeroes],
+                    heroDeck: state.heroDeck.slice(0, - (action.data.number))
+                }
             }
-        case DEAL_INITIAL_CARDS:
+            else{
+                console.log('dealing heroes to town', action.data.number)
+                let chosenHeroes = state.epicHeroDeck.slice(-action.data.number);
+                let newHeroDeck = state.epicHeroDeck.slice(0, - (action.data.number));
+                console.log('chosenHeroes', chosenHeroes)
+                console.log('newHeroDeck', newHeroDeck)
+                return {
+                    ...state,
+                    heroesInTown: [...chosenHeroes],
+                    epicHeroDeck: state.epicHeroDeck.slice(0, - (action.data.number))
+                }
+            }
 
+        case DEAL_INITIAL_CARDS:
             return {
                 ...state,
                 bossDeck: state.bossDeck.slice(0, -1),
@@ -84,27 +103,35 @@ const cardDecks = (state = initialState, action) => {
                 playerBoss: action.data.chosenBoss,
                 playerRooms: [...action.data.chosenRooms]
             }
+        case RESET_PLAYER_CARDS:
+            return {
+                ...state,
+                playerRooms: [],
+                playerDungeon: [[dungeonBack], [dungeonBack], [dungeonBack], [dungeonBack], [dungeonBack], [dungeonBack]],
+                heroesInTown: [],
+                heroesAtStartOfDungeon: []
+            }
         case BUILD_DUNGEON:
 
             let newPlayerDungeon = []
 
             // custom filter function to filter out cards with id of "D1"
-            for(let i = 0; i < state.playerDungeon.length; i ++){
-                if(state.playerDungeon[i][0].id !== "D1"){
+            for (let i = 0; i < state.playerDungeon.length; i++) {
+                if (state.playerDungeon[i][0].id !== "D1") {
                     newPlayerDungeon.push(state.playerDungeon[i])
                 }
             }
-                
+
             newPlayerDungeon.push([action.card])
 
-            for(let i = newPlayerDungeon.length; i < 6; i++){
+            for (let i = newPlayerDungeon.length; i < 6; i++) {
                 newPlayerDungeon.push([dungeonBack])
             }
 
             return {
                 ...state,
                 playerDungeon: newPlayerDungeon,
-                playerRooms: state.playerRooms.filter(cardObj=>cardObj.id !== action.card.id)
+                playerRooms: state.playerRooms.filter(cardObj => cardObj.id !== action.card.id)
             }
         case DEAL_ROOM_CARD:
             return {
@@ -113,32 +140,58 @@ const cardDecks = (state = initialState, action) => {
                 playerRooms: state.playerRooms.concat(state.roomDeck.slice(-1))
             }
         case BAIT_HEROES:
-
-
+            console.log("boss treasure", state.playerBoss.treasure)
+            let bossTreasure = state.playerBoss.treasure;
+            let thiefTreasure = action.data.treasureThief;
+            let clericTreasure = action.data.treasureCleric;
+            let fighterTreasure = action.data.treasureFighter;
+            console.log("thiefTreasure", thiefTreasure, "clericTreasure", clericTreasure, "fighterTreasure", fighterTreasure)
+            // adding the boss treasure to the treasure type depending on the boss
+            switch (bossTreasure) {
+                case "Thief":
+                    thiefTreasure++
+                    break
+                case "Cleric":
+                    clericTreasure++
+                    break
+                case "Fighter":
+                    fighterTreasure++
+                    break
+                default:
+                    break;
+            }
+            console.log("thiefTreasure", thiefTreasure, "clericTreasure", clericTreasure, "fighterTreasure", fighterTreasure)
             // accidentally did baiting based off hero treasures instead of room treasures (not removing bc could potentially reference in future)
-            let heroesToPlayerDungeon = state.heroesInTown.filter(hero=> {
+            let heroesToPlayerDungeon = state.heroesInTown.filter(hero => {
                 console.log(hero)
                 console.log(action.data)
-                
-                if(hero.subtitle === "Ordinary-Hero"){
-                    if(hero.treasure === "Thief" && action.data.treasureThief>1){
+
+                // if the hero is the fool he always goes to the dungeon
+                if (hero.treasure === "?") {
+                    return true
+                }
+                // if the hero is ordinary
+                if (hero.subtitle === "Ordinary-Hero") {
+                    console.log('ordinary hero')
+                    if (hero.treasure === "Thief" && thiefTreasure > 1) {
                         return true
                     }
-                    if(hero.treasure === "Cleric" && action.data.treasureCleric>1){
+                    if (hero.treasure === "Cleric" && clericTreasure > 1) {
                         return true
                     }
-                    if(hero.treasure === "Fighter" && action.data.treasureFighter>1){
+                    if (hero.treasure === "Fighter" && fighterTreasure > 1) {
                         return true
                     }
                 }
-                else{
-                    if(hero.treasure === "Thief" && action.data.treasureThief>3){
+                // if the hero is epic
+                else {
+                    if (hero.treasure === "Thief" && thiefTreasure > 3) {
                         return true
                     }
-                    if(hero.treasure === "Cleric" && action.data.treasureCleric>3){
+                    if (hero.treasure === "Cleric" && clericTreasure > 3) {
                         return true
                     }
-                    if(hero.treasure === "Fighter" && action.data.treasureFighter>3){
+                    if (hero.treasure === "Fighter" && fighterTreasure > 3) {
                         return true
                     }
                 }
@@ -148,8 +201,18 @@ const cardDecks = (state = initialState, action) => {
             console.log(heroesToPlayerDungeon)
             return {
                 ...state,
-                heroesInTown: state.heroesInTown.filter(hero=> !heroesToPlayerDungeon.includes(hero)),
+                heroesInTown: state.heroesInTown.filter(hero => !heroesToPlayerDungeon.includes(hero)),
                 heroesAtStartOfDungeon: [...heroesToPlayerDungeon]
+            }
+        case HERO_KILLED:
+            return {
+                ...state,
+                heroesAtStartOfDungeon: state.heroesAtStartOfDungeon.slice(1),
+            }
+        case SET_HERO_START_OF_DUNGEON:
+            return {
+                ...state,
+                heroesInTown: [],
             }
         default:
             return state
