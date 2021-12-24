@@ -66,13 +66,19 @@ function Info() {
             dispatch(nextGamePhase())
         }
         if (gamePhase === 5) {
-            // if build moving to bait
-
-            dispatch(baitHeroes(treasureCleric, treasureFighter, treasureThief))
-            dispatch(nextGamePhase())
+            // if build moving to bait and at least one room is built in dungeon
+            console.log(playerDungeon[0][0].id!=="D1");
+            if(playerDungeon[0][0].id!=="D1"){
+                dispatch(baitHeroes(treasureCleric, treasureFighter, treasureThief))
+                dispatch(nextGamePhase())
+                setTempMessage("")
+            }
+            else{
+                setTempMessage("You must build at least one Room in your dungeon before moving to the bait phase!")
+            }
+            
         }
         if (gamePhase === 6) {
-            // if bait moving to adventure
             if (!heroesAtStartOfDungeon.length) {
                 dispatch(nextRound())
             }
@@ -88,91 +94,68 @@ function Info() {
             }
             // if heroes inside dungeon
             else {
-                // dispatch(setHeroStartOfDungeon(playerDungeon))
-                // if player dungeon has length
-                if (playerDungeon.length) {
-                    console.log(playerDungeon);
-                    console.log(heroRoomPosition);
-                    let damage = playerDungeon[heroRoomPosition][0].dmg
-                    console.log('room damage dealt to hero', damage);
-                    console.log('hero health', heroHealth);
-                    console.log('hero health - damage', heroHealth - damage);
-                    let remainingHealth = heroHealth - damage;
-                    // if hero has health after passing through the last room
-                    if (heroRoomPosition === 0 && (remainingHealth > 0 || damage === '*')) {
-                        // if remaining hero health is greater than or equal to player health the player dies
-                        console.log('hero fighting boss');
-                        if (remainingHealth >= playerHealth) {
-                            console.log('hero defeats boss');
-                            dispatch(decreasePlayerHealth(playerHealth))
-                            dispatch(playerKilled())
-                            setTempMessage("")
-                        }
-                        // if remaining hero health is less than the player health, the player is wounded but hero is killed
-                        else if (remainingHealth < playerHealth) {
-                            console.log('hero damage to boss', remainingHealth);
-                            dispatch(decreasePlayerHealth(remainingHealth))
-                            dispatch(heroKilled())
-                            if (heroesAtStartOfDungeon.length > 1) {
-                                dispatch(setHeroStartOfDungeon(playerDungeon, heroesAtStartOfDungeon))
-                            }
-                            else {
-                                dispatch(nextRound())
-                                setTempMessage("")
-                            }
-                        }
-                    }
-                    // if hero is not in last room
-                    else {
-                        // if hero hit and still has health
-                        if (remainingHealth > 0) {
-                            // console.log('HERO Wounded');
-                            dispatch(damageHero(damage))
-                            dispatch(moveHeroNumberOfSteps(-1))
-                            setTempMessage("The Hero is wounded but passes the room.")
-                        }
-                        // if hero passes through room that deals no damage
-                        else if (damage === "*") {
-                            // console.log('HERO MOVING');
-                            dispatch(moveHeroNumberOfSteps(-1))
-                            setTempMessage("The Hero moves further in the dungeon unharmed.")
-                        }
-                        // if hero is  hit and killed
-                        else {
-                            console.log('hero killed');
-                            dispatch(heroKilled())
-                            if (heroesAtStartOfDungeon.length > 1) {
-                                dispatch(setHeroStartOfDungeon(playerDungeon, heroesAtStartOfDungeon))
-                                setTempMessage("The Hero was slain in your dungeon.")
-                            }
-                            else {
-                                dispatch(nextRound())
-                                setTempMessage("")
-                            }
-                        }
-                    }
-                }
-                // if player dungeon has no length
-                else{
-                    // if hero has as much or more health than player
-                    if(heroHealth>=playerHealth){
+                console.log(playerDungeon);
+                console.log(heroRoomPosition);
+                let damage = playerDungeon[heroRoomPosition][0].dmg
+                console.log('room damage dealt to hero', damage);
+                console.log('hero health', heroHealth);
+                console.log('hero health - damage', heroHealth - damage);
+                let remainingHealth = heroHealth - damage;
+                // if hero has health after passing through the last room
+                if (heroRoomPosition === 0 && (remainingHealth > 0 || damage === '*')) {
+                    // if remaining hero health is greater than or equal to player health the player dies
+                    console.log('hero fighting boss');
+                    if (remainingHealth >= playerHealth) {
+                        console.log('hero defeats boss');
                         dispatch(decreasePlayerHealth(playerHealth))
-                            dispatch(playerKilled())
-                            setTempMessage("")
+                        dispatch(playerKilled())
+                        setTempMessage("")
                     }
-                    // if player has more health than hero
-                    else{
-                        dispatch(decreasePlayerHealth(heroHealth))
-                            dispatch(heroKilled())
-                            if (heroesAtStartOfDungeon.length > 1) {
-                                dispatch(setHeroStartOfDungeon(playerDungeon, heroesAtStartOfDungeon))
-                            }
-                            else {
-                                dispatch(nextRound())
-                                setTempMessage("")
-                            }
+                    // if remaining hero health is less than the player health, the player is wounded but hero is killed
+                    else if (remainingHealth < playerHealth) {
+                        console.log('hero damage to boss', remainingHealth);
+                        dispatch(decreasePlayerHealth(remainingHealth))
+                        dispatch(heroKilled())
+                        if (heroesAtStartOfDungeon.length > 1) {
+                            dispatch(setHeroStartOfDungeon(playerDungeon, heroesAtStartOfDungeon))
+                        }
+                        else {
+                            dispatch(nextRound())
+                            setTempMessage("")
+                        }
                     }
                 }
+                // if hero is not in last room
+                else {
+                    // if hero hit and still has health
+                    if (remainingHealth > 0) {
+                        // console.log('HERO Wounded');
+                        dispatch(damageHero(damage))
+                        dispatch(moveHeroNumberOfSteps(-1))
+                        setTempMessage("The Hero is wounded but passes the room.")
+                    }
+                    // if hero passes through room that deals no damage
+                    else if (damage === "*") {
+                        // console.log('HERO MOVING');
+                        dispatch(moveHeroNumberOfSteps(-1))
+                        setTempMessage("The Hero moves further in the dungeon unharmed.")
+                    }
+                    // if hero is  hit and killed
+                    else {
+                        console.log('hero killed');
+                        dispatch(heroKilled())
+                        if (heroesAtStartOfDungeon.length > 1) {
+                            dispatch(setHeroStartOfDungeon(playerDungeon, heroesAtStartOfDungeon))
+                            setTempMessage("The Hero was slain in your dungeon.")
+                        }
+                        else {
+                            dispatch(nextRound())
+                            setTempMessage("")
+                        }
+                    }
+
+                }
+
             }
         }
         // if game over and moving to restart
@@ -204,7 +187,7 @@ function Info() {
             case 4:
                 return <div className='messageBox'><div className='message'>Adventurers wandering into Town.</div></div>
             case 5:
-                return <div className='messageBox'><div className='message'>You were dealt one Room Card.</div><div className='message'>You can build one Room in your dungeon.</div></div>
+                return <div className='messageBox'><div className='message'>{tempMessage ? tempMessage : "You were dealt one Room Card.You can build one Room in your dungeon."}</div></div>
             case 6:
                 return <div className='messageBox'><div className='message'>The Heroes decide whether it's worth it to steal your stuff.</div> {heroesAtStartOfDungeon.length} heroes are heading towards your dungeon. {(heroesAtStartOfDungeon.length) ? `A ${heroesAtStartOfDungeon[0].name} enters first.` : `Since no heroes entered your dungeon, this is the end of round ${gameRound}.`}<div className='message'></div></div>
             case 7:
