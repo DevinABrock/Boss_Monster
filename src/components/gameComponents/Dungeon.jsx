@@ -40,7 +40,22 @@ function Dungeon() {
 
     const handleBuild = (e) => {
 
-        if(buildingModeState){
+        // Checks if the selected card is an Advanced Trap Room
+        if(selectedCard.subtitle === "Advanced Trap Room"){
+            if(e.target.id === "D1"){
+                alert("You can only build Advanced Trap Rooms on Trap Rooms.")
+            }
+            else{
+
+            }
+        }
+        // Checks if the selected card is an Advanced Monster Room
+        else if(selectedCard.subtitle === "Advanced Monster Room"){
+            if(e.target.id === "D1"){
+                alert("You can only build Advanced Monster Rooms on Monster Rooms.")
+            }
+        }
+        else if(buildingModeState){
             dispatch(buildDungeon(selectedCard, e.target.id))
             
             // keeps players from building the same repeatedly

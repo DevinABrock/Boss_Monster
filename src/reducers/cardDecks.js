@@ -85,12 +85,10 @@ const cardDecks = (state = initialState, action) => {
                 playerRooms: [...action.data.chosenRooms]
             }
         case BUILD_DUNGEON:
-            console.log("BUILD_DUNGEON state.playerDungeon", state.playerDungeon)
-            console.log("BUILD_DUNGEON action.id", action.card.id)
-            console.log("BUILD_DUNGEON ction.targetID", action.targetID)
-            // adds new room to dungeon if blank spot is available
+
+            // adds new room to dungeon if blank spot is clicked
             if(action.targetID === "D1"){
-                console.log("BUILD_DUNGEON inside if-statement")
+
                 let newPlayerDungeon = []
 
                 // custom filter function to filter out cards with id of "D1"
@@ -112,26 +110,21 @@ const cardDecks = (state = initialState, action) => {
                     playerRooms: state.playerRooms.filter(cardObj=>cardObj.id !== action.card.id)
                 }
             }
-            // adds new room on top of other room in dungeon
+            // adds new room on top of current room in dungeon
             else{
-                console.log("BUILD_DUNGEON inside else statement")
+
                 let newPlayerDungeon = state.playerDungeon.map(roomArr=>{ //[[{}], [{}], [{}]]
-                    console.log("roomArr[0].id", roomArr[0].id)
+
                     if(roomArr[0].id === action.targetID){
-                        console.log("roomArr inside", roomArr)
                         // using tempArr so current roomArr in state.playerDungeon is not mutated
                         let tempArr = [...roomArr]
                         tempArr.unshift(action.card)
-                        console.log("roomArr after unshift", tempArr)
                         return tempArr
                     }
                     else{
                         return roomArr
                     }
                 })
-
-                console.log("BUILD_DUNGEON newPlayerDungeon", newPlayerDungeon)
-                console.log("BUILD_DUNGEON state.playerDungeon", state.playerDungeon)
                 return{
                     ...state,
                     playerDungeon: newPlayerDungeon,
