@@ -17,9 +17,9 @@ function Dungeon() {
     const buildingModeState = useSelector(state => state.misc.buildingMode)
     const selectedCard = useSelector(state => state.misc.card)
 
-    console.log("playerDungeon in Dungeon.jsx", playerDungeon);
-
     console.log("heroRoomPosition", heroRoomPosition);
+
+    console.log("playerDungeon", playerDungeon);
 
     const renderHeroAtPosition = () => {
         // return [<Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>,<Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>]
@@ -40,19 +40,44 @@ function Dungeon() {
 
     const handleBuild = (e) => {
 
+        console.log("e.target", e.target);
+        console.log("e.target.alt", e.target.alt);
+
         // Checks if the selected card is an Advanced Trap Room
         if(selectedCard.subtitle === "Advanced Trap Room"){
-            if(e.target.id === "D1"){
-                alert("You can only build Advanced Trap Rooms on Trap Rooms.")
+            if(e.target.id === "D1" || e.target.alt !== "Trap Room" || e.target.alt !== "Advanced Trap Room"){
+                alert("Advanced Trap Rooms can only be built on ordinary or Advanced Trap Rooms.")
+                // turns buildingMode off
+                dispatch(buildingMode())
             }
             else{
-
+                dispatch(buildDungeon(selectedCard, e.target.id))
+            
+                // keeps players from building the same repeatedly
+                dispatch(selectCard(selectedCard, "builtRoom"))
+    
+                // turns buildingMode off after building room
+                dispatch(buildingMode())
             }
         }
         // Checks if the selected card is an Advanced Monster Room
         else if(selectedCard.subtitle === "Advanced Monster Room"){
-            if(e.target.id === "D1"){
-                alert("You can only build Advanced Monster Rooms on Monster Rooms.")
+            if(e.target.id === "D1" || e.target.alt !== "Monster Room" || e.target.alt !== "Advanced Monster Room"){
+                alert("Advanced Monster Rooms can only be built on ordinary or Advanced Monster Rooms.")
+                // turns buildingMode off
+                dispatch(buildingMode())
+            }
+            else if(e.target.name === "Neanderthal Cave"){
+                alert("Advanced Monster Rooms cannot be built on the Neanderthal Cave.")
+            }
+            else{
+                dispatch(buildDungeon(selectedCard, e.target.id))
+            
+                // keeps players from building the same repeatedly
+                dispatch(selectCard(selectedCard, "builtRoom"))
+    
+                // turns buildingMode off after building room
+                dispatch(buildingMode())
             }
         }
         else if(buildingModeState){
