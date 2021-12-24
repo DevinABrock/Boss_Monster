@@ -17,7 +17,9 @@ function Dungeon() {
     const buildingModeState = useSelector(state => state.misc.buildingMode)
     const selectedCard = useSelector(state => state.misc.card)
 
-    console.log(heroRoomPosition);
+    console.log("playerDungeon in Dungeon.jsx", playerDungeon);
+
+    console.log("heroRoomPosition", heroRoomPosition);
 
     const renderHeroAtPosition = () => {
         // return [<Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>,<Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>]
@@ -38,10 +40,8 @@ function Dungeon() {
 
     const handleBuild = (e) => {
 
-        console.log(e.target.id);
-
         if(buildingModeState){
-            dispatch(buildDungeon(selectedCard))
+            dispatch(buildDungeon(selectedCard, e.target.id))
             
             // keeps players from building the same repeatedly
             dispatch(selectCard(selectedCard, "builtRoom"))
@@ -65,7 +65,8 @@ function Dungeon() {
             {/* -- DUNGEON AREA -- */}
             <div className='dungeonDisplay'>
                 <div  className={buildingModeState ? 'roomAreaBuilding' : 'roomArea'} onClick={(e)=>handleBuild(e)}>
-                    {playerDungeon && playerDungeon.slice(0).reverse().map((roomCard, index)=>{
+                    // 
+                    {playerDungeon.slice(0).reverse().map((roomCard, index)=>{
                             return <Card cardObj={roomCard[0]} className="room" key={index}/>
                         })
                     }

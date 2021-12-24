@@ -53,11 +53,12 @@ export const decreaseHealth = () => {
         type: DECREASE_HEALTH,
     }
 }
-export const buildDungeon = (cardObj) => {
+export const buildDungeon = (cardObj, targetID) => {
 
     return {
         type: BUILD_DUNGEON, 
-        card: cardObj
+        card: cardObj,
+        targetID: targetID
     }
 }
 export const setHeroStartOfDungeon = (playerDungeon) => {

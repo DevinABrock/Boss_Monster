@@ -86,7 +86,7 @@ function Info() {
                     return <div className='messageBox'><div className='message'>You were dealt 5 Room cards and 1 Boss Card.</div></div>
                 case 2:
                     
-                    return <div className='messageBox'><div className='message'>This is the start of round {gameRound}.</div></div>
+                    return <div className='messageBox'><div className='message'>This is the start of round {gameRound}. You can build one Room in your dungeon.</div></div>
                 case 3:
                     
                     let {rollNumber, isHit} = diceRoll(gameRound);
@@ -136,10 +136,10 @@ function Info() {
     }
 
     const handleBuildButtonClick = (className) => {
-            
+
         if(className === "handCard"){
-            // turns building mode on and off
-            dispatch(buildingMode())
+        // turns building mode on and off
+        dispatch(buildingMode())
         }
         else{
             alert("You can only build cards from your hand.")
@@ -175,7 +175,7 @@ function Info() {
                 <div className='phaseInfo'>Phase: {renderGamePhaseSwitch(gamePhase)}</div>
                 <div className='buttonList'>
                     <div className='button'>STORE</div>
-                    <div className='button'>USE EFFECT</div>
+                    <div className='button'>USE</div>
                     <div className={buildingModeState ? 'buttonBuild' : 'button'} onClick={()=>handleBuildButtonClick(selectedCardClass)}>BUILD</div>
                     <div onClick={()=>handleNextButtonClick()} className='button'>NEXT</div>
                 </div>

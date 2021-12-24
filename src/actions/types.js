@@ -16,8 +16,8 @@ export const BAIT_HEROES = "BAIT_HEROES";
 
 export const UPDATE_PLAYER_TREASURE = "UPDATE_PLAYER_TREASURE";
 
-
 export const NEXT_ROUND = "NEXT_ROUND";
+
 export const BUILDING_MODE = "BUILDING_MODE"
 
 export const BUILD_DUNGEON = "BUILD_DUNGEON"

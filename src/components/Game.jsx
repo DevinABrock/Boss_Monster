@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import './css/game.css'
 import Info from './gameComponents/Info'
@@ -15,10 +15,10 @@ function Game() {
     const dispatch = useDispatch();
     const gamePhase = useSelector(state => state.gamePhase.gamePhase)
     const bossDeck = useSelector(state => state.cardDecks.bossDeck)
-    const heroDeck = useSelector(state => state.cardDecks.heroDeck)
-    const epicHeroDeck = useSelector(state => state.cardDecks.epicHeroDeck)
+    // const heroDeck = useSelector(state => state.cardDecks.heroDeck)
+    // const epicHeroDeck = useSelector(state => state.cardDecks.epicHeroDeck)
     const roomDeck = useSelector(state => state.cardDecks.roomDeck)
-    const playerBoss = useSelector(state => state.cardDecks.playerBoss)
+    // const playerBoss = useSelector(state => state.cardDecks.playerBoss)
     const playerRooms = useSelector(state => state.cardDecks.playerRooms)
     
     // this is the initialization setup to shuffle decks etc.

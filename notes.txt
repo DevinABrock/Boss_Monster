@@ -1,0 +1,2 @@
+
+- trying to figure out why clicking on built card causes error. It "removes" that room from the dungeon.
