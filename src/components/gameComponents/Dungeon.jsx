@@ -16,6 +16,7 @@ function Dungeon() {
     const heroRoomPosition = useSelector(state => state.heroStats.heroRoomPosition)
     const buildingModeState = useSelector(state => state.misc.buildingMode)
     const selectedCard = useSelector(state => state.misc.card)
+    const playerBoss = useSelector(state => state.cardDecks.playerBoss)
 
     console.log("heroRoomPosition", heroRoomPosition);
 
@@ -24,15 +25,12 @@ function Dungeon() {
     const renderHeroAtPosition = () => {
         // return [<Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>,<Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>]
         let renderHeroArray = []
-        for (let roomIndex = 6; roomIndex > 0; roomIndex--) {
-
+        for (let roomIndex = 5; roomIndex >= 0; roomIndex--) {
             if (heroRoomPosition===roomIndex) {
                 renderHeroArray.push(<Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>)
-                
             }
             else{
                 renderHeroArray.push(<Card cardObj={cardBack} className="hero hero_blank"/>)
-                
             }
         }
         return renderHeroArray;
@@ -94,14 +92,12 @@ function Dungeon() {
 
     return (
         <div className='dungeonBody'>
-
             {/* -- HERO AREA -- */}
             <div className='heroDisplay' >
                 {heroesAtStartOfDungeon.length ? 
                 renderHeroAtPosition()
                 // <Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>
                 :null}
-                
             </div>
             {/* -- DUNGEON AREA -- */}
             <div className='dungeonDisplay'>
@@ -113,7 +109,7 @@ function Dungeon() {
                     }
                 </div>
                 <div className='bossArea'>
-                <Card cardObj={bossDeck[0]} className="boss"/>
+                <Card cardObj={playerBoss} className="boss"/>
                 </div>
             </div>
         </div>
