@@ -78,7 +78,6 @@ function Info() {
             else{
                 setTempMessage("You must build at least one Room in your dungeon before moving to the bait phase!")
             }
-            
         }
         if (gamePhase === 6) {
             if (!heroesAtStartOfDungeon.length) {

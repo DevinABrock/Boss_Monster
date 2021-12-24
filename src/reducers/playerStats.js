@@ -22,6 +22,7 @@ const playerStats = (state = initialState, action) => {
             return {
                 ...state,
                 health: 5,
+                souls: 0,
             }
         case HERO_KILLED:
             return {
