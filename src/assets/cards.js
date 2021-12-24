@@ -1398,7 +1398,7 @@ export const heroDeck = [
     description:
       "Jerome, Kung Fu Monkey A Visitor from a distant land, his hyperactive monkey studied martial arts under the legendary Sifu Wang.",
     players: 4,
-    image: "/card-images/heroes/",
+    image: "/card-images/heroes/thief-ordinary(6).svg",
   },
   {
     id: "H25",

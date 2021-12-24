@@ -62,17 +62,17 @@ function Dungeon() {
         }
         // Checks if the selected card is an Advanced Monster Room
         else if(selectedCard.subtitle === "Advanced Monster Room"){
-            if(e.target.alt === "Monster Room" || e.target.alt === "Advanced Monster Room"){
+            if(e.target.name === "Neanderthal Cave"){
+                alert("Advanced Monster Rooms cannot be built on the Neanderthal Cave.")
+                dispatch(buildingMode())
+            }
+            else if(e.target.alt === "Monster Room" || e.target.alt === "Advanced Monster Room"){
                 dispatch(buildDungeon(selectedCard, e.target.id))
             
                 // keeps players from building the same repeatedly
                 dispatch(selectCard(selectedCard, "builtRoom"))
     
                 // turns buildingMode off after building room
-                dispatch(buildingMode())
-            }
-            else if(e.target.name === "Neanderthal Cave"){
-                alert("Advanced Monster Rooms cannot be built on the Neanderthal Cave.")
                 dispatch(buildingMode())
             }
             else{

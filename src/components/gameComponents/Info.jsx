@@ -142,7 +142,7 @@ function Info() {
         dispatch(buildingMode())
         }
         else{
-            alert("You can only build cards from your hand.")
+            alert("You can only build cards from your hand. Select a card from your hand, click \"Build\" and then select a spot to build your new dungeon room.")
         }
 
     }
