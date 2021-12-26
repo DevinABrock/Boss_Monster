@@ -37,6 +37,10 @@ function Info() {
         console.log('updating treasure');
     }, [playerDungeon])
 
+    useEffect(() => {
+        setCardCount(0)
+    }, [selectedCard])
+
     const handleChangeGamePhase = () => {
         // if 1 and player has rooms in their hand
         console.log(gamePhase, playerRooms.length);
@@ -240,6 +244,7 @@ function Info() {
 
     }
 
+    // function to show previous card in roomStack
     const handleBackClick = () => {
         
         if(cardCount === 0){
@@ -250,6 +255,7 @@ function Info() {
         }
     }
 
+    // function to show next card in roomStack
     const handleNextClick = () => {
         
         if(cardCount === (roomStack.length - 1)){
@@ -258,7 +264,6 @@ function Info() {
         else{
             setCardCount(cardCount + 1)
         }
-
     }
 
     // grabbing stack of rooms in playerDungeon of selectedCard
