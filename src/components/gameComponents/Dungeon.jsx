@@ -41,53 +41,56 @@ function Dungeon() {
         console.log("e.target", e.target);
         console.log("e.target.alt", e.target.alt);
 
-        // Checks if the selected card is an Advanced Trap Room
-        if(selectedCard.subtitle === "Advanced Trap Room"){
-            if(e.target.alt === "Trap Room" || e.target.alt === "Advanced Trap Room"){
+        if(buildingModeState){
+            // Checks if the selected card is an Advanced Trap Room
+            if(selectedCard.subtitle === "Advanced Trap Room"){
+                if(e.target.alt === "Trap Room" || e.target.alt === "Advanced Trap Room"){
+                    dispatch(buildDungeon(selectedCard, e.target.id))
+                
+                    // keeps players from building the same repeatedly
+                    dispatch(selectCard(selectedCard, "builtRoom"))
+        
+                    // turns buildingMode off after building room
+                    dispatch(buildingMode())
+                }
+                else{
+                    alert("Advanced Trap Rooms can only be built on ordinary or Advanced Trap Rooms.")
+                    // turns buildingMode off
+                    dispatch(buildingMode())
+                }
+            }
+            // Checks if the selected card is an Advanced Monster Room
+            else if(selectedCard.subtitle === "Advanced Monster Room"){
+                if(e.target.name === "Neanderthal Cave"){
+                    alert("Advanced Monster Rooms cannot be built on the Neanderthal Cave.")
+                    dispatch(buildingMode())
+                }
+                else if(e.target.alt === "Monster Room" || e.target.alt === "Advanced Monster Room"){
+                    dispatch(buildDungeon(selectedCard, e.target.id))
+                
+                    // keeps players from building the same repeatedly
+                    dispatch(selectCard(selectedCard, "builtRoom"))
+        
+                    // turns buildingMode off after building room
+                    dispatch(buildingMode())
+                }
+                else{
+                    alert("Advanced Monster Rooms can only be built on ordinary or Advanced Monster Rooms.")
+                    // turns buildingMode off
+                    dispatch(buildingMode())
+                }
+            }
+            else if(buildingModeState){
                 dispatch(buildDungeon(selectedCard, e.target.id))
-            
+                
                 // keeps players from building the same repeatedly
                 dispatch(selectCard(selectedCard, "builtRoom"))
-    
-                // turns buildingMode off after building room
-                dispatch(buildingMode())
-            }
-            else{
-                alert("Advanced Trap Rooms can only be built on ordinary or Advanced Trap Rooms.")
-                // turns buildingMode off
-                dispatch(buildingMode())
-            }
-        }
-        // Checks if the selected card is an Advanced Monster Room
-        else if(selectedCard.subtitle === "Advanced Monster Room"){
-            if(e.target.name === "Neanderthal Cave"){
-                alert("Advanced Monster Rooms cannot be built on the Neanderthal Cave.")
-                dispatch(buildingMode())
-            }
-            else if(e.target.alt === "Monster Room" || e.target.alt === "Advanced Monster Room"){
-                dispatch(buildDungeon(selectedCard, e.target.id))
-            
-                // keeps players from building the same repeatedly
-                dispatch(selectCard(selectedCard, "builtRoom"))
-    
-                // turns buildingMode off after building room
-                dispatch(buildingMode())
-            }
-            else{
-                alert("Advanced Monster Rooms can only be built on ordinary or Advanced Monster Rooms.")
-                // turns buildingMode off
-                dispatch(buildingMode())
-            }
-        }
-        else if(buildingModeState){
-            dispatch(buildDungeon(selectedCard, e.target.id))
-            
-            // keeps players from building the same repeatedly
-            dispatch(selectCard(selectedCard, "builtRoom"))
 
-            // turns buildingMode off after building room
-            dispatch(buildingMode())
+                // turns buildingMode off after building room
+                dispatch(buildingMode())
+            }
         }
+
     }
 
     return (

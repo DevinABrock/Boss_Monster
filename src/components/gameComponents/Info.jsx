@@ -30,6 +30,7 @@ function Info() {
     const selectedCardClass = useSelector(state => state.misc.className)
 
     const [tempMessage, setTempMessage] = useState("")
+    const [cardCount, setCardCount] = useState(0)
 
     useEffect(() => {
         dispatch(updatePlayerTreasure(playerDungeon))
@@ -239,27 +240,83 @@ function Info() {
 
     }
 
+    const handleBackClick = () => {
+        
+        if(cardCount === 0){
+            setCardCount(roomStack.length - 1)
+        }
+        else{
+            setCardCount(cardCount - 1)
+        }
+    }
+
+    const handleNextClick = () => {
+        
+        if(cardCount === (roomStack.length - 1)){
+            setCardCount(0)
+        }
+        else{
+            setCardCount(cardCount + 1)
+        }
+
+    }
+
+    // grabbing stack of rooms in playerDungeon of selectedCard
+    let roomStack = []
+    playerDungeon.forEach(roomArr=>{
+        if(roomArr[0].id === selectedCard.id){
+            console.log("roomArr", roomArr);
+            roomStack = roomArr
+        }
+    })
+
     return (
         <div className='infoBody'>
 
             {/* -- INFO AREA -- */}
             <div className='cardInfoArea'>
-                <div className='displaySection'>
-                    <img src={selectedCard.image} className='cardDisplay' />
-                </div>
-                <div className='infoSection'>
-                    {selectedCard &&
+                {roomStack.length > 1
+                ?
+                <>
+                    <div className='displaySection'>
+                        <img src={roomStack[cardCount].image} className='cardDisplay' />
+                        <div>
+                            <span onClick={handleBackClick}>BACK</span>
+                            &nbsp;<span onClick={handleNextClick}>NEXT</span>
+                        </div>
+                    </div>
+                    <div className='infoSection'>
                         <>
-                            <div className='title'>{selectedCard.name}</div>
-                            <div className='information'>{selectedCard.subtitle}</div>
-                            {selectedCard.HP && <div className='information'>HP: {selectedCard.HP}</div>}
-                            {selectedCard.dmg && <div className='information'>DMG: {selectedCard.dmg}</div>}
-                            {selectedCard.xp && <div className='information'>XP: {selectedCard.xp}</div>}
-                            {selectedCard.treasure && <div className='information'>Treasure: {selectedCard.treasure}</div>}
-                            <div className='cardDescription'>{selectedCard.description}</div>
+                            <div className='title'>{roomStack[cardCount].name}</div>
+                            <div className='information'>{roomStack[cardCount].subtitle}</div>
+                            {roomStack[cardCount].HP && <div className='information'>HP: {roomStack[cardCount].HP}</div>}
+                            {roomStack[cardCount].dmg && <div className='information'>DMG: {roomStack[cardCount].dmg}</div>}
+                            {roomStack[cardCount].xp && <div className='information'>XP: {roomStack[cardCount].xp}</div>}
+                            {roomStack[cardCount].treasure && <div className='information'>Treasure: {roomStack[cardCount].treasure}</div>}
+                            <div className='cardDescription'>{roomStack[cardCount].description}</div>
                         </>
-                    }
-                </div>
+                    </div>
+                </>
+                :
+                <>
+                    <div className='displaySection'>
+                        <img src={selectedCard.image} className='cardDisplay' />
+                    </div>
+                    <div className='infoSection'>
+                        {selectedCard &&
+                        <>
+                                <div className='title'>{selectedCard.name}</div>
+                                <div className='information'>{selectedCard.subtitle}</div>
+                                {selectedCard.HP && <div className='information'>HP: {selectedCard.HP}</div>}
+                                {selectedCard.dmg && <div className='information'>DMG: {selectedCard.dmg}</div>}
+                                {selectedCard.xp && <div className='information'>XP: {selectedCard.xp}</div>}
+                                {selectedCard.treasure && <div className='information'>Treasure: {selectedCard.treasure}</div>}
+                                <div className='cardDescription'>{selectedCard.description}</div>
+                        </>
+                        }
+                    </div>
+                </>
+                }
             </div>
 
             {/* -- BUTTON AREA -- */}
