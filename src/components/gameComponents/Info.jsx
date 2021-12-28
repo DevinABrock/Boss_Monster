@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import '../css/Info.css'
 import { buildingMode } from '../../actions/miscActions';
-import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, baitHeroes, nextRound, setHeroStartOfDungeon, damageHero, moveHeroNumberOfSteps, heroKilled, decreasePlayerHealth, playerKilled, resetPlayerCards, resetGame } from '../../actions/sampleActions';
+import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, baitHeroes, nextRound, setHeroStartOfDungeon, damageHero, moveHeroNumberOfSteps, heroKilled, decreasePlayerHealth, playerKilled, resetPlayerCards, resetGame, addBuildActions } from '../../actions/sampleActions';
 import { diceRoll } from '../gameLogic/diceRoll';
 
 import { shuffleAllDecks, dealInitialCards } from '../gameLogic/initializingDeck';
@@ -21,6 +21,7 @@ function Info() {
     const treasureCleric = useSelector(state => state.playerStats.treasureCleric)
     const treasureFighter = useSelector(state => state.playerStats.treasureFighter)
     const treasureThief = useSelector(state => state.playerStats.treasureThief)
+    const buildActions = useSelector(state => state.playerStats.buildActions)
     const heroesAtStartOfDungeon = useSelector(state => state.cardDecks.heroesAtStartOfDungeon)
     const heroRoomPosition = useSelector(state => state.heroStats.heroRoomPosition)
     const buildingModeState = useSelector(state => state.misc.buildingMode)
@@ -31,6 +32,8 @@ function Info() {
 
     const [tempMessage, setTempMessage] = useState("")
     const [cardCount, setCardCount] = useState(0)
+
+    console.log("buildActions", buildActions);
 
     useEffect(() => {
         dispatch(updatePlayerTreasure(playerDungeon))
@@ -45,6 +48,7 @@ function Info() {
         // if 1 and player has rooms in their hand
         console.log(gamePhase, playerRooms.length);
         if (gamePhase === 1 && playerRooms.length) {
+            dispatch(addBuildActions(1)) // player can build 1 room at the beginning of the game but only at the beginning
             dispatch(updatePlayerTreasure(playerDungeon))
             dispatch(nextGamePhase())
         }
@@ -68,6 +72,7 @@ function Info() {
         }
         // if 4 moving to build phase
         if (gamePhase === 4) {
+            dispatch(addBuildActions(1)) // player can build 1 room per turn
             dispatch(updatePlayerTreasure(playerDungeon))
             dispatch(dealRoomCard())
             dispatch(nextGamePhase())
@@ -176,10 +181,10 @@ function Info() {
         console.log('running switch');
         switch (gamePhase) {
             case 1:
-                return <div className='messageBox'><div className='message'>You were dealt 5 Room cards and 1 Boss Card.</div></div>
+                return <div className='messageBox'><div className='message'>Welcome to Boss Monster. Build your dungeon to lure heroes and steal their souls. You were dealt 5 Room cards and 1 Boss Card. </div></div>
             case 2:
 
-                return <div className='messageBox'><div className='message'>{tempMessage} This is the start of round {gameRound}.</div></div>
+                return <div className='messageBox'><div className='message'>{tempMessage} This is the start of round {gameRound}. You can build 1 room in your dungeon.</div></div>
             case 3:
 
                 let { rollNumber, isHit } = diceRoll(gameRound);
@@ -192,9 +197,9 @@ function Info() {
             case 4:
                 return <div className='messageBox'><div className='message'>Adventurers wandering into Town.</div></div>
             case 5:
-                return <div className='messageBox'><div className='message'>{tempMessage ? tempMessage : "You were dealt one Room Card.You can build one Room in your dungeon."}</div></div>
+                return <div className='messageBox'><div className='message'>{tempMessage ? tempMessage : "You were dealt one Room Card. You can build one Room in your dungeon."}</div></div>
             case 6:
-                return <div className='messageBox'><div className='message'>The Heroes decide whether it's worth it to steal your stuff.</div> {heroesAtStartOfDungeon.length} heroes are heading towards your dungeon. {(heroesAtStartOfDungeon.length) ? `A ${heroesAtStartOfDungeon[0].name} enters first.` : `Since no heroes entered your dungeon, this is the end of round ${gameRound}.`}<div className='message'></div></div>
+                return <div className='messageBox'><div className='message'>The heroes decide whether it's worth it to steal your stuff.</div> <div className='message'>{heroesAtStartOfDungeon.length} heroes are heading towards your dungeon. {(heroesAtStartOfDungeon.length) ? `A ${heroesAtStartOfDungeon[0].name} enters first.` : `Since no heroes entered your dungeon, this is the end of round ${gameRound}.`}</div></div>
             case 7:
                 return <div className='messageBox'><div className='message'>{tempMessage ? tempMessage : "The hero is fighting your dungeon. Use spells or effect to help your rooms."}</div></div>
             case 10:
@@ -235,8 +240,13 @@ function Info() {
     const handleBuildButtonClick = (className) => {
 
         if(className === "handCard"){
-        // turns building mode on and off
-        dispatch(buildingMode())
+            if(buildActions > 0){
+                // turns building mode on and off
+                dispatch(buildingMode())
+            }
+            else{
+                alert("You have no more build actions this turn.")
+            }
         }
         else{
             alert("You can only build cards from your hand. Select a card from your hand, click \"Build\" and then select a spot to build your new dungeon room.")

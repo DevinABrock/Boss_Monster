@@ -1288,7 +1288,7 @@ export const heroDeck = [
   //   description:
   //     "Brandork the Neverwrong Schooled in seven flavors of magic, Brandork follows the teachings of master Face, the Omniscient Celestial.",
   //   players: 4,
-  //   image: "/card-images/heroes/",
+  //   image: "/card-images/heroes/mage-ordinary(2).svg",
   // },
   // {
   //   id: "H15",
@@ -1310,7 +1310,7 @@ export const heroDeck = [
   //   description:
   //     "Kalish Ninefingers The worst thief ever, Kalish lost a finger and his freedom in one night. Taught magic in prison by his sorcerous cellmate, he now kills evil with fire.",
   //   players: 3,
-  //   image: "/card-images/heroes/",
+  //   image: "/card-images/heroes/mage-ordinary(4).svg",
   // },
   // {
   //   id: "H17",
@@ -1332,7 +1332,7 @@ export const heroDeck = [
   //   description:
   //     "Koey, The Last Dragon Mage The survivor of Drakonia vowed to save the world from Kirax's reign with the power bestowed to him by the last emerald dragon.",
   //   players: 4,
-  //   image: "/card-images/heroes/",
+  //   image: "/card-images/heroes/mage-ordinary(6).svg",
   // },
   {
     id: "H19",
@@ -1354,7 +1354,7 @@ export const heroDeck = [
     description:
       "Lance Uppercut, Treasure Hunter With a bent blade and a clenched fist, he gathers shining treasures for the glory of the Keonish Empire.",
     players: 4,
-    image: "/card-images/heroes/",
+    image: "/card-images/heroes/thief-ordinary(2).svg",
   },
   {
     id: "H21",
@@ -1376,7 +1376,7 @@ export const heroDeck = [
     description:
       "Kins Klauski, Mad Conquistador \"It's hard for me to think about death, how insects and worms will eat me... I never think about death. I haven't even properly started to live yet.\"",
     players: 3,
-    image: "/card-images/heroes/",
+    image: "/card-images/heroes/thief-ordinary(4).svg",
   },
   {
     id: "H23",
@@ -1525,7 +1525,7 @@ export const epicHeroDeck = [
   //   description:
   //     'Chia Kang, Mystical Warlock of Yu "Hey, Listen! I think this Boss Monster is--" "Silence, fairy! I will crush him through fire and flames in the name of the Order!"',
   //   players: 3,
-  //   image: "card-images/epic-heroes/"
+  //   image: "card-images/epic-heroes/mage-epic(2).svg"
   // },
   // {
   //   id: "E11",
@@ -1536,7 +1536,7 @@ export const epicHeroDeck = [
   //   description:
   //     'Terric Warhelm, Half-Elf Archmage "Weakened by an evil curse, this once-mighty warrior donned the red robes and turned to magic. His spells are chnneled through a magical helmet of untold power."',
   //   players: 2,
-  //   image: "card-images/epic-heroes/mage-epic(2).svg"
+  //   image: "card-images/epic-heroes/mage-epic(3).svg"
   // },
   // {
   //   id: "E12",
@@ -1547,7 +1547,7 @@ export const epicHeroDeck = [
   //   description:
   //     "Wayward, the Drifter He is a traveler from a strange land whose only goal is to do whatever is right... whatever that means.",
   //   players: 4,
-  //   image: "card-images/epic-heroes/"
+  //   image: "card-images/epic-heroes/mage-epic(4).svg"
   // },
   {
     id: "E13",

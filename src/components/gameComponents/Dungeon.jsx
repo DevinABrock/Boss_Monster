@@ -3,7 +3,7 @@ import '../css/Dungeon.css'
 import { bossDeck } from "../../assets/cards"
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCard, buildingMode } from '../../actions/miscActions';
-import { buildDungeon } from '../../actions/sampleActions';
+import { buildDungeon, addBuildActions } from '../../actions/sampleActions';
 import Card from './Card'
 import { cardBack } from '../../assets/cards';
 
@@ -20,7 +20,7 @@ function Dungeon() {
 
     console.log("heroRoomPosition", heroRoomPosition);
 
-    console.log("playerDungeon", playerDungeon);
+    // console.log("playerDungeon", playerDungeon);
 
     const renderHeroAtPosition = () => {
         // return [<Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>,<Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>]
@@ -46,6 +46,7 @@ function Dungeon() {
             if(selectedCard.subtitle === "Advanced Trap Room"){
                 if(e.target.alt === "Trap Room" || e.target.alt === "Advanced Trap Room"){
                     dispatch(buildDungeon(selectedCard, e.target.id))
+                    dispatch(addBuildActions(-1)) // decreasing buildActions by 1
                 
                     // keeps players from building the same repeatedly
                     dispatch(selectCard(selectedCard, "builtRoom"))
@@ -67,6 +68,7 @@ function Dungeon() {
                 }
                 else if(e.target.alt === "Monster Room" || e.target.alt === "Advanced Monster Room"){
                     dispatch(buildDungeon(selectedCard, e.target.id))
+                    dispatch(addBuildActions(-1)) // decreasing buildActions by 1
                 
                     // keeps players from building the same repeatedly
                     dispatch(selectCard(selectedCard, "builtRoom"))
@@ -82,6 +84,7 @@ function Dungeon() {
             }
             else if(buildingModeState){
                 dispatch(buildDungeon(selectedCard, e.target.id))
+                dispatch(addBuildActions(-1)) // decreasing buildActions by 1
                 
                 // keeps players from building the same repeatedly
                 dispatch(selectCard(selectedCard, "builtRoom"))
