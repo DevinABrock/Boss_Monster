@@ -270,7 +270,6 @@ function Info() {
     let roomStack = []
     playerDungeon.forEach(roomArr=>{
         if(roomArr[0].id === selectedCard.id){
-            console.log("roomArr", roomArr);
             roomStack = roomArr
         }
     })
@@ -285,9 +284,12 @@ function Info() {
                 <>
                     <div className='displaySection'>
                         <img src={roomStack[cardCount].image} className='cardDisplay' />
-                        <div>
-                            <span onClick={handleBackClick}>BACK</span>
-                            &nbsp;<span onClick={handleNextClick}>NEXT</span>
+                        <div className="cardCountContainer">
+                            <span className="cardCountLabel">Card:{cardCount + 1}/{roomStack.length} </span>
+                            &nbsp;
+                            <span className="cardStackButtons" onClick={handleBackClick}>&#171;</span>
+                            &nbsp;
+                            <span className="cardStackButtons" onClick={handleNextClick}>&#187;</span>
                         </div>
                     </div>
                     <div className='infoSection'>
@@ -295,7 +297,7 @@ function Info() {
                             <div className='title'>{roomStack[cardCount].name}</div>
                             <div className='information'>{roomStack[cardCount].subtitle}</div>
                             {roomStack[cardCount].HP && <div className='information'>HP: {roomStack[cardCount].HP}</div>}
-                            {roomStack[cardCount].dmg && <div className='information'>DMG: {roomStack[cardCount].dmg}</div>}
+                            {roomStack[cardCount].dmg !== undefined && <div className='information'>DMG: {roomStack[cardCount].dmg}</div>}
                             {roomStack[cardCount].xp && <div className='information'>XP: {roomStack[cardCount].xp}</div>}
                             {roomStack[cardCount].treasure && <div className='information'>Treasure: {roomStack[cardCount].treasure}</div>}
                             <div className='cardDescription'>{roomStack[cardCount].description}</div>
@@ -313,7 +315,7 @@ function Info() {
                                 <div className='title'>{selectedCard.name}</div>
                                 <div className='information'>{selectedCard.subtitle}</div>
                                 {selectedCard.HP && <div className='information'>HP: {selectedCard.HP}</div>}
-                                {selectedCard.dmg && <div className='information'>DMG: {selectedCard.dmg}</div>}
+                                {selectedCard.dmg !== undefined && <div className='information'>DMG: {selectedCard.dmg}</div>}
                                 {selectedCard.xp && <div className='information'>XP: {selectedCard.xp}</div>}
                                 {selectedCard.treasure && <div className='information'>Treasure: {selectedCard.treasure}</div>}
                                 <div className='cardDescription'>{selectedCard.description}</div>
