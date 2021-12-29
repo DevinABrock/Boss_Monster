@@ -1,5 +1,5 @@
 
-import { SET_HERO_START_OF_DUNGEON, MOVE_HERO_NUMBER_OF_STEPS, DAMAGE_HERO, HERO_KILLED } from "../actions/types"
+import { SET_HERO_START_OF_DUNGEON, MOVE_HERO_NUMBER_OF_STEPS, DAMAGE_HERO, HERO_KILLED, HERO_SURVIVED } from "../actions/types"
 import { dungeonBack } from "../assets/cards"
 
 const initialState = {
@@ -39,10 +39,37 @@ const heroStats = (state = initialState, action) => {
                 heroHealth: state.heroHealth - action.damage,
             }
         case HERO_KILLED:
-            return {
-                ...state,
-                heroRoomPosition: 5
+
+            if(action.lastHero){
+                return {
+                    ...state,
+                    heroRoomPosition: 5,
+                }
             }
+            else{
+                return {
+                    ...state,
+                    heroRoomPosition: 5,
+                    heroHealth: action.heroesAtStartOfDungeon[1].HP
+                }
+            } 
+        case HERO_SURVIVED:
+            
+            if(action.lastHero){
+                return {
+                    ...state,
+                    heroRoomPosition: 5,
+                }
+            }
+            else{
+                return {
+                    ...state,
+                    heroRoomPosition: 5,
+                    heroHealth: action.heroesAtStartOfDungeon[1].HP
+                }
+            } 
+
+            
         default:
             return state
     }

@@ -8,7 +8,7 @@ const initialState = {
     treasureCleric: 0,
     treasureFighter: 0,
     treasureThief: 0,
-    buildActions: 0 
+    buildActions: 1,
 }
 
 const playerStats = (state = initialState, action) => {

@@ -5,6 +5,7 @@ import '../css/Event.css'
 function Event() {
     const health = useSelector(state => state.playerStats.health)
     const souls = useSelector(state => state.playerStats.souls)
+    const builds = useSelector(state => state.playerStats.buildActions)
 
     
 
@@ -23,6 +24,12 @@ function Event() {
             <div className='souls'>
                 Souls:
                 <div className='soul'>{souls}</div>
+            </div>
+
+            {/* -- BUILDS -- */}
+            <div className='souls'>
+                Builds:
+                <div className='soul'>{builds}</div>
             </div>
         </div>
     )

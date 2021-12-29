@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import '../css/Info.css'
 import { buildingMode } from '../../actions/miscActions';
-import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, baitHeroes, nextRound, setHeroStartOfDungeon, damageHero, moveHeroNumberOfSteps, heroKilled, decreasePlayerHealth, playerKilled, resetPlayerCards, resetGame, addBuildActions } from '../../actions/sampleActions';
+import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, baitHeroes, nextRound, setHeroStartOfDungeon, damageHero, moveHeroNumberOfSteps, heroKilled, decreasePlayerHealth, playerKilled, resetPlayerCards, resetGame, addBuildActions, heroSurvived } from '../../actions/sampleActions';
 import { diceRoll } from '../gameLogic/diceRoll';
 
 import { shuffleAllDecks, dealInitialCards } from '../gameLogic/initializingDeck';
@@ -48,17 +48,16 @@ function Info() {
         // if 1 and player has rooms in their hand
         console.log(gamePhase, playerRooms.length);
         if (gamePhase === 1 && playerRooms.length) {
-            dispatch(addBuildActions(1)) // player can build 1 room at the beginning of the game but only at the beginning
             dispatch(updatePlayerTreasure(playerDungeon))
             dispatch(nextGamePhase())
         }
         // if 2 and user clicks next this will update whether a spell card takes effect for the round
-        if (gamePhase === 2) {
+        else if (gamePhase === 2) {
             dispatch(nextGamePhase())
             setTempMessage("")
         }
         // if 3 moving to heroes to town phase
-        if (gamePhase === 3) {
+        else if (gamePhase === 3) {
             // if the game is in the first 4 rounds deal the ordinary heroes
             if (gameRound < 5) {
                 dispatch(dealHeroesToTown('ordinary', 2))
@@ -71,25 +70,26 @@ function Info() {
             dispatch(nextGamePhase())
         }
         // if 4 moving to build phase
-        if (gamePhase === 4) {
+        else if (gamePhase === 4) {
             dispatch(addBuildActions(1)) // player can build 1 room per turn
             dispatch(updatePlayerTreasure(playerDungeon))
             dispatch(dealRoomCard())
             dispatch(nextGamePhase())
         }
-        if (gamePhase === 5) {
+        else if (gamePhase === 5) {
             // if build moving to bait and at least one room is built in dungeon
             console.log(playerDungeon[0][0].id!=="D1");
             if(playerDungeon[0][0].id!=="D1"){
                 dispatch(baitHeroes(treasureCleric, treasureFighter, treasureThief))
                 dispatch(nextGamePhase())
+                dispatch(addBuildActions(-buildActions)) // removed build actions if player does not build that turn
                 setTempMessage("")
             }
             else{
                 setTempMessage("You must build at least one Room in your dungeon before moving to the bait phase!")
             }
         }
-        if (gamePhase === 6) {
+        else if (gamePhase === 6) {
             if (!heroesAtStartOfDungeon.length) {
                 dispatch(nextRound())
             }
@@ -98,7 +98,7 @@ function Info() {
                 dispatch(nextGamePhase())
             }
         }
-        if (gamePhase === 7) {
+        else if (gamePhase === 7) {
             // if adventure and no heroes in dungeon
             if (heroesAtStartOfDungeon.length === 0) {
                 dispatch(nextRound())
@@ -114,25 +114,30 @@ function Info() {
                 let remainingHealth = heroHealth - damage;
                 // if hero has health after passing through the last room
                 if (heroRoomPosition === 0 && (remainingHealth > 0 || damage === '*')) {
-                    // if remaining hero health is greater than or equal to player health the player dies
+                    // if hero kills the boss, the player dies
                     console.log('hero fighting boss');
-                    if (remainingHealth >= playerHealth) {
+                    if((heroesAtStartOfDungeon[0].subtitle === "Ordinary-Hero" && playerHealth <= 1) ||(heroesAtStartOfDungeon[0].subtitle === "Epic-Hero" && playerHealth <= 2)){
                         console.log('hero defeats boss');
                         dispatch(decreasePlayerHealth(playerHealth))
                         dispatch(playerKilled())
                         setTempMessage("")
                     }
-                    // if remaining hero health is less than the player health, the player is wounded but hero is killed
-                    else if (remainingHealth < playerHealth) {
-                        console.log('hero damage to boss', remainingHealth);
-                        dispatch(decreasePlayerHealth(remainingHealth))
-                        dispatch(heroKilled())
-                        setTempMessage("")
-                        if (heroesAtStartOfDungeon.length > 1) {
-                            dispatch(setHeroStartOfDungeon(playerDungeon, heroesAtStartOfDungeon))
+                    // if boss has enough health to survive the wound
+                    else {
+                        if(heroesAtStartOfDungeon[0].subtitle === "Ordinary-Hero"){
+                            dispatch(decreasePlayerHealth(1))
                         }
-                        else {
+                        else if(heroesAtStartOfDungeon[0].subtitle === "Epic-Hero"){
+                            dispatch(decreasePlayerHealth(2))
+                        }
+                        console.log('hero damage to boss', remainingHealth);
+                        setTempMessage("The hero survived your dungeon and wounded you.")
+                        if(heroesAtStartOfDungeon.length === 1) {
+                            dispatch(heroSurvived(true))
                             dispatch(nextRound())
+                        }
+                        else{
+                            dispatch(heroSurvived(false))
                         }
                     }
                 }
@@ -151,16 +156,16 @@ function Info() {
                         dispatch(moveHeroNumberOfSteps(-1))
                         setTempMessage("The Hero moves further in the dungeon unharmed.")
                     }
-                    // if hero is  hit and killed
+                    // if hero is hit and killed
                     else {
-                        console.log('hero killed');
-                        dispatch(heroKilled())
-                        setTempMessage("The Hero was slain in your dungeon.")
-                        if (heroesAtStartOfDungeon.length > 1) {
-                            dispatch(setHeroStartOfDungeon(playerDungeon, heroesAtStartOfDungeon))
-                        }
-                        else {
+                        if(heroesAtStartOfDungeon.length === 1) {
+                            dispatch(heroKilled(true))
+                            setTempMessage("The Hero was slain in your dungeon.")
                             dispatch(nextRound())
+                        }
+                        else{
+                            dispatch(heroKilled(false))
+                            setTempMessage("The Hero was slain in your dungeon.")
                         }
                     }
 
@@ -169,7 +174,7 @@ function Info() {
             }
         }
         // if game over and moving to restart
-        if (gamePhase === 10) {
+        else if (gamePhase === 10) {
             let shuffledDecks = shuffleAllDecks();
             dispatch(shuffleAllDecksAction(shuffledDecks));
             dispatch(resetPlayerCards())
@@ -181,10 +186,10 @@ function Info() {
         console.log('running switch');
         switch (gamePhase) {
             case 1:
-                return <div className='messageBox'><div className='message'>Welcome to Boss Monster. Build your dungeon to lure heroes and steal their souls. You were dealt 5 Room cards and 1 Boss Card. </div></div>
+                return <div className='messageBox'><div className='message'>Welcome to Boss Monster. Build your dungeon to lure heroes and steal their souls. You were dealt 5 Room cards and 1 Boss Card. You can build 1 room in your dungeon.</div></div>
             case 2:
 
-                return <div className='messageBox'><div className='message'>{tempMessage} This is the start of round {gameRound}. You can build 1 room in your dungeon.</div></div>
+                return <div className='messageBox'><div className='message'>{tempMessage} This is the start of round {gameRound}.</div></div>
             case 3:
 
                 let { rollNumber, isHit } = diceRoll(gameRound);

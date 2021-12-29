@@ -1,5 +1,5 @@
 
-import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES, HERO_KILLED, SET_HERO_START_OF_DUNGEON, RESET_PLAYER_CARDS } from "../actions/types"
+import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES, HERO_KILLED, SET_HERO_START_OF_DUNGEON, RESET_PLAYER_CARDS, HERO_SURVIVED } from "../actions/types"
 import { dungeonBack } from "../assets/cards"
 
 const initialState = {
@@ -230,6 +230,11 @@ const cardDecks = (state = initialState, action) => {
                 heroesAtStartOfDungeon: [...heroesToPlayerDungeon]
             }
         case HERO_KILLED:
+            return {
+                ...state,
+                heroesAtStartOfDungeon: state.heroesAtStartOfDungeon.slice(1),
+            }
+        case HERO_SURVIVED:
             return {
                 ...state,
                 heroesAtStartOfDungeon: state.heroesAtStartOfDungeon.slice(1),

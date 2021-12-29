@@ -1413,14 +1413,14 @@ export const heroDeck = [
   },
 ];
 
-// -------------------- 16 Epic Hero Cards -------------------- //
+// -------------------- 16 Epic-Hero Cards -------------------- //
 
 // shuffling algorithm is mutating array
 export const epicHeroDeck = [
   {
     id: "E1",
     name: "Cleric",
-    subtitle: "Epic Hero",
+    subtitle: "Epic-Hero",
     HP: 11,
     treasure: "Cleric",
     description:
@@ -1431,7 +1431,7 @@ export const epicHeroDeck = [
   {
     id: "E2",
     name: "Cleric",
-    subtitle: "Epic Hero",
+    subtitle: "Epic-Hero",
     HP: 11,
     treasure: "Cleric",
     description:
@@ -1442,7 +1442,7 @@ export const epicHeroDeck = [
   {
     id: "E3",
     name: "Cleric",
-    subtitle: "Epic Hero",
+    subtitle: "Epic-Hero",
     HP: 13,
     treasure: "Cleric",
     description:
@@ -1453,7 +1453,7 @@ export const epicHeroDeck = [
   {
     id: "E4",
     name: "Cleric",
-    subtitle: "Epic Hero",
+    subtitle: "Epic-Hero",
     HP: 13,
     treasure: "Cleric",
     description:
@@ -1464,7 +1464,7 @@ export const epicHeroDeck = [
   {
     id: "E5",
     name: "Fighter",
-    subtitle: "Epic Hero",
+    subtitle: "Epic-Hero",
     HP: 11,
     treasure: "Fighter",
     description:
@@ -1475,7 +1475,7 @@ export const epicHeroDeck = [
   {
     id: "E6",
     name: "Fighter",
-    subtitle: "Epic Hero",
+    subtitle: "Epic-Hero",
     HP: 11,
     treasure: "Fighter",
     description:
@@ -1486,7 +1486,7 @@ export const epicHeroDeck = [
   {
     id: "E7",
     name: "Fighter",
-    subtitle: "Epic Hero",
+    subtitle: "Epic-Hero",
     HP: 13,
     treasure: "Fighter",
     description:
@@ -1497,7 +1497,7 @@ export const epicHeroDeck = [
   {
     id: "E8",
     name: "Fighter",
-    subtitle: "Epic Hero",
+    subtitle: "Epic-Hero",
     HP: 13,
     treasure: "Fighter",
     description:
@@ -1508,7 +1508,7 @@ export const epicHeroDeck = [
   // {
   //   id: "E9",
   //   name: "Mage",
-  //   subtitle: "Epic Hero",
+  //   subtitle: "Epic-Hero",
   //   HP: 11,
   //   treasure: "Mage",
   //   description:
@@ -1519,7 +1519,7 @@ export const epicHeroDeck = [
   // {
   //   id: "E10",
   //   name: "Mage",
-  //   subtitle: "Epic Hero",
+  //   subtitle: "Epic-Hero",
   //   HP: 11,
   //   treasure: "Mage",
   //   description:
@@ -1530,7 +1530,7 @@ export const epicHeroDeck = [
   // {
   //   id: "E11",
   //   name: "Mage",
-  //   subtitle: "Epic Hero",
+  //   subtitle: "Epic-Hero",
   //   HP: 13,
   //   treasure: "Mage",
   //   description:
@@ -1541,7 +1541,7 @@ export const epicHeroDeck = [
   // {
   //   id: "E12",
   //   name: "Mage",
-  //   subtitle: "Epic Hero",
+  //   subtitle: "Epic-Hero",
   //   HP: 13,
   //   treasure: "Mage",
   //   description:
@@ -1552,7 +1552,7 @@ export const epicHeroDeck = [
   {
     id: "E13",
     name: "Thief",
-    subtitle: "Epic Hero",
+    subtitle: "Epic-Hero",
     HP: 11,
     treasure: "Thief",
     description:
@@ -1563,7 +1563,7 @@ export const epicHeroDeck = [
   {
     id: "E14",
     name: "Thief",
-    subtitle: "Epic Hero",
+    subtitle: "Epic-Hero",
     HP: 11,
     treasure: "Thief",
     description:
@@ -1574,7 +1574,7 @@ export const epicHeroDeck = [
   {
     id: "E15",
     name: "Thief",
-    subtitle: "Epic Hero",
+    subtitle: "Epic-Hero",
     HP: 13,
     treasure: "Thief",
     description:
@@ -1585,7 +1585,7 @@ export const epicHeroDeck = [
   {
     id: "E14",
     name: "Thief",
-    subtitle: "Epic Hero",
+    subtitle: "Epic-Hero",
     HP: 13,
     treasure: "Thief",
     description:
