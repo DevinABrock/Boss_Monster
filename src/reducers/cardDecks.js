@@ -77,6 +77,26 @@ const initialState = {
             description: "(This room contains all four treasure types.)",
             image: "/card-images/rooms/dragon-hatchery.svg",
         },
+        {
+            id: "R63",
+            name: "Construction Zone",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Fighter + Thief",
+            description:
+            "When you build this room, you may immediately build an additional Room.",
+            image: "/card-images/rooms/construction-zone.svg",
+        },
+        {
+            id: "R62",
+            name: "Centipede Tunnel",
+            subtitle: "Monster Room",
+            dmg: 1,
+            treasure: "Fighter + Mage",
+            description:
+            "When you build this room, you may swap the placement of two Rooms in any one dungeon.",
+            image: "/card-images/rooms/centipede-tunnel.svg",
+        },
     ],
     playerDungeon: [
 

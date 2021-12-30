@@ -1,6 +1,6 @@
 import React from 'react'
 import '../css/Dungeon.css'
-import { bossDeck } from "../../assets/cards"
+// import { bossDeck } from "../../assets/cards"
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCard, buildingMode } from '../../actions/miscActions';
 import { buildDungeon, addBuildActions } from '../../actions/sampleActions';
@@ -33,17 +33,14 @@ function Dungeon() {
         }
         return renderHeroArray;
     }
-console.log("selectedCard", selectedCard);
-    const handleBuild = (e) => {
 
-        console.log("e.target", e.target);
-        console.log("e.target.alt", e.target.alt);
+    const handleBuild = (e) => {
 
         if(buildingModeState){
             // Checks if the selected card is an Advanced Trap Room
             if(selectedCard.subtitle === "Advanced Trap Room"){
                 if(e.target.alt === "Trap Room" || e.target.alt === "Advanced Trap Room"){
-                    passiveAbilities(selectedCard.id)
+                    passiveAbilities(selectedCard.name)
                     dispatch(buildDungeon(selectedCard, e.target.id))
                     dispatch(addBuildActions(-1)) // decreasing buildActions by 1
                 
@@ -66,7 +63,7 @@ console.log("selectedCard", selectedCard);
                     dispatch(buildingMode())
                 }
                 else if(e.target.alt === "Monster Room" || e.target.alt === "Advanced Monster Room"){
-                    passiveAbilities(selectedCard.id)
+                    passiveAbilities(selectedCard.name)
                     dispatch(buildDungeon(selectedCard, e.target.id))
                     dispatch(addBuildActions(-1)) // decreasing buildActions by 1
                 
@@ -83,7 +80,7 @@ console.log("selectedCard", selectedCard);
                 }
             }
             else if(buildingModeState){
-                passiveAbilities(selectedCard.id)
+                passiveAbilities(selectedCard.name)
                 dispatch(buildDungeon(selectedCard, e.target.id))
                 dispatch(addBuildActions(-1)) // decreasing buildActions by 1
                 
@@ -96,10 +93,9 @@ console.log("selectedCard", selectedCard);
         }
     }
 
-    const passiveAbilities = (id) => {
-        switch(id){
-            case "R63":
-            case "R64":
+    const passiveAbilities = (cardName) => {
+        switch(cardName){
+            case "Construction Zone":
                 dispatch(addBuildActions(1))
                 break
             default:

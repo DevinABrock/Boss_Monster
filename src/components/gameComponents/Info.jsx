@@ -164,23 +164,21 @@ function Info() {
                         // console.log('HERO Wounded');
                         dispatch(damageHero(damage))
                         dispatch(moveHeroNumberOfSteps(-1))
-                        setTempMessage(`The room deals ${damage} damage to the Hero. The Hero is wounded but passes the room. He now has ${heroHealth - damage} health.`)
+                        setTempMessage(`The room deals ${damage} damage to the Hero. The Hero was wounded but passes the room. He now has ${heroHealth - damage} health.`)
                     }
                     // if hero is hit and killed
                     else {
                         if(heroesAtStartOfDungeon.length === 1) {
                             dispatch(heroKilled(true, playerDungeon, heroesAtStartOfDungeon))
-                            setTempMessage(`The room deals ${damage} damage to the Hero. The Hero was slain in your dungeon. Another soul is added to your collection.`)
+                            setTempMessage(`The room deals ${damage} damage to the Hero. The Hero was slain in your dungeon. Another soul has been added to your collection.`)
                             dispatch(nextRound())
                         }
                         else{
                             dispatch(heroKilled(false, playerDungeon, heroesAtStartOfDungeon))
-                            setTempMessage(`The room deals ${damage} damage to the Hero. The Hero was slain in your dungeon. Another soul is added to your collection.`)
+                            setTempMessage(`The room deals ${damage} damage to the Hero. The Hero was slain in your dungeon. Another soul has been to your collection.`)
                         }
                     }
-
                 }
-
             }
         }
         // if game over and moving to restart
@@ -253,12 +251,15 @@ function Info() {
     const handleBuildButtonClick = (className) => {
 
         if(className === "handCard"){
-            if(buildActions > 0){
+            if(buildActions > 0 && (gamePhase === 1 || gamePhase === 5)){
                 // turns building mode on and off
                 dispatch(buildingMode())
             }
-            else{
+            else if(buildActions === 0){
                 alert("You have no more build actions this turn.")
+            }
+            else if(gamePhase !== 1 || gamePhase !== 5){
+                alert("You can only build during the build phase.")
             }
         }
         else{
@@ -297,23 +298,18 @@ function Info() {
         }
     })
 
-    // console.log("playerDungeon", playerDungeon);
-
     const roomBuffs = (i) => {
         // if current room is a trap room & the previous room is a Dizzygas Hallway, damage is buffed
-        if((playerDungeon[i][0].subtitle === "Trap Room" || playerDungeon[i][0].subtitle === "Advanced Trap Room") && playerDungeon[i + 1][0].name === "Dizzygas Hallway"){
+        if(i < 5 && (playerDungeon[i][0].subtitle === "Trap Room" || playerDungeon[i][0].subtitle === "Advanced Trap Room") && playerDungeon[i + 1][0].name === "Dizzygas Hallway"){
             return 2
         }
         // if current room is monster room & previous room is Goblin Armory, damage is buffed
-        else if(i < 6){
+        else if(i < 5 && (playerDungeon[i][0].subtitle === "Monster Room" || playerDungeon[i][0].subtitle === "Advanced Monster Room") && playerDungeon[i + 1][0].name === "Goblin Armory"){
             return 1
         }
-        else if(i > 0){
-            // if current room is monster room & next room is Goblin Armory, damage is buffed
-            if((playerDungeon[i][0].subtitle === "Monster Room" || playerDungeon[i][0].subtitle === "Advanced Monster Room") && playerDungeon[i - 1][0].name === "Goblin Armory"){
+        // if current room is monster room & next room is Goblin Armory, damage is buffed
+        else if(i > 0 && (playerDungeon[i][0].subtitle === "Monster Room" || playerDungeon[i][0].subtitle === "Advanced Monster Room") && playerDungeon[i - 1][0].name === "Goblin Armory"){
                 return 1
-            }
-            return 0
         }
         else {
             return 0
