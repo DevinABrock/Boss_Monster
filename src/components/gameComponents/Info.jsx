@@ -33,8 +33,6 @@ function Info() {
     const [tempMessage, setTempMessage] = useState("")
     const [cardCount, setCardCount] = useState(0)
 
-    console.log("buildActions", buildActions);
-
     useEffect(() => {
         dispatch(updatePlayerTreasure(playerDungeon))
         console.log('updating treasure');
@@ -105,12 +103,14 @@ function Info() {
             }
             // if heroes inside dungeon
             else {
-                console.log(playerDungeon);
-                console.log(heroRoomPosition);
+                console.log("playerDungeon", playerDungeon);
+                console.log("heroRoomPosition", heroRoomPosition);
                 let damage = playerDungeon[heroRoomPosition][0].dmg
+                console.log("playerDungeon[heroRoomPosition][0].dmg", playerDungeon[heroRoomPosition][0].dmg);
+                console.log("playerDungeon[heroRoomPosition][0]", playerDungeon[heroRoomPosition][0]);
+                console.log("playerDungeon[heroRoomPosition]", playerDungeon[heroRoomPosition]);
                 console.log('room damage dealt to hero', damage);
                 console.log('hero health', heroHealth);
-                console.log('hero health - damage', heroHealth - damage);
                 let remainingHealth = heroHealth - damage;
                 // if hero has health after passing through the last room
                 if (heroRoomPosition === 0 && (remainingHealth > 0 || damage === '*')) {
@@ -126,18 +126,19 @@ function Info() {
                     else {
                         if(heroesAtStartOfDungeon[0].subtitle === "Ordinary-Hero"){
                             dispatch(decreasePlayerHealth(1))
+                            setTempMessage(`The hero survives your dungeon with ${remainingHealth} HP. You sustain a wound.`)
                         }
                         else if(heroesAtStartOfDungeon[0].subtitle === "Epic-Hero"){
                             dispatch(decreasePlayerHealth(2))
+                            setTempMessage(`The hero survives your dungeon with ${remainingHealth} HP. You sustain two wounds.`)
                         }
                         console.log('hero damage to boss', remainingHealth);
-                        setTempMessage("The hero survived your dungeon and wounded you.")
                         if(heroesAtStartOfDungeon.length === 1) {
-                            dispatch(heroSurvived(true))
+                            dispatch(heroSurvived(true, playerDungeon, heroesAtStartOfDungeon))
                             dispatch(nextRound())
                         }
                         else{
-                            dispatch(heroSurvived(false))
+                            dispatch(heroSurvived(false, playerDungeon, heroesAtStartOfDungeon))
                         }
                     }
                 }
@@ -159,12 +160,12 @@ function Info() {
                     // if hero is hit and killed
                     else {
                         if(heroesAtStartOfDungeon.length === 1) {
-                            dispatch(heroKilled(true))
+                            dispatch(heroKilled(true, playerDungeon, heroesAtStartOfDungeon))
                             setTempMessage("The Hero was slain in your dungeon.")
                             dispatch(nextRound())
                         }
                         else{
-                            dispatch(heroKilled(false))
+                            dispatch(heroKilled(false, playerDungeon, heroesAtStartOfDungeon))
                             setTempMessage("The Hero was slain in your dungeon.")
                         }
                     }
@@ -260,7 +261,7 @@ function Info() {
     }
 
     // function to show previous card in roomStack
-    const handleBackClick = () => {
+    const previousCardClick = () => {
         
         if(cardCount === 0){
             setCardCount(roomStack.length - 1)
@@ -271,7 +272,7 @@ function Info() {
     }
 
     // function to show next card in roomStack
-    const handleNextClick = () => {
+    const nextCardClick = () => {
         
         if(cardCount === (roomStack.length - 1)){
             setCardCount(0)
@@ -302,9 +303,9 @@ function Info() {
                         <div className="cardCountContainer">
                             <span className="cardCountLabel">Card:{cardCount + 1}/{roomStack.length} </span>
                             &nbsp;
-                            <span className="cardStackButtons" onClick={handleBackClick}>&#171;</span>
+                            <span className="cardStackButtons" onClick={previousCardClick}>&#171;</span>
                             &nbsp;
-                            <span className="cardStackButtons" onClick={handleNextClick}>&#187;</span>
+                            <span className="cardStackButtons" onClick={nextCardClick}>&#187;</span>
                         </div>
                     </div>
                     <div className='infoSection'>

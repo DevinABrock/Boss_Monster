@@ -18,8 +18,6 @@ function Dungeon() {
     const selectedCard = useSelector(state => state.misc.card)
     const playerBoss = useSelector(state => state.cardDecks.playerBoss)
 
-    console.log("heroRoomPosition", heroRoomPosition);
-
     // console.log("playerDungeon", playerDungeon);
 
     const renderHeroAtPosition = () => {

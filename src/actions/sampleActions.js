@@ -91,16 +91,20 @@ export const damageHero = (damage) => {
         damage
     }
 }
-export const heroKilled = (lastHero) => {
+export const heroKilled = (lastHero, playerDungeon, heroesAtStartOfDungeon) => {
     return {
         type: HERO_KILLED,
-        lastHero
+        lastHero,
+        playerDungeon,
+        heroesAtStartOfDungeon
     }
 }
-export const heroSurvived = (lastHero) => {
+export const heroSurvived = (lastHero, playerDungeon, heroesAtStartOfDungeon) => {
     return {
         type: HERO_SURVIVED,
-        lastHero
+        lastHero,
+        playerDungeon,
+        heroesAtStartOfDungeon
     }
 } 
 export const playerKilled = () => {

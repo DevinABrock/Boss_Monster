@@ -1481,7 +1481,7 @@ export const epicHeroDeck = [
     description:
       "Nate the Squidslayer This surly warrior defeated the mighty Squib, Lord of the Rocktopi. Now he seeks to destroy King Croak himself...",
     players: 3,
-    image: "card-images/epic-heroes/fighter-epic(2)"
+    image: "card-images/epic-heroes/fighter-epic(2).svg"
   },
   {
     id: "E7",
