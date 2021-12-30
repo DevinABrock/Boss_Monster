@@ -64,7 +64,6 @@ function Info() {
             else {
                 dispatch(dealHeroesToTown('epic', 2))
             }
-
             dispatch(nextGamePhase())
         }
         // if 4 moving to build phase
@@ -79,9 +78,19 @@ function Info() {
             console.log(playerDungeon[0][0].id!=="D1");
             if(playerDungeon[0][0].id!=="D1"){
                 dispatch(baitHeroes(treasureCleric, treasureFighter, treasureThief))
-                dispatch(nextGamePhase())
-                dispatch(addBuildActions(-buildActions)) // removed build actions if player does not build that turn
-                setTempMessage("")
+                if(buildActions > 0){ // if player still has build actions when NEXT is clicked, alert pops up
+                    let proceedToNextPhase = window.confirm("You are proceeding to the next phase and still have unused build actions that will be lost.")
+                    if(proceedToNextPhase){
+                        dispatch(nextGamePhase())
+                        dispatch(addBuildActions(-buildActions)) // removed build actions if player does not build that turn
+                        setTempMessage("")
+                    }
+                }
+                else{
+                    dispatch(nextGamePhase())
+                    dispatch(addBuildActions(-buildActions)) // removed build actions if player does not build that turn
+                    setTempMessage("")
+                }
             }
             else{
                 setTempMessage("You must build at least one Room in your dungeon before moving to the bait phase!")
@@ -203,7 +212,7 @@ function Info() {
             case 4:
                 return <div className='messageBox'><div className='message'>Adventurers wandering into Town.</div></div>
             case 5:
-                return <div className='messageBox'><div className='message'>{tempMessage ? tempMessage : "You were dealt one Room Card. You can build one Room in your dungeon."}</div></div>
+                return <div className='messageBox'><div className='message'>{tempMessage ? tempMessage : `You were dealt one Room Card. You can build in your dungeon.`}</div></div>
             case 6:
                 return <div className='messageBox'><div className='message'>The heroes decide whether it's worth it to steal your stuff.</div> <div className='message'>{heroesAtStartOfDungeon.length} heroes are heading towards your dungeon. {(heroesAtStartOfDungeon.length) ? `A ${heroesAtStartOfDungeon[0].name} enters first.` : `Since no heroes entered your dungeon, this is the end of round ${gameRound}.`}</div></div>
             case 7:

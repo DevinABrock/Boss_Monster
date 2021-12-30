@@ -1,2 +1,4 @@
 
 
+SJD - working out how to have OK or Cancel alert for when player presses next and still has build actions.
+SJD - work on passive abilities of cards (abilities that run when they are built)

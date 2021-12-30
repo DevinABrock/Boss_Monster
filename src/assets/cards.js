@@ -223,7 +223,7 @@ export const roomDeck = [
     dmg: 3,
     treasure: "Cleric",
     description:
-      "Once per turn, you may discard two Room cards to choose one Rom card from the discard pile and put it into your hand.",
+      "Once per turn, you may discard two Room cards to choose one Room card from the discard pile and put it into your hand.",
     image: "/card-images/rooms/dracolich-lair.svg",
   },
   {
@@ -233,7 +233,7 @@ export const roomDeck = [
     dmg: 3,
     treasure: "Cleric",
     description:
-      "Once per turn, you may discard two Room cards to choose one Rom card from the discard pile and put it into your hand.",
+      "Once per turn, you may discard two Room cards to choose one Room card from the discard pile and put it into your hand.",
     image: "/card-images/rooms/dracolich-lair.svg",
   },
   // ----- Vampire Bordello 2 ----- //
@@ -244,7 +244,7 @@ export const roomDeck = [
     dmg: 3,
     treasure: "Cleric",
     description:
-      "Once per turn, If a Hero dies in this room you may heal one wound. (Flip over one of your wounds, adding its Soul value to your total.)",
+      "Once per turn, if a Hero dies in this room you may heal one wound. (Flip over one of your wounds, adding its Soul value to your total.)",
     image: "/card-images/rooms/vampire-bordello.svg",
   },
   {
@@ -254,7 +254,7 @@ export const roomDeck = [
     dmg: 3,
     treasure: "Cleric",
     description:
-      "Once per turn, If a Hero dies in this room you may heal one wound. (Flip over one of your wounds, adding its Soul value to your total.)",
+      "Once per turn, if a Hero dies in this room you may heal one wound. (Flip over one of your wounds, adding its Soul value to your total.)",
     image: "/card-images/rooms/vampire-bordello.svg",
   },
   // ----- Goblin Armory 3 ----- //

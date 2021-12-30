@@ -33,7 +33,7 @@ function Dungeon() {
         }
         return renderHeroArray;
     }
-
+console.log("selectedCard", selectedCard);
     const handleBuild = (e) => {
 
         console.log("e.target", e.target);
@@ -43,6 +43,7 @@ function Dungeon() {
             // Checks if the selected card is an Advanced Trap Room
             if(selectedCard.subtitle === "Advanced Trap Room"){
                 if(e.target.alt === "Trap Room" || e.target.alt === "Advanced Trap Room"){
+                    passiveAbilities(selectedCard.id)
                     dispatch(buildDungeon(selectedCard, e.target.id))
                     dispatch(addBuildActions(-1)) // decreasing buildActions by 1
                 
@@ -65,6 +66,7 @@ function Dungeon() {
                     dispatch(buildingMode())
                 }
                 else if(e.target.alt === "Monster Room" || e.target.alt === "Advanced Monster Room"){
+                    passiveAbilities(selectedCard.id)
                     dispatch(buildDungeon(selectedCard, e.target.id))
                     dispatch(addBuildActions(-1)) // decreasing buildActions by 1
                 
@@ -81,6 +83,7 @@ function Dungeon() {
                 }
             }
             else if(buildingModeState){
+                passiveAbilities(selectedCard.id)
                 dispatch(buildDungeon(selectedCard, e.target.id))
                 dispatch(addBuildActions(-1)) // decreasing buildActions by 1
                 
@@ -91,7 +94,17 @@ function Dungeon() {
                 dispatch(buildingMode())
             }
         }
+    }
 
+    const passiveAbilities = (id) => {
+        switch(id){
+            case "R63":
+            case "R64":
+                dispatch(addBuildActions(1))
+                break
+            default:
+                return
+        }
     }
 
     return (
