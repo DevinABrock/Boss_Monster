@@ -3,9 +3,10 @@ import '../css/Dungeon.css'
 import { bossDeck } from "../../assets/cards"
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCard, buildingMode } from '../../actions/miscActions';
-import { buildDungeon, addBuildActions } from '../../actions/sampleActions';
+import { buildDungeon, addBuildActions, changeUseButtonSwapping, swapRooms, changeSwapRoomsMode } from '../../actions/sampleActions';
 import Card from './Card'
 import { cardBack } from '../../assets/cards';
+
 
 function Dungeon() {
 
@@ -17,6 +18,7 @@ function Dungeon() {
     const buildingModeState = useSelector(state => state.misc.buildingMode)
     const selectedCard = useSelector(state => state.misc.card)
     const playerBoss = useSelector(state => state.cardDecks.playerBoss)
+    const swapRoomsMode = useSelector(state => state.playerStats.swapRoomsMode)
 
     // console.log("playerDungeon", playerDungeon);
 
@@ -39,11 +41,21 @@ console.log("selectedCard", selectedCard);
         console.log("e.target", e.target);
         console.log("e.target.alt", e.target.alt);
 
+        // if the state is in swapping mode
+        if(swapRoomsMode){
+            console.log('swapping rooms');
+            console.log(e.target.id);
+            dispatch(swapRooms(selectedCard.id, e.target.id))
+            dispatch(changeSwapRoomsMode())
+            dispatch(changeUseButtonSwapping())
+        }
+
+        // if the state is in building mode
         if(buildingModeState){
             // Checks if the selected card is an Advanced Trap Room
             if(selectedCard.subtitle === "Advanced Trap Room"){
                 if(e.target.alt === "Trap Room" || e.target.alt === "Advanced Trap Room"){
-                    passiveAbilities(selectedCard.id)
+                    passiveAbilities(selectedCard.name)
                     dispatch(buildDungeon(selectedCard, e.target.id))
                     dispatch(addBuildActions(-1)) // decreasing buildActions by 1
                 
@@ -66,7 +78,7 @@ console.log("selectedCard", selectedCard);
                     dispatch(buildingMode())
                 }
                 else if(e.target.alt === "Monster Room" || e.target.alt === "Advanced Monster Room"){
-                    passiveAbilities(selectedCard.id)
+                    passiveAbilities(selectedCard.name)
                     dispatch(buildDungeon(selectedCard, e.target.id))
                     dispatch(addBuildActions(-1)) // decreasing buildActions by 1
                 
@@ -83,7 +95,7 @@ console.log("selectedCard", selectedCard);
                 }
             }
             else if(buildingModeState){
-                passiveAbilities(selectedCard.id)
+                passiveAbilities(selectedCard.name)
                 dispatch(buildDungeon(selectedCard, e.target.id))
                 dispatch(addBuildActions(-1)) // decreasing buildActions by 1
                 
@@ -96,15 +108,23 @@ console.log("selectedCard", selectedCard);
         }
     }
 
-    const passiveAbilities = (id) => {
-        switch(id){
-            case "R63":
-            case "R64":
+    const passiveAbilities = (cardName) => {
+        switch(cardName){
+            // "When you build this room, you may immediately build an additional Room."
+            case "Construction Zone":
                 dispatch(addBuildActions(1))
+                break
+            // "When you build this room, you may swap the placement of two Rooms in any one dungeon."
+            case "Centipede Tunnel":
+                let userWantsToSwapRooms = window.confirm("The Centipede Tunnel allows you to swap the placement of two Rooms in any one dungeon. Click OK to confirm and swap rooms by: selecting a room by clicking, clicking the use button, then selecting the room to swap with.")
+                if(userWantsToSwapRooms){
+                    dispatch(changeUseButtonSwapping())
+                }
                 break
             default:
                 return
         }
+        
     }
 
     return (

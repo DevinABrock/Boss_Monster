@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import '../css/Info.css'
 import { buildingMode } from '../../actions/miscActions';
-import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, baitHeroes, nextRound, setHeroStartOfDungeon, damageHero, moveHeroNumberOfSteps, heroKilled, decreasePlayerHealth, playerKilled, resetPlayerCards, resetGame, addBuildActions, heroSurvived } from '../../actions/sampleActions';
+import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, baitHeroes, nextRound, setHeroStartOfDungeon, damageHero, moveHeroNumberOfSteps, heroKilled, decreasePlayerHealth, playerKilled, resetPlayerCards, resetGame, addBuildActions, heroSurvived, changeSwapRoomsMode } from '../../actions/sampleActions';
 import { diceRoll } from '../gameLogic/diceRoll';
 
 import { shuffleAllDecks, dealInitialCards } from '../gameLogic/initializingDeck';
@@ -26,6 +26,8 @@ function Info() {
     const heroRoomPosition = useSelector(state => state.heroStats.heroRoomPosition)
     const buildingModeState = useSelector(state => state.misc.buildingMode)
     const heroHealth = useSelector(state => state.heroStats.heroHealth)
+    const useButtonSwapping = useSelector(state => state.playerStats.useButtonSwapping)
+    const swapRoomsMode = useSelector(state => state.playerStats.swapRoomsMode)
 
     const selectedCard = useSelector(state => state.misc.card)
     const selectedCardClass = useSelector(state => state.misc.className)
@@ -41,6 +43,12 @@ function Info() {
     useEffect(() => {
         setCardCount(0)
     }, [selectedCard])
+
+    useEffect(() => {
+        if(useButtonSwapping){
+            console.log('is swapping is false');
+        }
+    }, [useButtonSwapping])
 
     const handleChangeGamePhase = () => {
         // if 1 and player has rooms in their hand
@@ -320,6 +328,18 @@ function Info() {
         }
     }
 
+    const handleUseButtonClick = () => {
+        // if in swapping rooms mode and the selected card is in the dungeon
+        if(useButtonSwapping && selectedCardClass==="room"){
+            console.log("swapping is allowed");
+            dispatch(changeSwapRoomsMode())
+        }
+        // if in swapping rooms mode and the selected card is NOT in the dungeon
+        else if(useButtonSwapping && selectedCardClass != "room"){
+            console.log("You can only swap rooms in your dungeon.");
+        }
+    }
+
     return (
         <div className='infoBody'>
 
@@ -377,7 +397,7 @@ function Info() {
                 <div className='phaseInfo'>Phase: {renderGamePhaseSwitch(gamePhase)}</div>
                 <div className='buttonList'>
                     <div className='button'>STORE</div>
-                    <div className='button'>USE</div>
+                    <div onClick={handleUseButtonClick} className={swapRoomsMode ? 'buttonBuild' : 'button'}>USE</div>
                     <div className={buildingModeState ? 'buttonBuild' : 'button'} onClick={()=>handleBuildButtonClick(selectedCardClass)}>BUILD</div>
                     <div onClick={()=>handleNextButtonClick()} className='button'>NEXT</div>
                 </div>
