@@ -9,8 +9,7 @@ function Card({cardObj, className}) {
 
   return (
     <>
-      <img id={cardObj.id} src={cardObj.image} className={className} onClick={()=>dispatch(selectCard(cardObj, className))}/>
-      <div></div>
+      <img id={cardObj.id} src={cardObj.image} className={className} alt={cardObj.subtitle} name={cardObj.name} onClick={()=>dispatch(selectCard(cardObj, className, cardObj.id))}/>
     </>
   )
 }

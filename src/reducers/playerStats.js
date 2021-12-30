@@ -1,5 +1,5 @@
 
-import { DECREASE_PLAYER_HEALTH, UPDATE_PLAYER_TREASURE, RESET_GAME, HERO_KILLED } from "../actions/types"
+import { DECREASE_PLAYER_HEALTH, UPDATE_PLAYER_TREASURE, RESET_GAME, HERO_KILLED, ADD_BUILD_ACTIONS } from "../actions/types"
 
 const initialState = {
     username: "username",
@@ -8,6 +8,7 @@ const initialState = {
     treasureCleric: 0,
     treasureFighter: 0,
     treasureThief: 0,
+    buildActions: 99,
 }
 
 const playerStats = (state = initialState, action) => {
@@ -63,6 +64,11 @@ const playerStats = (state = initialState, action) => {
                 treasureCleric: clericTreasure,
                 treasureFighter: fighterTreasure,
                 treasureThief: thiefTreasure
+            }
+        case ADD_BUILD_ACTIONS:
+            return {
+                ...state,
+                buildActions: state.buildActions + action.numberOfActions
             }
         default:
             return state

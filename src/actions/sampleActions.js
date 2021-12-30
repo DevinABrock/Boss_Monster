@@ -1,5 +1,5 @@
 
-import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, NEXT_GAME_PHASE, DECREASE_PLAYER_HEALTH, DEAL_ROOM_CARD, BAIT_HEROES, UPDATE_PLAYER_TREASURE, BUILD_DUNGEON, NEXT_ROUND, SET_HERO_START_OF_DUNGEON, MOVE_HERO_NUMBER_OF_STEPS, DAMAGE_HERO, HERO_KILLED, PLAYER_KILLED, RESET_PLAYER_CARDS, RESET_GAME } from "./types"
+import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, NEXT_GAME_PHASE, DECREASE_PLAYER_HEALTH, DEAL_ROOM_CARD, BAIT_HEROES, UPDATE_PLAYER_TREASURE, BUILD_DUNGEON, NEXT_ROUND, SET_HERO_START_OF_DUNGEON, MOVE_HERO_NUMBER_OF_STEPS, DAMAGE_HERO, HERO_KILLED, PLAYER_KILLED, RESET_PLAYER_CARDS, RESET_GAME, ADD_BUILD_ACTIONS, HERO_SURVIVED } from "./types"
 
 // !add multiple actions to this file
 
@@ -64,11 +64,12 @@ export const decreasePlayerHealth = (points) => {
         points
     }
 }
-export const buildDungeon = (cardObj) => {
+export const buildDungeon = (cardObj, targetID) => {
 
     return {
         type: BUILD_DUNGEON, 
-        card: cardObj
+        card: cardObj,
+        targetID: targetID
     }
 }
 export const setHeroStartOfDungeon = (playerDungeon, heroesAtStartOfDungeon) => {
@@ -90,14 +91,31 @@ export const damageHero = (damage) => {
         damage
     }
 }
-export const heroKilled = () => {
+export const heroKilled = (lastHero, playerDungeon, heroesAtStartOfDungeon) => {
     return {
         type: HERO_KILLED,
+        lastHero,
+        playerDungeon,
+        heroesAtStartOfDungeon
     }
 }
+export const heroSurvived = (lastHero, playerDungeon, heroesAtStartOfDungeon) => {
+    return {
+        type: HERO_SURVIVED,
+        lastHero,
+        playerDungeon,
+        heroesAtStartOfDungeon
+    }
+} 
 export const playerKilled = () => {
     return {
         type: PLAYER_KILLED,
+    }
+}
+export const addBuildActions = (numberOfActions) => {
+    return {
+        type: ADD_BUILD_ACTIONS,
+        numberOfActions
     }
 }
 

@@ -13,11 +13,20 @@ const misc = (state = initialState, action) => {
 
     switch(action.type){
         case SELECT_CARD:
-            return {
-                ...state,
-                card: action.card,
-                className: action.className
+            if(action.id !== "A1" && action.id !== "D1"){
+                return {
+                    ...state,
+                    card: action.card,
+                    className: action.className,
+                    id: action.id
+                }
             }
+            else{
+                return{
+                    ...state
+                }
+            }
+            
         case BUILDING_MODE:
             console.log("buildingMode", !state.buildingMode)
             return {

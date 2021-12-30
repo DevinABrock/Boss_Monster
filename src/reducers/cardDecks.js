@@ -1,5 +1,5 @@
 
-import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES, HERO_KILLED, SET_HERO_START_OF_DUNGEON, RESET_PLAYER_CARDS } from "../actions/types"
+import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES, HERO_KILLED, SET_HERO_START_OF_DUNGEON, RESET_PLAYER_CARDS, HERO_SURVIVED } from "../actions/types"
 import { dungeonBack } from "../assets/cards"
 
 const initialState = {
@@ -10,7 +10,74 @@ const initialState = {
     heroesInTown: [],
     heroesAtStartOfDungeon: [],
     playerBoss: {},
-    playerRooms: [],
+    playerRooms: [
+        {
+            id: "R51",
+            name: "Dizzygas Hallway",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Thief",
+            description:
+            "If the next room in your dungeon is a Trap room, it has +2 damage.",
+            image: "/card-images/rooms/dizzygas-hallway.svg",
+        },
+        {
+            id: "R49",
+            name: "Boulder Ramp",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Thief",
+            description:
+            "Destroy another room in your dungeon: Deal 5 damage to a hero in this room.",
+            image: "/card-images/rooms/boulder-ramp.svg",
+        },
+        {
+            id: "R24",
+            name: "Neanderthal Cave",
+            subtitle: "Monster Room",
+            dmg: 3,
+            treasure: "Fighter",
+            description: "You cannot build an Advanced Room on Neanderthal Cave.",
+            image: "/card-images/rooms/neanderthal-cave.svg",
+        },
+        {
+            id: "R20",
+            name: "Golem Factory",
+            subtitle: "Monster Room",
+            dmg: 2,
+            treasure: "Fighter",
+            description:
+            "Once per turn, if a hero dies in this room, draw a Room card.",
+            image: "/card-images/rooms/golem-factory.svg",
+        },
+        {
+            id: "R16",
+            name: "Goblin Armory",
+            subtitle: "Monster Room",
+            dmg: 1,
+            treasure: "Fighter x2",
+            description: "Monster Rooms adjacent to this room deal +1 damage.",
+            image: "/card-images/rooms/goblin-armory.svg",
+        },
+        {
+            id: "R65",
+            name: "Dragon Hatchery",
+            subtitle: "Monster Room",
+            dmg: 0,
+            treasure: "Cleric + Mage + Fighter + Thief",
+            description: "(This room contains all four treasure types.)",
+            image: "/card-images/rooms/dragon-hatchery.svg",
+        },
+        {
+            id: "R66",
+            name: "Dragon Hatchery",
+            subtitle: "Monster Room",
+            dmg: 0,
+            treasure: "Cleric + Mage + Fighter + Thief",
+            description: "(This room contains all four treasure types.)",
+            image: "/card-images/rooms/dragon-hatchery.svg",
+        },
+    ],
     playerDungeon: [
 
         // [{
@@ -112,26 +179,51 @@ const cardDecks = (state = initialState, action) => {
                 heroesAtStartOfDungeon: []
             }
         case BUILD_DUNGEON:
+            action.card.durability = 100
+            // adds new room to dungeon if blank spot is clicked
+            if(action.targetID === "D1"){
 
-            let newPlayerDungeon = []
+                let newPlayerDungeon = []
 
-            // custom filter function to filter out cards with id of "D1"
-            for (let i = 0; i < state.playerDungeon.length; i++) {
-                if (state.playerDungeon[i][0].id !== "D1") {
-                    newPlayerDungeon.push(state.playerDungeon[i])
+                // custom filter function to filter out cards with id of "D1"
+                for(let i = 0; i < state.playerDungeon.length; i ++){
+                    if(state.playerDungeon[i][0].id !== "D1"){
+                        newPlayerDungeon.push(state.playerDungeon[i])
+                    }
+                }
+                    
+                newPlayerDungeon.push([action.card])
+
+                for(let i = newPlayerDungeon.length; i < 6; i++){
+                    newPlayerDungeon.push([dungeonBack])
+                }
+
+                return {
+                    ...state,
+                    playerDungeon: newPlayerDungeon,
+                    playerRooms: state.playerRooms.filter(cardObj=>cardObj.id !== action.card.id)
                 }
             }
+            // adds new room on top of current room in dungeon
+            else{
 
-            newPlayerDungeon.push([action.card])
+                let newPlayerDungeon = state.playerDungeon.map(roomArr=>{ //[[{}], [{}], [{}]]
 
-            for (let i = newPlayerDungeon.length; i < 6; i++) {
-                newPlayerDungeon.push([dungeonBack])
-            }
-
-            return {
-                ...state,
-                playerDungeon: newPlayerDungeon,
-                playerRooms: state.playerRooms.filter(cardObj => cardObj.id !== action.card.id)
+                    if(roomArr[0].id === action.targetID){
+                        // using tempArr so current roomArr in state.playerDungeon is not mutated
+                        let tempArr = [...roomArr]
+                        tempArr.unshift(action.card)
+                        return tempArr
+                    }
+                    else{
+                        return roomArr
+                    }
+                })
+                return{
+                    ...state,
+                    playerDungeon: newPlayerDungeon,
+                    playerRooms: state.playerRooms.filter(cardObj=>cardObj.id !== action.card.id)
+                }
             }
         case DEAL_ROOM_CARD:
             return {
@@ -205,6 +297,11 @@ const cardDecks = (state = initialState, action) => {
                 heroesAtStartOfDungeon: [...heroesToPlayerDungeon]
             }
         case HERO_KILLED:
+            return {
+                ...state,
+                heroesAtStartOfDungeon: state.heroesAtStartOfDungeon.slice(1),
+            }
+        case HERO_SURVIVED:
             return {
                 ...state,
                 heroesAtStartOfDungeon: state.heroesAtStartOfDungeon.slice(1),
