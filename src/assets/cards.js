@@ -571,24 +571,24 @@ export const roomDeck = [
     description: "Destroy this room: Kill a Hero in this room.",
     image: "/card-images/rooms/bottomless-pit.svg",
   },
-  // {
-  //   id: "R47",
-  //   name: "Bottomless Pit",
-  //   subtitle: "Trap Room",
-  //   dmg: 1,
-  //   treasure: "Thief",
-  //   description: "Destroy this room: Kill a Hero in this room.",
-  //   image: "/card-images/rooms/bottomless-pit.svg",
-  // },
-  // {
-  //   id: "R48",
-  //   name: "Bottomless Pit",
-  //   subtitle: "Trap Room",
-  //   dmg: 1,
-  //   treasure: "Thief",
-  //   description: "Destroy this room: Kill a Hero in this room.",
-  //   image: "/card-images/rooms/bottomless-pit.svg",
-  // },
+  {
+    id: "R47",
+    name: "Bottomless Pit",
+    subtitle: "Trap Room",
+    dmg: 1,
+    treasure: "Thief",
+    description: "Destroy this room: Kill a Hero in this room.",
+    image: "/card-images/rooms/bottomless-pit.svg",
+  },
+  {
+    id: "R48",
+    name: "Bottomless Pit",
+    subtitle: "Trap Room",
+    dmg: 1,
+    treasure: "Thief",
+    description: "Destroy this room: Kill a Hero in this room.",
+    image: "/card-images/rooms/bottomless-pit.svg",
+  },
   // ----- Monster's Ballroom 2 ----- //
   {
     id: "R49",
@@ -785,26 +785,26 @@ export const roomDeck = [
     image: "/card-images/rooms/dragon-hatchery.svg",
   },
   // ----- Mimic Vault 2 ----- //
-  {
-    id: "R68",
-    name: "Mimic Vault",
-    subtitle: "Trap Room",
-    dmg: 1,
-    treasure: "Mage + Thief",
-    description:
-      "When you build this room, choose one ordinary Hero in town and place it on the entrance to your dungeon.",
-    image: "/card-images/rooms/mimic-vault.svg",
-  },
-  {
-    id: "R69",
-    name: "Mimic Vault",
-    subtitle: "Trap Room",
-    dmg: 1,
-    treasure: "Mage + Thief",
-    description:
-      "When you build this room, choose one ordinary Hero in town and place it on the entrance to your dungeon.",
-    image: "/card-images/rooms/mimic-vault.svg",
-  },
+  // {
+  //   id: "R68",
+  //   name: "Mimic Vault",
+  //   subtitle: "Trap Room",
+  //   dmg: 1,
+  //   treasure: "Mage + Thief",
+  //   description:
+  //     "When you build this room, choose one ordinary Hero in town and place it on the entrance to your dungeon.",
+  //   image: "/card-images/rooms/mimic-vault.svg",
+  // },
+  // {
+  //   id: "R69",
+  //   name: "Mimic Vault",
+  //   subtitle: "Trap Room",
+  //   dmg: 1,
+  //   treasure: "Mage + Thief",
+  //   description:
+  //     "When you build this room, choose one ordinary Hero in town and place it on the entrance to your dungeon.",
+  //   image: "/card-images/rooms/mimic-vault.svg",
+  // },
   // ----- Monstrous Monument 2 ----- //
   {
     id: "R70",

@@ -10,7 +10,74 @@ const initialState = {
     heroesInTown: [],
     heroesAtStartOfDungeon: [],
     playerBoss: {},
-    playerRooms: [],
+    playerRooms: [
+        {
+            id: "R51",
+            name: "Dizzygas Hallway",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Thief",
+            description:
+            "If the next room in your dungeon is a Trap room, it has +2 damage.",
+            image: "/card-images/rooms/dizzygas-hallway.svg",
+        },
+        {
+            id: "R49",
+            name: "Boulder Ramp",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Thief",
+            description:
+            "Destroy another room in your dungeon: Deal 5 damage to a hero in this room.",
+            image: "/card-images/rooms/boulder-ramp.svg",
+        },
+        {
+            id: "R24",
+            name: "Neanderthal Cave",
+            subtitle: "Monster Room",
+            dmg: 3,
+            treasure: "Fighter",
+            description: "You cannot build an Advanced Room on Neanderthal Cave.",
+            image: "/card-images/rooms/neanderthal-cave.svg",
+        },
+        {
+            id: "R20",
+            name: "Golem Factory",
+            subtitle: "Monster Room",
+            dmg: 2,
+            treasure: "Fighter",
+            description:
+            "Once per turn, if a hero dies in this room, draw a Room card.",
+            image: "/card-images/rooms/golem-factory.svg",
+        },
+        {
+            id: "R16",
+            name: "Goblin Armory",
+            subtitle: "Monster Room",
+            dmg: 1,
+            treasure: "Fighter x2",
+            description: "Monster Rooms adjacent to this room deal +1 damage.",
+            image: "/card-images/rooms/goblin-armory.svg",
+        },
+        {
+            id: "R65",
+            name: "Dragon Hatchery",
+            subtitle: "Monster Room",
+            dmg: 0,
+            treasure: "Cleric + Mage + Fighter + Thief",
+            description: "(This room contains all four treasure types.)",
+            image: "/card-images/rooms/dragon-hatchery.svg",
+        },
+        {
+            id: "R66",
+            name: "Dragon Hatchery",
+            subtitle: "Monster Room",
+            dmg: 0,
+            treasure: "Cleric + Mage + Fighter + Thief",
+            description: "(This room contains all four treasure types.)",
+            image: "/card-images/rooms/dragon-hatchery.svg",
+        },
+    ],
     playerDungeon: [
 
         // [{

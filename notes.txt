@@ -1,4 +1,4 @@
 
-
-SJD - working out how to have OK or Cancel alert for when player presses next and still has build actions.
 SJD - work on passive abilities of cards (abilities that run when they are built)
+    working on Dissygas Hallway
+        Have function called during adventure phase when damage is calculated. Is previous room, (next index in array) a DizzyGas Hallway? Could also use this for other buff cards.
