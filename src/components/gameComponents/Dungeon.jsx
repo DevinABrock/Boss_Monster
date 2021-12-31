@@ -1,12 +1,11 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import '../css/Dungeon.css'
 // import { bossDeck } from "../../assets/cards"
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCard, buildingMode } from '../../actions/miscActions';
-import { buildDungeon, addBuildActions, changeUseButtonSwapping, swapRooms, changeSwapRoomsMode } from '../../actions/sampleActions';
+import { buildDungeon, addBuildActions, changeUseButtonSwapping, swapRooms, changeSwapRoomsMode, dealRoomCard } from '../../actions/sampleActions';
 import Card from './Card'
-import { roomDeck, cardBack } from '../../assets/cards';
-
+import { cardBack } from '../../assets/cards';
 
 function Dungeon() {
 
@@ -20,8 +19,14 @@ function Dungeon() {
     const selectedCardClass = useSelector(state => state.misc.className)
     const playerBoss = useSelector(state => state.cardDecks.playerBoss)
     const swapRoomsMode = useSelector(state => state.playerStats.swapRoomsMode)
+    const gameRound = useSelector(state => state.gamePhase.gameRound)
 
-    // console.log("playerDungeon", playerDungeon);
+    const [beastMenagerieFirstTime, setBeastMenagerieFirstTime] = useState(true)
+
+    useEffect(() => {
+        // resets value to true on gameRound change so Beast Menagerie room effect happens once per turn
+        setBeastMenagerieFirstTime(true)
+    }, [gameRound])
 
     const renderHeroAtPosition = () => {
         // return [<Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>,<Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>]
@@ -56,7 +61,6 @@ function Dungeon() {
             if(selectedCard.subtitle === "Advanced Trap Room"){
                 if(e.target.alt === "Trap Room" || e.target.alt === "Advanced Trap Room"){
                     passiveAbilities(selectedCard.name)
-                    beastMenagerieInDungeon()
                     dispatch(buildDungeon(selectedCard, e.target.id))
                     dispatch(addBuildActions(-1)) // decreasing buildActions by 1
                 
@@ -113,6 +117,8 @@ function Dungeon() {
     }
 
     const passiveAbilities = (cardName) => {
+        // putting Beast Menagerie function here since it is a passive ability
+        beastMenagerieInDungeon()
         switch(cardName){
             // "When you build this room, you may immediately build an additional Room."
             case "Construction Zone":
@@ -130,13 +136,21 @@ function Dungeon() {
         }
     }
 
-    console.log("beastMenagerie", roomDeck.filter(cardObj => cardObj.id === "R27")[0]);
+    const beastMenagerieInDungeon = () => {
 
-    const beastMenagerieInDungeon = (playerDungeon) => {
-        let beastMenagerie = roomDeck.filter(cardObj => cardObj.id === "R27")[0]
+        let hasBeastMenagerie = false
 
-        // console.log(playerDungeon.includes.includes(beastMenagerie))
+        playerDungeon.forEach(cardArr => {
+            if(cardArr[0].name === "Beast Menagerie"){
+                hasBeastMenagerie = true
+            }
+        })
+        if(beastMenagerieFirstTime && hasBeastMenagerie && (selectedCard.subtitle === "Monster Room" || selectedCard.subtitle === "Advanced Monster Room")){
+            dispatch(dealRoomCard())
+            setBeastMenagerieFirstTime(false)
+        }
     }
+
 
     return (
         <div className='dungeonBody'>
