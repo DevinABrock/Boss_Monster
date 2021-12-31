@@ -331,12 +331,12 @@ function Info() {
     const handleUseButtonClick = () => {
         // if in swapping rooms mode and the selected card is in the dungeon
         if(useButtonSwapping && selectedCardClass==="room"){
-            console.log("swapping is allowed");
+            // console.log("swapping is allowed");
             dispatch(changeSwapRoomsMode())
         }
         // if in swapping rooms mode and the selected card is NOT in the dungeon
         else if(useButtonSwapping && selectedCardClass != "room"){
-            console.log("You can only swap rooms in your dungeon.");
+            alert("You must select a room from your dungeon first.");
         }
     }
 

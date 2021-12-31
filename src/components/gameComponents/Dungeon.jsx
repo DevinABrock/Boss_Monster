@@ -17,6 +17,7 @@ function Dungeon() {
     const heroRoomPosition = useSelector(state => state.heroStats.heroRoomPosition)
     const buildingModeState = useSelector(state => state.misc.buildingMode)
     const selectedCard = useSelector(state => state.misc.card)
+    const selectedCardClass = useSelector(state => state.misc.className)
     const playerBoss = useSelector(state => state.cardDecks.playerBoss)
     const swapRoomsMode = useSelector(state => state.playerStats.swapRoomsMode)
 
@@ -39,17 +40,17 @@ console.log("selectedCard", selectedCard);
     const handleBuild = (e) => {
 
         console.log("e.target", e.target);
-        console.log("e.target.alt", e.target.alt);
+        console.log("e.target.className", e.target.className);
 
-        // if the state is in swapping mode
-        if(swapRoomsMode){
+        // if the state is in swapping mode and the user clicks to swap
+        if(swapRoomsMode && e.target.className==="room" && selectedCardClass==='room'){
             console.log('swapping rooms');
-            console.log(e.target.id);
+            console.log(e.target);
             dispatch(swapRooms(selectedCard.id, e.target.id))
             dispatch(changeSwapRoomsMode())
             dispatch(changeUseButtonSwapping())
         }
-
+        
         // if the state is in building mode
         if(buildingModeState){
             // Checks if the selected card is an Advanced Trap Room
