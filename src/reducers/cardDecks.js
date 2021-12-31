@@ -97,6 +97,16 @@ const initialState = {
             "When you build this room, you may swap the placement of two Rooms in any one dungeon.",
             image: "/card-images/rooms/centipede-tunnel.svg",
         },
+        {
+            id: "R22",
+            name: "Minotaur's Maze",
+            subtitle: "Monster Room",
+            dmg: 0,
+            treasure: "Fighter",
+            description:
+            "The first time a Hero enters this room, send it back to the previous room.",
+            image: "/card-images/rooms/minotaurs-maze(1).svg",
+        },
     ],
     playerDungeon: [
 

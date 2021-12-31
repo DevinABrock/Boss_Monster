@@ -32,6 +32,7 @@ function Info() {
 
     const [tempMessage, setTempMessage] = useState("")
     const [cardCount, setCardCount] = useState(0)
+    const [firstTimeInMaze, setFirstTimeInMaze] = useState(true)
 
     useEffect(() => {
         dispatch(updatePlayerTreasure(playerDungeon))
@@ -41,6 +42,11 @@ function Info() {
     useEffect(() => {
         setCardCount(0)
     }, [selectedCard])
+
+    useEffect(() => {
+        // resets value to true so next hero will also be sent back to previous room one time
+        setFirstTimeInMaze(true)
+    }, [heroesAtStartOfDungeon])
 
     const handleChangeGamePhase = () => {
         // if 1 and player has rooms in their hand
@@ -115,6 +121,11 @@ function Info() {
                 console.log("playerDungeon", playerDungeon);
                 console.log("heroRoomPosition", heroRoomPosition);
                 let damage = playerDungeon[heroRoomPosition][0].dmg + roomBuffs(heroRoomPosition)
+                if(playerDungeon[heroRoomPosition][0].name === "Minotaur's Maze" && firstTimeInMaze){
+                    dispatch(moveHeroNumberOfSteps(2))
+                    setFirstTimeInMaze(false)
+                    setTempMessage("The Hero loses their way in the maze and returns to the previous room.")
+                }
                 console.log("playerDungeon[heroRoomPosition][0].dmg", playerDungeon[heroRoomPosition][0].dmg);
                 console.log("playerDungeon[heroRoomPosition][0]", playerDungeon[heroRoomPosition][0]);
                 console.log("playerDungeon[heroRoomPosition]", playerDungeon[heroRoomPosition]);
@@ -157,14 +168,16 @@ function Info() {
                     if (damage === "*" || damage === 0) {
                         // console.log('HERO MOVING');
                         dispatch(moveHeroNumberOfSteps(-1))
-                        setTempMessage("The Hero moves further in the dungeon unharmed.")
+                        if(tempMessage === ""){
+                            setTempMessage("The Hero moves further in the dungeon unharmed.")
+                        }
                     }
                     // if hero hit and still has health
                     else if (remainingHealth > 0) {
                         // console.log('HERO Wounded');
                         dispatch(damageHero(damage))
                         dispatch(moveHeroNumberOfSteps(-1))
-                        setTempMessage(`The room deals ${damage} damage to the Hero. The Hero was wounded but passes the room. He now has ${heroHealth - damage} health.`)
+                        setTempMessage(`The room deals ${damage} damage to the Hero. The Hero was wounded but passes the room. The Hero has ${heroHealth - damage} health.`)
                     }
                     // if hero is hit and killed
                     else {

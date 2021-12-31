@@ -79,7 +79,8 @@ function Dungeon() {
                     dispatch(buildingMode())
                 }
             }
-            else if(buildingModeState){
+            else if(buildingModeState && e.target.id !== ""){
+                console.log("e.target.id", e.target.id);
                 passiveAbilities(selectedCard.name)
                 dispatch(buildDungeon(selectedCard, e.target.id))
                 dispatch(addBuildActions(-1)) // decreasing buildActions by 1
