@@ -164,6 +164,7 @@ function Dungeon() {
             {/* -- DUNGEON AREA -- */}
             <div className='dungeonDisplay'>
                 <div  className={buildingModeState ? 'roomAreaBuilding' : 'roomArea'} onClick={(e)=>handleBuild(e)}>
+                    {/* using .slice(0).reverse().map() reverses the order in which the cards are being displayed */}
                     {playerDungeon.slice(0).reverse().map((roomCard, index)=>{
                             return <Card cardObj={roomCard[0]} className="room" key={index}/>
                         })

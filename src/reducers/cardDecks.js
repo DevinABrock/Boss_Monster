@@ -11,16 +11,16 @@ const initialState = {
     heroesAtStartOfDungeon: [],
     playerBoss: {},
     playerRooms: [
-        // {
-        //     id: "R51",
-        //     name: "Dizzygas Hallway",
-        //     subtitle: "Trap Room",
-        //     dmg: 1,
-        //     treasure: "Thief",
-        //     description:
-        //     "If the next room in your dungeon is a Trap room, it has +2 damage.",
-        //     image: "/card-images/rooms/dizzygas-hallway.svg",
-        // },
+        {
+            id: "R51",
+            name: "Dizzygas Hallway",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Thief",
+            description:
+            "If the next room in your dungeon is a Trap room, it has +2 damage.",
+            image: "/card-images/rooms/dizzygas-hallway.svg",
+        },
         // {
         //     id: "R62",
         //     name: "Centipede Tunnel",
@@ -41,16 +41,16 @@ const initialState = {
         //       "When you build this room, you may immediately build an additional Room.",
         //     image: "/card-images/rooms/construction-zone.svg",
         //   },
-        // {
-        //     id: "R49",
-        //     name: "Boulder Ramp",
-        //     subtitle: "Trap Room",
-        //     dmg: 1,
-        //     treasure: "Thief",
-        //     description:
-        //     "Destroy another room in your dungeon: Deal 5 damage to a hero in this room.",
-        //     image: "/card-images/rooms/boulder-ramp.svg",
-        // },
+        {
+            id: "R49",
+            name: "Boulder Ramp",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Thief",
+            description:
+            "Destroy another room in your dungeon: Deal 5 damage to a hero in this room.",
+            image: "/card-images/rooms/boulder-ramp.svg",
+        },
         // {
         //     id: "R24",
         //     name: "Neanderthal Cave",
@@ -130,15 +130,25 @@ const initialState = {
     ],
     playerDungeon: [
         [{
-            id: "R27",
-            name: "Beast Menagerie",
+            id: "R29",
+            name: "Monster's Ballroom",
             subtitle: "Advanced Monster Room",
-            dmg: 4,
+            dmg: "*",
             treasure: "Fighter",
             description:
-            "Once per turn when you build another Monster room, draw a Room card.",
-            image: "/card-images/rooms/beast-menagerie.svg",
-        },],
+            "This room's damage is equal to the number of Monster rooms in your dungeon.",
+            image: "/card-images/rooms/monsters-ballroom.svg",
+        }],
+        // [{
+        //     id: "R27",
+        //     name: "Beast Menagerie",
+        //     subtitle: "Advanced Monster Room",
+        //     dmg: 4,
+        //     treasure: "Fighter",
+        //     description:
+        //     "Once per turn when you build another Monster room, draw a Room card.",
+        //     image: "/card-images/rooms/beast-menagerie.svg",
+        // }],
         // [{
         //     id: "R58",
         //     name: "Recycling Center",
