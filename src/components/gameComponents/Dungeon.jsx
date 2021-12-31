@@ -117,7 +117,7 @@ console.log("selectedCard", selectedCard);
                 break
             // "When you build this room, you may swap the placement of two Rooms in any one dungeon."
             case "Centipede Tunnel":
-                let userWantsToSwapRooms = window.confirm("The Centipede Tunnel allows you to swap the placement of two Rooms in any one dungeon. Click OK to confirm and swap rooms by: selecting a room by clicking, clicking the use button, then selecting the room to swap with.")
+                let userWantsToSwapRooms = window.confirm("The Centipede Tunnel allows you to swap the placement of two Rooms in any one dungeon. Click OK to confirm and swap rooms by: selecting a room by clicking, clicking the use button, then selecting the room to swap with. Click OK if you want to swap rooms or cancel if not.")
                 if(userWantsToSwapRooms){
                     dispatch(changeUseButtonSwapping())
                 }
