@@ -1,5 +1,5 @@
 
-import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES, HERO_KILLED, SET_HERO_START_OF_DUNGEON, RESET_PLAYER_CARDS, HERO_SURVIVED } from "../actions/types"
+import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES, HERO_KILLED, SET_HERO_START_OF_DUNGEON, RESET_PLAYER_CARDS, HERO_SURVIVED, SWAP_ROOMS } from "../actions/types"
 import { dungeonBack } from "../assets/cards"
 
 const initialState = {
@@ -21,6 +21,26 @@ const initialState = {
             "If the next room in your dungeon is a Trap room, it has +2 damage.",
             image: "/card-images/rooms/dizzygas-hallway.svg",
         },
+        {
+            id: "R62",
+            name: "Centipede Tunnel",
+            subtitle: "Monster Room",
+            dmg: 1,
+            treasure: "Fighter + Mage",
+            description:
+              "When you build this room, you may swap the placement of two Rooms in any one dungeon.",
+            image: "/card-images/rooms/centipede-tunnel.svg",
+          },
+        {
+            id: "R63",
+            name: "Construction Zone",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Fighter + Thief",
+            description:
+              "When you build this room, you may immediately build an additional Room.",
+            image: "/card-images/rooms/construction-zone.svg",
+          },
         {
             id: "R49",
             name: "Boulder Ramp",
@@ -109,16 +129,16 @@ const initialState = {
         },
     ],
     playerDungeon: [
-
-        // [{
-        //     id: "R47",
-        //     name: "Bottomless Pit",
-        //     subtitle: "Trap Room",
-        //     dmg: 1,
-        //     treasure: "Thief",
-        //     description: "Destroy this room: Kill a Hero in this room.",
-        //     image: "/card-images/rooms/bottomless-pit.svg",
-        // }],
+        [{
+            id: "R27",
+            name: "Beast Menagerie",
+            subtitle: "Advanced Monster Room",
+            dmg: 4,
+            treasure: "Fighter",
+            description:
+            "Once per turn when you build another Monster room, draw a Room card.",
+            image: "/card-images/rooms/beast-menagerie.svg",
+        },],
         // [{
         //     id: "R58",
         //     name: "Recycling Center",
@@ -260,6 +280,31 @@ const cardDecks = (state = initialState, action) => {
                 ...state,
                 roomDeck: state.roomDeck.slice(0, -1),
                 playerRooms: state.playerRooms.concat(state.roomDeck.slice(-1))
+            }
+        case SWAP_ROOMS:
+            let selectedCardIndex = null;
+            let targetRoomIndex = null;
+            let newDungeon = [...state.playerDungeon]
+            for (let index = 0; index < state.playerDungeon.length; index++) {
+                if(state.playerDungeon[index][0].id===action.targetedRoomID){
+                    console.log('target index found', index)
+                    targetRoomIndex=index
+                }
+                if(state.playerDungeon[index][0].id===action.selectedCardID){
+                    console.log('selected index found', index)
+                    selectedCardIndex=index
+                }
+            }
+            // console.log(targetRoomIndex, selectedCardIndex)
+
+            
+            
+            [newDungeon[targetRoomIndex], newDungeon[selectedCardIndex]] = [newDungeon[selectedCardIndex], newDungeon[targetRoomIndex]]
+            console.log(newDungeon)
+
+            return {
+                ...state,
+                playerDungeon: [...newDungeon]
             }
         case BAIT_HEROES:
             console.log("boss treasure", state.playerBoss.treasure)

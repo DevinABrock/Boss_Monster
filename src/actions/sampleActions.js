@@ -1,5 +1,5 @@
 
-import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, NEXT_GAME_PHASE, DECREASE_PLAYER_HEALTH, DEAL_ROOM_CARD, BAIT_HEROES, UPDATE_PLAYER_TREASURE, BUILD_DUNGEON, NEXT_ROUND, SET_HERO_START_OF_DUNGEON, MOVE_HERO_NUMBER_OF_STEPS, DAMAGE_HERO, HERO_KILLED, PLAYER_KILLED, RESET_PLAYER_CARDS, RESET_GAME, ADD_BUILD_ACTIONS, HERO_SURVIVED } from "./types"
+import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, NEXT_GAME_PHASE, DECREASE_PLAYER_HEALTH, DEAL_ROOM_CARD, BAIT_HEROES, UPDATE_PLAYER_TREASURE, BUILD_DUNGEON, NEXT_ROUND, SET_HERO_START_OF_DUNGEON, MOVE_HERO_NUMBER_OF_STEPS, DAMAGE_HERO, HERO_KILLED, PLAYER_KILLED, RESET_PLAYER_CARDS, RESET_GAME, ADD_BUILD_ACTIONS, HERO_SURVIVED, CHANGE_USE_BUTTON_SWAPPING, SWAP_ROOMS, CHANGE_SWAP_ROOMS_MODE } from "./types"
 
 // !add multiple actions to this file
 
@@ -118,4 +118,22 @@ export const addBuildActions = (numberOfActions) => {
         numberOfActions
     }
 }
+export const changeUseButtonSwapping = () => {
+    return {
+        type: CHANGE_USE_BUTTON_SWAPPING
+    }
+}
+export const changeSwapRoomsMode = () => {
+    return {
+        type: CHANGE_SWAP_ROOMS_MODE
+    }
+}
+export const swapRooms = (selectedCardID, targetedRoomID) => {
+    return {
+        type: SWAP_ROOMS,
+        selectedCardID,
+        targetedRoomID
+    }
+}
+
 

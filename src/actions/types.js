@@ -14,7 +14,7 @@ export const NEXT_ROUND = "NEXT_ROUND";
 export const ADD_BUILD_ACTIONS = "ADD_BUILD_ACTIONS"
 
 export const BUILDING_MODE = "BUILDING_MODE"
-export const BUILD_DUNGEON = "BUILD_DUNGEON"
+export const BUILD_DUNGEON = "BUILD_DUNGEON";
 
 // type for currently selected card
 export const SELECT_CARD = "SELECT_CARD";
@@ -25,3 +25,8 @@ export const MOVE_HERO_NUMBER_OF_STEPS = "MOVE_HERO_NUMBER_OF_STEPS";
 export const DAMAGE_HERO = "DAMAGE_HERO";
 export const HERO_KILLED = "HERO_KILLED";
 export const HERO_SURVIVED = "HERO_SURVIVED"
+
+// swapping card
+export const CHANGE_USE_BUTTON_SWAPPING = "CHANGE_USE_BUTTON_SWAPPING";
+export const SWAP_ROOMS = "SWAP_ROOMS";
+export const CHANGE_SWAP_ROOMS_MODE = "CHANGE_SWAP_ROOMS_MODE";
