@@ -34,6 +34,7 @@ function Info() {
 
     const [tempMessage, setTempMessage] = useState("")
     const [cardCount, setCardCount] = useState(0)
+    const [firstTimeInMaze, setFirstTimeInMaze] = useState(true)
 
     useEffect(() => {
         dispatch(updatePlayerTreasure(playerDungeon))
@@ -45,12 +46,12 @@ function Info() {
     }, [selectedCard])
 
     useEffect(() => {
-        if(useButtonSwapping){
-            console.log('is swapping is false');
-        }
-    }, [useButtonSwapping])
+        // resets value to true so next hero will also be sent back to previous room one time
+        setFirstTimeInMaze(true)
+    }, [heroesAtStartOfDungeon])
 
     const handleChangeGamePhase = () => {
+        let message = ""
         // if 1 and player has rooms in their hand
         console.log(gamePhase, playerRooms.length);
         if (gamePhase === 1 && playerRooms.length) {
@@ -60,7 +61,7 @@ function Info() {
         // if 2 and user clicks next this will update whether a spell card takes effect for the round
         else if (gamePhase === 2) {
             dispatch(nextGamePhase())
-            setTempMessage("")
+            // setTempMessage("")
         }
         // if 3 moving to heroes to town phase
         else if (gamePhase === 3) {
@@ -91,17 +92,17 @@ function Info() {
                     if(proceedToNextPhase){
                         dispatch(nextGamePhase())
                         dispatch(addBuildActions(-buildActions)) // removed build actions if player does not build that turn
-                        setTempMessage("")
+                        // setTempMessage("")
                     }
                 }
                 else{
                     dispatch(nextGamePhase())
                     dispatch(addBuildActions(-buildActions)) // removed build actions if player does not build that turn
-                    setTempMessage("")
+                    // setTempMessage("")
                 }
             }
             else{
-                setTempMessage("You must build at least one Room in your dungeon before moving to the bait phase!")
+                message += "You must build at least one Room in your dungeon before moving to the bait phase! "
             }
         }
         else if (gamePhase === 6) {
@@ -123,6 +124,11 @@ function Info() {
                 console.log("playerDungeon", playerDungeon);
                 console.log("heroRoomPosition", heroRoomPosition);
                 let damage = playerDungeon[heroRoomPosition][0].dmg + roomBuffs(heroRoomPosition)
+                if(playerDungeon[heroRoomPosition][0].name === "Minotaur's Maze" && firstTimeInMaze){
+                    dispatch(moveHeroNumberOfSteps(2))
+                    setFirstTimeInMaze(false)
+                    message += "The Hero loses their way in the maze and returns to the previous room. "
+                }
                 console.log("playerDungeon[heroRoomPosition][0].dmg", playerDungeon[heroRoomPosition][0].dmg);
                 console.log("playerDungeon[heroRoomPosition][0]", playerDungeon[heroRoomPosition][0]);
                 console.log("playerDungeon[heroRoomPosition]", playerDungeon[heroRoomPosition]);
@@ -130,24 +136,35 @@ function Info() {
                 console.log('hero health', heroHealth);
                 let remainingHealth = heroHealth - damage;
                 // if hero has health after passing through the last room
-                if (heroRoomPosition === 0 && (remainingHealth > 0 || damage === '*')) {
+                if (heroRoomPosition === 0 && (remainingHealth > 0 || (damage === '*' && damage === 0))) {
                     // if hero kills the boss, the player dies
                     console.log('hero fighting boss');
                     if((heroesAtStartOfDungeon[0].subtitle === "Ordinary-Hero" && playerHealth <= 1) ||(heroesAtStartOfDungeon[0].subtitle === "Epic-Hero" && playerHealth <= 2)){
                         console.log('hero defeats boss');
                         dispatch(decreasePlayerHealth(playerHealth))
                         dispatch(playerKilled())
-                        setTempMessage("")
+                        // setTempMessage("")
                     }
                     // if boss has enough health to survive the wound
                     else {
                         if(heroesAtStartOfDungeon[0].subtitle === "Ordinary-Hero"){
                             dispatch(decreasePlayerHealth(1))
-                            setTempMessage(`The room deals ${damage} damage to the Hero. The hero survives your dungeon with ${remainingHealth} HP. You sustain a wound.`)
+                            if (damage === "*" || damage === 0) {
+                                message += `The hero survives your dungeon with ${remainingHealth} HP. You sustain a wound. `
+                            }
+                            else{
+                                message += `The room deals ${damage} damage to the Hero. The hero survives your dungeon with ${remainingHealth} HP. You sustain a wound. `
+                            }
+                            
                         }
                         else if(heroesAtStartOfDungeon[0].subtitle === "Epic-Hero"){
                             dispatch(decreasePlayerHealth(2))
-                            setTempMessage(`The room deals ${damage} damage to the Hero. The hero survives your dungeon with ${remainingHealth} HP. You sustain two wounds.`)
+                            if (damage === "*" || damage === 0) {
+                                message += `The hero survives your dungeon with ${remainingHealth} HP. You sustain two wounds. `
+                            }
+                            else{
+                                message += `The room deals ${damage} damage to the Hero. The hero survives your dungeon with ${remainingHealth} HP. You sustain two wounds. `
+                            }
                         }
                         console.log('hero damage to boss', remainingHealth);
                         if(heroesAtStartOfDungeon.length === 1) {
@@ -165,32 +182,31 @@ function Info() {
                     if (damage === "*" || damage === 0) {
                         // console.log('HERO MOVING');
                         dispatch(moveHeroNumberOfSteps(-1))
-                        setTempMessage("The Hero moves further in the dungeon unharmed.")
+                        message += "The Hero moves further in the dungeon unharmed. "
                     }
                     // if hero hit and still has health
                     else if (remainingHealth > 0) {
                         // console.log('HERO Wounded');
                         dispatch(damageHero(damage))
                         dispatch(moveHeroNumberOfSteps(-1))
-                        setTempMessage(`The room deals ${damage} damage to the Hero. The Hero is wounded but passes the room. He now has ${heroHealth - damage} health.`)
+                        message += `The room deals ${damage} damage to the Hero. The Hero was wounded but passes the room. The Hero has ${heroHealth - damage} health. `
                     }
                     // if hero is hit and killed
                     else {
                         if(heroesAtStartOfDungeon.length === 1) {
                             dispatch(heroKilled(true, playerDungeon, heroesAtStartOfDungeon))
-                            setTempMessage(`The room deals ${damage} damage to the Hero. The Hero was slain in your dungeon. Another soul is added to your collection.`)
+                            message += `The room deals ${damage} damage to the Hero. The Hero was slain in your dungeon. Another soul has been added to your collection. `
                             dispatch(nextRound())
                         }
                         else{
                             dispatch(heroKilled(false, playerDungeon, heroesAtStartOfDungeon))
-                            setTempMessage(`The room deals ${damage} damage to the Hero. The Hero was slain in your dungeon. Another soul is added to your collection.`)
+                            message += `The room deals ${damage} damage to the Hero. The Hero was slain in your dungeon. Another soul has been added to your collection. `
                         }
                     }
-
                 }
-
             }
         }
+
         // if game over and moving to restart
         else if (gamePhase === 10) {
             let shuffledDecks = shuffleAllDecks();
@@ -198,6 +214,7 @@ function Info() {
             dispatch(resetPlayerCards())
             dispatch(resetGame())
         }
+        setTempMessage(message)
     }
 
     const renderMessageSwitch = (gamePhase) => {
@@ -231,6 +248,7 @@ function Info() {
                 break;
         }
     }
+    
     const renderGamePhaseSwitch = (gamePhase) => {
         switch (gamePhase) {
             case 1:
@@ -261,12 +279,15 @@ function Info() {
     const handleBuildButtonClick = (className) => {
 
         if(className === "handCard"){
-            if(buildActions > 0){
+            if(buildActions > 0 && (gamePhase === 1 || gamePhase === 5)){
                 // turns building mode on and off
                 dispatch(buildingMode())
             }
-            else{
+            else if(buildActions === 0){
                 alert("You have no more build actions this turn.")
+            }
+            else if(gamePhase !== 1 || gamePhase !== 5){
+                alert("You can only build during the build phase.")
             }
         }
         else{
@@ -305,23 +326,18 @@ function Info() {
         }
     })
 
-    // console.log("playerDungeon", playerDungeon);
-
     const roomBuffs = (i) => {
         // if current room is a trap room & the previous room is a Dizzygas Hallway, damage is buffed
-        if((playerDungeon[i][0].subtitle === "Trap Room" || playerDungeon[i][0].subtitle === "Advanced Trap Room") && playerDungeon[i + 1][0].name === "Dizzygas Hallway"){
+        if(i < 5 && (playerDungeon[i][0].subtitle === "Trap Room" || playerDungeon[i][0].subtitle === "Advanced Trap Room") && playerDungeon[i + 1][0].name === "Dizzygas Hallway"){
             return 2
         }
         // if current room is monster room & previous room is Goblin Armory, damage is buffed
-        else if(i < 6){
+        else if(i < 5 && (playerDungeon[i][0].subtitle === "Monster Room" || playerDungeon[i][0].subtitle === "Advanced Monster Room") && playerDungeon[i + 1][0].name === "Goblin Armory"){
             return 1
         }
-        else if(i > 0){
-            // if current room is monster room & next room is Goblin Armory, damage is buffed
-            if((playerDungeon[i][0].subtitle === "Monster Room" || playerDungeon[i][0].subtitle === "Advanced Monster Room") && playerDungeon[i - 1][0].name === "Goblin Armory"){
+        // if current room is monster room & next room is Goblin Armory, damage is buffed
+        else if(i > 0 && (playerDungeon[i][0].subtitle === "Monster Room" || playerDungeon[i][0].subtitle === "Advanced Monster Room") && playerDungeon[i - 1][0].name === "Goblin Armory"){
                 return 1
-            }
-            return 0
         }
         else {
             return 0
@@ -394,7 +410,7 @@ function Info() {
 
             {/* -- BUTTON AREA -- */}
             <div className='buttonArea'>
-                <div className='phaseInfo'>Phase: {renderGamePhaseSwitch(gamePhase)}</div>
+                <div className='phaseInfo'>Phase: {renderGamePhaseSwitch(gamePhase)} {gamePhase == 7 ? `Hero HP: ${heroHealth}` : null}</div>
                 <div className='buttonList'>
                     <div className='button'>STORE</div>
                     <div onClick={handleUseButtonClick} className={swapRoomsMode ? 'buttonBuild' : 'button'}>USE</div>

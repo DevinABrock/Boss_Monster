@@ -1,4 +1,9 @@
 
 SJD - work on passive abilities of cards (abilities that run when they are built)
-    working on Dissygas Hallway
-        Have function called during adventure phase when damage is calculated. Is previous room, (next index in array) a DizzyGas Hallway? Could also use this for other buff cards.
+    -> Minotaur's Maze
+    Beast Menagerie
+
+
+Possible Bug: When hero is going to be lured into the dungeon and you have build actions available but you click Cancel instead of OK to move to the next phase, the hero is lured but the bait phase hasn't started yet. 
+    
+    
