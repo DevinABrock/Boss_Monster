@@ -1,5 +1,5 @@
 
-import { DECREASE_PLAYER_HEALTH, UPDATE_PLAYER_TREASURE, RESET_GAME, HERO_KILLED, ADD_BUILD_ACTIONS } from "../actions/types"
+import { DECREASE_PLAYER_HEALTH, UPDATE_PLAYER_TREASURE, RESET_GAME, HERO_KILLED, ADD_BUILD_ACTIONS, CHANGE_USE_BUTTON_SWAPPING, CHANGE_SWAP_ROOMS_MODE } from "../actions/types"
 
 const initialState = {
     username: "username",
@@ -9,6 +9,8 @@ const initialState = {
     treasureFighter: 0,
     treasureThief: 0,
     buildActions: 99,
+    useButtonSwapping: false,
+    swapRoomsMode: false
 }
 
 const playerStats = (state = initialState, action) => {
@@ -29,6 +31,16 @@ const playerStats = (state = initialState, action) => {
             return {
                 ...state,
                 souls: state.souls + 1,
+            }
+        case CHANGE_USE_BUTTON_SWAPPING:
+            return {
+                ...state,
+                useButtonSwapping: !state.useButtonSwapping
+            }
+        case CHANGE_SWAP_ROOMS_MODE:
+            return {
+                ...state,
+                swapRoomsMode: !state.swapRoomsMode
             }
         case UPDATE_PLAYER_TREASURE:
             let thiefTreasure = 0;
