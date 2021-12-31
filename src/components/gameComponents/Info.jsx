@@ -383,7 +383,7 @@ function Info() {
 
             {/* -- BUTTON AREA -- */}
             <div className='buttonArea'>
-                <div className='phaseInfo'>Phase: {renderGamePhaseSwitch(gamePhase)}</div>
+                <div className='phaseInfo'>Phase: {renderGamePhaseSwitch(gamePhase)} {gamePhase == 7 ? `Hero HP: ${heroHealth}` : null}</div>
                 <div className='buttonList'>
                     <div className='button'>STORE</div>
                     <div className='button'>USE</div>

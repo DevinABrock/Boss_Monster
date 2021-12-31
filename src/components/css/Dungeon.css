@@ -8,6 +8,7 @@
     height: 40%;
     width: 80%;
     display: flex;
+    /* display: inline; */
     justify-content: flex-end;
     align-items: center;
 }
