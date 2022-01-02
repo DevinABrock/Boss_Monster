@@ -35,7 +35,7 @@ function Info() {
     const [tempMessage, setTempMessage] = useState("")
     const [cardCount, setCardCount] = useState(0)
     const [firstTimeInMaze, setFirstTimeInMaze] = useState(true)
-    const [count, setCount] = useState(2)
+    const [count, setCount] = useState(2) // count used to only damage room once per hero (when Minotaur's Maze is in play)
 
     useEffect(() => {
         dispatch(updatePlayerTreasure(playerDungeon))
@@ -137,8 +137,8 @@ function Info() {
                 console.log('room damage dealt to hero', damage);
                 console.log('hero health', heroHealth);
                 let remainingHealth = heroHealth - damage;
+                // reduces room durability by 20 the first time a hero enters a room
                 if(firstTimeInMaze || count === 0){
-                    // reduces room durability by 20 the first time a hero enters a room
                     dispatch(damageRoom(playerDungeon[heroRoomPosition][0].id))
                     console.log("room damaged");
                 }
