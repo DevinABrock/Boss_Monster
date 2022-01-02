@@ -140,6 +140,10 @@ function Info() {
                 if(firstTimeInMaze || count === 0){
                     // reduces room durability by 20 the first time a hero enters a room
                     dispatch(damageRoom(playerDungeon[heroRoomPosition][0].id))
+                    console.log("room damaged");
+                }
+                else if(!firstTimeInMaze){
+                    console.log("count incremented to", count);
                     setCount(count - 1)
                 }
                 // if hero has health after passing through the last room
