@@ -1,5 +1,5 @@
 
-import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES, HERO_KILLED, SET_HERO_START_OF_DUNGEON, RESET_PLAYER_CARDS, HERO_SURVIVED, SWAP_ROOMS } from "../actions/types"
+import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES, HERO_KILLED, SET_HERO_START_OF_DUNGEON, RESET_PLAYER_CARDS, HERO_SURVIVED, SWAP_ROOMS, DAMAGE_ROOM } from "../actions/types"
 import { dungeonBack } from "../assets/cards"
 
 const initialState = {
@@ -11,6 +11,16 @@ const initialState = {
     heroesAtStartOfDungeon: [],
     playerBoss: {},
     playerRooms: [
+        // {
+        //     id: "R61",
+        //     name: "Centipede Tunnel",
+        //     subtitle: "Monster Room",
+        //     dmg: 1,
+        //     treasure: "Fighter + Mage",
+        //     description:
+        //     "When you build this room, you may swap the placement of two Rooms in any one dungeon.",
+        //     image: "/card-images/rooms/centipede-tunnel.svg",
+        // },
         {
             id: "R51",
             name: "Dizzygas Hallway",
@@ -70,15 +80,15 @@ const initialState = {
         //     "Once per turn, if a hero dies in this room, draw a Room card.",
         //     image: "/card-images/rooms/golem-factory.svg",
         // },
-        {
-            id: "R16",
-            name: "Goblin Armory",
-            subtitle: "Monster Room",
-            dmg: 1,
-            treasure: "Fighter x2",
-            description: "Monster Rooms adjacent to this room deal +1 damage.",
-            image: "/card-images/rooms/goblin-armory.svg",
-        },
+        // {
+        //     id: "R16",
+        //     name: "Goblin Armory",
+        //     subtitle: "Monster Room",
+        //     dmg: 1,
+        //     treasure: "Fighter x2",
+        //     description: "Monster Rooms adjacent to this room deal +1 damage.",
+        //     image: "/card-images/rooms/goblin-armory.svg",
+        // },
         {
             id: "R65",
             name: "Dragon Hatchery",
@@ -117,28 +127,28 @@ const initialState = {
         //     "When you build this room, you may swap the placement of two Rooms in any one dungeon.",
         //     image: "/card-images/rooms/centipede-tunnel.svg",
         // },
-        // {
-        //     id: "R22",
-        //     name: "Minotaur's Maze",
-        //     subtitle: "Monster Room",
-        //     dmg: 0,
-        //     treasure: "Fighter",
-        //     description:
-        //     "The first time a Hero enters this room, send it back to the previous room.",
-        //     image: "/card-images/rooms/minotaurs-maze(1).svg",
-        // },
-    ],
-    playerDungeon: [
-        [{
-            id: "R29",
-            name: "Monster's Ballroom",
-            subtitle: "Advanced Monster Room",
-            dmg: "*",
+        {
+            id: "R22",
+            name: "Minotaur's Maze",
+            subtitle: "Monster Room",
+            dmg: 0,
             treasure: "Fighter",
             description:
-            "This room's damage is equal to the number of Monster rooms in your dungeon.",
-            image: "/card-images/rooms/monsters-ballroom.svg",
-        }],
+            "The first time a Hero enters this room, send it back to the previous room.",
+            image: "/card-images/rooms/minotaurs-maze(1).svg",
+        },
+    ],
+    playerDungeon: [
+        // [{
+        //     id: "R29",
+        //     name: "Monster's Ballroom",
+        //     subtitle: "Advanced Monster Room",
+        //     dmg: "*",
+        //     treasure: "Fighter",
+        //     description:
+        //     "This room's damage is equal to the number of Monster rooms in your dungeon.",
+        //     image: "/card-images/rooms/monsters-ballroom.svg",
+        // }],
         // [{
         //     id: "R27",
         //     name: "Beast Menagerie",
@@ -284,6 +294,16 @@ const cardDecks = (state = initialState, action) => {
                     playerDungeon: newPlayerDungeon,
                     playerRooms: state.playerRooms.filter(cardObj=>cardObj.id !== action.card.id)
                 }
+            }
+        case DAMAGE_ROOM:
+            return {
+                ...state,
+                playerDungeon: state.playerDungeon.map(roomArr => {
+                    if(action.roomID === roomArr[0].id){
+                        roomArr[0].durability -= 20
+                    }
+                    return roomArr
+                })
             }
         case DEAL_ROOM_CARD:
             return {

@@ -1,7 +1,6 @@
 import React from 'react'
 import '../css/Town.css'
 import Card from './Card'
-import { heroDeck } from "../../assets/cards"
 import { useSelector } from 'react-redux';
 
 function Town() {

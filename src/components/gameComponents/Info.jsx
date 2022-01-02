@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import '../css/Info.css'
 import { buildingMode } from '../../actions/miscActions';
-import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, baitHeroes, nextRound, setHeroStartOfDungeon, damageHero, moveHeroNumberOfSteps, heroKilled, decreasePlayerHealth, playerKilled, resetPlayerCards, resetGame, addBuildActions, heroSurvived, changeSwapRoomsMode } from '../../actions/sampleActions';
+import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, baitHeroes, nextRound, setHeroStartOfDungeon, damageHero, moveHeroNumberOfSteps, heroKilled, decreasePlayerHealth, playerKilled, resetPlayerCards, resetGame, addBuildActions, heroSurvived, changeSwapRoomsMode, damageRoom } from '../../actions/sampleActions';
 import { diceRoll } from '../gameLogic/diceRoll';
 
 import { shuffleAllDecks, dealInitialCards } from '../gameLogic/initializingDeck';
@@ -35,6 +35,7 @@ function Info() {
     const [tempMessage, setTempMessage] = useState("")
     const [cardCount, setCardCount] = useState(0)
     const [firstTimeInMaze, setFirstTimeInMaze] = useState(true)
+    const [count, setCount] = useState(2)
 
     useEffect(() => {
         dispatch(updatePlayerTreasure(playerDungeon))
@@ -48,6 +49,7 @@ function Info() {
     useEffect(() => {
         // resets value to true so next hero will also be sent back to previous room one time
         setFirstTimeInMaze(true)
+        setCount(2)
     }, [heroesAtStartOfDungeon])
 
     const handleChangeGamePhase = () => {
@@ -122,7 +124,7 @@ function Info() {
                 console.log("heroRoomPosition", heroRoomPosition);
                 let damage = 0
                 if(playerDungeon[heroRoomPosition][0].dmg === "*"){
-                    damage = 0 + roomBuffs(heroRoomPosition)
+                    damage = roomBuffs(heroRoomPosition)
                 }
                 else{
                     damage = playerDungeon[heroRoomPosition][0].dmg + roomBuffs(heroRoomPosition)
@@ -135,6 +137,11 @@ function Info() {
                 console.log('room damage dealt to hero', damage);
                 console.log('hero health', heroHealth);
                 let remainingHealth = heroHealth - damage;
+                if(firstTimeInMaze || count === 0){
+                    // reduces room durability by 20 the first time a hero enters a room
+                    dispatch(damageRoom(playerDungeon[heroRoomPosition][0].id))
+                    setCount(count - 1)
+                }
                 // if hero has health after passing through the last room
                 if (heroRoomPosition === 0 && (remainingHealth > 0 || (damage === '*' && damage === 0))) {
                     // if hero kills the boss, the player dies
@@ -392,6 +399,7 @@ function Info() {
                             <div className='information'>{roomStack[cardCount].subtitle}</div>
                             {roomStack[cardCount].HP && <div className='information'>HP: {roomStack[cardCount].HP}</div>}
                             {roomStack[cardCount].dmg !== undefined && <div className='information'>DMG: {roomStack[cardCount].dmg}</div>}
+                            {selectedCard.durability && <div className='information'>Durability: {selectedCard.durability}/100</div>}
                             {roomStack[cardCount].xp && <div className='information'>XP: {roomStack[cardCount].xp}</div>}
                             {roomStack[cardCount].treasure && <div className='information'>Treasure: {roomStack[cardCount].treasure}</div>}
                             <div className='cardDescription'>{roomStack[cardCount].description}</div>
@@ -410,6 +418,7 @@ function Info() {
                                 <div className='information'>{selectedCard.subtitle}</div>
                                 {selectedCard.HP && <div className='information'>HP: {selectedCard.HP}</div>}
                                 {selectedCard.dmg !== undefined && <div className='information'>DMG: {selectedCard.dmg}</div>}
+                                {selectedCard.durability && <div className='information'>Durability: {selectedCard.durability}/100</div>}
                                 {selectedCard.xp && <div className='information'>XP: {selectedCard.xp}</div>}
                                 {selectedCard.treasure && <div className='information'>Treasure: {selectedCard.treasure}</div>}
                                 <div className='cardDescription'>{selectedCard.description}</div>
@@ -424,7 +433,7 @@ function Info() {
             <div className='buttonArea'>
                 <div className='phaseInfo'>Phase: {renderGamePhaseSwitch(gamePhase)} {gamePhase == 7 ? `Hero HP: ${heroHealth}` : null}</div>
                 <div className='buttonList'>
-                    <div className='button'>STORE</div>
+                    {/* <div className='button'>STORE</div> */}
                     <div onClick={handleUseButtonClick} className={swapRoomsMode ? 'buttonBuild' : 'button'}>USE</div>
                     <div className={buildingModeState ? 'buttonBuild' : 'button'} onClick={()=>handleBuildButtonClick(selectedCardClass)}>BUILD</div>
                     <div onClick={()=>handleNextButtonClick()} className='button'>NEXT</div>
