@@ -82,6 +82,29 @@ const playerStats = (state = initialState, action) => {
                 ...state,
                 buildActions: state.buildActions + action.numberOfActions
             }
+        case NEXT_ROUND: // to remove cards that have 0 durability
+
+            let newPlayerDungeon = []
+
+            state.playerDungeon.forEach(roomArr => {
+                let tempArr = roomArr
+                if(tempArr[0].durability === 0){
+                    if(tempArr.length > 1){
+                        state.discardPile.push(tempArr.splice(0, 1))
+                        newPlayerDungeon.push(tempArr)
+                    }
+                    else{
+                        newPlayerDungeon.push([dungeonBack])
+                    }
+                }
+                else{
+                    newPlayerDungeon.push(tempArr)
+                }
+            })
+            return {
+                ...state,
+                playerDungeon: newPlayerDungeon
+            }
         default:
             return state
     }

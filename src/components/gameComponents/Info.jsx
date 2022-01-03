@@ -36,6 +36,7 @@ function Info() {
     const [cardCount, setCardCount] = useState(0)
     const [firstTimeInMaze, setFirstTimeInMaze] = useState(true)
     const [count, setCount] = useState(2) // count used to only damage room once per hero (when Minotaur's Maze is in play)
+    const [destroyedRoomsCount, setDestroyedRoomsCount] = useState([])
 
     useEffect(() => {
         dispatch(updatePlayerTreasure(playerDungeon))
@@ -139,8 +140,10 @@ function Info() {
                 let remainingHealth = heroHealth - damage;
                 // reduces room durability by 20 the first time a hero enters a room
                 if(firstTimeInMaze || count === 0){
-                    dispatch(damageRoom(playerDungeon[heroRoomPosition][0].id))
-                    console.log("room damaged");
+                    if(playerDungeon[heroRoomPosition][0].durability > 0){
+                        dispatch(damageRoom(playerDungeon[heroRoomPosition][0].id))
+                        console.log("room damaged");
+                    }
                 }
                 else if(!firstTimeInMaze){
                     console.log("count incremented to", count);
@@ -403,7 +406,7 @@ function Info() {
                             <div className='information'>{roomStack[cardCount].subtitle}</div>
                             {roomStack[cardCount].HP && <div className='information'>HP: {roomStack[cardCount].HP}</div>}
                             {roomStack[cardCount].dmg !== undefined && <div className='information'>DMG: {roomStack[cardCount].dmg}</div>}
-                            {selectedCard.durability && <div className='information'>Durability: {selectedCard.durability}/100</div>}
+                            {roomStack[cardCount].durability && <div className='information'>Durability: {roomStack[cardCount].durability}/100</div>}
                             {roomStack[cardCount].xp && <div className='information'>XP: {roomStack[cardCount].xp}</div>}
                             {roomStack[cardCount].treasure && <div className='information'>Treasure: {roomStack[cardCount].treasure}</div>}
                             <div className='cardDescription'>{roomStack[cardCount].description}</div>

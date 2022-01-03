@@ -1,5 +1,5 @@
 
-import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES, HERO_KILLED, SET_HERO_START_OF_DUNGEON, RESET_PLAYER_CARDS, HERO_SURVIVED, SWAP_ROOMS, DAMAGE_ROOM } from "../actions/types"
+import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES, HERO_KILLED, SET_HERO_START_OF_DUNGEON, RESET_PLAYER_CARDS, HERO_SURVIVED, SWAP_ROOMS, DAMAGE_ROOM, NEXT_ROUND } from "../actions/types"
 import { dungeonBack } from "../assets/cards"
 
 const initialState = {
@@ -21,26 +21,16 @@ const initialState = {
         //     "When you build this room, you may swap the placement of two Rooms in any one dungeon.",
         //     image: "/card-images/rooms/centipede-tunnel.svg",
         // },
-        {
-            id: "R51",
-            name: "Dizzygas Hallway",
-            subtitle: "Trap Room",
-            dmg: 1,
-            treasure: "Thief",
-            description:
-            "If the next room in your dungeon is a Trap room, it has +2 damage.",
-            image: "/card-images/rooms/dizzygas-hallway.svg",
-        },
         // {
-        //     id: "R62",
-        //     name: "Centipede Tunnel",
-        //     subtitle: "Monster Room",
+        //     id: "R51",
+        //     name: "Dizzygas Hallway",
+        //     subtitle: "Trap Room",
         //     dmg: 1,
-        //     treasure: "Fighter + Mage",
+        //     treasure: "Thief",
         //     description:
-        //       "When you build this room, you may swap the placement of two Rooms in any one dungeon.",
-        //     image: "/card-images/rooms/centipede-tunnel.svg",
-        //   },
+        //     "If the next room in your dungeon is a Trap room, it has +2 damage.",
+        //     image: "/card-images/rooms/dizzygas-hallway.svg",
+        // },
         // {
         //     id: "R63",
         //     name: "Construction Zone",
@@ -51,16 +41,16 @@ const initialState = {
         //       "When you build this room, you may immediately build an additional Room.",
         //     image: "/card-images/rooms/construction-zone.svg",
         //   },
-        {
-            id: "R49",
-            name: "Boulder Ramp",
-            subtitle: "Trap Room",
-            dmg: 1,
-            treasure: "Thief",
-            description:
-            "Destroy another room in your dungeon: Deal 5 damage to a hero in this room.",
-            image: "/card-images/rooms/boulder-ramp.svg",
-        },
+        // {
+        //     id: "R49",
+        //     name: "Boulder Ramp",
+        //     subtitle: "Trap Room",
+        //     dmg: 1,
+        //     treasure: "Thief",
+        //     description:
+        //     "Destroy another room in your dungeon: Deal 5 damage to a hero in this room.",
+        //     image: "/card-images/rooms/boulder-ramp.svg",
+        // },
         // {
         //     id: "R24",
         //     name: "Neanderthal Cave",
@@ -80,15 +70,15 @@ const initialState = {
         //     "Once per turn, if a hero dies in this room, draw a Room card.",
         //     image: "/card-images/rooms/golem-factory.svg",
         // },
-        // {
-        //     id: "R16",
-        //     name: "Goblin Armory",
-        //     subtitle: "Monster Room",
-        //     dmg: 1,
-        //     treasure: "Fighter x2",
-        //     description: "Monster Rooms adjacent to this room deal +1 damage.",
-        //     image: "/card-images/rooms/goblin-armory.svg",
-        // },
+        {
+            id: "R16",
+            name: "Goblin Armory",
+            subtitle: "Monster Room",
+            dmg: 1,
+            treasure: "Fighter x2",
+            description: "Monster Rooms adjacent to this room deal +1 damage.",
+            image: "/card-images/rooms/goblin-armory.svg",
+        },
         {
             id: "R65",
             name: "Dragon Hatchery",
@@ -127,16 +117,26 @@ const initialState = {
         //     "When you build this room, you may swap the placement of two Rooms in any one dungeon.",
         //     image: "/card-images/rooms/centipede-tunnel.svg",
         // },
-        {
-            id: "R22",
-            name: "Minotaur's Maze",
-            subtitle: "Monster Room",
-            dmg: 0,
-            treasure: "Fighter",
-            description:
-            "The first time a Hero enters this room, send it back to the previous room.",
-            image: "/card-images/rooms/minotaurs-maze(1).svg",
-        },
+        // {
+        //     id: "R22",
+        //     name: "Minotaur's Maze",
+        //     subtitle: "Monster Room",
+        //     dmg: 0,
+        //     treasure: "Fighter",
+        //     description:
+        //     "The first time a Hero enters this room, send it back to the previous room.",
+        //     image: "/card-images/rooms/minotaurs-maze(1).svg",
+        // },
+        // {
+        //         id: "R29",
+        //         name: "Monster's Ballroom",
+        //         subtitle: "Advanced Monster Room",
+        //         dmg: "*",
+        //         treasure: "Fighter",
+        //         description:
+        //         "This room's damage is equal to the number of Monster rooms in your dungeon.",
+        //         image: "/card-images/rooms/monsters-ballroom.svg",
+        //     },
     ],
     playerDungeon: [
         // [{
@@ -191,7 +191,8 @@ const initialState = {
         [dungeonBack], [dungeonBack],
         [dungeonBack], [dungeonBack],
         [dungeonBack], [dungeonBack]
-    ]
+    ],
+    discardPile: []
 }
 
 const cardDecks = (state = initialState, action) => {
@@ -327,8 +328,6 @@ const cardDecks = (state = initialState, action) => {
             }
             // console.log(targetRoomIndex, selectedCardIndex)
 
-            
-            
             [newDungeon[targetRoomIndex], newDungeon[selectedCardIndex]] = [newDungeon[selectedCardIndex], newDungeon[targetRoomIndex]]
             console.log(newDungeon)
 
@@ -415,6 +414,47 @@ const cardDecks = (state = initialState, action) => {
             return {
                 ...state,
                 heroesInTown: [],
+            }
+        case NEXT_ROUND: // to remove cards that have 0 durability & add 1 card to player hand for ever 2 rooms destroyed
+
+            let newPlayerDungeon = []
+            let numRoomsDestroyed = 0
+
+            state.playerDungeon.forEach(roomArr => {
+                let tempArr = roomArr
+                if(tempArr[0].durability === 0){
+                    if(tempArr.length > 1){
+                        state.discardPile.push(tempArr.splice(0, 1))
+                        newPlayerDungeon.push(tempArr)
+                        numRoomsDestroyed += 1
+                    }
+                    else{
+                        newPlayerDungeon.push([dungeonBack])
+                        numRoomsDestroyed += 1
+                    }
+                }
+                else{
+                    newPlayerDungeon.push(tempArr)
+                }
+            })
+
+            let cardsToDraw = []
+
+            if(numRoomsDestroyed === 6){
+                cardsToDraw.push(state.roomDeck.slice(-3)) // three cards are added
+            }
+            else if(numRoomsDestroyed >=4 ){
+                cardsToDraw.push(state.roomDeck.slice(-2)) // two cards are added
+            }
+            else if(numRoomsDestroyed >= 2){
+                cardsToDraw.push(state.roomDeck.slice(-1)) // one card is added
+            }
+
+            return {
+                ...state,
+                playerDungeon: newPlayerDungeon,
+                // roomDeck: state.roomDeck.slice(0, -1),
+                // playerRooms: state.playerRooms.concat(state.roomDeck.slice(-1))
             }
         default:
             return state
