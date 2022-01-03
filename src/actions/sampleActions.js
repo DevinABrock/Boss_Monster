@@ -47,9 +47,10 @@ export const resetGame = () => {
         type: RESET_GAME,
     }
 }
-export const nextRound = () => {
+export const nextRound = (playerDungeon) => {
     return {
         type: NEXT_ROUND,
+        playerDungeon
     }
 }
 export const updatePlayerTreasure = (playerDungeon) => {

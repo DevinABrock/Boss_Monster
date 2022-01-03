@@ -28,6 +28,7 @@ function Info() {
     const heroHealth = useSelector(state => state.heroStats.heroHealth)
     const useButtonSwapping = useSelector(state => state.playerStats.useButtonSwapping)
     const swapRoomsMode = useSelector(state => state.playerStats.swapRoomsMode)
+    const discardPile = useSelector(state => state.cardDecks.discardPile)
 
     const selectedCard = useSelector(state => state.misc.card)
     const selectedCardClass = useSelector(state => state.misc.className)
@@ -36,7 +37,8 @@ function Info() {
     const [cardCount, setCardCount] = useState(0)
     const [firstTimeInMaze, setFirstTimeInMaze] = useState(true)
     const [count, setCount] = useState(2) // count used to only damage room once per hero (when Minotaur's Maze is in play)
-    const [destroyedRoomsCount, setDestroyedRoomsCount] = useState([])
+
+    console.log("discardPile", discardPile);
 
     useEffect(() => {
         dispatch(updatePlayerTreasure(playerDungeon))
@@ -107,7 +109,7 @@ function Info() {
         }
         else if (gamePhase === 6) {
             if (!heroesAtStartOfDungeon.length) {
-                dispatch(nextRound())
+                dispatch(nextRound(playerDungeon))
             }
             else {
                 dispatch(setHeroStartOfDungeon(playerDungeon, heroesAtStartOfDungeon))
@@ -117,7 +119,7 @@ function Info() {
         else if (gamePhase === 7) {
             // if adventure and no heroes in dungeon
             if (heroesAtStartOfDungeon.length === 0) {
-                dispatch(nextRound())
+                dispatch(nextRound(playerDungeon))
             }
             // if heroes inside dungeon
             else {
@@ -182,7 +184,7 @@ function Info() {
                         console.log('hero damage to boss', remainingHealth);
                         if(heroesAtStartOfDungeon.length === 1) {
                             dispatch(heroSurvived(true, playerDungeon, heroesAtStartOfDungeon))
-                            dispatch(nextRound())
+                            dispatch(nextRound(playerDungeon))
                         }
                         else{
                             dispatch(heroSurvived(false, playerDungeon, heroesAtStartOfDungeon))
@@ -209,7 +211,7 @@ function Info() {
                         if(heroesAtStartOfDungeon.length === 1) {
                             dispatch(heroKilled(true, playerDungeon, heroesAtStartOfDungeon))
                             message += `The room deals ${damage} damage to the Hero. The Hero was slain in your dungeon. Another soul has been added to your collection. `
-                            dispatch(nextRound())
+                            dispatch(nextRound(playerDungeon))
                         }
                         else{
                             dispatch(heroKilled(false, playerDungeon, heroesAtStartOfDungeon))

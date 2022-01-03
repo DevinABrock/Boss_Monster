@@ -419,17 +419,17 @@ const cardDecks = (state = initialState, action) => {
 
             let newPlayerDungeon = []
             let numRoomsDestroyed = 0
+            let newDiscardPile = []
 
             state.playerDungeon.forEach(roomArr => {
                 let tempArr = roomArr
                 if(tempArr[0].durability === 0){
                     if(tempArr.length > 1){
-                        state.discardPile.push(tempArr.splice(0, 1))
+                        newDiscardPile.push(tempArr.splice(0, 1))
                         newPlayerDungeon.push(tempArr)
                         numRoomsDestroyed += 1
                     }
                     else{
-                        newPlayerDungeon.push([dungeonBack])
                         numRoomsDestroyed += 1
                     }
                 }
@@ -438,24 +438,44 @@ const cardDecks = (state = initialState, action) => {
                 }
             })
 
+            for(let i = newPlayerDungeon.length; i < 6; i++){
+                newPlayerDungeon.push([dungeonBack])
+            }
+
             let cardsToDraw = []
+            let newRoomDeck = state.roomDeck
 
             if(numRoomsDestroyed === 6){
-                cardsToDraw.push(state.roomDeck.slice(-3)) // three cards are added
+                cardsToDraw.push(newRoomDeck.splice(-3)) // three cards are added
+
             }
-            else if(numRoomsDestroyed >=4 ){
-                cardsToDraw.push(state.roomDeck.slice(-2)) // two cards are added
+            else if(numRoomsDestroyed >= 4){
+                cardsToDraw.push(newRoomDeck.splice(-2)) // two cards are added
             }
             else if(numRoomsDestroyed >= 2){
-                cardsToDraw.push(state.roomDeck.slice(-1)) // one card is added
+                cardsToDraw.push(newRoomDeck.splice(-1)) // one card is added
             }
 
-            return {
-                ...state,
-                playerDungeon: newPlayerDungeon,
-                // roomDeck: state.roomDeck.slice(0, -1),
-                // playerRooms: state.playerRooms.concat(state.roomDeck.slice(-1))
+            console.log("newDiscardPile", newDiscardPile)
+            console.log("cardsToDraw", cardsToDraw)
+
+            if(numRoomsDestroyed >= 2){ // some amount of cards are drawn and added to players hand
+                return {
+                    ...state,
+                    playerDungeon: newPlayerDungeon,
+                    roomDeck: newRoomDeck,
+                    playerRooms: state.playerRooms.concat(cardsToDraw[0]),
+                    discardPile: newDiscardPile
+                }
             }
+            else { // no cards added to players hand
+                return {
+                    ...state,
+                    playerDungeon: newPlayerDungeon,
+                    discardPile: newDiscardPile
+                }
+            }
+            
         default:
             return state
     }
