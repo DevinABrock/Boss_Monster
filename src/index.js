@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {createStore} from "redux"
-import {Provider} from 'react-redux'
+import { createStore } from "redux"
+import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import BaseLayout from "./components/layout/BaseLayout"
 import reducer from "./reducers"
@@ -27,7 +27,7 @@ import Progress from './components/Progress'
 // }
 
 // const loadFromLocalStorage = () => {
-  
+
 //   // deserialize = converting string to js object
 //   const serializedState = localStorage.getItem("state")
 
@@ -46,7 +46,7 @@ import Progress from './components/Progress'
 
 
 //! to persist state uncomment code above and below and comment out this code
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()) 
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 // store.subscribe(()=>{
 
