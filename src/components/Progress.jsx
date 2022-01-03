@@ -12,7 +12,9 @@ function Progress() {
     React.useEffect(() => {
         const timer = setInterval(() => {
             setCountOfProgress((oldProgress) => {
-                if (100 == oldProgress) return navigate("/game");
+
+                if (100 == oldProgress) return navigate('/game');
+
                 return Math.min(oldProgress + Math.random() * 10, 100);
             });
         }, 150);
