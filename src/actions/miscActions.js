@@ -1,11 +1,13 @@
 
 import { SELECT_CARD, BUILDING_MODE } from "./types"
 
-export const selectCard = (cardObj, className) => {
+export const selectCard = (cardObj, className, id) => {
+    
     return {
         type: SELECT_CARD,
         card: cardObj,
-        className: className
+        className: className,
+        id: id
     }
 }
 export const buildingMode = () => {
