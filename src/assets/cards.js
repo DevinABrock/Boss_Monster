@@ -140,7 +140,7 @@ export const roomDeck = [
     dmg: 2,
     treasure: "Cleric",
     description:
-      "Once per turn, If a Hero dies in this room, choose one Room card from the discard pile and put into your hand.",
+      "Once per turn, if a Hero dies in this room, choose one Room card from the discard pile and put into your hand.",
     image: "/card-images/rooms/open-grave.svg",
   },
   {
@@ -150,7 +150,7 @@ export const roomDeck = [
     dmg: 2,
     treasure: "Cleric",
     description:
-      "Once per turn, If a Hero dies in this room, choose one Room card from the discard pile and put into your hand.",
+      "Once per turn, if a Hero dies in this room, choose one Room card from the discard pile and put into your hand.",
     image: "/card-images/rooms/open-grave.svg",
   },
   // ----- Specter's Sanctum 3 ----- //

@@ -3,14 +3,15 @@ import { DECREASE_PLAYER_HEALTH, UPDATE_PLAYER_TREASURE, RESET_GAME, HERO_KILLED
 
 const initialState = {
     username: "username",
-    health: 99,
+    health: 5,
     souls: 0,
     treasureCleric: 0,
     treasureFighter: 0,
     treasureThief: 0,
     buildActions: 99,
     useButtonSwapping: false,
-    swapRoomsMode: false
+    swapRoomsMode: false,
+    showDiscardPile: false
 }
 
 const playerStats = (state = initialState, action) => {
@@ -93,7 +94,6 @@ const playerStats = (state = initialState, action) => {
                     numRoomsDestroyed += 1
                 }
             })
-            console.log("action.playerDungeon", action.playerDungeon)
 
             if(numRoomsDestroyed === 6){
                 addedBuildActions += 3 // three build actions are added

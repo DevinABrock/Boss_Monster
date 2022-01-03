@@ -43,13 +43,13 @@ function Dungeon() {
     }
 
     const handleBuild = (e) => {
-        console.log("e.target", e.target);
-        console.log("e.target.className", e.target.className);
+        // console.log("e.target", e.target);
+        // console.log("e.target.className", e.target.className);
 
         // if the state is in swapping mode and the user clicks to swap
         if(swapRoomsMode && e.target.className==="room" && selectedCardClass==='room'){
-            console.log('swapping rooms');
-            console.log(e.target);
+            // console.log('swapping rooms');
+            // console.log(e.target);
             dispatch(swapRooms(selectedCard.id, e.target.id))
             dispatch(changeSwapRoomsMode())
             dispatch(changeUseButtonSwapping())
@@ -151,8 +151,6 @@ function Dungeon() {
         }
     }
 
-    console.log("playerDungeon", playerDungeon);
-
     return (
         <div className='dungeonBody'>
             {/* -- HERO AREA -- */}
@@ -169,7 +167,7 @@ function Dungeon() {
                     {playerDungeon.slice(0).reverse().map((roomCard, index)=>{
                             return (
                                 <div className="room2">
-                                    <Card cardObj={roomCard[0]} className="room" key={index}/>
+                                    <Card cardObj={roomCard[0]} className={roomCard.length > 1 ? "roomStack" : "room"} key={index}/>
                                     {roomCard[0].durability && <span>{roomCard[0].durability}/100</span>}
                                 </div>
                             )

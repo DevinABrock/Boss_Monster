@@ -70,33 +70,33 @@ const initialState = {
         //     "Once per turn, if a hero dies in this room, draw a Room card.",
         //     image: "/card-images/rooms/golem-factory.svg",
         // },
-        {
-            id: "R16",
-            name: "Goblin Armory",
-            subtitle: "Monster Room",
-            dmg: 1,
-            treasure: "Fighter x2",
-            description: "Monster Rooms adjacent to this room deal +1 damage.",
-            image: "/card-images/rooms/goblin-armory.svg",
-        },
-        {
-            id: "R65",
-            name: "Dragon Hatchery",
-            subtitle: "Monster Room",
-            dmg: 0,
-            treasure: "Cleric + Mage + Fighter + Thief",
-            description: "(This room contains all four treasure types.)",
-            image: "/card-images/rooms/dragon-hatchery.svg",
-        },
-        {
-            id: "R66",
-            name: "Dragon Hatchery",
-            subtitle: "Monster Room",
-            dmg: 0,
-            treasure: "Cleric + Mage + Fighter + Thief",
-            description: "(This room contains all four treasure types.)",
-            image: "/card-images/rooms/dragon-hatchery.svg",
-        },
+        // {
+        //     id: "R16",
+        //     name: "Goblin Armory",
+        //     subtitle: "Monster Room",
+        //     dmg: 1,
+        //     treasure: "Fighter x2",
+        //     description: "Monster Rooms adjacent to this room deal +1 damage.",
+        //     image: "/card-images/rooms/goblin-armory.svg",
+        // },
+        // {
+        //     id: "R65",
+        //     name: "Dragon Hatchery",
+        //     subtitle: "Monster Room",
+        //     dmg: 0,
+        //     treasure: "Cleric + Mage + Fighter + Thief",
+        //     description: "(This room contains all four treasure types.)",
+        //     image: "/card-images/rooms/dragon-hatchery.svg",
+        // },
+        // {
+        //     id: "R66",
+        //     name: "Dragon Hatchery",
+        //     subtitle: "Monster Room",
+        //     dmg: 0,
+        //     treasure: "Cleric + Mage + Fighter + Thief",
+        //     description: "(This room contains all four treasure types.)",
+        //     image: "/card-images/rooms/dragon-hatchery.svg",
+        // },
         // {
         //     id: "R63",
         //     name: "Construction Zone",
@@ -199,7 +199,7 @@ const cardDecks = (state = initialState, action) => {
 
     switch (action.type) {
         case SHUFFLE_ALL_DECKS:
-            console.log('shuffling deck')
+            // console.log('shuffling deck')
             return {
                 ...state,
                 bossDeck: [...action.data.bossDeck],
@@ -209,11 +209,11 @@ const cardDecks = (state = initialState, action) => {
             }
         case DEAL_HEROES_TO_TOWN:
             if (action.data.heroType === "ordinary") {
-                console.log('dealing heroes to town', action.data.number)
+                // console.log('dealing heroes to town', action.data.number)
                 let chosenHeroes = state.heroDeck.slice(-action.data.number);
                 let newHeroDeck = state.heroDeck.slice(0, - (action.data.number));
-                console.log('chosenHeroes', chosenHeroes)
-                console.log('newHeroDeck', newHeroDeck)
+                // console.log('chosenHeroes', chosenHeroes)
+                // console.log('newHeroDeck', newHeroDeck)
                 return {
                     ...state,
                     heroesInTown: [...chosenHeroes],
@@ -221,11 +221,11 @@ const cardDecks = (state = initialState, action) => {
                 }
             }
             else{
-                console.log('dealing heroes to town', action.data.number)
+                // console.log('dealing heroes to town', action.data.number)
                 let chosenHeroes = state.epicHeroDeck.slice(-action.data.number);
                 let newHeroDeck = state.epicHeroDeck.slice(0, - (action.data.number));
-                console.log('chosenHeroes', chosenHeroes)
-                console.log('newHeroDeck', newHeroDeck)
+                // console.log('chosenHeroes', chosenHeroes)
+                // console.log('newHeroDeck', newHeroDeck)
                 return {
                     ...state,
                     heroesInTown: [...chosenHeroes],
@@ -318,30 +318,30 @@ const cardDecks = (state = initialState, action) => {
             let newDungeon = [...state.playerDungeon]
             for (let index = 0; index < state.playerDungeon.length; index++) {
                 if(state.playerDungeon[index][0].id===action.targetedRoomID){
-                    console.log('target index found', index)
+                    // console.log('target index found', index)
                     targetRoomIndex=index
                 }
                 if(state.playerDungeon[index][0].id===action.selectedCardID){
-                    console.log('selected index found', index)
+                    // console.log('selected index found', index)
                     selectedCardIndex=index
                 }
             }
             // console.log(targetRoomIndex, selectedCardIndex)
 
             [newDungeon[targetRoomIndex], newDungeon[selectedCardIndex]] = [newDungeon[selectedCardIndex], newDungeon[targetRoomIndex]]
-            console.log(newDungeon)
+            // console.log(newDungeon)
 
             return {
                 ...state,
                 playerDungeon: [...newDungeon]
             }
         case BAIT_HEROES:
-            console.log("boss treasure", state.playerBoss.treasure)
+            // console.log("boss treasure", state.playerBoss.treasure)
             let bossTreasure = state.playerBoss.treasure;
             let thiefTreasure = action.data.treasureThief;
             let clericTreasure = action.data.treasureCleric;
             let fighterTreasure = action.data.treasureFighter;
-            console.log("thiefTreasure", thiefTreasure, "clericTreasure", clericTreasure, "fighterTreasure", fighterTreasure)
+            // console.log("thiefTreasure", thiefTreasure, "clericTreasure", clericTreasure, "fighterTreasure", fighterTreasure)
             // adding the boss treasure to the treasure type depending on the boss
             switch (bossTreasure) {
                 case "Thief":
@@ -356,11 +356,11 @@ const cardDecks = (state = initialState, action) => {
                 default:
                     break;
             }
-            console.log("thiefTreasure", thiefTreasure, "clericTreasure", clericTreasure, "fighterTreasure", fighterTreasure)
+            // console.log("thiefTreasure", thiefTreasure, "clericTreasure", clericTreasure, "fighterTreasure", fighterTreasure)
             // accidentally did baiting based off hero treasures instead of room treasures (not removing bc could potentially reference in future)
             let heroesToPlayerDungeon = state.heroesInTown.filter(hero => {
-                console.log(hero)
-                console.log(action.data)
+                // console.log(hero)
+                // console.log(action.data)
 
                 // if the hero is the fool he always goes to the dungeon
                 if (hero.treasure === "?") {
@@ -368,7 +368,7 @@ const cardDecks = (state = initialState, action) => {
                 }
                 // if the hero is ordinary
                 if (hero.subtitle === "Ordinary-Hero") {
-                    console.log('ordinary hero')
+                    // console.log('ordinary hero')
                     if (hero.treasure === "Thief" && thiefTreasure > 1) {
                         return true
                     }
@@ -394,7 +394,7 @@ const cardDecks = (state = initialState, action) => {
                 // if no case matches then the hero stays in town
                 return false
             })
-            console.log(heroesToPlayerDungeon)
+            // console.log(heroesToPlayerDungeon)
             return {
                 ...state,
                 heroesInTown: state.heroesInTown.filter(hero => !heroesToPlayerDungeon.includes(hero)),
@@ -422,14 +422,15 @@ const cardDecks = (state = initialState, action) => {
             let newDiscardPile = []
 
             state.playerDungeon.forEach(roomArr => {
-                let tempArr = roomArr
+                let tempArr = [...roomArr]
                 if(tempArr[0].durability === 0){
                     if(tempArr.length > 1){
-                        newDiscardPile.push(tempArr.splice(0, 1))
+                        newDiscardPile.push(tempArr.splice(0, 1)[0])
                         newPlayerDungeon.push(tempArr)
                         numRoomsDestroyed += 1
                     }
                     else{
+                        newDiscardPile.push(tempArr[0])
                         numRoomsDestroyed += 1
                     }
                 }
@@ -456,8 +457,10 @@ const cardDecks = (state = initialState, action) => {
                 cardsToDraw.push(newRoomDeck.splice(-1)) // one card is added
             }
 
-            console.log("newDiscardPile", newDiscardPile)
-            console.log("cardsToDraw", cardsToDraw)
+            // console.log("newDiscardPile", newDiscardPile)
+            // console.log("cardsToDraw", cardsToDraw)
+
+            console.log(newPlayerDungeon)
 
             if(numRoomsDestroyed >= 2){ // some amount of cards are drawn and added to players hand
                 return {

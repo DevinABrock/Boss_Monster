@@ -1,18 +1,39 @@
 import React from 'react'
 import '../css/Hand.css'
-import { roomDeck } from "../../assets/cards"
 import Card from './Card'
 import { useSelector } from 'react-redux';
 
 function Hand() {
 
     const playerRooms = useSelector(state => state.cardDecks.playerRooms)
+    const discardPile = useSelector(state => state.cardDecks.discardPile)
+    const showDiscardPile = useSelector(state => state.playerStats.showDiscardPile)
+
+    console.log(showDiscardPile);
 
     return (
-        <div className='handBody'>
-            {playerRooms && playerRooms.map((roomCard, index)=>{
-                    return <Card cardObj={roomCard} className="handCard" key={index}/>
-                })
+        <div className='handContainer'>
+            {showDiscardPile
+            ?
+            <>
+                <div className="cardDeckLabel">Discard Pile</div>
+                <div className="handBody">
+                    {discardPile.map((roomCard, index)=>{
+                            return <Card cardObj={roomCard} className="discardCard" key={index}/>
+                        })
+                    }
+                </div>
+            </>
+            :
+            <>
+                <div className="cardDeckLabel">Player Hand</div>
+                <div className="handBody">
+                    {playerRooms && playerRooms.map((roomCard, index)=>{
+                            return <Card cardObj={roomCard} className="handCard" key={index}/>
+                        })
+                    }
+                </div>
+            </>
             }
         </div>
     )

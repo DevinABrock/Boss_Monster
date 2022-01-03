@@ -42,7 +42,7 @@ function Info() {
 
     useEffect(() => {
         dispatch(updatePlayerTreasure(playerDungeon))
-        console.log('updating treasure');
+        // console.log('updating treasure');
     }, [playerDungeon])
 
     useEffect(() => {
@@ -58,7 +58,7 @@ function Info() {
     const handleChangeGamePhase = () => {
         let message = ""
         // if 1 and player has rooms in their hand
-        console.log(gamePhase, playerRooms.length);
+        // console.log(gamePhase, playerRooms.length);numRoomsDestroyed
         if (gamePhase === 1 && playerRooms.length) {
             dispatch(updatePlayerTreasure(playerDungeon))
             dispatch(nextGamePhase())
@@ -88,7 +88,7 @@ function Info() {
         }
         else if (gamePhase === 5) {
             // if build moving to bait and at least one room is built in dungeon
-            console.log(playerDungeon[0][0].id!=="D1");
+            // console.log(playerDungeon[0][0].id!=="D1");
             if(playerDungeon[0][0].id!=="D1"){
                 dispatch(baitHeroes(treasureCleric, treasureFighter, treasureThief))
                 if(buildActions > 0){ // if player still has build actions when NEXT is clicked, alert pops up
@@ -123,8 +123,7 @@ function Info() {
             }
             // if heroes inside dungeon
             else {
-                console.log("playerDungeon", playerDungeon);
-                console.log("heroRoomPosition", heroRoomPosition);
+                // console.log("heroRoomPosition", heroRoomPosition);
                 let damage = 0
                 if(playerDungeon[heroRoomPosition][0].dmg === "*"){
                     damage = roomBuffs(heroRoomPosition)
@@ -137,8 +136,8 @@ function Info() {
                     setFirstTimeInMaze(false)
                     message += "The Hero loses their way in the maze and returns to the previous room. "
                 }
-                console.log('room damage dealt to hero', damage);
-                console.log('hero health', heroHealth);
+                // console.log('room damage dealt to hero', damage);
+                // console.log('hero health', heroHealth);
                 let remainingHealth = heroHealth - damage;
                 // reduces room durability by 20 the first time a hero enters a room
                 if(firstTimeInMaze || count === 0){
@@ -148,15 +147,15 @@ function Info() {
                     }
                 }
                 else if(!firstTimeInMaze){
-                    console.log("count incremented to", count);
+                    // console.log("count incremented to", count);
                     setCount(count - 1)
                 }
                 // if hero has health after passing through the last room
                 if (heroRoomPosition === 0 && (remainingHealth > 0 || (damage === '*' && damage === 0))) {
                     // if hero kills the boss, the player dies
-                    console.log('hero fighting boss');
-                    if((heroesAtStartOfDungeon[0].subtitle === "Ordinary-Hero" && playerHealth <= 1) ||(heroesAtStartOfDungeon[0].subtitle === "Epic-Hero" && playerHealth <= 2)){
-                        console.log('hero defeats boss');
+                    // console.log('hero fighting boss');
+                    if((heroesAtStartOfDungeon[0].subtitle === "Ordinary-Hero" && playerHealth <= 1) || (heroesAtStartOfDungeon[0].subtitle === "Epic-Hero" && playerHealth <= 2)){
+                        // console.log('hero defeats boss');
                         dispatch(decreasePlayerHealth(playerHealth))
                         dispatch(playerKilled())
                     }
@@ -181,9 +180,10 @@ function Info() {
                                 message += `The room deals ${damage} damage to the Hero. The hero survives your dungeon with ${remainingHealth} HP. You sustain two wounds. `
                             }
                         }
-                        console.log('hero damage to boss', remainingHealth);
+                        // console.log('hero damage to boss', remainingHealth);
                         if(heroesAtStartOfDungeon.length === 1) {
                             dispatch(heroSurvived(true, playerDungeon, heroesAtStartOfDungeon))
+                            console.log("heroesAtStartOfDungeon.length === 1", playerDungeon);
                             dispatch(nextRound(playerDungeon))
                         }
                         else{
@@ -211,6 +211,7 @@ function Info() {
                         if(heroesAtStartOfDungeon.length === 1) {
                             dispatch(heroKilled(true, playerDungeon, heroesAtStartOfDungeon))
                             message += `The room deals ${damage} damage to the Hero. The Hero was slain in your dungeon. Another soul has been added to your collection. `
+                            console.log("before nextRound", playerDungeon);
                             dispatch(nextRound(playerDungeon))
                         }
                         else{
@@ -233,7 +234,7 @@ function Info() {
     }
 
     const renderMessageSwitch = (gamePhase) => {
-        console.log('running switch');
+        // console.log('running switch');
         switch (gamePhase) {
             case 1:
                 return <div className='messageBox'><div className='message'>Welcome to Boss Monster. Build your dungeon to lure heroes and steal their souls. You were dealt 5 Room cards and 1 Boss Card. You can build 1 room in your dungeon.</div></div>
@@ -337,7 +338,7 @@ function Info() {
     let roomStack = []
     playerDungeon.forEach(roomArr=>{
         if(roomArr[0].id === selectedCard.id){
-            roomStack = roomArr
+            roomStack = [...roomArr]
         }
     })
 
@@ -346,17 +347,17 @@ function Info() {
         // if current room is a trap room & the previous room is a Dizzygas Hallway, damage is buffed
         if(i < 5 && (playerDungeon[i][0].subtitle === "Trap Room" || playerDungeon[i][0].subtitle === "Advanced Trap Room") && playerDungeon[i + 1][0].name === "Dizzygas Hallway"){
             damageBuff += 2
-            console.log("Dizzygas Hallway");
+            // console.log("Dizzygas Hallway");
         }
         // if current room is monster room & previous room is Goblin Armory, damage is buffed
         if(i < 5 && (playerDungeon[i][0].subtitle === "Monster Room" || playerDungeon[i][0].subtitle === "Advanced Monster Room") && playerDungeon[i + 1][0].name === "Goblin Armory"){
             damageBuff += 1
-            console.log("Goblin Armory")
+            // console.log("Goblin Armory")
         }
         // if current room is monster room & next room is Goblin Armory, damage is buffed
         if(i > 0 && (playerDungeon[i][0].subtitle === "Monster Room" || playerDungeon[i][0].subtitle === "Advanced Monster Room") && playerDungeon[i - 1][0].name === "Goblin Armory"){
             damageBuff += 1
-            console.log("Goblin Armory")
+            // console.log("Goblin Armory")
         }
         else if(playerDungeon[i][0].name === "Monster's Ballroom"){
             let numberOfMonsterRooms = 0
@@ -365,10 +366,10 @@ function Info() {
                     numberOfMonsterRooms += 1
                 }
             })
-            console.log("numberOfMonsterRooms", numberOfMonsterRooms);
+            // console.log("numberOfMonsterRooms", numberOfMonsterRooms);
             damageBuff += numberOfMonsterRooms
         }
-        console.log("damageBuff", damageBuff);
+        // console.log("damageBuff", damageBuff);
         return damageBuff
     }
 
