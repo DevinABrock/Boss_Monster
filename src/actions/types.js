@@ -15,6 +15,7 @@ export const ADD_BUILD_ACTIONS = "ADD_BUILD_ACTIONS"
 
 export const BUILDING_MODE = "BUILDING_MODE"
 export const BUILD_DUNGEON = "BUILD_DUNGEON";
+export const DAMAGE_ROOM = "DAMAGE_ROOM"
 
 // type for currently selected card
 export const SELECT_CARD = "SELECT_CARD";

@@ -19,7 +19,7 @@ function Card({cardObj, className}) {
 
   return (
     <>
-      <img id={cardObj.id} src={cardObj.image} className={className} alt={cardObj.subtitle} name={cardObj.name} onClick={()=>handleCardClick()}/>
+      <img id={cardObj.id} src={cardObj.image} className={className} alt={cardObj.subtitle} name={cardObj.name} onClick={()=>handleCardClick()}/><br></br>
     </>
   )
 }

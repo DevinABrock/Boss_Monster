@@ -10,7 +10,7 @@ function Header() {
             <div className='navList'>
                 <Link className='navItem' to="dungeon-masters">Dungeon Masters</Link>
                 <Link className='navItem' to="game">How To Play</Link>
-                <Link className='navItem'to="game">Credits</Link>
+                <Link className='navItem'to="credits">Credits</Link>
             </div>
         </div>
     )
