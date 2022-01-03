@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "fnbraufo",
+    "password": "F3ymN_a_6AECeJkbFEKvIZI81xsO7tJP",
+    "database": "fnbraufo",
+    "host": "castor.db.elephantsql.com",
+    "dialect": "postgres"
+  }
+}
