@@ -2,6 +2,7 @@
 import React from 'react'
 import '../css/Header.css'
 import {Link} from 'react-router-dom';
+import '../css/mediaQueries.css'
 
 function Header() {
     return (
