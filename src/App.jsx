@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../src/components/css/front.css';
+// import './components/css/mediaQueries.css';
 // import {Link} from 'react-router-dom'
 
 
