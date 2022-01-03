@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import '../src/components/css/front.css';
 // import {Link} from 'react-router-dom'
 
 
 function App() {
-  const navigate = useNavigate();
   const [username, setUsername] = useState()
   useEffect(() => {
     localStorage.setItem('username', JSON.stringify(username));

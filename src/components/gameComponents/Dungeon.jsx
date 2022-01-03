@@ -151,6 +151,8 @@ function Dungeon() {
         }
     }
 
+    console.log("playerDungeon", playerDungeon);
+
 
     return (
         <div className='dungeonBody'>
@@ -164,8 +166,15 @@ function Dungeon() {
             {/* -- DUNGEON AREA -- */}
             <div className='dungeonDisplay'>
                 <div  className={buildingModeState ? 'roomAreaBuilding' : 'roomArea'} onClick={(e)=>handleBuild(e)}>
+                    {/* using .slice(0).reverse().map() reverses the order in which the cards are being displayed */}
                     {playerDungeon.slice(0).reverse().map((roomCard, index)=>{
-                            return <Card cardObj={roomCard[0]} className="room" key={index}/>
+                        console.log("roomCard", roomCard);
+                            return (
+                                <div className="room2">
+                                    <Card cardObj={roomCard[0]} className="room" key={index}/>
+                                    {roomCard[0].durability && <span>{roomCard[0].durability}/100</span>}
+                                </div>
+                            )
                         })
                     }
                 </div>
