@@ -6,7 +6,8 @@ function DungeonMasters() {
         <div className='dmBody'>
             {/* -- TITLE AREA -- */}
             <div className="dmBanner">
-                <img className="dmBackground" />
+                <img className="dmBackground" src='/homeBannerNoWords.png'/>
+                <img className='dmTitleImg' src="/logo.png" alt="" />
                 <div className='dmTitle'>DUNGE<img className='dmIcon' src='/favicon.ico' />N MASTERS</div>
 
                 {/* -- LEADERBOARD AREA -- */}

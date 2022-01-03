@@ -22,8 +22,13 @@
 }
 
 /* -- TITLE AREA -- */
+.dmTitleImg{
+    height: 10rem;
+    z-index: 999;
+    position: absolute;
+}
 .dmTitle{
-    margin-top: 5%;
+    padding-top: 5rem;
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -41,7 +46,7 @@
 /* -- LEADERBOARD AREA -- */
 .leaderBoardContainer{
     background-color: #6C6D73;
-    height: 60%;
+    height: 75%;
     width: 82vw;
     position: absolute;
     margin-top: 15%;
@@ -196,7 +201,7 @@
 .dmGoldBanner{
     position: absolute;
     height: 5.8rem;
-    margin-top: 14.6%;
+    margin-top: 13rem;
     margin-right: 80%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -217,18 +222,20 @@
         overflow: hidden;
         position: relative;
         display: flex;
-        justify-content: center;
-        align-items: flex-start;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
     }
     .dmBackground{
         width: 100vw;
         position: relative;
         top: 2rem;
+        display: none;
     }
     
     /* -- TITLE AREA -- */
     .dmTitle{
-        margin-top: 5%;
+        margin-top: 5rem;
         width: 100vw;
         display: flex;
         justify-content: center;
@@ -249,7 +256,7 @@
         height: 70%;
         width: 90vw;
         position: absolute;
-        margin-top: 15%;
+        margin-top: 15rem;
         border-radius: 10px;
         border-style: solid;
         border-width: 10px;
@@ -401,7 +408,7 @@
     .dmGoldBanner{
         position: absolute;
         height: 4.8rem;
-        margin-top: 13.6%;
+        margin-top: 14rem;
         margin-right: 88%;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
