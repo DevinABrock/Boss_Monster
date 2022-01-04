@@ -25,7 +25,8 @@ function App() {
     <>
       <div className="homeBody">
         <div className="homeBanner">
-          <img className="imgOne" src='/bossMonsterFinal.png' alt="" />
+        <img className="dmBackground" src='/homeBannerNoWords.png' alt="" />
+        <img className='homeLogo' src="/logo.png" alt="" />
           <form className='startButtonContainer'>
             <input className="inputUsername" placeholder="Enter Username" type="text" required value={username} onChange={(e)=>setUsername(e.target.value)} name="username"/>
             <div className='homeButton' type="submit" value="Submit" onClick={handleFormSubmit} >Start Game</div>

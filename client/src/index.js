@@ -14,6 +14,7 @@ import Front from './components/Front.jsx'
 import DungeonMasters from './components/DungeonMasters.jsx'
 import Progress from './components/Progress'
 import Credits from './components/Credits'
+import HowToPlay from './components/HowToPlay'
 
 // const saveToLocalStorage = (reduxGlobalState) => {
 
@@ -68,6 +69,7 @@ ReactDOM.render(
             <Route path="/front" element={<Front />} />
             <Route path="/progress" element={<Progress />} />
             <Route path="/credits" element={<Credits />} />
+            <Route path="/how-to-play" element={<HowToPlay />} />
           </Routes>
         </BaseLayout>
       </Router>

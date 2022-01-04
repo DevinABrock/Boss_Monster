@@ -209,7 +209,7 @@
     border-bottom-left-radius: 50px;
 }
 
-@media all and (max-width: 900px) {
+@media all and (max-width: 900px){
     .dmBody{
         height: 93.5vh;
         display: flex;
@@ -437,7 +437,7 @@
         width: 100vw;
         position: relative;
         top: 2rem;
-        display: none;
+        /* display: none; */
     }
     
     /* -- TITLE AREA -- */
