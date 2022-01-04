@@ -1,5 +1,5 @@
 
-import { DECREASE_PLAYER_HEALTH, UPDATE_PLAYER_TREASURE, RESET_GAME, HERO_KILLED, ADD_BUILD_ACTIONS, CHANGE_USE_BUTTON_SWAPPING, CHANGE_SWAP_ROOMS_MODE, ADD_USERNAME, ADD_SOUL } from "../actions/types"
+import { DECREASE_PLAYER_HEALTH, UPDATE_PLAYER_TREASURE, RESET_GAME, HERO_KILLED, ADD_BUILD_ACTIONS, CHANGE_USE_BUTTON_SWAPPING, CHANGE_SWAP_ROOMS_MODE, NEXT_ROUND, ADD_USERNAME, ADD_SOUL } from "../actions/types"
 
 const initialState = {
     username: "username",
@@ -86,6 +86,39 @@ const playerStats = (state = initialState, action) => {
             return {
                 ...state,
                 buildActions: state.buildActions + action.numberOfActions
+            }
+        case NEXT_ROUND: // to add 1 build actions for ever 2 rooms destroyed
+
+            let numRoomsDestroyed = 0
+            let addedBuildActions = 0
+
+            // playerDungeon brought in on the action
+            action.playerDungeon.forEach(roomArr => {
+                if(roomArr[0].durability === 0){
+                    numRoomsDestroyed += 1
+                }
+            })
+
+            if(numRoomsDestroyed === 6){
+                addedBuildActions += 3 // three build actions are added
+            }
+            else if(numRoomsDestroyed >= 4){
+                addedBuildActions += 2 // two build actions are added
+            }
+            else if(numRoomsDestroyed >= 2){
+                addedBuildActions += 1 // one build action is added
+            }
+
+            if(numRoomsDestroyed >= 2){ // some amount of build actions added
+                return {
+                    ...state,
+                    buildActions: state.buildActions += addedBuildActions
+                }
+            }
+            else { // no build actions added
+                return {
+                    ...state
+                }
             }
         case ADD_SOUL:
             return {

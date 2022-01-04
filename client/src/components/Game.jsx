@@ -23,7 +23,6 @@ function Game() {
     
     // this is the initialization setup to shuffle decks etc.
     useEffect(() => {
-        console.log('use effect');
         const initializeDeck = () => {
             let shuffledDecks = shuffleAllDecks();
             dispatch(shuffleAllDecksAction(shuffledDecks));

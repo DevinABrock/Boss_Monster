@@ -3,7 +3,7 @@ import '../css/Dungeon.css'
 // import { bossDeck } from "../../assets/cards"
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCard, buildingMode } from '../../actions/miscActions';
-import { buildDungeon, addBuildActions, changeUseButtonSwapping, swapRooms, changeSwapRoomsMode, dealRoomCard } from '../../actions/sampleActions';
+import { buildDungeon, addBuildActions, changeUseButtonSwapping, swapRooms, changeSwapRoomsMode, dealRoomCard, changeShowDiscardPile, drawFromDiscard } from '../../actions/sampleActions';
 import Card from './Card'
 import { cardBack } from '../../assets/cards';
 
@@ -20,6 +20,7 @@ function Dungeon() {
     const playerBoss = useSelector(state => state.cardDecks.playerBoss)
     const swapRoomsMode = useSelector(state => state.playerStats.swapRoomsMode)
     const gameRound = useSelector(state => state.gamePhase.gameRound)
+    const discardPile = useSelector(state => state.cardDecks.discardPile)
 
     const [beastMenagerieFirstTime, setBeastMenagerieFirstTime] = useState(true)
     
@@ -46,13 +47,13 @@ function Dungeon() {
     }
 
     const handleBuild = (e) => {
-        console.log("e.target", e.target);
-        console.log("e.target.className", e.target.className);
+        // console.log("e.target", e.target);
+        // console.log("e.target.className", e.target.className);
 
         // if the state is in swapping mode and the user clicks to swap
         if(swapRoomsMode && e.target.className==="room" && selectedCardClass==='room'){
-            console.log('swapping rooms');
-            console.log(e.target);
+            // console.log('swapping rooms');
+            // console.log(e.target);
             dispatch(swapRooms(selectedCard.id, e.target.id))
             dispatch(changeSwapRoomsMode())
             dispatch(changeUseButtonSwapping())
@@ -104,17 +105,39 @@ function Dungeon() {
                 }
             }
             else if(buildingModeState && e.target.id !== ""){
-                console.log("e.target.id", e.target.id);
-                passiveAbilities(selectedCard.name)
-                beastMenagerieInDungeon()
-                dispatch(buildDungeon(selectedCard, e.target.id))
-                dispatch(addBuildActions(-1)) // decreasing buildActions by 1
-                
-                // keeps players from building the same repeatedly
-                dispatch(selectCard(selectedCard, "builtRoom"))
+                let monsterCardsInDiscard = false
+                discardPile.forEach(cardObj => {
+                    if(cardObj.subtitle.includes("Monster")){
+                        monsterCardsInDiscard = true
+                    }
+                })
 
-                // turns buildingMode off after building room
-                dispatch(buildingMode())
+                if(selectedCard.name === "Monstrous Monument" && !monsterCardsInDiscard){
+                    let doNoDrawCard = window.confirm("There are currently no Monster Room cards in the discard pile. Playing this card will not activate it's ability.")
+                    if(doNoDrawCard){
+                        // passiveAbilities is not being run since player does not want to draw a card
+                        dispatch(buildDungeon(selectedCard, e.target.id))
+                        dispatch(addBuildActions(-1)) // decreasing buildActions by 1
+                        
+                        // keeps players from building the same repeatedly
+                        dispatch(selectCard(selectedCard, "builtRoom"))
+    
+                        // turns buildingMode off after building room
+                        dispatch(buildingMode())
+                    }
+                }
+                else{
+                    passiveAbilities(selectedCard.name)
+                    dispatch(buildDungeon(selectedCard, e.target.id))
+                    dispatch(addBuildActions(-1)) // decreasing buildActions by 1
+                    
+                    // keeps players from building the same repeatedly
+                    dispatch(selectCard(selectedCard, "builtRoom"))
+
+                    // turns buildingMode off after building room
+                    dispatch(buildingMode())
+                }
+
             }
         }
     }
@@ -127,11 +150,18 @@ function Dungeon() {
             case "Construction Zone":
                 dispatch(addBuildActions(1))
                 break
+                // When you build this room, you can draw a "Monster Room" card from the discard pile.
+            case "Monstrous Monument":
+                dispatch(changeShowDiscardPile("Monster Room"))
+                alert('Building the "Monstrous Monument" card allows you to select a Monster Card from the discard pile and put it in your hand. Select an appropriate card below and click the "USE" button to add it to your hand.')
+                break
             // "When you build this room, you may swap the placement of two Rooms in any one dungeon."
+                break
             case "Centipede Tunnel":
-                let userWantsToSwapRooms = window.confirm("The Centipede Tunnel allows you to swap the placement of two Rooms in any one dungeon. Click OK to confirm and swap rooms by: selecting a room by clicking, clicking the use button, then selecting the room to swap with. Click OK if you want to swap rooms or cancel if not.")
+                let userWantsToSwapRooms = window.confirm("The Centipede Tunnel allows you to swap the placement of two Rooms in your dungeon. Click OK if you want to swap rooms or cancel if not.")
                 if(userWantsToSwapRooms){
                     dispatch(changeUseButtonSwapping())
+                    alert('To swap rooms, select the first room you want to swap by clicking it. Next, click the "USE" button and then select a second room to swap them.')
                 }
                 break
             default:
@@ -154,9 +184,6 @@ function Dungeon() {
         }
     }
 
-    console.log("playerDungeon", playerDungeon);
-
-
     return (
         <div className='dungeonBody'>
             {/* -- HERO AREA -- */}
@@ -171,10 +198,9 @@ function Dungeon() {
                 <div  className={buildingModeState ? 'roomAreaBuilding' : 'roomArea'} onClick={(e)=>handleBuild(e)}>
                     {/* using .slice(0).reverse().map() reverses the order in which the cards are being displayed */}
                     {playerDungeon.slice(0).reverse().map((roomCard, index)=>{
-                        console.log("roomCard", roomCard);
                             return (
                                 <div className="room2">
-                                    <Card cardObj={roomCard[0]} className="room" key={index}/>
+                                    <Card cardObj={roomCard[0]} className={roomCard.length > 1 ? "roomStack" : "room"} key={index}/>
                                     {roomCard[0].durability && <span>{roomCard[0].durability}/100</span>}
                                 </div>
                             )

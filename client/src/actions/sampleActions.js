@@ -1,5 +1,5 @@
 
-import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, NEXT_GAME_PHASE, DECREASE_PLAYER_HEALTH, DEAL_ROOM_CARD, BAIT_HEROES, UPDATE_PLAYER_TREASURE, BUILD_DUNGEON, NEXT_ROUND, SET_HERO_START_OF_DUNGEON, MOVE_HERO_NUMBER_OF_STEPS, DAMAGE_HERO, HERO_KILLED, PLAYER_KILLED, RESET_PLAYER_CARDS, RESET_GAME, ADD_BUILD_ACTIONS, HERO_SURVIVED, CHANGE_USE_BUTTON_SWAPPING, SWAP_ROOMS, CHANGE_SWAP_ROOMS_MODE, DAMAGE_ROOM, ADD_USERNAME, ADD_SOUL } from "./types"
+import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, NEXT_GAME_PHASE, DECREASE_PLAYER_HEALTH, DEAL_ROOM_CARD, BAIT_HEROES, UPDATE_PLAYER_TREASURE, BUILD_DUNGEON, NEXT_ROUND, SET_HERO_START_OF_DUNGEON, MOVE_HERO_NUMBER_OF_STEPS, DAMAGE_HERO, HERO_KILLED, PLAYER_KILLED, RESET_PLAYER_CARDS, RESET_GAME, ADD_BUILD_ACTIONS, HERO_SURVIVED, CHANGE_USE_BUTTON_SWAPPING, SWAP_ROOMS, CHANGE_SWAP_ROOMS_MODE, DAMAGE_ROOM, DRAW_FROM_DISCARD, CHANGE_SHOW_DISCARD_PILE, ADD_USERNAME, ADD_SOUL } from "./types"
 
 // !add multiple actions to this file
 
@@ -47,9 +47,10 @@ export const resetGame = () => {
         type: RESET_GAME,
     }
 }
-export const nextRound = () => {
+export const nextRound = (playerDungeon) => {
     return {
         type: NEXT_ROUND,
+        playerDungeon
     }
 }
 export const updatePlayerTreasure = (playerDungeon) => {
@@ -135,10 +136,21 @@ export const swapRooms = (selectedCardID, targetedRoomID) => {
         targetedRoomID
     }
 }
-
 export const damageRoom = (roomID) => {
     return {
         type: DAMAGE_ROOM,
+        roomID
+    }
+}
+export const changeShowDiscardPile = (roomTypeToDraw) => {
+    return {
+        type: CHANGE_SHOW_DISCARD_PILE,
+        roomTypeToDraw
+    }
+}
+export const drawFromDiscard = (roomID) => {
+    return {
+        type: DRAW_FROM_DISCARD,
         roomID
     }
 }
