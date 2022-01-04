@@ -1,5 +1,5 @@
 
-import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES, HERO_KILLED, SET_HERO_START_OF_DUNGEON, RESET_PLAYER_CARDS, HERO_SURVIVED, SWAP_ROOMS, DAMAGE_ROOM, NEXT_ROUND, CHANGE_SHOW_DISCARD_PILE, DRAW_FROM_DISCARD } from "../actions/types"
+import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES, HERO_KILLED, SET_HERO_START_OF_DUNGEON, RESET_PLAYER_CARDS, HERO_SURVIVED, SWAP_ROOMS, DAMAGE_ROOM, NEXT_ROUND, CHANGE_SHOW_DISCARD_PILE, DRAW_FROM_DISCARD, DISCARD_CARD } from "../actions/types"
 import { dungeonBack } from "../assets/cards"
 
 const initialState = {
@@ -55,6 +55,16 @@ const initialState = {
         //     "Destroy another room in your dungeon: Deal 5 damage to a hero in this room.",
         //     image: "/card-images/rooms/boulder-ramp.svg",
         // },
+        {
+            id: "R12",
+            name: "Dracolich Lair",
+            subtitle: "Advanced Monster Room",
+            dmg: 3,
+            treasure: "Cleric",
+            description:
+            "Once per turn, you may discard two Room cards to choose one Room card from the discard pile and put it into your hand.",
+            image: "/card-images/rooms/dracolich-lair.svg",
+        },
         {
             id: "R24",
             name: "Neanderthal Cave",
@@ -121,16 +131,16 @@ const initialState = {
             "When you build this room, you may swap the placement of two Rooms in any one dungeon.",
             image: "/card-images/rooms/centipede-tunnel.svg",
         },
-        {
-            id: "R4",
-            name: "Open Grave",
-            subtitle: "Trap Room",
-            dmg: 99,
-            treasure: "Cleric",
-            description:
-            "Once per turn, if a Hero dies in this room, choose one Room card from the discard pile and put into your hand.",
-            image: "/card-images/rooms/open-grave.svg",
-        },
+        // {
+        //     id: "R4",
+        //     name: "Open Grave",
+        //     subtitle: "Trap Room",
+        //     dmg: 2,
+        //     treasure: "Cleric",
+        //     description:
+        //     "Once per turn, if a Hero dies in this room, choose one Room card from the discard pile and put into your hand.",
+        //     image: "/card-images/rooms/open-grave.svg",
+        // },
         // {
         //     id: "R22",
         //     name: "Minotaur's Maze",
@@ -536,9 +546,20 @@ const cardDecks = (state = initialState, action) => {
                 return {
                     ...state,
                     showDiscardPile: !state.showDiscardPile,
-                    roomCardFromDiscard: !state.roomCardFromDiscard,
+                    roomCardFromDiscardd: !state.roomCardFromDiscard,
                 }
             }
+        case DISCARD_CARD:
+            
+            let cardDiscarded = state.playerRooms.filter(cardObj => cardObj.id === action.roomID)
+            console.log("cardDiscarded", cardDiscarded)
+
+            return {
+                ...state,
+                playerRooms: state.playerRooms.filter(cardObj => cardObj.id !== action.roomID),
+                discardPile: state.discardPile.concat(cardDiscarded),
+            }
+
         case DRAW_FROM_DISCARD:
 
             let cardDrawn = state.discardPile.filter(cardObj => cardObj.id === action.roomID)

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import '../css/Info.css'
 import { buildingMode } from '../../actions/miscActions';
-import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, baitHeroes, nextRound, setHeroStartOfDungeon, damageHero, moveHeroNumberOfSteps, heroKilled, decreasePlayerHealth, playerKilled, resetPlayerCards, resetGame, addBuildActions, heroSurvived, changeSwapRoomsMode, damageRoom, changeShowDiscardPile, drawFromDiscard, addSoul } from '../../actions/sampleActions';
+import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, baitHeroes, nextRound, setHeroStartOfDungeon, damageHero, moveHeroNumberOfSteps, heroKilled, decreasePlayerHealth, playerKilled, resetPlayerCards, resetGame, addBuildActions, heroSurvived, changeSwapRoomsMode, damageRoom, changeShowDiscardPile, drawFromDiscard, addSoul, discardCard } from '../../actions/sampleActions';
 import { diceRoll } from '../gameLogic/diceRoll';
 
 import { shuffleAllDecks, dealInitialCards } from '../gameLogic/initializingDeck';
@@ -44,7 +44,9 @@ function Info() {
     const [tempMessage, setTempMessage] = useState("")
     const [cardCount, setCardCount] = useState(0)
     const [firstTimeInMaze, setFirstTimeInMaze] = useState(true)
-    const [count, setCount] = useState(2) // count used to only damage room once per hero (when Minotaur's Maze is in play)
+    const [countMinotaursMaze, setCountMinotaursMaze] = useState(2) // count used to only damage room once per hero (when Minotaur's Maze is in play)
+    const [countDracolichLair, setCountDracolichLair] = useState(2) // count used to count the number of cards that need to be discarded when using the Dracolich Lair ability 
+    const [usingDracolichLair, setUsingDracolichLair] = useState(false) // count used to only damage room once per hero (when Minotaur's Maze is in play)
 
     const [openGrave, setOpenGrave] = useState(true)
     const [dracolichLair, setDracolichLair] = useState(true)
@@ -67,6 +69,12 @@ function Info() {
         // console.log('updating treasure');
     }, [playerDungeon])
 
+    // useEffect(() => {
+    //     // resets the values used for the Dracolich Lair ability
+    //     setCountDracolichLair(2)
+    //     setUsingDracolichLair(false)
+    // }, [discardPile])
+
     useEffect(() => {
         setCardCount(0)
     }, [selectedCard])
@@ -74,7 +82,7 @@ function Info() {
     useEffect(() => {
         // resets value to true so next hero will also be sent back to previous room one time
         setFirstTimeInMaze(true)
-        setCount(2)
+        setCountMinotaursMaze(2)
     }, [heroesAtStartOfDungeon])
 
 console.log("discardPile", discardPile);
@@ -203,15 +211,15 @@ console.log("discardPile", discardPile);
                 // console.log('hero health', heroHealth);
                 let remainingHealth = heroHealth - damage;
                 // reduces room durability by 20 the first time a hero enters a room
-                if(firstTimeInMaze || count === 0){
+                if(firstTimeInMaze || countMinotaursMaze === 0){
                     if(playerDungeon[heroRoomPosition][0].durability > 0){
                         dispatch(damageRoom(playerDungeon[heroRoomPosition][0].id))
                         console.log("room damaged");
                     }
                 }
                 else if(!firstTimeInMaze){
-                    // console.log("count incremented to", count);
-                    setCount(count - 1)
+                    setCountMinotaursMaze(countMinotaursMaze - 1)
+                    console.log("countMinotaursMaze incremented to", countMinotaursMaze);
                 }
                 // if hero has health after passing through the last room
                 if (heroRoomPosition === 0 && (remainingHealth > 0 || (damage === '*' && damage === 0))) {
@@ -454,9 +462,14 @@ console.log("discardPile", discardPile);
         return damageBuff
     }
 
+    console.log("selectedCard", selectedCard);
+    console.log("selectedCardClass", selectedCardClass);
+
+    console.log("");
+
     const handleUseButtonClick = () => {
         // if in swapping rooms mode and the selected card is in the dungeon
-        if(useButtonSwapping && selectedCardClass==="room"){
+        if(useButtonSwapping && selectedCardClass === "room"){
             // console.log("swapping is allowed");
             dispatch(changeSwapRoomsMode())
         }
@@ -464,7 +477,22 @@ console.log("discardPile", discardPile);
         else if(useButtonSwapping && selectedCardClass != "room"){
             alert("You must select a room from your dungeon first.");
         }
-        
+        if(selectedCard.name === "Dracolich Lair" && (selectedCardClass === "roomStack" || selectedCardClass === "builtRoom")){
+            setUsingDracolichLair(true)
+            alert('You must discard two cards from your hand. Select one card and click the "USE" button, then select the second card and click the "USE" button.')
+        }
+        if(usingDracolichLair && selectedCardClass === "handCard"){
+            if(countDracolichLair > 0){
+                dispatch(discardCard(selectedCard.id))
+                setCountDracolichLair(countDracolichLair - 1)
+                console.log("countDracolichLair", countDracolichLair);
+                if(countDracolichLair === 1){
+                    setCountDracolichLair(2)
+                    setUsingDracolichLair(false)
+                    dispatch(changeShowDiscardPile("Room Card"))
+                }
+            }
+        }
         if(showDiscardPile){
             if(roomCardFromDiscard && selectedCard.subtitle.includes("Room")){
                 dispatch(drawFromDiscard(selectedCard.id))
