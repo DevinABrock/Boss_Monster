@@ -4,6 +4,7 @@ import '../src/components/css/front.css';
 // import {Link} from 'react-router-dom'
 import { addUsername } from './actions/sampleActions';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
   useEffect(() => {
     localStorage.setItem('username', JSON.stringify(username));
   }, [username])
+  let navigate = useNavigate();
 
   const handleFormSubmit = () => {
     console.log('running handleFormSubmit');
