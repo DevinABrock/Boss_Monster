@@ -4,8 +4,6 @@ SJD -
 
 
 
-
-
 Bugs to work out: 
     When hero is going to be lured into the dungeon and you have build actions available but you click Cancel instead of OK to move to the next phase, the hero is lured but the bait phase hasn't started yet. 
 
