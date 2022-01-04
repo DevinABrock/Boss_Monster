@@ -491,7 +491,7 @@ console.log("discardPile", discardPile);
 
     const handleUseButtonClick = () => {
         // if in swapping rooms mode and the selected card is in the dungeon
-        if (selectedCardClass === "room" ||  selectedCardClass === "discardCard" || selectedCardClass === "builtRoom" || (usingDracolichLair && selectedCardClass === "handCard")) {
+        if (selectedCardClass === "room" || selectedCardClass === "roomStack" ||  selectedCardClass === "discardCard" || selectedCardClass === "builtRoom" || (usingDracolichLair && selectedCardClass === "handCard")) {
             if (useButtonSwapping) {
                 // console.log("swapping is allowed");
                 dispatch(changeSwapRoomsMode())
@@ -500,7 +500,7 @@ console.log("discardPile", discardPile);
             else if (useButtonSwapping && selectedCardClass != "room") {
                 alert("You must select a room from your dungeon first.");
             }
-            if (selectedCard.name === "Dracolich Lair" && dracolichLair && (selectedCardClass === "roomStack" || selectedCardClass === "builtRoom")) {
+            if (selectedCard.name === "Dracolich Lair" && dracolichLair) {
                 setUsingDracolichLair(true)
                 alert('You must discard two cards from your hand. Select one card and click the "USE" button, then select the second card and click the "USE" button.')
             }
@@ -509,6 +509,7 @@ console.log("discardPile", discardPile);
                     dispatch(discardCard(selectedCard.id))
                     setCountDracolichLair(countDracolichLair - 1)
                     console.log("countDracolichLair", countDracolichLair);
+                    // countDracolichLair is delayed in decrementing so if-statement below checks when countDracolich lair === 1
                     if (countDracolichLair === 1) {
                         setCountDracolichLair(2)
                         setUsingDracolichLair(false)
