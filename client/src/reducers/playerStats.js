@@ -1,5 +1,5 @@
 
-import { DECREASE_PLAYER_HEALTH, UPDATE_PLAYER_TREASURE, RESET_GAME, HERO_KILLED, ADD_BUILD_ACTIONS, CHANGE_USE_BUTTON_SWAPPING, CHANGE_SWAP_ROOMS_MODE, NEXT_ROUND, ADD_USERNAME, ADD_SOUL } from "../actions/types"
+import { DECREASE_PLAYER_HEALTH, UPDATE_PLAYER_TREASURE, RESET_GAME, HERO_KILLED, ADD_BUILD_ACTIONS, CHANGE_USE_BUTTON_SWAPPING, CHANGE_SWAP_ROOMS_MODE, NEXT_ROUND, ADD_USERNAME, ADD_SOUL, ABLE_TO_DESTROY } from "../actions/types"
 
 const initialState = {
     username: "username",
@@ -10,7 +10,8 @@ const initialState = {
     treasureThief: 0,
     buildActions: 99,
     useButtonSwapping: false,
-    swapRoomsMode: false
+    swapRoomsMode: false,
+    destroyMode: false,
 }
 
 const playerStats = (state = initialState, action) => {
@@ -20,6 +21,11 @@ const playerStats = (state = initialState, action) => {
             return {
                 ...state,
                 username: action.username
+            }
+        case ABLE_TO_DESTROY:
+            return {
+                ...state,
+                destroyMode: !state.destroyMode
             }
         case DECREASE_PLAYER_HEALTH:
             return {

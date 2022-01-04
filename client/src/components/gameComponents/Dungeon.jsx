@@ -21,6 +21,7 @@ function Dungeon() {
     const swapRoomsMode = useSelector(state => state.playerStats.swapRoomsMode)
     const gameRound = useSelector(state => state.gamePhase.gameRound)
     const discardPile = useSelector(state => state.cardDecks.discardPile)
+    const destroyMode = useSelector(state => state.playerStats.destroyMode)
 
     const [beastMenagerieFirstTime, setBeastMenagerieFirstTime] = useState(true)
     
