@@ -2,11 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import '../css/Info.css'
 import { buildingMode } from '../../actions/miscActions';
-<<<<<<< HEAD:src/components/gameComponents/Info.jsx
-import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, baitHeroes, nextRound, setHeroStartOfDungeon, damageHero, moveHeroNumberOfSteps, heroKilled, decreasePlayerHealth, playerKilled, resetPlayerCards, resetGame, addBuildActions, heroSurvived, changeSwapRoomsMode, damageRoom, changeShowDiscardPile, drawFromDiscard } from '../../actions/sampleActions';
-=======
-import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, baitHeroes, nextRound, setHeroStartOfDungeon, damageHero, moveHeroNumberOfSteps, heroKilled, decreasePlayerHealth, playerKilled, resetPlayerCards, resetGame, addBuildActions, heroSurvived, changeSwapRoomsMode, damageRoom, addSoul } from '../../actions/sampleActions';
->>>>>>> 4210fe66e50b98e0ecd5905d8b1e12af7a02b97f:client/src/components/gameComponents/Info.jsx
+import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, baitHeroes, nextRound, setHeroStartOfDungeon, damageHero, moveHeroNumberOfSteps, heroKilled, decreasePlayerHealth, playerKilled, resetPlayerCards, resetGame, addBuildActions, heroSurvived, changeSwapRoomsMode, damageRoom, changeShowDiscardPile, drawFromDiscard, addSoul } from '../../actions/sampleActions';
 import { diceRoll } from '../gameLogic/diceRoll';
 
 import { shuffleAllDecks, dealInitialCards } from '../gameLogic/initializingDeck';
@@ -33,15 +29,12 @@ function Info() {
     const heroHealth = useSelector(state => state.heroStats.heroHealth)
     const useButtonSwapping = useSelector(state => state.playerStats.useButtonSwapping)
     const swapRoomsMode = useSelector(state => state.playerStats.swapRoomsMode)
-<<<<<<< HEAD:src/components/gameComponents/Info.jsx
     const discardPile = useSelector(state => state.cardDecks.discardPile)
     const showDiscardPile = useSelector(state => state.cardDecks.showDiscardPile)
     const monsterCardFromDiscard = useSelector(state => state.cardDecks.monsterCardFromDiscard)
     const trapCardFromDiscard = useSelector(state => state.cardDecks.trapCardFromDiscard)
     const roomCardFromDiscard = useSelector(state => state.cardDecks.roomCardFromDiscard)
-=======
     const username = useSelector(state => state.playerStats.username)
->>>>>>> 4210fe66e50b98e0ecd5905d8b1e12af7a02b97f:client/src/components/gameComponents/Info.jsx
 
     const selectedCard = useSelector(state => state.misc.card)
     const selectedCardClass = useSelector(state => state.misc.className)
@@ -53,9 +46,6 @@ function Info() {
     const [firstTimeInMaze, setFirstTimeInMaze] = useState(true)
     const [count, setCount] = useState(2) // count used to only damage room once per hero (when Minotaur's Maze is in play)
 
-<<<<<<< HEAD:src/components/gameComponents/Info.jsx
-    console.log("discardPile", discardPile);
-=======
     const [openGrave, setOpenGrave] = useState(true)
     const [dracolichLair, setDracolichLair] = useState(true)
     const [vampireBordello, setVampireBordello] = useState(true)
@@ -71,7 +61,6 @@ function Info() {
         setVampireBordello(true)
         setBoulderRamp(true)
     }, [gameRound])
->>>>>>> 4210fe66e50b98e0ecd5905d8b1e12af7a02b97f:client/src/components/gameComponents/Info.jsx
 
     useEffect(() => {
         dispatch(updatePlayerTreasure(playerDungeon))
@@ -158,17 +147,14 @@ function Info() {
         }
         else if (gamePhase === 6) {
             if (!heroesAtStartOfDungeon.length) {
-<<<<<<< HEAD:src/components/gameComponents/Info.jsx
-                dispatch(nextRound(playerDungeon))
-=======
+
                 if(gameRound===14){
                     setWin('W')
                     dispatch(playerKilled())
                 }
                 else{
-                    dispatch(nextRound())
+                    dispatch(nextRound(playerDungeon))
                 }
->>>>>>> 4210fe66e50b98e0ecd5905d8b1e12af7a02b97f:client/src/components/gameComponents/Info.jsx
             }
             else {
                 dispatch(setHeroStartOfDungeon(playerDungeon, heroesAtStartOfDungeon))
@@ -178,17 +164,13 @@ function Info() {
         else if (gamePhase === 7) {
             // if adventure and no heroes in dungeon
             if (heroesAtStartOfDungeon.length === 0) {
-<<<<<<< HEAD:src/components/gameComponents/Info.jsx
-                dispatch(nextRound(playerDungeon))
-=======
                 if(gameRound===14){
                     setWin('W')
                     dispatch(playerKilled())
                 }
                 else{
-                    dispatch(nextRound())
+                    dispatch(nextRound(playerDungeon))
                 }
->>>>>>> 4210fe66e50b98e0ecd5905d8b1e12af7a02b97f:client/src/components/gameComponents/Info.jsx
             }
             // if heroes inside dungeon
             else {
@@ -252,18 +234,13 @@ function Info() {
                         // console.log('hero damage to boss', remainingHealth);
                         if(heroesAtStartOfDungeon.length === 1) {
                             dispatch(heroSurvived(true, playerDungeon, heroesAtStartOfDungeon))
-<<<<<<< HEAD:src/components/gameComponents/Info.jsx
-                            console.log("heroesAtStartOfDungeon.length === 1", playerDungeon);
-                            dispatch(nextRound(playerDungeon))
-=======
                             if(gameRound===14){
                                 setWin('W')
                                 dispatch(playerKilled())
                             }
                             else{
-                                dispatch(nextRound())
+                                dispatch(nextRound(playerDungeon))
                             }
->>>>>>> 4210fe66e50b98e0ecd5905d8b1e12af7a02b97f:client/src/components/gameComponents/Info.jsx
                         }
                         else{
                             dispatch(heroSurvived(false, playerDungeon, heroesAtStartOfDungeon))
@@ -290,20 +267,15 @@ function Info() {
                         if(heroesAtStartOfDungeon.length === 1) {
                             dispatch(heroKilled(true, playerDungeon, heroesAtStartOfDungeon))
                             message += `The room deals ${damage} damage to the Hero. The Hero was slain in your dungeon. Another soul has been added to your collection. `
-<<<<<<< HEAD:src/components/gameComponents/Info.jsx
-                            console.log("before nextRound", playerDungeon);
-                            dispatch(nextRound(playerDungeon))
-=======
                             if(gameRound===14){
                                 setWin('W')
                                 dispatch(playerKilled())
                             }
                             else{
                                 heroDiedCheck()
-                                dispatch(nextRound())
+                                dispatch(nextRound(playerDungeon))
                             }
                             
->>>>>>> 4210fe66e50b98e0ecd5905d8b1e12af7a02b97f:client/src/components/gameComponents/Info.jsx
                         }
                         else{
                             heroDiedCheck()
@@ -480,7 +452,6 @@ function Info() {
         else if(useButtonSwapping && selectedCardClass != "room"){
             alert("You must select a room from your dungeon first.");
         }
-<<<<<<< HEAD:src/components/gameComponents/Info.jsx
         
         if(showDiscardPile){
             if(roomCardFromDiscard && selectedCard.subtitle.includes("Room")){
@@ -508,7 +479,7 @@ function Info() {
         }
         if(trapCardFromDiscard){
             dispatch(changeShowDiscardPile("Trap Room"))
-=======
+        }
         if(gamePhase===10){
             const saveScore = async() => {
                 let userInfo = {
@@ -527,7 +498,6 @@ function Info() {
             }
             saveScore();
             // Navigate('/dungeon-masters')
->>>>>>> 4210fe66e50b98e0ecd5905d8b1e12af7a02b97f:client/src/components/gameComponents/Info.jsx
         }
     }
 
@@ -592,12 +562,8 @@ function Info() {
                 <div className='phaseInfo'>Phase: {renderGamePhaseSwitch(gamePhase)} {gamePhase == 7 ? `Hero HP: ${heroHealth}` : null}</div>
                 <div className='buttonList'>
                     {/* <div className='button'>STORE</div> */}
-<<<<<<< HEAD:src/components/gameComponents/Info.jsx
                     {showDiscardPile && <div className='button' onClick={handleCancelClick}>CANCEL</div>}
-                    <div onClick={handleUseButtonClick} className={swapRoomsMode ? 'buttonBuild' : 'button'}>USE</div>
-=======
                     <div onClick={handleUseButtonClick} className={swapRoomsMode ? 'buttonBuild' : 'button'}>{gamePhase===10?"SAVE":"USE"}</div>
->>>>>>> 4210fe66e50b98e0ecd5905d8b1e12af7a02b97f:client/src/components/gameComponents/Info.jsx
                     <div className={buildingModeState ? 'buttonBuild' : 'button'} onClick={()=>handleBuildButtonClick(selectedCardClass)}>BUILD</div>
                     <div onClick={()=>handleNextButtonClick()} className='button'>NEXT</div>
                 </div>
