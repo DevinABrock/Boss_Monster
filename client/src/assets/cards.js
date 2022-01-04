@@ -698,16 +698,16 @@ export const roomDeck = [
     image: "/card-images/rooms/recycling-center.svg",
   },
   // ----- The Crushinator 2 ----- //
-  {
-    id: "R59",
-    name: "The Crushinator",
-    subtitle: "Advanced Trap Room",
-    dmg: 2,
-    treasure: "Thief",
-    description:
-      "Destroy another room in your dungeon: Until end of turn, your Rooms have +2 damage. Revised: Once per turn, you may destroy another Room in your dungeon to give all your Rooms +2 until end of turn.",
-    image: "/card-images/rooms/the-crushinator.svg",
-  },
+  // {
+  //   id: "R59",
+  //   name: "The Crushinator",
+  //   subtitle: "Advanced Trap Room",
+  //   dmg: 2,
+  //   treasure: "Thief",
+  //   description:
+  //     "Destroy another room in your dungeon: Until end of turn, your Rooms have +2 damage. Revised: Once per turn, you may destroy another Room in your dungeon to give all your Rooms +2 until end of turn.",
+  //   image: "/card-images/rooms/the-crushinator.svg",
+  // },
   // {
   //   id: "R60",
   //   name: "The Crushinator",
