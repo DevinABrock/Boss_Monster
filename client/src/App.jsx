@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import '../src/components/css/front.css';
+// import './components/css/mediaQueries.css';
 // import {Link} from 'react-router-dom'
 import { addUsername } from './actions/sampleActions';
 import { useDispatch } from 'react-redux';
 
 
 function App() {
-  const navigate = useNavigate();
   const [username, setUsername] = useState()
   const dispatch = useDispatch()
   useEffect(() => {

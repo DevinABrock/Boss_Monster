@@ -55,7 +55,7 @@ body{
     position: absolute;
     background: none;
     background-color: none;
-    padding-top: 475px;
+    padding-top: 570px;
     padding-right: 25px;
 }
 
@@ -87,4 +87,161 @@ body{
     background-color: #0E0E0E;
     height: 35%;
     width: 100%;
+}
+
+/* MEDIA QUERIES */
+
+@media only screen and (min-width: 400px) {
+    .startButtonContainer{
+        display: block;
+        position: absolute;
+        background: none;
+        background-color: none;
+        padding-top: 240px;
+        padding-right: 25px;
+    }
+    .inputUsername{
+        display: flex;
+        flex-direction: row;
+        height: 40px;
+        width: auto;
+        text-align: center;
+        outline: none;
+        border-radius: 50px;
+    }
+    
+    .homeButton{
+        display: flex;
+        flex-direction: row;
+        cursor: pointer;
+        color: white;
+        font-size: 20px;
+        text-decoration: none;
+        padding-top: 30px;
+        padding-left: 70px;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .startButtonContainer{
+        display: block;
+        position: absolute;
+        background: none;
+        background-color: none;
+        padding-top: 300px;
+        padding-right: 25px;
+    }
+    .inputUsername{
+        display: flex;
+        flex-direction: row;
+        height: 40px;
+        width: auto;
+        text-align: center;
+        outline: none;
+        border-radius: 50px;
+    }
+    
+    .homeButton{
+        display: flex;
+        flex-direction: row;
+        cursor: pointer;
+        color: white;
+        font-size: 20px;
+        text-decoration: none;
+        padding-top: 30px;
+        padding-left: 70px;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .startButtonContainer{
+        display: block;
+        position: absolute;
+        background: none;
+        background-color: none;
+        padding-top: 375px;
+        padding-right: 25px;
+    }
+    .inputUsername{
+        display: flex;
+        flex-direction: row;
+        height: 40px;
+        width: auto;
+        text-align: center;
+        outline: none;
+        border-radius: 50px;
+    }
+    
+    .homeButton{
+        display: flex;
+        flex-direction: row;
+        cursor: pointer;
+        color: white;
+        font-size: 20px;
+        text-decoration: none;
+        padding-top: 30px;
+        padding-left: 70px;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .startButtonContainer{
+        display: block;
+        position: absolute;
+        background: none;
+        background-color: none;
+        padding-top: 470px;
+        padding-right: 25px;
+    }
+    .inputUsername{
+        display: flex;
+        flex-direction: row;
+        height: 50px;
+        width: auto;
+        text-align: center;
+        outline: none;
+        border-radius: 50px;
+    }
+    
+    .homeButton{
+        display: flex;
+        flex-direction: row;
+        cursor: pointer;
+        color: white;
+        font-size: 20px;
+        text-decoration: none;
+        padding-top: 50px;
+        padding-left: 67px;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    .startButtonContainer{
+        display: block;
+        position: absolute;
+        background: none;
+        background-color: none;
+        padding-top: 570px;
+        padding-right: 25px;
+    }
+    .inputUsername{
+        display: flex;
+        flex-direction: row;
+        height: 50px;
+        width: auto;
+        text-align: center;
+        outline: none;
+        border-radius: 50px;
+    }
+    
+    .homeButton{
+        display: flex;
+        flex-direction: row;
+        cursor: pointer;
+        color: white;
+        font-size: 20px;
+        text-decoration: none;
+        padding-top: 50px;
+        padding-left: 67px;
+    }
 }
