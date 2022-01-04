@@ -1,5 +1,5 @@
 
-SJD - Discard pile is being reset by something. Fix that and then continue working on Open Grave functionality.
+SJD - Can you use Dracolich Lair multiple times per turn???
 
 
 

@@ -4,6 +4,7 @@ import '../css/Info.css'
 import { buildingMode, selectCard } from '../../actions/miscActions';
 import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, baitHeroes, nextRound, setHeroStartOfDungeon, damageHero, moveHeroNumberOfSteps, heroKilled, decreasePlayerHealth, playerKilled, resetPlayerCards, resetGame, addBuildActions, heroSurvived, changeSwapRoomsMode, damageRoom, changeShowDiscardPile, drawFromDiscard, addSoul, ableToDestroy, destroyRoom, discardCard } from '../../actions/sampleActions';
 import { diceRoll } from '../gameLogic/diceRoll';
+import { blankCard } from '../../assets/cards';
 
 import { shuffleAllDecks, dealInitialCards } from '../gameLogic/initializingDeck';
 import { shuffleAllDecksAction, dealInitialCardsAction } from '../../actions/sampleActions';
@@ -57,7 +58,6 @@ function Info() {
     const [bottomlessPit, setBottomlessPit] = useState(false)
     const [boulderRamp, setBoulderRamp] = useState(false)
 
-
     useEffect(() => {
         // used to reset the once per turn values
         setGolemFactory(true)
@@ -86,6 +86,22 @@ function Info() {
         setFirstTimeInMaze(true)
         setCountMinotaursMaze(2)
     }, [heroesAtStartOfDungeon])
+
+    useEffect(() => {
+        
+        let dungeonContainersSelectedCard = false
+
+        playerDungeon.forEach(array => {
+            if(array[0] === selectedCard){
+                dungeonContainersSelectedCard = true
+            }
+        })
+
+        if(!dungeonContainersSelectedCard){
+            dispatch(selectCard(blankCard, "cardDisplay", blankCard.id))
+        }
+
+    }, [playerDungeon])
 
 console.log("discardPile", discardPile);
 
@@ -464,19 +480,17 @@ console.log("discardPile", discardPile);
         return damageBuff
     }
 
-    console.log("selectedCard", selectedCard);
-    console.log("selectedCardClass", selectedCardClass);
-
-    console.log("");
+    console.log("selectedCard", selectedCard)
+    console.log("selectedCardClass", selectedCardClass)
 
     const handleUseButtonClick = () => {
         // if in swapping rooms mode and the selected card is in the dungeon
-        if (selectedCardClass === "room") {
+        if (selectedCardClass === "room" ||  selectedCardClass === "discardCard" || selectedCardClass === "builtRoom" || (usingDracolichLair && selectedCardClass === "handCard")) {
             if (useButtonSwapping) {
                 // console.log("swapping is allowed");
                 dispatch(changeSwapRoomsMode())
             }
-            if(selectedCard.name === "Dracolich Lair" && (selectedCardClass === "roomStack" || selectedCardClass === "builtRoom")){
+            if(selectedCard.name === "Dracolich Lair" && dracolichLair && (selectedCardClass === "roomStack" || selectedCardClass === "builtRoom")){
                 setUsingDracolichLair(true)
                 alert('You must discard two cards from your hand. Select one card and click the "USE" button, then select the second card and click the "USE" button.')
             }
@@ -488,6 +502,7 @@ console.log("discardPile", discardPile);
                     if(countDracolichLair === 1){
                         setCountDracolichLair(2)
                         setUsingDracolichLair(false)
+                        setDracolichLair(false)
                         dispatch(changeShowDiscardPile("Room Card"))
                     }
                 }
@@ -558,6 +573,16 @@ console.log("discardPile", discardPile);
                     setBoulderRamp(false)
                 }
             }
+            if(selectedCard.name === "Dark Altar"){
+                let roomIndex = null;
+                playerDungeon.forEach((array, index) => {
+                    if (array[0] === selectedCard) {
+                        roomIndex = index;
+                    }
+                })
+                dispatch(destroyRoom(roomIndex))
+                dispatch(changeShowDiscardPile())
+            }
         }
         else{
             setTempMessage('You can only use effects from rooms in your dungeon.')
@@ -606,6 +631,9 @@ console.log("discardPile", discardPile);
         }
         if (trapCardFromDiscard) {
             dispatch(changeShowDiscardPile("Trap Room"))
+        }
+        if (roomCardFromDiscard) {
+            dispatch(changeShowDiscardPile())
         }
         if (gamePhase === 10) {
             const saveScore = async () => {
