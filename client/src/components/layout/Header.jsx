@@ -10,7 +10,7 @@ function Header() {
             <Link className='navTitle' to="/">B<img className='navIcon' src='/favicon.ico' />SS MONSTER</Link>
             <div className='navList'>
                 <Link className='navItem' to="dungeon-masters">Dungeon Masters</Link>
-                <Link className='navItem' to="game">How To Play</Link>
+                <Link className='navItem' to="how-to-play">How To Play</Link>
                 <Link className='navItem'to="credits">Credits</Link>
             </div>
         </div>
