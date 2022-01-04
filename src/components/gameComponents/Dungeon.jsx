@@ -3,7 +3,7 @@ import '../css/Dungeon.css'
 // import { bossDeck } from "../../assets/cards"
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCard, buildingMode } from '../../actions/miscActions';
-import { buildDungeon, addBuildActions, changeUseButtonSwapping, swapRooms, changeSwapRoomsMode, dealRoomCard } from '../../actions/sampleActions';
+import { buildDungeon, addBuildActions, changeUseButtonSwapping, swapRooms, changeSwapRoomsMode, dealRoomCard, showHideDiscardPile } from '../../actions/sampleActions';
 import Card from './Card'
 import { cardBack } from '../../assets/cards';
 
@@ -124,11 +124,17 @@ function Dungeon() {
             case "Construction Zone":
                 dispatch(addBuildActions(1))
                 break
+            case "Monstrous Monument":
+                dispatch(showHideDiscardPile())
+                alert('Building the "Monstrous Monument" card allows you to select a Monster Card from the discard pile and put it in your hand. Select an appropriate card card below and then click the "USE" button to add it to your hand.')
+                break
             // "When you build this room, you may swap the placement of two Rooms in any one dungeon."
+                break
             case "Centipede Tunnel":
-                let userWantsToSwapRooms = window.confirm("The Centipede Tunnel allows you to swap the placement of two Rooms in any one dungeon. Click OK to confirm and swap rooms by: selecting a room by clicking, clicking the use button, then selecting the room to swap with. Click OK if you want to swap rooms or cancel if not.")
+                let userWantsToSwapRooms = window.confirm("The Centipede Tunnel allows you to swap the placement of two Rooms in your dungeon. Click OK if you want to swap rooms or cancel if not.")
                 if(userWantsToSwapRooms){
                     dispatch(changeUseButtonSwapping())
+                    alert('To swap rooms, select the first room you want to swap by clicking it. Next, click the "USE" button and then select a second room to swap them.')
                 }
                 break
             default:

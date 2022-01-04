@@ -1,5 +1,5 @@
 
-import { DECREASE_PLAYER_HEALTH, UPDATE_PLAYER_TREASURE, RESET_GAME, HERO_KILLED, ADD_BUILD_ACTIONS, CHANGE_USE_BUTTON_SWAPPING, CHANGE_SWAP_ROOMS_MODE, NEXT_ROUND } from "../actions/types"
+import { DECREASE_PLAYER_HEALTH, UPDATE_PLAYER_TREASURE, RESET_GAME, HERO_KILLED, ADD_BUILD_ACTIONS, CHANGE_USE_BUTTON_SWAPPING, CHANGE_SWAP_ROOMS_MODE, NEXT_ROUND, SHOW_HIDE_DISCARD_PILE } from "../actions/types"
 
 const initialState = {
     username: "username",
@@ -115,6 +115,11 @@ const playerStats = (state = initialState, action) => {
                 return {
                     ...state
                 }
+            }
+        case SHOW_HIDE_DISCARD_PILE:
+            return {
+                ...state,
+                showDiscardPile: !state.showDiscardPile
             }
         default:
             return state

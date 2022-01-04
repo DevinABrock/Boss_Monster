@@ -1,5 +1,5 @@
 
-import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES, HERO_KILLED, SET_HERO_START_OF_DUNGEON, RESET_PLAYER_CARDS, HERO_SURVIVED, SWAP_ROOMS, DAMAGE_ROOM, NEXT_ROUND } from "../actions/types"
+import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES, HERO_KILLED, SET_HERO_START_OF_DUNGEON, RESET_PLAYER_CARDS, HERO_SURVIVED, SWAP_ROOMS, DAMAGE_ROOM, NEXT_ROUND, DRAW_FROM_DISCARD } from "../actions/types"
 import { dungeonBack } from "../assets/cards"
 
 const initialState = {
@@ -51,72 +51,72 @@ const initialState = {
         //     "Destroy another room in your dungeon: Deal 5 damage to a hero in this room.",
         //     image: "/card-images/rooms/boulder-ramp.svg",
         // },
-        // {
-        //     id: "R24",
-        //     name: "Neanderthal Cave",
-        //     subtitle: "Monster Room",
-        //     dmg: 3,
-        //     treasure: "Fighter",
-        //     description: "You cannot build an Advanced Room on Neanderthal Cave.",
-        //     image: "/card-images/rooms/neanderthal-cave.svg",
-        // },
-        // {
-        //     id: "R20",
-        //     name: "Golem Factory",
-        //     subtitle: "Monster Room",
-        //     dmg: 2,
-        //     treasure: "Fighter",
-        //     description:
-        //     "Once per turn, if a hero dies in this room, draw a Room card.",
-        //     image: "/card-images/rooms/golem-factory.svg",
-        // },
-        // {
-        //     id: "R16",
-        //     name: "Goblin Armory",
-        //     subtitle: "Monster Room",
-        //     dmg: 1,
-        //     treasure: "Fighter x2",
-        //     description: "Monster Rooms adjacent to this room deal +1 damage.",
-        //     image: "/card-images/rooms/goblin-armory.svg",
-        // },
-        // {
-        //     id: "R65",
-        //     name: "Dragon Hatchery",
-        //     subtitle: "Monster Room",
-        //     dmg: 0,
-        //     treasure: "Cleric + Mage + Fighter + Thief",
-        //     description: "(This room contains all four treasure types.)",
-        //     image: "/card-images/rooms/dragon-hatchery.svg",
-        // },
-        // {
-        //     id: "R66",
-        //     name: "Dragon Hatchery",
-        //     subtitle: "Monster Room",
-        //     dmg: 0,
-        //     treasure: "Cleric + Mage + Fighter + Thief",
-        //     description: "(This room contains all four treasure types.)",
-        //     image: "/card-images/rooms/dragon-hatchery.svg",
-        // },
-        // {
-        //     id: "R63",
-        //     name: "Construction Zone",
-        //     subtitle: "Trap Room",
-        //     dmg: 1,
-        //     treasure: "Fighter + Thief",
-        //     description:
-        //     "When you build this room, you may immediately build an additional Room.",
-        //     image: "/card-images/rooms/construction-zone.svg",
-        // },
-        // {
-        //     id: "R62",
-        //     name: "Centipede Tunnel",
-        //     subtitle: "Monster Room",
-        //     dmg: 1,
-        //     treasure: "Fighter + Mage",
-        //     description:
-        //     "When you build this room, you may swap the placement of two Rooms in any one dungeon.",
-        //     image: "/card-images/rooms/centipede-tunnel.svg",
-        // },
+        {
+            id: "R24",
+            name: "Neanderthal Cave",
+            subtitle: "Monster Room",
+            dmg: 3,
+            treasure: "Fighter",
+            description: "You cannot build an Advanced Room on Neanderthal Cave.",
+            image: "/card-images/rooms/neanderthal-cave.svg",
+        },
+        {
+            id: "R20",
+            name: "Golem Factory",
+            subtitle: "Monster Room",
+            dmg: 2,
+            treasure: "Fighter",
+            description:
+            "Once per turn, if a hero dies in this room, draw a Room card.",
+            image: "/card-images/rooms/golem-factory.svg",
+        },
+        {
+            id: "R16",
+            name: "Goblin Armory",
+            subtitle: "Monster Room",
+            dmg: 1,
+            treasure: "Fighter x2",
+            description: "Monster Rooms adjacent to this room deal +1 damage.",
+            image: "/card-images/rooms/goblin-armory.svg",
+        },
+        {
+            id: "R65",
+            name: "Dragon Hatchery",
+            subtitle: "Monster Room",
+            dmg: 0,
+            treasure: "Cleric + Mage + Fighter + Thief",
+            description: "(This room contains all four treasure types.)",
+            image: "/card-images/rooms/dragon-hatchery.svg",
+        },
+        {
+            id: "R66",
+            name: "Dragon Hatchery",
+            subtitle: "Monster Room",
+            dmg: 0,
+            treasure: "Cleric + Mage + Fighter + Thief",
+            description: "(This room contains all four treasure types.)",
+            image: "/card-images/rooms/dragon-hatchery.svg",
+        },
+        {
+            id: "R63",
+            name: "Construction Zone",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Fighter + Thief",
+            description:
+            "When you build this room, you may immediately build an additional Room.",
+            image: "/card-images/rooms/construction-zone.svg",
+        },
+        {
+            id: "R62",
+            name: "Centipede Tunnel",
+            subtitle: "Monster Room",
+            dmg: 1,
+            treasure: "Fighter + Mage",
+            description:
+            "When you build this room, you may swap the placement of two Rooms in any one dungeon.",
+            image: "/card-images/rooms/centipede-tunnel.svg",
+        },
         // {
         //     id: "R22",
         //     name: "Minotaur's Maze",
@@ -137,6 +137,16 @@ const initialState = {
         //         "This room's damage is equal to the number of Monster rooms in your dungeon.",
         //         image: "/card-images/rooms/monsters-ballroom.svg",
         //     },
+        {
+            id: "R70",
+            name: "Monstrous Monument",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Cleric + Fighter",
+            description:
+            "When you build this room, choose one Monster Room from the discard pile and put it in your hand.",
+            image: "/card-images/rooms/monstrous-monument.svg",
+        },
     ],
     playerDungeon: [
         // [{
@@ -301,7 +311,8 @@ const cardDecks = (state = initialState, action) => {
                 ...state,
                 playerDungeon: state.playerDungeon.map(roomArr => {
                     if(action.roomID === roomArr[0].id){
-                        roomArr[0].durability -= 20
+                        roomArr[0].durability -= 100
+                        // roomArr[0].durability -= 20
                     }
                     return roomArr
                 })
@@ -478,7 +489,16 @@ const cardDecks = (state = initialState, action) => {
                     discardPile: newDiscardPile
                 }
             }
-            
+        case DRAW_FROM_DISCARD:
+
+            if(action.bin === "Monster Room" || action.bin === "Advanced Monster Room"){
+
+            }
+            else if(action.bin === "Trap Room")
+
+            return {
+                ...state
+            }
         default:
             return state
     }
