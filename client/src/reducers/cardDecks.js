@@ -1,5 +1,5 @@
 
-import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES, HERO_KILLED, SET_HERO_START_OF_DUNGEON, RESET_PLAYER_CARDS, HERO_SURVIVED, SWAP_ROOMS, DAMAGE_ROOM, NEXT_ROUND, CHANGE_SHOW_DISCARD_PILE, DRAW_FROM_DISCARD } from "../actions/types"
+import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES, HERO_KILLED, SET_HERO_START_OF_DUNGEON, RESET_PLAYER_CARDS, HERO_SURVIVED, SWAP_ROOMS, DAMAGE_ROOM, NEXT_ROUND, CHANGE_SHOW_DISCARD_PILE, DRAW_FROM_DISCARD, DISCARD_CARD } from "../actions/types"
 import { dungeonBack } from "../assets/cards"
 
 const initialState = {
@@ -56,6 +56,16 @@ const initialState = {
         //     image: "/card-images/rooms/boulder-ramp.svg",
         // },
         {
+            id: "R12",
+            name: "Dracolich Lair",
+            subtitle: "Advanced Monster Room",
+            dmg: 3,
+            treasure: "Cleric",
+            description:
+            "Once per turn, you may discard two Room cards to choose one Room card from the discard pile and put it into your hand.",
+            image: "/card-images/rooms/dracolich-lair.svg",
+        },
+        {
             id: "R24",
             name: "Neanderthal Cave",
             subtitle: "Monster Room",
@@ -83,15 +93,15 @@ const initialState = {
             description: "Monster Rooms adjacent to this room deal +1 damage.",
             image: "/card-images/rooms/goblin-armory.svg",
         },
-        {
-            id: "R65",
-            name: "Dragon Hatchery",
-            subtitle: "Monster Room",
-            dmg: 0,
-            treasure: "Cleric + Mage + Fighter + Thief",
-            description: "(This room contains all four treasure types.)",
-            image: "/card-images/rooms/dragon-hatchery.svg",
-        },
+        // {
+        //     id: "R65",
+        //     name: "Dragon Hatchery",
+        //     subtitle: "Monster Room",
+        //     dmg: 0,
+        //     treasure: "Cleric + Mage + Fighter + Thief",
+        //     description: "(This room contains all four treasure types.)",
+        //     image: "/card-images/rooms/dragon-hatchery.svg",
+        // },
         {
             id: "R66",
             name: "Dragon Hatchery",
@@ -121,6 +131,16 @@ const initialState = {
             "When you build this room, you may swap the placement of two Rooms in any one dungeon.",
             image: "/card-images/rooms/centipede-tunnel.svg",
         },
+        // {
+        //     id: "R4",
+        //     name: "Open Grave",
+        //     subtitle: "Trap Room",
+        //     dmg: 2,
+        //     treasure: "Cleric",
+        //     description:
+        //     "Once per turn, if a Hero dies in this room, choose one Room card from the discard pile and put into your hand.",
+        //     image: "/card-images/rooms/open-grave.svg",
+        // },
         // {
         //     id: "R22",
         //     name: "Minotaur's Maze",
@@ -192,30 +212,30 @@ const initialState = {
         //         "This room's damage is equal to the number of Monster rooms in your dungeon.",
         //     image: "/card-images/rooms/monsters-ballroom.svg",
         // }],
-        [
-            {
-                id: "R14",
-                name: "Vampire Bordello",
-                subtitle: "Advanced Monster Room",
-                dmg: 3,
-                treasure: "Cleric",
-                description:
-                    "Once per turn, if a Hero dies in this room you may heal one wound. (Flip over one of your wounds, adding its Soul value to your total.)",
-                image: "/card-images/rooms/vampire-bordello.svg",
-            },
-        ],
-        [{
-            id: "R28",
-            name: "Beast Menagerie",
-            subtitle: "Advanced Monster Room",
-            dmg: 4,
-            treasure: "Fighter",
-            description:
-                "Once per turn when you build another Monster room, draw a Room card.",
-            image: "/card-images/rooms/beast-menagerie.svg",
-        }],
+        // [
+        //     {
+        //         id: "R14",
+        //         name: "Vampire Bordello",
+        //         subtitle: "Advanced Monster Room",
+        //         dmg: 3,
+        //         treasure: "Cleric",
+        //         description:
+        //             "Once per turn, if a Hero dies in this room you may heal one wound. (Flip over one of your wounds, adding its Soul value to your total.)",
+        //         image: "/card-images/rooms/vampire-bordello.svg",
+        //     },
+        // ],
+        // [{
+        //     id: "R28",
+        //     name: "Beast Menagerie",
+        //     subtitle: "Advanced Monster Room",
+        //     dmg: 4,
+        //     treasure: "Fighter",
+        //     description:
+        //         "Once per turn when you build another Monster room, draw a Room card.",
+        //     image: "/card-images/rooms/beast-menagerie.svg",
+        // }],
 
-        // [dungeonBack], [dungeonBack],
+        [dungeonBack], [dungeonBack],
         [dungeonBack], [dungeonBack],
         [dungeonBack], [dungeonBack]
     ],
@@ -328,8 +348,8 @@ const cardDecks = (state = initialState, action) => {
                 ...state,
                 playerDungeon: state.playerDungeon.map(roomArr => {
                     if(action.roomID === roomArr[0].id){
-                        roomArr[0].durability -= 100
-                        // roomArr[0].durability -= 20
+                        // roomArr[0].durability -= 100
+                        roomArr[0].durability -= 20
                     }
                     return roomArr
                 })
@@ -496,14 +516,14 @@ const cardDecks = (state = initialState, action) => {
                     playerDungeon: newPlayerDungeon,
                     roomDeck: newRoomDeck,
                     playerRooms: state.playerRooms.concat(cardsToDraw[0]),
-                    discardPile: newDiscardPile
+                    discardPile: [...state.discardPile].concat(newDiscardPile) 
                 }
             }
             else { // no cards added to players hand
                 return {
                     ...state,
                     playerDungeon: newPlayerDungeon,
-                    discardPile: newDiscardPile
+                    discardPile: [...state.discardPile].concat(newDiscardPile) 
                 }
             }
         case CHANGE_SHOW_DISCARD_PILE:
@@ -526,9 +546,20 @@ const cardDecks = (state = initialState, action) => {
                 return {
                     ...state,
                     showDiscardPile: !state.showDiscardPile,
-                    roomCardFromDiscard: !state.roomCardFromDiscard,
+                    roomCardFromDiscardd: !state.roomCardFromDiscard,
                 }
             }
+        case DISCARD_CARD:
+            
+            let cardDiscarded = state.playerRooms.filter(cardObj => cardObj.id === action.roomID)
+            console.log("cardDiscarded", cardDiscarded)
+
+            return {
+                ...state,
+                playerRooms: state.playerRooms.filter(cardObj => cardObj.id !== action.roomID),
+                discardPile: state.discardPile.concat(cardDiscarded),
+            }
+
         case DRAW_FROM_DISCARD:
 
             let cardDrawn = state.discardPile.filter(cardObj => cardObj.id === action.roomID)
