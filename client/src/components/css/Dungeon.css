@@ -45,6 +45,7 @@
     border-style: solid;
     border-width: 5px;
     border-color: #534125;
+    margin-right: 5%;
 }
 .roomAreaBuilding{
     height: 70%;
@@ -65,9 +66,11 @@
     border-color: #5B5B5B;
     border-radius: 5px;
     height: 100%;
+    /* max-width: ; */
     /* height: 85%;
     width: 16%; */
     margin-left: .7%;
+    
 }
 .roomStack{
     border-style: solid;
