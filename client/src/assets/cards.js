@@ -12,6 +12,10 @@ export const dungeonBack = {
   treasure: "",
 }
 
+export const blankCard = {
+  id: "BL1",
+  image: "/card-images/card-backs/blank_hero.svg",
+}
 // -------------------- 8 Boss Cards -------------------- //
 
 // shuffling algorithm is mutating array
