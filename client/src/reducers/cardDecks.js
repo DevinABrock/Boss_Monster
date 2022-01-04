@@ -211,6 +211,16 @@ const initialState = {
         //     description: "When another room in your dungeon is destroyed, you may draw two Room cards.",
         //     image: "/card-images/rooms/recycling-center.svg",
         // }],
+        [{
+            id: "R59",
+            name: "The Crushinator",
+            subtitle: "Advanced Trap Room",
+            dmg: 2,
+            treasure: "Thief",
+            description:
+              "Destroy another room in your dungeon: Until end of turn, your Rooms have +2 damage. Revised: Once per turn, you may destroy another Room in your dungeon to give all your Rooms +2 until end of turn.",
+            image: "/card-images/rooms/the-crushinator.svg",
+          },],
         // [{
         //     id: "R29",
         //     name: "Monster's Ballroom",
@@ -221,18 +231,18 @@ const initialState = {
         //         "This room's damage is equal to the number of Monster rooms in your dungeon.",
         //     image: "/card-images/rooms/monsters-ballroom.svg",
         // }],
-        // [
-        //     {
-        //         id: "R14",
-        //         name: "Vampire Bordello",
-        //         subtitle: "Advanced Monster Room",
-        //         dmg: 3,
-        //         treasure: "Cleric",
-        //         description:
-        //             "Once per turn, if a Hero dies in this room you may heal one wound. (Flip over one of your wounds, adding its Soul value to your total.)",
-        //         image: "/card-images/rooms/vampire-bordello.svg",
-        //     },
-        // ],
+        [
+            {
+                id: "R14",
+                name: "Vampire Bordello",
+                subtitle: "Advanced Monster Room",
+                dmg: 3,
+                treasure: "Cleric",
+                description:
+                    "Once per turn, if a Hero dies in this room you may heal one wound. (Flip over one of your wounds, adding its Soul value to your total.)",
+                image: "/card-images/rooms/vampire-bordello.svg",
+            },
+        ],
         // [{
         //     id: "R28",
         //     name: "Beast Menagerie",
@@ -244,7 +254,7 @@ const initialState = {
         //     image: "/card-images/rooms/beast-menagerie.svg",
         // }],
 
-        [dungeonBack], [dungeonBack],
+        // [dungeonBack], [dungeonBack],
         [dungeonBack], [dungeonBack],
         [dungeonBack], [dungeonBack]
     ],

@@ -56,6 +56,8 @@ function Info() {
     const [golemFactory, setGolemFactory] = useState(true)
     const [bottomlessPit, setBottomlessPit] = useState(false)
     const [boulderRamp, setBoulderRamp] = useState(false)
+    const [crushinator, setCrushinator] = useState(false)
+    const [crushinatorDamageModifier, setCrushinatorDamageModifier] = useState(false)
 
 
     useEffect(() => {
@@ -64,6 +66,7 @@ function Info() {
         setOpenGrave(true)
         setDracolichLair(true)
         setVampireBordello(true)
+        setCrushinatorDamageModifier(false)
     }, [gameRound])
 
     useEffect(() => {
@@ -87,7 +90,7 @@ function Info() {
         setCountMinotaursMaze(2)
     }, [heroesAtStartOfDungeon])
 
-console.log("discardPile", discardPile);
+    console.log("discardPile", discardPile);
 
     // checks if rooms have effects when the hero died
     const heroDiedCheck = () => {
@@ -103,13 +106,13 @@ console.log("discardPile", discardPile);
             dispatch(addSoul())
             setVampireBordello(false)
         }
-        else if(openGrave && roomName === "Open Grave"){
-            if(discardPile.length > 0){
+        else if (openGrave && roomName === "Open Grave") {
+            if (discardPile.length > 0) {
                 alert('The hero dies in the Open Grave. Select Room Card below and click the "USE" button to add it to your hand.')
                 dispatch(changeShowDiscardPile("Room Card"))
                 setOpenGrave(false)
             }
-            else{
+            else {
                 alert("The hero dies in the Open Grave but there are currently no cards in the discard pile. This card's effect is not triggered.")
             }
         }
@@ -197,7 +200,7 @@ console.log("discardPile", discardPile);
             // if heroes inside dungeon
             else {
                 // console.log("heroRoomPosition", heroRoomPosition);
-                let damage = 0
+                let damage = 0;
                 if (playerDungeon[heroRoomPosition][0].dmg === "*") {
                     damage = roomBuffs(heroRoomPosition)
                 }
@@ -213,13 +216,13 @@ console.log("discardPile", discardPile);
                 // console.log('hero health', heroHealth);
                 let remainingHealth = heroHealth - damage;
                 // reduces room durability by 20 the first time a hero enters a room
-                if(firstTimeInMaze || countMinotaursMaze === 0){
-                    if(playerDungeon[heroRoomPosition][0].durability > 0){
+                if (firstTimeInMaze || countMinotaursMaze === 0) {
+                    if (playerDungeon[heroRoomPosition][0].durability > 0) {
                         dispatch(damageRoom(playerDungeon[heroRoomPosition][0].id))
                         console.log("room damaged");
                     }
                 }
-                else if(!firstTimeInMaze){
+                else if (!firstTimeInMaze) {
                     setCountMinotaursMaze(countMinotaursMaze - 1)
                     console.log("countMinotaursMaze incremented to", countMinotaursMaze);
                 }
@@ -435,6 +438,9 @@ console.log("discardPile", discardPile);
 
     const roomBuffs = (i) => {
         let damageBuff = 0
+        if(crushinatorDamageModifier){
+            damageBuff += 2
+        }
         // if current room is a trap room & the previous room is a Dizzygas Hallway, damage is buffed
         if (i < 5 && (playerDungeon[i][0].subtitle === "Trap Room" || playerDungeon[i][0].subtitle === "Advanced Trap Room") && playerDungeon[i + 1][0].name === "Dizzygas Hallway") {
             damageBuff += 2
@@ -480,16 +486,16 @@ console.log("discardPile", discardPile);
             else if (useButtonSwapping && selectedCardClass != "room") {
                 alert("You must select a room from your dungeon first.");
             }
-            if(selectedCard.name === "Dracolich Lair" && (selectedCardClass === "roomStack" || selectedCardClass === "builtRoom")){
+            if (selectedCard.name === "Dracolich Lair" && (selectedCardClass === "roomStack" || selectedCardClass === "builtRoom")) {
                 setUsingDracolichLair(true)
                 alert('You must discard two cards from your hand. Select one card and click the "USE" button, then select the second card and click the "USE" button.')
             }
-            if(usingDracolichLair && selectedCardClass === "handCard"){
-                if(countDracolichLair > 0){
+            if (usingDracolichLair && selectedCardClass === "handCard") {
+                if (countDracolichLair > 0) {
                     dispatch(discardCard(selectedCard.id))
                     setCountDracolichLair(countDracolichLair - 1)
                     console.log("countDracolichLair", countDracolichLair);
-                    if(countDracolichLair === 1){
+                    if (countDracolichLair === 1) {
                         setCountDracolichLair(2)
                         setUsingDracolichLair(false)
                         dispatch(changeShowDiscardPile("Room Card"))
@@ -535,6 +541,16 @@ console.log("discardPile", discardPile);
                     setTempMessage("You can only destroy rooms during the Adventure Phase.")
                 }
             }
+            if (selectedCard.name === "The Crushinator") {
+                if (!destroyMode && gamePhase === 7) {
+                    dispatch(ableToDestroy())
+                    setCrushinator(true)
+                    setTempMessage("You are able to destroy another room in order to buff the rest of your rooms.")
+                }
+                if (!destroyMode && gamePhase != 7) {
+                    setTempMessage("You can only destroy rooms during the Adventure Phase.")
+                }
+            }
             // if the button is in the destroy mode and the user has already selected a card in the dungeon
             if (destroyMode && selectedCardClass === "room") {
                 if (bottomlessPit && selectedCard.name === "Bottomless Pit") {
@@ -561,43 +577,73 @@ console.log("discardPile", discardPile);
                     dispatch(ableToDestroy())
                     setBoulderRamp(false)
                 }
+                else if (crushinator) {
+                    checkRoomDestroyEffects()
+                    let roomIndex = null;
+                    playerDungeon.forEach((array, index) => {
+                        if (array[0] === selectedCard) {
+                            roomIndex = index;
+                        }
+                    })
+                    dispatch(destroyRoom(roomIndex))
+                    dispatch(ableToDestroy())
+                    setCrushinator(false)
+                    setCrushinatorDamageModifier(true)
+                }
             }
         }
-        else{
+        else {
             setTempMessage('You can only use effects from rooms in your dungeon.')
         }
     }
 
     const checkRoomDestroyEffects = () => {
+        let tempMSG = "";
         console.log('room name', playerDungeon[heroRoomPosition][0]);
-        switch (playerDungeon[heroRoomPosition][0].name) {
-            case "Boulder Ramp":
-                console.log('hero on boulder room when destroyed');
-                if (heroHealth <= 5) {
-                    console.log('hero less than or 5 health');
-                    heroDiedCheck()
+        playerDungeon.forEach(array => {
+            if (array[0].name === "Recycling Center") {
+                dispatch(dealRoomCard())
+                dispatch(dealRoomCard())
+                tempMSG += "You were dealt two cards from the recycling center after a room was destroyed. "
+            }
+        })
+        // dont run this if the crushinator is active so the player doesnt get both buffs (crushinator damage and these rooms' damage)
+        if(!crushinator) {
+            // these check if hero is on a room that has an effect when other rooms are destroyed
+            switch (playerDungeon[heroRoomPosition][0].name) {
+                case "Boulder Ramp":
+                    console.log('hero on boulder ramp when destroyed');
+                    if (heroHealth <= 5) {
+                        console.log('hero less than or 5 health');
+                        tempMSG += "The hero was killed by the Boulder Ramp."
+                        heroDiedCheck()
+                        if (heroesAtStartOfDungeon.length === 1) {
+                            dispatch(heroKilled(true, playerDungeon, heroesAtStartOfDungeon))
+                        }
+                        else {
+                            dispatch(heroKilled(false, playerDungeon, heroesAtStartOfDungeon))
+                        }
+                    }
+                    else {
+                        tempMSG += "The hero was wounded by the Boulder Ramp."
+                        console.log('hero more than 5 health');
+                        dispatch(damageHero(5))
+                    }
+                    setTempMessage(tempMSG)
+                    break;
+                case "Bottomless Pit":
+                    tempMSG += "The hero was killed by the Bottomless Pit."
                     if (heroesAtStartOfDungeon.length === 1) {
                         dispatch(heroKilled(true, playerDungeon, heroesAtStartOfDungeon))
                     }
                     else {
                         dispatch(heroKilled(false, playerDungeon, heroesAtStartOfDungeon))
                     }
-                }
-                else {
-                    console.log('hero more than 5 health');
-                    dispatch(damageHero(5))
-                }
-                break;
-            case "Bottomless Pit":
-                if (heroesAtStartOfDungeon.length === 1) {
-                    dispatch(heroKilled(true, playerDungeon, heroesAtStartOfDungeon))
-                }
-                else {
-                    dispatch(heroKilled(false, playerDungeon, heroesAtStartOfDungeon))
-                }
-                break
-            default:
-                break;
+                    setTempMessage(tempMSG)
+                    break
+                default:
+                    break;
+            }
         }
     }
 
