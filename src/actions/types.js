@@ -16,7 +16,7 @@ export const ADD_BUILD_ACTIONS = "ADD_BUILD_ACTIONS"
 export const BUILDING_MODE = "BUILDING_MODE"
 export const BUILD_DUNGEON = "BUILD_DUNGEON";
 export const DAMAGE_ROOM = "DAMAGE_ROOM"
-export const SHOW_HIDE_DISCARD_PILE = "SHOW_HIDE_DISCARD_PILE"
+export const CHANGE_SHOW_DISCARD_PILE = "CHANGE_SHOW_DISCARD_PILE"
 export const DRAW_FROM_DISCARD = "DRAW_FROM_DISCARD"
 
 // type for currently selected card

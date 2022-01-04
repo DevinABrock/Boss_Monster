@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import '../css/Info.css'
 import { buildingMode } from '../../actions/miscActions';
-import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, baitHeroes, nextRound, setHeroStartOfDungeon, damageHero, moveHeroNumberOfSteps, heroKilled, decreasePlayerHealth, playerKilled, resetPlayerCards, resetGame, addBuildActions, heroSurvived, changeSwapRoomsMode, damageRoom } from '../../actions/sampleActions';
+import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, baitHeroes, nextRound, setHeroStartOfDungeon, damageHero, moveHeroNumberOfSteps, heroKilled, decreasePlayerHealth, playerKilled, resetPlayerCards, resetGame, addBuildActions, heroSurvived, changeSwapRoomsMode, damageRoom, changeShowDiscardPile, drawFromDiscard } from '../../actions/sampleActions';
 import { diceRoll } from '../gameLogic/diceRoll';
 
 import { shuffleAllDecks, dealInitialCards } from '../gameLogic/initializingDeck';
@@ -29,6 +29,10 @@ function Info() {
     const useButtonSwapping = useSelector(state => state.playerStats.useButtonSwapping)
     const swapRoomsMode = useSelector(state => state.playerStats.swapRoomsMode)
     const discardPile = useSelector(state => state.cardDecks.discardPile)
+    const showDiscardPile = useSelector(state => state.cardDecks.showDiscardPile)
+    const monsterCardFromDiscard = useSelector(state => state.cardDecks.monsterCardFromDiscard)
+    const trapCardFromDiscard = useSelector(state => state.cardDecks.trapCardFromDiscard)
+    const roomCardFromDiscard = useSelector(state => state.cardDecks.roomCardFromDiscard)
 
     const selectedCard = useSelector(state => state.misc.card)
     const selectedCardClass = useSelector(state => state.misc.className)
@@ -383,6 +387,34 @@ function Info() {
         else if(useButtonSwapping && selectedCardClass != "room"){
             alert("You must select a room from your dungeon first.");
         }
+        
+        if(showDiscardPile){
+            if(roomCardFromDiscard && selectedCard.subtitle.includes("Room")){
+                dispatch(drawFromDiscard(selectedCard.id))
+                dispatch(changeShowDiscardPile())
+            }
+            else if(monsterCardFromDiscard && selectedCard.subtitle.includes("Monster")){
+                dispatch(drawFromDiscard(selectedCard.id))
+                dispatch(changeShowDiscardPile("Monster Room"))
+            }
+            else if(trapCardFromDiscard && selectedCard.subtitle.includes("Trap")){
+                dispatch(drawFromDiscard(selectedCard.id))
+                dispatch(changeShowDiscardPile("Trap Room"))
+            }
+            else{
+                alert('Please select an appropriate card from the discard pile and then click the "USE" button.')
+            }
+        }
+    }
+
+    const handleCancelClick = () => {
+        // resetting values to false if "Cancel button is clicked"
+        if(monsterCardFromDiscard){
+            dispatch(changeShowDiscardPile("Monster Room"))
+        }
+        if(trapCardFromDiscard){
+            dispatch(changeShowDiscardPile("Trap Room"))
+        }
     }
 
     return (
@@ -444,6 +476,7 @@ function Info() {
                 <div className='phaseInfo'>Phase: {renderGamePhaseSwitch(gamePhase)} {gamePhase == 7 ? `Hero HP: ${heroHealth}` : null}</div>
                 <div className='buttonList'>
                     {/* <div className='button'>STORE</div> */}
+                    {showDiscardPile && <div className='button' onClick={handleCancelClick}>CANCEL</div>}
                     <div onClick={handleUseButtonClick} className={swapRoomsMode ? 'buttonBuild' : 'button'}>USE</div>
                     <div className={buildingModeState ? 'buttonBuild' : 'button'} onClick={()=>handleBuildButtonClick(selectedCardClass)}>BUILD</div>
                     <div onClick={()=>handleNextButtonClick()} className='button'>NEXT</div>

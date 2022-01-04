@@ -1,5 +1,6 @@
 
-SJD - start working on other card functions
+SJD - Monstrous Monument...have "Cancel" button pop-up when discard pile is shown that way if there are no cards in the discard pile they can cancel and get back to the game
+
 
 
 

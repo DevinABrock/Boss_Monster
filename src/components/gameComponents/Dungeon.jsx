@@ -3,7 +3,7 @@ import '../css/Dungeon.css'
 // import { bossDeck } from "../../assets/cards"
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCard, buildingMode } from '../../actions/miscActions';
-import { buildDungeon, addBuildActions, changeUseButtonSwapping, swapRooms, changeSwapRoomsMode, dealRoomCard, showHideDiscardPile, drawFromDiscard } from '../../actions/sampleActions';
+import { buildDungeon, addBuildActions, changeUseButtonSwapping, swapRooms, changeSwapRoomsMode, dealRoomCard, changeShowDiscardPile, drawFromDiscard } from '../../actions/sampleActions';
 import Card from './Card'
 import { cardBack } from '../../assets/cards';
 
@@ -20,6 +20,7 @@ function Dungeon() {
     const playerBoss = useSelector(state => state.cardDecks.playerBoss)
     const swapRoomsMode = useSelector(state => state.playerStats.swapRoomsMode)
     const gameRound = useSelector(state => state.gamePhase.gameRound)
+    const discardPile = useSelector(state => state.cardDecks.discardPile)
 
     const [beastMenagerieFirstTime, setBeastMenagerieFirstTime] = useState(true)
 
@@ -101,17 +102,39 @@ function Dungeon() {
                 }
             }
             else if(buildingModeState && e.target.id !== ""){
-                console.log("e.target.id", e.target.id);
-                passiveAbilities(selectedCard.name)
-                beastMenagerieInDungeon()
-                dispatch(buildDungeon(selectedCard, e.target.id))
-                dispatch(addBuildActions(-1)) // decreasing buildActions by 1
-                
-                // keeps players from building the same repeatedly
-                dispatch(selectCard(selectedCard, "builtRoom"))
+                let monsterCardsInDiscard = false
+                discardPile.forEach(cardObj => {
+                    if(cardObj.subtitle.includes("Monster")){
+                        monsterCardsInDiscard = true
+                    }
+                })
 
-                // turns buildingMode off after building room
-                dispatch(buildingMode())
+                if(selectedCard.name === "Monstrous Monument" && !monsterCardsInDiscard){
+                    let doNoDrawCard = window.confirm("There are currently no Monster Room cards in the discard pile. Playing this card will not activate it's ability.")
+                    if(doNoDrawCard){
+                        // passiveAbilities is not being run since player does not want to draw a card
+                        dispatch(buildDungeon(selectedCard, e.target.id))
+                        dispatch(addBuildActions(-1)) // decreasing buildActions by 1
+                        
+                        // keeps players from building the same repeatedly
+                        dispatch(selectCard(selectedCard, "builtRoom"))
+    
+                        // turns buildingMode off after building room
+                        dispatch(buildingMode())
+                    }
+                }
+                else{
+                    passiveAbilities(selectedCard.name)
+                    dispatch(buildDungeon(selectedCard, e.target.id))
+                    dispatch(addBuildActions(-1)) // decreasing buildActions by 1
+                    
+                    // keeps players from building the same repeatedly
+                    dispatch(selectCard(selectedCard, "builtRoom"))
+
+                    // turns buildingMode off after building room
+                    dispatch(buildingMode())
+                }
+
             }
         }
     }
@@ -124,10 +147,10 @@ function Dungeon() {
             case "Construction Zone":
                 dispatch(addBuildActions(1))
                 break
+                // When you build this room, you can draw a "Monster Room" card from the discard pile.
             case "Monstrous Monument":
-                dispatch(showHideDiscardPile())
-                alert('Building the "Monstrous Monument" card allows you to select a Monster Card from the discard pile and put it in your hand. Select an appropriate card card below and then click the "USE" button to add it to your hand.')
-                dispatch(drawFromDiscard("Monster Room"))
+                dispatch(changeShowDiscardPile("Monster Room"))
+                alert('Building the "Monstrous Monument" card allows you to select a Monster Card from the discard pile and put it in your hand. Select an appropriate card below and click the "USE" button to add it to your hand.')
                 break
             // "When you build this room, you may swap the placement of two Rooms in any one dungeon."
                 break

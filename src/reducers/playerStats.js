@@ -10,8 +10,7 @@ const initialState = {
     treasureThief: 0,
     buildActions: 99,
     useButtonSwapping: false,
-    swapRoomsMode: false,
-    showDiscardPile: false
+    swapRoomsMode: false
 }
 
 const playerStats = (state = initialState, action) => {

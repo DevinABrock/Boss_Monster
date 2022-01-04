@@ -1,8 +1,9 @@
 
-import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES, HERO_KILLED, SET_HERO_START_OF_DUNGEON, RESET_PLAYER_CARDS, HERO_SURVIVED, SWAP_ROOMS, DAMAGE_ROOM, NEXT_ROUND, SHOW_HIDE_DISCARD_PILE, DRAW_FROM_DISCARD } from "../actions/types"
+import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES, HERO_KILLED, SET_HERO_START_OF_DUNGEON, RESET_PLAYER_CARDS, HERO_SURVIVED, SWAP_ROOMS, DAMAGE_ROOM, NEXT_ROUND, CHANGE_SHOW_DISCARD_PILE, DRAW_FROM_DISCARD } from "../actions/types"
 import { dungeonBack } from "../assets/cards"
 
 const initialState = {
+    showDiscardPile: false,
     monsterCardFromDiscard: false,
     trapCardFromDiscard: false,
     roomCardFromDiscard: false,
@@ -130,16 +131,16 @@ const initialState = {
         //     "The first time a Hero enters this room, send it back to the previous room.",
         //     image: "/card-images/rooms/minotaurs-maze(1).svg",
         // },
-        // {
-        //         id: "R29",
-        //         name: "Monster's Ballroom",
-        //         subtitle: "Advanced Monster Room",
-        //         dmg: "*",
-        //         treasure: "Fighter",
-        //         description:
-        //         "This room's damage is equal to the number of Monster rooms in your dungeon.",
-        //         image: "/card-images/rooms/monsters-ballroom.svg",
-        //     },
+        {
+                id: "R29",
+                name: "Monster's Ballroom",
+                subtitle: "Advanced Monster Room",
+                dmg: "*",
+                treasure: "Fighter",
+                description:
+                "This room's damage is equal to the number of Monster rooms in your dungeon.",
+                image: "/card-images/rooms/monsters-ballroom.svg",
+        },
         {
             id: "R70",
             name: "Monstrous Monument",
@@ -492,25 +493,37 @@ const cardDecks = (state = initialState, action) => {
                     discardPile: newDiscardPile
                 }
             }
-        case SHOW_HIDE_DISCARD_PILE:
-            return {
-                ...state,
-                showDiscardPile: !state.showDiscardPile
+        case CHANGE_SHOW_DISCARD_PILE:
+            console.log("action.roomTypeToDraw", action.roomTypeToDraw)
+            if(action.roomTypeToDraw === "Monster Room"){
+                return {
+                    ...state,
+                    showDiscardPile: !state.showDiscardPile,
+                    monsterCardFromDiscard: !state.monsterCardFromDiscard,
+                }
+            }
+            else if(action.roomTypeToDraw === "Trap Room"){
+                return {
+                    ...state,
+                    showDiscardPile: !state.showDiscardPile,
+                    trapCardFromDiscard: !state.trapCardFromDiscard,
+                }
+            }
+            else{
+                return {
+                    ...state,
+                    showDiscardPile: !state.showDiscardPile,
+                    roomCardFromDiscard: !state.roomCardFromDiscard,
+                }
             }
         case DRAW_FROM_DISCARD:
 
-            // if(action.bin.includes("Monster")){ // a monster card can be drawn from the discard pile
-                
-            // }
-            // else if(action.bin.includes("Trap")){ // a trap card can be drawn from the discard pile
-
-            // }
-            // else{ // standard room can be drawn from the discard pile
-
-            // }
+            let cardDrawn = state.discardPile.filter(cardObj => cardObj.id === action.roomID)
 
             return {
-                ...state
+                ...state,
+                playerRooms: state.playerRooms.concat(cardDrawn),
+                discardPile: state.discardPile.filter(cardObj => cardObj.id !== action.roomID)
             }
         default:
             return state
