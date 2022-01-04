@@ -360,8 +360,6 @@ const cardDecks = (state = initialState, action) => {
             }
             // console.log(targetRoomIndex, selectedCardIndex)
 
-
-
             [newDungeon[targetRoomIndex], newDungeon[selectedCardIndex]] = [newDungeon[selectedCardIndex], newDungeon[targetRoomIndex]]
             console.log(newDungeon)
 
