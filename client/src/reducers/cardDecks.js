@@ -56,6 +56,16 @@ const initialState = {
         //     image: "/card-images/rooms/boulder-ramp.svg",
         // },
         {
+            id: "R1",
+            name: "Dark Altar",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Cleric x2",
+            description:
+            "Destroy this Room: Choose one card from the discard pile and put it into your hand.",
+            image: "/card-images/rooms/dark-altar.svg",
+        },
+        {
             id: "R12",
             name: "Dracolich Lair",
             subtitle: "Advanced Monster Room",
