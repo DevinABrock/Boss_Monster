@@ -546,7 +546,7 @@ const cardDecks = (state = initialState, action) => {
                 return {
                     ...state,
                     showDiscardPile: !state.showDiscardPile,
-                    roomCardFromDiscardd: !state.roomCardFromDiscard,
+                    roomCardFromDiscard: !state.roomCardFromDiscard,
                 }
             }
         case DISCARD_CARD:

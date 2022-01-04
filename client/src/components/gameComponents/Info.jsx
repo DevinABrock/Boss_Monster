@@ -485,11 +485,11 @@ console.log("discardPile", discardPile);
             if(countDracolichLair > 0){
                 dispatch(discardCard(selectedCard.id))
                 setCountDracolichLair(countDracolichLair - 1)
-                console.log("countDracolichLair", countDracolichLair);
+                console.log("countDracolichLair inside", countDracolichLair);
                 if(countDracolichLair === 1){
                     setCountDracolichLair(2)
                     setUsingDracolichLair(false)
-                    dispatch(changeShowDiscardPile("Room Card"))
+                    dispatch(changeShowDiscardPile())
                 }
             }
         }
@@ -511,6 +511,8 @@ console.log("discardPile", discardPile);
             }
         }
     }
+
+    console.log("countDracolichLair outside", countDracolichLair);
 
     const handleCancelClick = () => {
         // resetting values to false if "Cancel button is clicked"
