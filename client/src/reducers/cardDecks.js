@@ -192,16 +192,16 @@ const initialState = {
         //     "This room's damage is equal to the number of Monster rooms in your dungeon.",
         //     image: "/card-images/rooms/monsters-ballroom.svg",
         // }],
-        [{
-            id: "R49",
-            name: "Boulder Ramp",
-            subtitle: "Trap Room",
-            dmg: 1,
-            treasure: "Thief",
-            description:
-                "Destroy another room in your dungeon: Deal 5 damage to a hero in this room.",
-            image: "/card-images/rooms/boulder-ramp.svg",
-        }],
+        // [{
+        //     id: "R49",
+        //     name: "Boulder Ramp",
+        //     subtitle: "Trap Room",
+        //     dmg: 1,
+        //     treasure: "Thief",
+        //     description:
+        //         "Destroy another room in your dungeon: Deal 5 damage to a hero in this room.",
+        //     image: "/card-images/rooms/boulder-ramp.svg",
+        // }],
         // [{
         //     id: "R58",
         //     name: "Recycling Center",
