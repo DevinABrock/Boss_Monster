@@ -23,22 +23,22 @@
 
 /* -- TITLE AREA -- */
 .dmTitleImg{
-    height: 10rem;
+    height: 7.5rem;
     z-index: 999;
     position: absolute;
 }
 .dmTitle{
-    padding-top: 5rem;
+    padding-top: 7.5rem;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: flex-end;
     color: gold;
-    font-size: 3.8rem;
+    font-size: 3.0rem;
     position: absolute;
 }
 .dmIcon{
-    height: 5rem;
+    height: 3.7rem;
     padding-bottom: 1%;
     margin-right: 10px;
 }
@@ -46,7 +46,7 @@
 /* -- LEADERBOARD AREA -- */
 .leaderBoardContainer{
     background-color: #6C6D73;
-    height: 75%;
+    height: 70%;
     width: 82vw;
     position: absolute;
     margin-top: 15%;
@@ -201,7 +201,7 @@
 .dmGoldBanner{
     position: absolute;
     height: 5.8rem;
-    margin-top: 13rem;
+    margin-top: 11.5rem;
     margin-right: 80%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -256,7 +256,6 @@
         height: 70%;
         width: 90vw;
         position: absolute;
-        margin-top: 15rem;
         border-radius: 10px;
         border-style: solid;
         border-width: 10px;
@@ -408,7 +407,214 @@
     .dmGoldBanner{
         position: absolute;
         height: 4.8rem;
-        margin-top: 14rem;
+        margin-top: 11.5rem;
+        margin-right: 88%;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 50px;
+        border-bottom-left-radius: 50px;
+    }
+}
+
+@media all and (min-width: 1300px) {
+    .dmBody{
+        height: 93.5vh;
+        display: flex;
+        flex-direction: column;
+        font-family: 'Press Start 2P', cursive;
+    }
+    .dmBanner{
+        height: 100%;
+        width: 100vw;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .dmBackground{
+        width: 100vw;
+        position: relative;
+        top: 2rem;
+        /* display: none; */
+    }
+    
+    /* -- TITLE AREA -- */
+    .dmTitle{
+        margin-top: 1rem;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        color: gold;
+        font-size: 2.5rem;
+        position: absolute;
+    }
+    .dmIcon{
+        height: 3.5rem;
+        padding-bottom: 0%;
+        margin-right: 10px;
+    }
+    
+    /* -- LEADERBOARD AREA -- */
+    .leaderBoardContainer{
+        background-color: #6C6D73;
+        height: 65%;
+        width: 90vw;
+        position: absolute;
+        border-radius: 10px;
+        border-style: solid;
+        border-width: 10px;
+        border-color: #474747;
+        color: black;
+    }
+    .dmGuide{
+        padding-left: 5%;
+        padding-right: 5%;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        height: 8%;
+    }
+    
+    .dmUserDisplay{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        height: 8%;
+        /* overflow-y: scroll; */
+        height: 90%;
+    }
+    
+    /* -- SEPERATE USER -- */
+    .dmUserItem{
+        padding-left: 5%;
+        padding-right: 5%;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 18%;
+        /* margin-bottom: .5rem; */
+    }
+    .dmRank{
+        width: 10%;
+        color: black;
+    }
+    .dmUsername{
+        width: 40%;
+        color: black;
+    }
+    .dmWL{
+        width: 10%;
+        color: black;
+    }
+    .dmSouls{
+        width: 20%;
+        color: black;
+    }
+    .dmBadge{
+        width: 20%;
+        color: black;
+    }
+    
+    .dmRank1{
+        width: 10%;
+        color: gold;
+        font-size: 1.4rem;
+    }
+    .dmUsername1{
+        width: 40%;
+        color: gold;
+        font-size: 1.4rem;
+    
+    }
+    .dmWL1{
+        width: 10%;
+        color: gold;
+        font-size: 1.4rem;
+    
+    }
+    .dmSouls1{
+        width: 20%;
+        color: gold;
+        font-size: 1.4rem;
+    
+    }
+    .dmBadge1{
+        width: 20%;
+        color: gold;
+        font-size: 1.2rem;
+    
+    }
+    
+    .dmRank2{
+        width: 10%;
+        color: silver;
+        font-size: 1.2rem;
+    
+    }
+    .dmUsername2{
+        width: 40%;
+        color: silver;
+        font-size: 1.2rem;
+    
+    }
+    .dmWL2{
+        width: 10%;
+        color: silver;
+        font-size: 1.2rem;
+    
+    }
+    .dmSouls2{
+        width: 20%;
+        color: silver;
+        font-size: 1.2rem;
+    
+    }
+    .dmBadge2{
+        width: 20%;
+        color: silver;
+        font-size: 1.2rem;
+    
+    }
+    
+    .dmRank3{
+        width: 10%;
+        color: #412013;
+        font-size: 1.1rem;
+    
+    }
+    .dmUsername3{
+        width: 40%;
+        color: #412013;
+        font-size: 1.1rem;
+    
+    }
+    .dmWL3{
+        width: 10%;
+        color: #412013;
+        font-size: 1.1rem;
+    
+    }
+    .dmSouls3{
+        width: 20%;
+        color: #412013;
+        font-size: 1.1rem;
+    
+    }
+    .dmBadge3{
+        width: 20%;
+        color: #412013;
+        font-size: 1.1rem;
+    
+    }
+    
+    .dmGoldBanner{
+        position: absolute;
+        height: 4.8rem;
+        margin-top: 14.5rem;
         margin-right: 88%;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;

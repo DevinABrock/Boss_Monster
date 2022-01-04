@@ -1,5 +1,5 @@
 
-import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, NEXT_GAME_PHASE, DECREASE_PLAYER_HEALTH, DEAL_ROOM_CARD, BAIT_HEROES, UPDATE_PLAYER_TREASURE, BUILD_DUNGEON, NEXT_ROUND, SET_HERO_START_OF_DUNGEON, MOVE_HERO_NUMBER_OF_STEPS, DAMAGE_HERO, HERO_KILLED, PLAYER_KILLED, RESET_PLAYER_CARDS, RESET_GAME, ADD_BUILD_ACTIONS, HERO_SURVIVED, CHANGE_USE_BUTTON_SWAPPING, SWAP_ROOMS, CHANGE_SWAP_ROOMS_MODE, DAMAGE_ROOM, DRAW_FROM_DISCARD, CHANGE_SHOW_DISCARD_PILE, ADD_USERNAME, ADD_SOUL } from "./types"
+import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, NEXT_GAME_PHASE, DECREASE_PLAYER_HEALTH, DEAL_ROOM_CARD, BAIT_HEROES, UPDATE_PLAYER_TREASURE, BUILD_DUNGEON, NEXT_ROUND, SET_HERO_START_OF_DUNGEON, MOVE_HERO_NUMBER_OF_STEPS, DAMAGE_HERO, HERO_KILLED, PLAYER_KILLED, RESET_PLAYER_CARDS, RESET_GAME, ADD_BUILD_ACTIONS, HERO_SURVIVED, CHANGE_USE_BUTTON_SWAPPING, SWAP_ROOMS, CHANGE_SWAP_ROOMS_MODE, DAMAGE_ROOM, DRAW_FROM_DISCARD, CHANGE_SHOW_DISCARD_PILE, ADD_USERNAME, ADD_SOUL, ABLE_TO_DESTROY, DESTROY_ROOM, DISCARD_CARD } from "./types"
 
 // !add multiple actions to this file
 
@@ -51,7 +51,7 @@ export const nextRound = (playerDungeon) => {
     return {
         type: NEXT_ROUND,
         playerDungeon
-    }
+    } 
 }
 export const updatePlayerTreasure = (playerDungeon) => {
     return {
@@ -148,23 +148,38 @@ export const changeShowDiscardPile = (roomTypeToDraw) => {
         roomTypeToDraw
     }
 }
+export const discardCard = (roomID) => {
+    return {
+        type: DISCARD_CARD,
+        roomID
+    }
+}
 export const drawFromDiscard = (roomID) => {
     return {
         type: DRAW_FROM_DISCARD,
         roomID
     }
 }
-
 export const addUsername = (username) => {
     return {
         type: ADD_USERNAME,
         username
     }
 }
-
 export const addSoul = () => {
     return {
         type: ADD_SOUL
+    }
+}
+export const ableToDestroy = () => {
+    return {
+        type: ABLE_TO_DESTROY
+    }
+}
+export const destroyRoom = (roomIndex) => {
+    return {
+        type: DESTROY_ROOM,
+        roomIndex
     }
 }
 

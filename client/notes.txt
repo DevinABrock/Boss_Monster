@@ -1,5 +1,5 @@
 
-SJD - 
+SJD - Discard pile is being reset by something. Fix that and then continue working on Open Grave functionality.
 
 
 

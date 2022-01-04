@@ -1,5 +1,5 @@
 
-import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES, HERO_KILLED, SET_HERO_START_OF_DUNGEON, RESET_PLAYER_CARDS, HERO_SURVIVED, SWAP_ROOMS, DAMAGE_ROOM, NEXT_ROUND, CHANGE_SHOW_DISCARD_PILE, DRAW_FROM_DISCARD } from "../actions/types"
+import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES, HERO_KILLED, SET_HERO_START_OF_DUNGEON, RESET_PLAYER_CARDS, HERO_SURVIVED, SWAP_ROOMS, DAMAGE_ROOM, NEXT_ROUND, CHANGE_SHOW_DISCARD_PILE, DRAW_FROM_DISCARD, DESTROY_ROOM, DISCARD_CARD } from "../actions/types"
 import { dungeonBack } from "../assets/cards"
 
 const initialState = {
@@ -56,6 +56,16 @@ const initialState = {
         //     image: "/card-images/rooms/boulder-ramp.svg",
         // },
         {
+            id: "R12",
+            name: "Dracolich Lair",
+            subtitle: "Advanced Monster Room",
+            dmg: 3,
+            treasure: "Cleric",
+            description:
+            "Once per turn, you may discard two Room cards to choose one Room card from the discard pile and put it into your hand.",
+            image: "/card-images/rooms/dracolich-lair.svg",
+        },
+        {
             id: "R24",
             name: "Neanderthal Cave",
             subtitle: "Monster Room",
@@ -71,7 +81,7 @@ const initialState = {
             dmg: 2,
             treasure: "Fighter",
             description:
-            "Once per turn, if a hero dies in this room, draw a Room card.",
+                "Once per turn, if a hero dies in this room, draw a Room card.",
             image: "/card-images/rooms/golem-factory.svg",
         },
         {
@@ -83,15 +93,15 @@ const initialState = {
             description: "Monster Rooms adjacent to this room deal +1 damage.",
             image: "/card-images/rooms/goblin-armory.svg",
         },
-        {
-            id: "R65",
-            name: "Dragon Hatchery",
-            subtitle: "Monster Room",
-            dmg: 0,
-            treasure: "Cleric + Mage + Fighter + Thief",
-            description: "(This room contains all four treasure types.)",
-            image: "/card-images/rooms/dragon-hatchery.svg",
-        },
+        // {
+        //     id: "R65",
+        //     name: "Dragon Hatchery",
+        //     subtitle: "Monster Room",
+        //     dmg: 0,
+        //     treasure: "Cleric + Mage + Fighter + Thief",
+        //     description: "(This room contains all four treasure types.)",
+        //     image: "/card-images/rooms/dragon-hatchery.svg",
+        // },
         {
             id: "R66",
             name: "Dragon Hatchery",
@@ -108,7 +118,7 @@ const initialState = {
             dmg: 1,
             treasure: "Fighter + Thief",
             description:
-            "When you build this room, you may immediately build an additional Room.",
+                "When you build this room, you may immediately build an additional Room.",
             image: "/card-images/rooms/construction-zone.svg",
         },
         {
@@ -118,9 +128,19 @@ const initialState = {
             dmg: 1,
             treasure: "Fighter + Mage",
             description:
-            "When you build this room, you may swap the placement of two Rooms in any one dungeon.",
+                "When you build this room, you may swap the placement of two Rooms in any one dungeon.",
             image: "/card-images/rooms/centipede-tunnel.svg",
         },
+        // {
+        //     id: "R4",
+        //     name: "Open Grave",
+        //     subtitle: "Trap Room",
+        //     dmg: 2,
+        //     treasure: "Cleric",
+        //     description:
+        //     "Once per turn, if a Hero dies in this room, choose one Room card from the discard pile and put into your hand.",
+        //     image: "/card-images/rooms/open-grave.svg",
+        // },
         // {
         //     id: "R22",
         //     name: "Minotaur's Maze",
@@ -132,14 +152,14 @@ const initialState = {
         //     image: "/card-images/rooms/minotaurs-maze(1).svg",
         // },
         {
-                id: "R29",
-                name: "Monster's Ballroom",
-                subtitle: "Advanced Monster Room",
-                dmg: "*",
-                treasure: "Fighter",
-                description:
+            id: "R29",
+            name: "Monster's Ballroom",
+            subtitle: "Advanced Monster Room",
+            dmg: "*",
+            treasure: "Fighter",
+            description:
                 "This room's damage is equal to the number of Monster rooms in your dungeon.",
-                image: "/card-images/rooms/monsters-ballroom.svg",
+            image: "/card-images/rooms/monsters-ballroom.svg",
         },
         {
             id: "R70",
@@ -148,8 +168,17 @@ const initialState = {
             dmg: 1,
             treasure: "Cleric + Fighter",
             description:
-            "When you build this room, choose one Monster Room from the discard pile and put it in your hand.",
+                "When you build this room, choose one Monster Room from the discard pile and put it in your hand.",
             image: "/card-images/rooms/monstrous-monument.svg",
+        },
+        {
+            id: "R46",
+            name: "Bottomless Pit",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Thief",
+            description: "Destroy this room: Kill a Hero in this room.",
+            image: "/card-images/rooms/bottomless-pit.svg",
         },
     ],
     playerDungeon: [
@@ -164,14 +193,14 @@ const initialState = {
         //     image: "/card-images/rooms/monsters-ballroom.svg",
         // }],
         // [{
-        //     id: "R27",
-        //     name: "Beast Menagerie",
-        //     subtitle: "Advanced Monster Room",
-        //     dmg: 4,
-        //     treasure: "Fighter",
+        //     id: "R49",
+        //     name: "Boulder Ramp",
+        //     subtitle: "Trap Room",
+        //     dmg: 1,
+        //     treasure: "Thief",
         //     description:
-        //     "Once per turn when you build another Monster room, draw a Room card.",
-        //     image: "/card-images/rooms/beast-menagerie.svg",
+        //         "Destroy another room in your dungeon: Deal 5 damage to a hero in this room.",
+        //     image: "/card-images/rooms/boulder-ramp.svg",
         // }],
         // [{
         //     id: "R58",
@@ -182,6 +211,16 @@ const initialState = {
         //     description: "When another room in your dungeon is destroyed, you may draw two Room cards.",
         //     image: "/card-images/rooms/recycling-center.svg",
         // }],
+        [{
+            id: "R59",
+            name: "The Crushinator",
+            subtitle: "Advanced Trap Room",
+            dmg: 2,
+            treasure: "Thief",
+            description:
+              "Destroy another room in your dungeon: Until end of turn, your Rooms have +2 damage. Revised: Once per turn, you may destroy another Room in your dungeon to give all your Rooms +2 until end of turn.",
+            image: "/card-images/rooms/the-crushinator.svg",
+          },],
         // [{
         //     id: "R29",
         //     name: "Monster's Ballroom",
@@ -204,16 +243,16 @@ const initialState = {
                 image: "/card-images/rooms/vampire-bordello.svg",
             },
         ],
-        [{
-            id: "R28",
-            name: "Beast Menagerie",
-            subtitle: "Advanced Monster Room",
-            dmg: 4,
-            treasure: "Fighter",
-            description:
-                "Once per turn when you build another Monster room, draw a Room card.",
-            image: "/card-images/rooms/beast-menagerie.svg",
-        }],
+        // [{
+        //     id: "R28",
+        //     name: "Beast Menagerie",
+        //     subtitle: "Advanced Monster Room",
+        //     dmg: 4,
+        //     treasure: "Fighter",
+        //     description:
+        //         "Once per turn when you build another Monster room, draw a Room card.",
+        //     image: "/card-images/rooms/beast-menagerie.svg",
+        // }],
 
         // [dungeonBack], [dungeonBack],
         [dungeonBack], [dungeonBack],
@@ -328,11 +367,30 @@ const cardDecks = (state = initialState, action) => {
                 ...state,
                 playerDungeon: state.playerDungeon.map(roomArr => {
                     if(action.roomID === roomArr[0].id){
-                        roomArr[0].durability -= 100
-                        // roomArr[0].durability -= 20
+                        // roomArr[0].durability -= 100
+                        roomArr[0].durability -= 20
                     }
                     return roomArr
                 })
+            }
+        case DESTROY_ROOM:
+            console.log('destroying room', action.roomIndex)
+
+            let destroyedDungeon = [...state.playerDungeon]
+            // if the array only has one room then destroy the whole array and add a blank room on the end
+            // console.log(roomIndex)
+            if (state.playerDungeon[action.roomIndex].length === 1) {
+                destroyedDungeon.splice(action.roomIndex, 1)
+                destroyedDungeon.push([dungeonBack])
+            }
+            // if the array has multiple rooms then remove the top room
+            else {
+                destroyedDungeon[action.roomIndex].splice(0, 1)
+            }
+            console.log(destroyedDungeon)
+            return {
+                ...state,
+                playerDungeon: destroyedDungeon
             }
         case DEAL_ROOM_CARD:
             return {
@@ -451,37 +509,37 @@ const cardDecks = (state = initialState, action) => {
 
             state.playerDungeon.forEach(roomArr => {
                 let tempArr = [...roomArr]
-                if(tempArr[0].durability === 0){
-                    if(tempArr.length > 1){
+                if (tempArr[0].durability === 0) {
+                    if (tempArr.length > 1) {
                         newDiscardPile.push(tempArr.splice(0, 1)[0])
                         newPlayerDungeon.push(tempArr)
                         numRoomsDestroyed += 1
                     }
-                    else{
+                    else {
                         newDiscardPile.push(tempArr[0])
                         numRoomsDestroyed += 1
                     }
                 }
-                else{
+                else {
                     newPlayerDungeon.push(tempArr)
                 }
             })
 
-            for(let i = newPlayerDungeon.length; i < 6; i++){
+            for (let i = newPlayerDungeon.length; i < 6; i++) {
                 newPlayerDungeon.push([dungeonBack])
             }
 
             let cardsToDraw = []
             let newRoomDeck = state.roomDeck
 
-            if(numRoomsDestroyed === 6){
+            if (numRoomsDestroyed === 6) {
                 cardsToDraw.push(newRoomDeck.splice(-3)) // three cards are added
 
             }
-            else if(numRoomsDestroyed >= 4){
+            else if (numRoomsDestroyed >= 4) {
                 cardsToDraw.push(newRoomDeck.splice(-2)) // two cards are added
             }
-            else if(numRoomsDestroyed >= 2){
+            else if (numRoomsDestroyed >= 2) {
                 cardsToDraw.push(newRoomDeck.splice(-1)) // one card is added
             }
 
@@ -490,45 +548,56 @@ const cardDecks = (state = initialState, action) => {
 
             console.log(newPlayerDungeon)
 
-            if(numRoomsDestroyed >= 2){ // some amount of cards are drawn and added to players hand
+            if (numRoomsDestroyed >= 2) { // some amount of cards are drawn and added to players hand
                 return {
                     ...state,
                     playerDungeon: newPlayerDungeon,
                     roomDeck: newRoomDeck,
                     playerRooms: state.playerRooms.concat(cardsToDraw[0]),
-                    discardPile: newDiscardPile
+                    discardPile: [...state.discardPile].concat(newDiscardPile) 
                 }
             }
             else { // no cards added to players hand
                 return {
                     ...state,
                     playerDungeon: newPlayerDungeon,
-                    discardPile: newDiscardPile
+                    discardPile: [...state.discardPile].concat(newDiscardPile) 
                 }
             }
         case CHANGE_SHOW_DISCARD_PILE:
             console.log("action.roomTypeToDraw", action.roomTypeToDraw)
-            if(action.roomTypeToDraw === "Monster Room"){
+            if (action.roomTypeToDraw === "Monster Room") {
                 return {
                     ...state,
                     showDiscardPile: !state.showDiscardPile,
                     monsterCardFromDiscard: !state.monsterCardFromDiscard,
                 }
             }
-            else if(action.roomTypeToDraw === "Trap Room"){
+            else if (action.roomTypeToDraw === "Trap Room") {
                 return {
                     ...state,
                     showDiscardPile: !state.showDiscardPile,
                     trapCardFromDiscard: !state.trapCardFromDiscard,
                 }
             }
-            else{
+            else {
                 return {
                     ...state,
                     showDiscardPile: !state.showDiscardPile,
-                    roomCardFromDiscard: !state.roomCardFromDiscard,
+                    roomCardFromDiscardd: !state.roomCardFromDiscard,
                 }
             }
+        case DISCARD_CARD:
+            
+            let cardDiscarded = state.playerRooms.filter(cardObj => cardObj.id === action.roomID)
+            console.log("cardDiscarded", cardDiscarded)
+
+            return {
+                ...state,
+                playerRooms: state.playerRooms.filter(cardObj => cardObj.id !== action.roomID),
+                discardPile: state.discardPile.concat(cardDiscarded),
+            }
+
         case DRAW_FROM_DISCARD:
 
             let cardDrawn = state.discardPile.filter(cardObj => cardObj.id === action.roomID)

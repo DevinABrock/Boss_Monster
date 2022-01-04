@@ -17,6 +17,7 @@ export const BUILDING_MODE = "BUILDING_MODE"
 export const BUILD_DUNGEON = "BUILD_DUNGEON";
 export const DAMAGE_ROOM = "DAMAGE_ROOM"
 export const CHANGE_SHOW_DISCARD_PILE = "CHANGE_SHOW_DISCARD_PILE"
+export const DISCARD_CARD = "DISCARD_CARD"
 export const DRAW_FROM_DISCARD = "DRAW_FROM_DISCARD"
 
 // type for currently selected card
@@ -36,3 +37,6 @@ export const CHANGE_SWAP_ROOMS_MODE = "CHANGE_SWAP_ROOMS_MODE";
 
 export const ADD_USERNAME = "ADD_USERNAME";
 export const ADD_SOUL = "ADD_SOUL";
+
+export const ABLE_TO_DESTROY = "ABLE_TO_DESTROY";
+export const DESTROY_ROOM = "DESTROY_ROOM"
