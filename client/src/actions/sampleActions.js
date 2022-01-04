@@ -51,7 +51,7 @@ export const nextRound = (playerDungeon) => {
     return {
         type: NEXT_ROUND,
         playerDungeon
-    }
+    } 
 }
 export const updatePlayerTreasure = (playerDungeon) => {
     return {

@@ -77,6 +77,8 @@ function Info() {
         setCount(2)
     }, [heroesAtStartOfDungeon])
 
+console.log("discardPile", discardPile);
+
     // checks if rooms have effects when the hero died
     const heroDiedCheck = () => {
         let roomName = playerDungeon[heroRoomPosition][0].name
@@ -90,6 +92,16 @@ function Info() {
             dispatch(decreasePlayerHealth(-1))
             dispatch(addSoul())
             setVampireBordello(false)
+        }
+        else if(openGrave && roomName === "Open Grave"){
+            if(discardPile.length > 0){
+                alert('The hero dies in the Open Grave. Select Room Card below and click the "USE" button to add it to your hand.')
+                dispatch(changeShowDiscardPile("Room Card"))
+                setOpenGrave(false)
+            }
+            else{
+                alert("The hero dies in the Open Grave but there are currently no cards in the discard pile. This card's effect is not triggered.")
+            }
         }
     }
 
