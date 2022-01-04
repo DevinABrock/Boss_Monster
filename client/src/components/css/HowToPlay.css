@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P');
+
+.htpContainer{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    font-size: 2rem;
+    font-family: 'Press Start 2P', cursive;
+    position: relative;
+    overflow: hidden;
+}
+.directionsContainer{
+    margin-top: 20px;
+    width: 60rem;
+    height: 35rem;
+    background-color: #474747;
+    border-color: gray;
+    border-style: solid;
+    border-width: 30px;
+    overflow-y: scroll;
+    padding-left: 1rem;
+    position: absolute;
+    margin-top: 12rem;
+}
+.htpTitle{
+    position: absolute;
+    z-index: 999;
+    margin-top: 8rem;
+
+}
+.ruleTitle{
+    font-size: 2rem;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+.ruleDescription{
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+}
+
+@media all and (max-width: 900px){
+    .htpTitle{
+        font-size: 1.5rem;
+        margin-top: 5rem;
+    }
+    .directionsContainer{
+        height: 45rem;
+        width: 90%;
+        margin-top: 10rem;
+        font-size: 1.5rem;
+    }
+}

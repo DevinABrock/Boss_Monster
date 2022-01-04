@@ -162,13 +162,13 @@ function DungeonMasters() {
                                 <div className='dmSouls'>4</div>
                                 <div className='dmBadge'>Final Boss</div>
                             </div> */}
-                        <div className='dmUserItem'>
+                        {/* <div className='dmUserItem'>
                             <div className='dmRank'>10</div>
                             <div className='dmUsername'>Username</div>
                             <div className='dmWL'>W</div>
                             <div className='dmSouls'>4</div>
                             <div className='dmBadge'>Final Boss</div>
-                        </div>
+                        </div> */}
 
                     </div>
                 </div>

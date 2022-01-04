@@ -14,14 +14,13 @@
     }
     
     .navIcon{
-        height: 1.0rem;
+        height: 2rem;
         margin-left: 1px;
-        margin-right: 2px;
     }
     .navTitle{
         text-decoration: none;
         color: white;
-        font-size: 0.7rem;
+        font-size: 1rem;
         display: block;
         align-items: center;
     }
@@ -37,7 +36,7 @@
     .navItem{
         text-decoration: none;
         color: white;
-        font-size: 9px;
+        font-size: .6rem;
     }
     .navItem:hover{
         color: #90BA5A;

@@ -27,7 +27,11 @@ body{
 .imgOne{
     width: 100vw;
     position: relative;
-    top: 5rem;
+    top: 2rem;
+}
+.homeLogo{
+    position: absolute;
+    margin-top: 10rem;
 }
 
 /* .inputName{
@@ -55,8 +59,7 @@ body{
     position: absolute;
     background: none;
     background-color: none;
-    padding-top: 570px;
-    padding-right: 25px;
+    margin-top: 25rem;
 }
 
 .inputUsername{
@@ -91,7 +94,7 @@ body{
 
 /* MEDIA QUERIES */
 
-@media only screen and (min-width: 400px) {
+@media only screen and (max-width: 1000px) {
     .startButtonContainer{
         display: block;
         position: absolute;
@@ -99,6 +102,7 @@ body{
         background-color: none;
         padding-top: 240px;
         padding-right: 25px;
+        margin-top: 10rem;
     }
     .inputUsername{
         display: flex;
@@ -119,129 +123,5 @@ body{
         text-decoration: none;
         padding-top: 30px;
         padding-left: 70px;
-    }
-}
-
-@media only screen and (min-width: 600px) {
-    .startButtonContainer{
-        display: block;
-        position: absolute;
-        background: none;
-        background-color: none;
-        padding-top: 300px;
-        padding-right: 25px;
-    }
-    .inputUsername{
-        display: flex;
-        flex-direction: row;
-        height: 40px;
-        width: auto;
-        text-align: center;
-        outline: none;
-        border-radius: 50px;
-    }
-    
-    .homeButton{
-        display: flex;
-        flex-direction: row;
-        cursor: pointer;
-        color: white;
-        font-size: 20px;
-        text-decoration: none;
-        padding-top: 30px;
-        padding-left: 70px;
-    }
-}
-
-@media only screen and (min-width: 800px) {
-    .startButtonContainer{
-        display: block;
-        position: absolute;
-        background: none;
-        background-color: none;
-        padding-top: 375px;
-        padding-right: 25px;
-    }
-    .inputUsername{
-        display: flex;
-        flex-direction: row;
-        height: 40px;
-        width: auto;
-        text-align: center;
-        outline: none;
-        border-radius: 50px;
-    }
-    
-    .homeButton{
-        display: flex;
-        flex-direction: row;
-        cursor: pointer;
-        color: white;
-        font-size: 20px;
-        text-decoration: none;
-        padding-top: 30px;
-        padding-left: 70px;
-    }
-}
-
-@media only screen and (min-width: 1000px) {
-    .startButtonContainer{
-        display: block;
-        position: absolute;
-        background: none;
-        background-color: none;
-        padding-top: 470px;
-        padding-right: 25px;
-    }
-    .inputUsername{
-        display: flex;
-        flex-direction: row;
-        height: 50px;
-        width: auto;
-        text-align: center;
-        outline: none;
-        border-radius: 50px;
-    }
-    
-    .homeButton{
-        display: flex;
-        flex-direction: row;
-        cursor: pointer;
-        color: white;
-        font-size: 20px;
-        text-decoration: none;
-        padding-top: 50px;
-        padding-left: 67px;
-    }
-}
-
-@media only screen and (min-width: 1400px) {
-    .startButtonContainer{
-        display: block;
-        position: absolute;
-        background: none;
-        background-color: none;
-        padding-top: 570px;
-        padding-right: 25px;
-    }
-    .inputUsername{
-        display: flex;
-        flex-direction: row;
-        height: 50px;
-        width: auto;
-        text-align: center;
-        outline: none;
-        border-radius: 50px;
-    }
-    
-    .homeButton{
-        display: flex;
-        flex-direction: row;
-        cursor: pointer;
-        color: white;
-        font-size: 20px;
-        text-decoration: none;
-        padding-top: 50px;
-        padding-left: 67px;
     }
 }
