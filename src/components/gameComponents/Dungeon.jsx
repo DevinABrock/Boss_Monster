@@ -3,7 +3,7 @@ import '../css/Dungeon.css'
 // import { bossDeck } from "../../assets/cards"
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCard, buildingMode } from '../../actions/miscActions';
-import { buildDungeon, addBuildActions, changeUseButtonSwapping, swapRooms, changeSwapRoomsMode, dealRoomCard, showHideDiscardPile } from '../../actions/sampleActions';
+import { buildDungeon, addBuildActions, changeUseButtonSwapping, swapRooms, changeSwapRoomsMode, dealRoomCard, showHideDiscardPile, drawFromDiscard } from '../../actions/sampleActions';
 import Card from './Card'
 import { cardBack } from '../../assets/cards';
 
@@ -127,6 +127,7 @@ function Dungeon() {
             case "Monstrous Monument":
                 dispatch(showHideDiscardPile())
                 alert('Building the "Monstrous Monument" card allows you to select a Monster Card from the discard pile and put it in your hand. Select an appropriate card card below and then click the "USE" button to add it to your hand.')
+                dispatch(drawFromDiscard("Monster Room"))
                 break
             // "When you build this room, you may swap the placement of two Rooms in any one dungeon."
                 break

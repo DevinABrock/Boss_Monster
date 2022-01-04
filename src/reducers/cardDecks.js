@@ -1,8 +1,11 @@
 
-import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES, HERO_KILLED, SET_HERO_START_OF_DUNGEON, RESET_PLAYER_CARDS, HERO_SURVIVED, SWAP_ROOMS, DAMAGE_ROOM, NEXT_ROUND, DRAW_FROM_DISCARD } from "../actions/types"
+import { SHUFFLE_ALL_DECKS, DEAL_HEROES_TO_TOWN, DEAL_INITIAL_CARDS, BUILD_DUNGEON, DEAL_ROOM_CARD, BAIT_HEROES, HERO_KILLED, SET_HERO_START_OF_DUNGEON, RESET_PLAYER_CARDS, HERO_SURVIVED, SWAP_ROOMS, DAMAGE_ROOM, NEXT_ROUND, SHOW_HIDE_DISCARD_PILE, DRAW_FROM_DISCARD } from "../actions/types"
 import { dungeonBack } from "../assets/cards"
 
 const initialState = {
+    monsterCardFromDiscard: false,
+    trapCardFromDiscard: false,
+    roomCardFromDiscard: false,
     bossDeck: [],
     heroDeck: [],
     epicHeroDeck: [],
@@ -489,12 +492,22 @@ const cardDecks = (state = initialState, action) => {
                     discardPile: newDiscardPile
                 }
             }
+        case SHOW_HIDE_DISCARD_PILE:
+            return {
+                ...state,
+                showDiscardPile: !state.showDiscardPile
+            }
         case DRAW_FROM_DISCARD:
 
-            if(action.bin === "Monster Room" || action.bin === "Advanced Monster Room"){
+            // if(action.bin.includes("Monster")){ // a monster card can be drawn from the discard pile
+                
+            // }
+            // else if(action.bin.includes("Trap")){ // a trap card can be drawn from the discard pile
 
-            }
-            else if(action.bin === "Trap Room")
+            // }
+            // else{ // standard room can be drawn from the discard pile
+
+            // }
 
             return {
                 ...state

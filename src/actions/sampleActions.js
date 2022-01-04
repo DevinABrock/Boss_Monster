@@ -142,15 +142,15 @@ export const damageRoom = (roomID) => {
         roomID
     }
 }
-export const changeShowDiscardPile = () => {
+export const changeShowDiscardPile = (roomTypeToDraw) => {
     return {
-        type: SHOW_HIDE_DISCARD_PILE
+        type: SHOW_HIDE_DISCARD_PILE,
+        roomTypeToDraw
     }
 }
-export const drawFromDiscard = (roomType = "Room") => {
+export const drawFromDiscard = () => {
     return {
-        type: DRAW_FROM_DISCARD,
-        roomType
+        type: DRAW_FROM_DISCARD
     }
 }
 
