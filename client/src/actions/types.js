@@ -36,3 +36,6 @@ export const CHANGE_SWAP_ROOMS_MODE = "CHANGE_SWAP_ROOMS_MODE";
 
 export const ADD_USERNAME = "ADD_USERNAME";
 export const ADD_SOUL = "ADD_SOUL";
+
+export const ABLE_TO_DESTROY = "ABLE_TO_DESTROY";
+export const DESTROY_ROOM = "DESTROY_ROOM"
