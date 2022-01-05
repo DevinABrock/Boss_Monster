@@ -390,7 +390,7 @@ function Info() {
             case 7:
                 return <div className='messageBox'><div className='message'>{tempMessage ? tempMessage : "The hero is fighting your dungeon. Use spells or effect to help your rooms."}</div></div>
             case 10:
-                return <div className='messageBox'><div className='message'>{win === "L" ? `You have been defeated and your loot looted! You made it through ${gameRound - 1} ${(gameRound !== 2) ? "rounds" : "round"} and collected ${playerSouls} ${(playerSouls !== 1) ? "souls" : "soul"}.` : `You managed to survive the heroes' attacks until you finally decide to retire from being a boss satisfied, letting a new boss take your place. You were able to collect ${playerSouls} ${(playerSouls !== 1) ? "souls" : "soul"}! `}</div></div>
+                return <div className='messageBox'><div className='message'>{win === "L" ? `You have been defeated and your loot looted! You made it through ${gameRound - 1} ${(gameRound !== 2) ? "rounds" : "round"} and collected ${playerSouls} ${(playerSouls !== 1) ? "souls" : "soul"}.` : `You managed to survive the heroes' attacks until you finally decide to retire from being a boss...satisfied, and letting a new boss take your place. You were able to collect ${playerSouls} ${(playerSouls !== 1) ? "souls" : "soul"}! Click "NEXT" to start a New Game.`}</div></div>
             default:
                 break;
         }
