@@ -56,42 +56,14 @@ const initialState = {
         //     image: "/card-images/rooms/boulder-ramp.svg",
         // },
         {
-            id: "R12",
-            name: "Dracolich Lair",
-            subtitle: "Advanced Monster Room",
-            dmg: 3,
-            treasure: "Cleric",
-            description:
-            "Once per turn, you may discard two Room cards to choose one Room card from the discard pile and put it into your hand.",
-            image: "/card-images/rooms/dracolich-lair.svg",
-        },
-        {
-            id: "R24",
-            name: "Neanderthal Cave",
-            subtitle: "Monster Room",
-            dmg: 3,
-            treasure: "Fighter",
-            description: "You cannot build an Advanced Room on Neanderthal Cave.",
-            image: "/card-images/rooms/neanderthal-cave.svg",
-        },
-        {
-            id: "R20",
-            name: "Golem Factory",
-            subtitle: "Monster Room",
-            dmg: 2,
-            treasure: "Fighter",
-            description:
-                "Once per turn, if a hero dies in this room, draw a Room card.",
-            image: "/card-images/rooms/golem-factory.svg",
-        },
-        {
-            id: "R16",
-            name: "Goblin Armory",
-            subtitle: "Monster Room",
+            id: "R1",
+            name: "Dark Altar",
+            subtitle: "Trap Room",
             dmg: 1,
-            treasure: "Fighter x2",
-            description: "Monster Rooms adjacent to this room deal +1 damage.",
-            image: "/card-images/rooms/goblin-armory.svg",
+            treasure: "Cleric x2",
+            description:
+            "Destroy this Room: Choose one card from the discard pile and put it into your hand.",
+            image: "/card-images/rooms/dark-altar.svg",
         },
         // {
         //     id: "R65",
@@ -258,7 +230,46 @@ const initialState = {
         [dungeonBack], [dungeonBack],
         [dungeonBack], [dungeonBack]
     ],
-    discardPile: []
+    discardPile: [
+        {
+            id: "R12",
+            name: "Dracolich Lair",
+            subtitle: "Advanced Monster Room",
+            dmg: 3,
+            treasure: "Cleric",
+            description:
+            "Once per turn, you may discard two Room cards to choose one Room card from the discard pile and put it into your hand.",
+            image: "/card-images/rooms/dracolich-lair.svg",
+        },
+        {
+            id: "R24",
+            name: "Neanderthal Cave",
+            subtitle: "Monster Room",
+            dmg: 3,
+            treasure: "Fighter",
+            description: "You cannot build an Advanced Room on Neanderthal Cave.",
+            image: "/card-images/rooms/neanderthal-cave.svg",
+        },
+        {
+            id: "R20",
+            name: "Golem Factory",
+            subtitle: "Monster Room",
+            dmg: 2,
+            treasure: "Fighter",
+            description:
+                "Once per turn, if a hero dies in this room, draw a Room card.",
+            image: "/card-images/rooms/golem-factory.svg",
+        },
+        {
+            id: "R16",
+            name: "Goblin Armory",
+            subtitle: "Monster Room",
+            dmg: 1,
+            treasure: "Fighter x2",
+            description: "Monster Rooms adjacent to this room deal +1 damage.",
+            image: "/card-images/rooms/goblin-armory.svg",
+        },
+    ]
 }
 
 const cardDecks = (state = initialState, action) => {
@@ -584,7 +595,7 @@ const cardDecks = (state = initialState, action) => {
                 return {
                     ...state,
                     showDiscardPile: !state.showDiscardPile,
-                    roomCardFromDiscardd: !state.roomCardFromDiscard,
+                    roomCardFromDiscard: !state.roomCardFromDiscard,
                 }
             }
         case DISCARD_CARD:

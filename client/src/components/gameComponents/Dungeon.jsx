@@ -202,7 +202,7 @@ function Dungeon() {
                             return (
                                 <div className="room2">
                                     <Card cardObj={roomCard[0]} className={roomCard.length > 1 ? "roomStack" : "room"} key={index}/>
-                                    {roomCard[0].durability && <span>{roomCard[0].durability}/100</span>}
+                                    {roomCard[0].durability && <span className="durabilityLabel">{roomCard[0].durability}/100</span>}
                                 </div>
                             )
                         })

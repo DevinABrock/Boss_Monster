@@ -4,6 +4,7 @@ import '../css/Info.css'
 import { buildingMode, selectCard } from '../../actions/miscActions';
 import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, baitHeroes, nextRound, setHeroStartOfDungeon, damageHero, moveHeroNumberOfSteps, heroKilled, decreasePlayerHealth, playerKilled, resetPlayerCards, resetGame, addBuildActions, heroSurvived, changeSwapRoomsMode, damageRoom, changeShowDiscardPile, drawFromDiscard, addSoul, ableToDestroy, destroyRoom, discardCard } from '../../actions/sampleActions';
 import { diceRoll } from '../gameLogic/diceRoll';
+import { blankCard } from '../../assets/cards';
 
 import { shuffleAllDecks, dealInitialCards } from '../gameLogic/initializingDeck';
 import { shuffleAllDecksAction, dealInitialCardsAction } from '../../actions/sampleActions';
@@ -59,7 +60,6 @@ function Info() {
     const [crushinator, setCrushinator] = useState(false)
     const [crushinatorDamageModifier, setCrushinatorDamageModifier] = useState(false)
 
-
     useEffect(() => {
         // used to reset the once per turn values
         setGolemFactory(true)
@@ -90,7 +90,23 @@ function Info() {
         setCountMinotaursMaze(2)
     }, [heroesAtStartOfDungeon])
 
-    console.log("discardPile", discardPile);
+    useEffect(() => {
+        
+        let dungeonContainersSelectedCard = false
+
+        playerDungeon.forEach(array => {
+            if(array[0] === selectedCard){
+                dungeonContainersSelectedCard = true
+            }
+        })
+
+        if(!dungeonContainersSelectedCard){
+            dispatch(selectCard(blankCard, "cardDisplay", blankCard.id))
+        }
+
+    }, [playerDungeon])
+
+console.log("discardPile", discardPile);
 
     // checks if rooms have effects when the hero died
     const heroDiedCheck = () => {
@@ -470,15 +486,13 @@ function Info() {
         return damageBuff
     }
 
-    console.log("selectedCard", selectedCard);
-    console.log("selectedCardClass", selectedCardClass);
-
-    console.log("");
+    console.log("selectedCard", selectedCard)
+    console.log("selectedCardClass", selectedCardClass)
 
     const handleUseButtonClick = () => {
         // if in swapping rooms mode and the selected card is in the dungeon
-        if (selectedCardClass === "room") {
-            if (useButtonSwapping && selectedCardClass === "room") {
+        if (selectedCardClass === "room" ||  selectedCardClass === "discardCard" || selectedCardClass === "builtRoom" || (usingDracolichLair && selectedCardClass === "handCard")) {
+            if (useButtonSwapping) {
                 // console.log("swapping is allowed");
                 dispatch(changeSwapRoomsMode())
             }
@@ -486,7 +500,7 @@ function Info() {
             else if (useButtonSwapping && selectedCardClass != "room") {
                 alert("You must select a room from your dungeon first.");
             }
-            if (selectedCard.name === "Dracolich Lair" && (selectedCardClass === "roomStack" || selectedCardClass === "builtRoom")) {
+            if (selectedCard.name === "Dracolich Lair" && dracolichLair && (selectedCardClass === "roomStack" || selectedCardClass === "builtRoom")) {
                 setUsingDracolichLair(true)
                 alert('You must discard two cards from your hand. Select one card and click the "USE" button, then select the second card and click the "USE" button.')
             }
@@ -498,6 +512,7 @@ function Info() {
                     if (countDracolichLair === 1) {
                         setCountDracolichLair(2)
                         setUsingDracolichLair(false)
+                        setDracolichLair(false)
                         dispatch(changeShowDiscardPile("Room Card"))
                     }
                 }
@@ -591,6 +606,16 @@ function Info() {
                     setCrushinatorDamageModifier(true)
                 }
             }
+            if(selectedCard.name === "Dark Altar"){
+                let roomIndex = null;
+                playerDungeon.forEach((array, index) => {
+                    if (array[0] === selectedCard) {
+                        roomIndex = index;
+                    }
+                })
+                dispatch(destroyRoom(roomIndex))
+                dispatch(changeShowDiscardPile())
+            }
         }
         else {
             setTempMessage('You can only use effects from rooms in your dungeon.')
@@ -647,6 +672,8 @@ function Info() {
         }
     }
 
+    console.log("countDracolichLair outside", countDracolichLair);
+
     const handleCancelClick = () => {
         // resetting values to false if "Cancel button is clicked"
         if (monsterCardFromDiscard) {
@@ -654,6 +681,9 @@ function Info() {
         }
         if (trapCardFromDiscard) {
             dispatch(changeShowDiscardPile("Trap Room"))
+        }
+        if (roomCardFromDiscard) {
+            dispatch(changeShowDiscardPile())
         }
         if (gamePhase === 10) {
             const saveScore = async () => {
