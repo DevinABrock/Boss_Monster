@@ -1,12 +1,13 @@
 # Boss_Monster
 ## Build your dungeon and defend your loot from heroes.
 
-{home screen img}
+![Alt text](/client/public/homeScreen.jpg)
+ <br/>
 
 ## Overview
 Boss Monster is based off of the card game Boss Monster by Brotherwise Games. We had to modifiy the rules in order to create a single player version of the game.
 
-Give it a try: {link}
+Give it a try: https://bossmonster.netlify.app/dungeon-masters
 
 ### Gameplay
 This version of Boss Monster plays similar to the original, but with new features.
@@ -19,12 +20,14 @@ This version of Boss Monster plays similar to the original, but with new feature
 ### How To Play
 The how to play page gives a full overview of the game.
 
-{How To Play Img}
+![Alt text](/client/public/htpScreen.jpg)
+ <br/>
 
 ### Dungeon Masters
 Boss Monster uses a backend that stores users' names and scores. They are then ranked in our Dungeon Masters League.
 
-{Dungeon Masters Img}
+![Alt text](/client/public/dmScreen.png)
+ <br/>
 
 ## Work Summary
 
