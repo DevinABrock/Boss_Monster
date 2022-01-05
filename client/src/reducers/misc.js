@@ -28,7 +28,7 @@ const misc = (state = initialState, action) => {
             }
             
         case BUILDING_MODE:
-            console.log("buildingMode", !state.buildingMode)
+            // console.log("buildingMode", !state.buildingMode)
             return {
                 ...state,
                 buildingMode: !state.buildingMode // swaps state of buildingMode between true and false

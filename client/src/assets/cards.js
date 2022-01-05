@@ -36,8 +36,9 @@ export const bossDeck = [
     subtitle: "Progenitor Lich",
     xp: 750,
     treasure: "Cleric",
-    description:
-      "Choose two cards from the discard pile and put them into your hand.",
+    // description:
+    //   "Choose two cards from the discard pile and put them into your hand.",
+    description: "Level-Up functionality coming soon.",
     image: "/card-images/bosses/xyzax.svg",
   },
   {
@@ -46,8 +47,9 @@ export const bossDeck = [
     subtitle: "Sultan of the Sewers",
     xp: 800,
     treasure: "Fighter",
-    description:
-      "You may search the Room Deck or discard pile for an Advanced Monster Room. You may immediately build the room (over a room with a matching Treasure type).",
+    // description:
+    //   "You may search the Room Deck or discard pile for an Advanced Monster Room. You may immediately build the room (over a room with a matching Treasure type).",
+    description: "Level-Up functionality coming soon.",
     image: "/card-images/bosses/king-croak.svg",
   },
   // {
@@ -85,8 +87,9 @@ export const bossDeck = [
     subtitle: "Mother of Mummies",
     xp: 850,
     treasure: "Thief",
-    description:
-      "You may search the Room Deck or discard pile for an Advanced Trap Room. You may immediately build the room (over a room with a matching Treasure type).",
+    // description:
+    //   "You may search the Room Deck or discard pile for an Advanced Trap Room. You may immediately build the room (over a room with a matching Treasure type).",
+    description: "Level-Up functionality coming soon.",
     image: "/card-images/bosses/cleopatra.svg",
   },
   {
@@ -95,8 +98,9 @@ export const bossDeck = [
     subtitle: "Queen of Medusia",
     xp: 500,
     treasure: "Thief",
-    description:
-      "Choose a Hero in town. Immediately destroy that Hero and place it face-down in your scorekeeping area.",
+    // description:
+    //   "Choose a Hero in town. Immediately destroy that Hero and place it face-down in your scorekeeping area.",
+    description: "Level-Up functionality coming soon.",
     image: "/card-images/bosses/gorgona.svg",
   },
 ];

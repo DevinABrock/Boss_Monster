@@ -81,6 +81,8 @@
     align-items: center;
     padding-left: 4%;
     padding-right: 4%;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 .button{
     color: #474747;

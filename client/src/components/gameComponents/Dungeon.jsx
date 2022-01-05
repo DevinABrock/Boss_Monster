@@ -34,7 +34,6 @@ function Dungeon() {
 
 
     const renderHeroAtPosition = () => {
-        // return [<Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>,<Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>]
         let renderHeroArray = []
         for (let roomIndex = 5; roomIndex >= 0; roomIndex--) {
             if (heroRoomPosition===roomIndex) {

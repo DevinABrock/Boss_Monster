@@ -26,8 +26,8 @@ function App() {
   window.addEventListener("keydown", listener)
 
   const handleFormSubmit = () => {
-    console.log('running handleFormSubmit');
-    console.log(username);
+    // console.log('running handleFormSubmit');
+    // console.log(username);
     dispatch(addUsername(username))
     navigate("/progress")
   }

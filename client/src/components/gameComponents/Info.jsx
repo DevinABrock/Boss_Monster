@@ -107,18 +107,18 @@ function Info() {
 
     }, [playerDungeon])
 
-console.log("discardPile", discardPile);
+// console.log("discardPile", discardPile);
 
     // checks if rooms have effects when the hero died
     const heroDiedCheck = () => {
         let roomName = playerDungeon[heroRoomPosition][0].name
-        console.log('room hero died in: ', roomName);
+        // console.log('room hero died in: ', roomName);
         if (golemFactory && roomName === "Golem Factory") {
             dispatch(dealRoomCard())
             setGolemFactory(false)
         }
         else if (vampireBordello && roomName === "Vampire Bordello" && playerHealth < 5) {
-            console.log('healed by vampire bordello room');
+            // console.log('healed by vampire bordello room');
             dispatch(decreasePlayerHealth(-1))
             dispatch(addSoul())
             setVampireBordello(false)
@@ -150,12 +150,21 @@ console.log("discardPile", discardPile);
         // if 3 moving to heroes to town phase
         else if (gamePhase === 3) {
             // if the game is in the first 4 rounds deal the ordinary heroes
-            if (gameRound < 5) {
+            if (gameRound <= 3) {
+                dispatch(dealHeroesToTown('ordinary', 1))
+            }
+            else if (gameRound <= 6) {
                 dispatch(dealHeroesToTown('ordinary', 2))
             }
-            // if the game is past the 4th round deal the epic heroes
-            else {
+            else if (gameRound <= 9) {
+                dispatch(dealHeroesToTown('ordinary', 3))
+            }
+            // if the game is past the 9th round deal the epic heroes
+            else if(gameRound <= 12){
                 dispatch(dealHeroesToTown('epic', 2))
+            }
+            else if(gameRound <= 14){
+                dispatch(dealHeroesToTown('epic', 3))
             }
             dispatch(nextGamePhase())
         }
@@ -172,7 +181,7 @@ console.log("discardPile", discardPile);
             if (playerDungeon[0][0].id !== "D1") {
                 if (buildActions > 0) { // if player still has build actions when NEXT is clicked, alert pops up
                     let proceedToNextPhase = window.confirm("You are proceeding to the next phase and still have unused build actions that will be lost.")
-                    console.log(proceedToNextPhase);
+                    // console.log(proceedToNextPhase);
                     if (proceedToNextPhase) {
                         dispatch(baitHeroes(treasureCleric, treasureFighter, treasureThief))
                         dispatch(nextGamePhase())
@@ -246,12 +255,12 @@ console.log("discardPile", discardPile);
                 if (firstTimeInMaze || countMinotaursMaze === 0) {
                     if (playerDungeon[heroRoomPosition][0].durability > 0) {
                         dispatch(damageRoom(playerDungeon[heroRoomPosition][0].id))
-                        console.log("room damaged");
+                        // console.log("room damaged");
                     }
                 }
                 else if (!firstTimeInMaze) {
                     setCountMinotaursMaze(countMinotaursMaze - 1)
-                    console.log("countMinotaursMaze incremented to", countMinotaursMaze);
+                    // console.log("countMinotaursMaze incremented to", countMinotaursMaze);
                 }
 
                 // if hero has health after passing through the last room
@@ -498,8 +507,8 @@ console.log("discardPile", discardPile);
         return damageBuff
     }
 
-    console.log("selectedCard", selectedCard)
-    console.log("selectedCardClass", selectedCardClass)
+    // console.log("selectedCard", selectedCard)
+    // console.log("selectedCardClass", selectedCardClass)
 
     const handleUseButtonClick = () => {
         // if in swapping rooms mode and the selected card is in the dungeon
@@ -517,7 +526,7 @@ console.log("discardPile", discardPile);
                 if (countDracolichLair > 0) {
                     dispatch(discardCard(selectedCard.id))
                     setCountDracolichLair(countDracolichLair - 1)
-                    console.log("countDracolichLair", countDracolichLair);
+                    // console.log("countDracolichLair", countDracolichLair);
                     // countDracolichLair is delayed in decrementing so if-statement below checks when countDracolich lair === 1
                     if (countDracolichLair === 1) {
                         setCountDracolichLair(2)
@@ -676,7 +685,7 @@ console.log("discardPile", discardPile);
 
     const checkRoomDestroyEffects = () => {
         let tempMSG = "";
-        console.log('room name', playerDungeon[heroRoomPosition][0]);
+        // console.log('room name', playerDungeon[heroRoomPosition][0]);
         playerDungeon.forEach(array => {
             if (array[0].name === "Recycling Center") {
                 dispatch(dealRoomCard())
@@ -689,9 +698,9 @@ console.log("discardPile", discardPile);
             // these check if hero is on a room that has an effect when other rooms are destroyed
             switch (playerDungeon[heroRoomPosition][0].name) {
                 case "Boulder Ramp":
-                    console.log('hero on boulder ramp when destroyed');
+                    // console.log('hero on boulder ramp when destroyed');
                     if (heroHealth <= 5) {
-                        console.log('hero less than or 5 health');
+                        // console.log('hero less than or 5 health');
                         tempMSG += "The hero was killed by the Boulder Ramp."
                         heroDiedCheck()
                         if (heroesAtStartOfDungeon.length === 1) {
@@ -703,7 +712,7 @@ console.log("discardPile", discardPile);
                     }
                     else {
                         tempMSG += "The hero was wounded by the Boulder Ramp."
-                        console.log('hero more than 5 health');
+                        // console.log('hero more than 5 health');
                         dispatch(damageHero(5))
                     }
                     setTempMessage(tempMSG)

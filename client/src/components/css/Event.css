@@ -15,14 +15,27 @@
 .health{
     display: flex;}
 .heart{
-    height: 3rem;
+    height: 2.8rem;
 }
 
 /* -- SOULS -- */
 
 .souls{
     display: flex;
+    font-size: 1.5rem;
 }
 .soul{
     margin-left: 10px;
+    font-size: 1.5rem;
+}
+
+/* -- ROUNDS -- */
+
+.rounds{
+    display: flex;
+    font-size: 1.5rem;
+}
+.round{
+    margin-left: 10px;
+    font-size: 1.7rem;
 }

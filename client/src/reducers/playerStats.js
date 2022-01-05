@@ -8,7 +8,7 @@ const initialState = {
     treasureCleric: 0,
     treasureFighter: 0,
     treasureThief: 0,
-    buildActions: 99,
+    buildActions: 1,
     useButtonSwapping: false,
     swapRoomsMode: false,
     destroyMode: false,

@@ -201,33 +201,33 @@ const initialState = {
         //         "When you build this room, choose one Monster Room from the discard pile and put it in your hand.",
         //     image: "/card-images/rooms/monstrous-monument.svg",
         // },
-        {
-            id: "R46",
-            name: "Bottomless Pit",
-            subtitle: "Trap Room",
-            dmg: 1,
-            treasure: "Thief",
-            description: "Destroy this room: Kill a Hero in this room.",
-            image: "/card-images/rooms/bottomless-pit.svg",
-        },
-        {
-            id: "R47",
-            name: "Bottomless Pit",
-            subtitle: "Trap Room",
-            dmg: 1,
-            treasure: "Thief",
-            description: "Destroy this room: Kill a Hero in this room.",
-            image: "/card-images/rooms/bottomless-pit.svg",
-        },
-        {
-            id: "R48",
-            name: "Bottomless Pit",
-            subtitle: "Trap Room",
-            dmg: 1,
-            treasure: "Thief",
-            description: "Destroy this room: Kill a Hero in this room.",
-            image: "/card-images/rooms/bottomless-pit.svg",
-        },
+        // {
+        //     id: "R46",
+        //     name: "Bottomless Pit",
+        //     subtitle: "Trap Room",
+        //     dmg: 1,
+        //     treasure: "Thief",
+        //     description: "Destroy this room: Kill a Hero in this room.",
+        //     image: "/card-images/rooms/bottomless-pit.svg",
+        // },
+        // {
+        //     id: "R47",
+        //     name: "Bottomless Pit",
+        //     subtitle: "Trap Room",
+        //     dmg: 1,
+        //     treasure: "Thief",
+        //     description: "Destroy this room: Kill a Hero in this room.",
+        //     image: "/card-images/rooms/bottomless-pit.svg",
+        // },
+        // {
+        //     id: "R48",
+        //     name: "Bottomless Pit",
+        //     subtitle: "Trap Room",
+        //     dmg: 1,
+        //     treasure: "Thief",
+        //     description: "Destroy this room: Kill a Hero in this room.",
+        //     image: "/card-images/rooms/bottomless-pit.svg",
+        // },
     ],
     playerDungeon: [
         // [{
@@ -364,7 +364,7 @@ const cardDecks = (state = initialState, action) => {
                 }
             }
             else {
-                console.log('dealing heroes to town', action.data.number)
+                // console.log('dealing heroes to town', action.data.number)
                 let chosenHeroes = state.epicHeroDeck.slice(-action.data.number);
                 let newHeroDeck = state.epicHeroDeck.slice(0, - (action.data.number));
                 // console.log('chosenHeroes', chosenHeroes)
@@ -444,14 +444,14 @@ const cardDecks = (state = initialState, action) => {
                 ...state,
                 playerDungeon: state.playerDungeon.map(roomArr => {
                     if(action.roomID === roomArr[0].id){
-                        // roomArr[0].durability -= 100
-                        roomArr[0].durability -= 20
+                        // roomArr[0].durability -= 100 
+                        // roomArr[0].durability -= 20
                     }
                     return roomArr
                 })
             }
         case DESTROY_ROOM:
-            console.log('destroying room', action.roomIndex)
+            // console.log('destroying room', action.roomIndex)
 
             let destroyedDungeon = [...state.playerDungeon]
             // if the array only has one room then destroy the whole array and add a blank room on the end
@@ -464,7 +464,7 @@ const cardDecks = (state = initialState, action) => {
             else {
                 destroyedDungeon[action.roomIndex].splice(0, 1)
             }
-            console.log(destroyedDungeon)
+            // console.log(destroyedDungeon)
             return {
                 ...state,
                 playerDungeon: destroyedDungeon
@@ -481,11 +481,11 @@ const cardDecks = (state = initialState, action) => {
             let newDungeon = [...state.playerDungeon]
             for (let index = 0; index < state.playerDungeon.length; index++) {
                 if (state.playerDungeon[index][0].id === action.targetedRoomID) {
-                    console.log('target index found', index)
+                    // console.log('target index found', index)
                     targetRoomIndex = index
                 }
                 if (state.playerDungeon[index][0].id === action.selectedCardID) {
-                    console.log('selected index found', index)
+                    // console.log('selected index found', index)
                     selectedCardIndex = index
                 }
             }
@@ -544,13 +544,13 @@ const cardDecks = (state = initialState, action) => {
                 }
                 // if the hero is epic
                 else {
-                    if (hero.treasure === "Thief" && thiefTreasure > 3) {
+                    if (hero.treasure === "Thief" && thiefTreasure > 2) {
                         return true
                     }
-                    if (hero.treasure === "Cleric" && clericTreasure > 3) {
+                    if (hero.treasure === "Cleric" && clericTreasure > 2) {
                         return true
                     }
-                    if (hero.treasure === "Fighter" && fighterTreasure > 3) {
+                    if (hero.treasure === "Fighter" && fighterTreasure > 2) {
                         return true
                     }
                 }
@@ -611,7 +611,6 @@ const cardDecks = (state = initialState, action) => {
 
             if (numRoomsDestroyed === 6) {
                 cardsToDraw.push(newRoomDeck.splice(-3)) // three cards are added
-
             }
             else if (numRoomsDestroyed >= 4) {
                 cardsToDraw.push(newRoomDeck.splice(-2)) // two cards are added
@@ -623,7 +622,7 @@ const cardDecks = (state = initialState, action) => {
             // console.log("newDiscardPile", newDiscardPile)
             // console.log("cardsToDraw", cardsToDraw)
 
-            console.log(newPlayerDungeon)
+            // console.log(newPlayerDungeon)
 
             if (numRoomsDestroyed >= 2) { // some amount of cards are drawn and added to players hand
                 return {
@@ -642,7 +641,7 @@ const cardDecks = (state = initialState, action) => {
                 }
             }
         case CHANGE_SHOW_DISCARD_PILE:
-            console.log("action.roomTypeToDraw", action.roomTypeToDraw)
+            // console.log("action.roomTypeToDraw", action.roomTypeToDraw)
             if (action.roomTypeToDraw === "Monster Room") {
                 return {
                     ...state,
@@ -667,7 +666,7 @@ const cardDecks = (state = initialState, action) => {
         case DISCARD_CARD:
             
             let cardDiscarded = state.playerRooms.filter(cardObj => cardObj.id === action.roomID)
-            console.log("cardDiscarded", cardDiscarded)
+            // console.log("cardDiscarded", cardDiscarded)
 
             return {
                 ...state,
