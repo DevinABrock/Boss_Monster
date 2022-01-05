@@ -15,7 +15,9 @@ This version of Boss Monster plays similar to the original, but with new feature
 - Spell cards are used against you by chance of dice roll.
 - Some cards have been removed and others duplicated in order to make the game single player.
 
-{Game Page Img}
+![Alt text](/client/public/gameScreen.png)
+ <br/>
+
 
 ### How To Play
 The how to play page gives a full overview of the game.
@@ -32,6 +34,7 @@ Boss Monster uses a backend that stores users' names and scores. They are then r
 ## Work Summary
 
 ### Logic
+Each card's logic was writen in javascript aswell as the gameplay.
 
 ### Design
 This application was designed to look more like a game than a website. This was achievable with CSS positioning, Flexbox and image editing softwares such as Photoshop and MS Paint. 
