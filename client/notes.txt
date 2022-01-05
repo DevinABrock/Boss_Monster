@@ -1,5 +1,5 @@
 
-SJD - Convert all alerts (not window.confirms) to temp messages and display them? Let's try to be consistent. To do this we would have to save the message in global state. This would, however, allow us to send a message from any component.
+SJD - 
     
     Info.jsx line 686 - right now, the game let's you destroy the other boulder ramp and the hero is damaged even when they are not in the boulder room you activated. There's no real reason why you would destroy a room with the boulder room when the hero isn't in the boulder room (you don't get the damage buff).
 
@@ -8,6 +8,6 @@ Tests
 
 
 Bugs to work out: 
-    When hero is going to be lured into the dungeon and you have build actions available but you click Cancel instead of OK to move to the next phase, the hero is lured but the bait phase hasn't started yet. 
+    
 
     

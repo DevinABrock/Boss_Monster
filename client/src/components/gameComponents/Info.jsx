@@ -170,15 +170,17 @@ console.log("discardPile", discardPile);
             // if build moving to bait and at least one room is built in dungeon
             // console.log(playerDungeon[0][0].id!=="D1");
             if (playerDungeon[0][0].id !== "D1") {
-                dispatch(baitHeroes(treasureCleric, treasureFighter, treasureThief))
                 if (buildActions > 0) { // if player still has build actions when NEXT is clicked, alert pops up
                     let proceedToNextPhase = window.confirm("You are proceeding to the next phase and still have unused build actions that will be lost.")
+                    console.log(proceedToNextPhase);
                     if (proceedToNextPhase) {
+                        dispatch(baitHeroes(treasureCleric, treasureFighter, treasureThief))
                         dispatch(nextGamePhase())
                         dispatch(addBuildActions(-buildActions)) // removed build actions if player does not build that turn
                     }
                 }
                 else {
+                    dispatch(baitHeroes(treasureCleric, treasureFighter, treasureThief))
                     dispatch(nextGamePhase())
                     dispatch(addBuildActions(-buildActions)) // removed build actions if player does not build that turn
                 }

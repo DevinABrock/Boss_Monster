@@ -8,12 +8,28 @@ import { useNavigate } from 'react-router-dom';
 
 
 function App() {
+
   const [username, setUsername] = useState()
   const dispatch = useDispatch()
+
   useEffect(() => {
     localStorage.setItem('username', JSON.stringify(username));
   }, [username])
   let navigate = useNavigate();
+
+  // event listener on enter key to submit username and nagivate to game page
+  useEffect(() => {
+    const listener = (e) => {
+      if (e.key === "Enter"){
+        handleFormSubmit()
+      }
+    }
+    window.addEventListener("keydown", listener)
+
+    return () => {
+      window.removeEventListener("keydown", listener)
+    }
+  }, [])
 
   const handleFormSubmit = () => {
     console.log('running handleFormSubmit');
@@ -29,7 +45,7 @@ function App() {
         <img className='homeLogo' src="/logo.png" alt="" />
           <form className='startButtonContainer'>
             <input className="inputUsername" placeholder="Enter Username" type="text" required value={username} onChange={(e)=>setUsername(e.target.value)} name="username"/>
-            <div className='homeButton' type="submit" value="Submit" onClick={handleFormSubmit} >Start Game</div>
+            <div className='homeButton' type="submit" value="Submit" onClick={handleFormSubmit}>Start Game</div>
             {/* <Link to="/progress" className='homeButton'><div >Start Game</div></Link> */}
           </form>
         </div>
