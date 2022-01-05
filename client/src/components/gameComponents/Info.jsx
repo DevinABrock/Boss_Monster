@@ -399,21 +399,21 @@ function Info() {
     const renderGamePhaseSwitch = (gamePhase) => {
         switch (gamePhase) {
             case 1:
-                return `Pre-Game ${gamePhase}`
+                return `Pre-Game`
             case 2:
-                return `Beginning of Round ${gamePhase}`
+                return `Beginning of Round`
             case 3:
-                return `Dice-Roll ${gamePhase}`
+                return `Dice-Roll`
             case 4:
-                return `Dealing Heroes ${gamePhase}`
+                return `Dealing Heroes`
             case 5:
-                return `Build Room ${gamePhase}`
+                return `Build Room`
             case 6:
-                return `Adventure ${gamePhase}`
+                return `Adventure`
             case 7:
-                return `Adventure ${gamePhase}`
+                return `Adventure`
             case 10:
-                return <div>{win === "L" ? `Game Over ${gamePhase}` : `You Won! ${gamePhase}`}</div>
+                return <div>{win === "L" ? `Game Over` : `You Won!`}</div>
             default:
                 break;
         }
