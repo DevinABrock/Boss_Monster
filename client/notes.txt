@@ -1,13 +1,12 @@
 
-SJD - Can you use Dracolich Lair multiple times per turn???
+SJD - 
 
 
+Tests
+    
 
 
 Bugs to work out: 
-    When hero is going to be lured into the dungeon and you have build actions available but you click Cancel instead of OK to move to the next phase, the hero is lured but the bait phase hasn't started yet. 
 
-    When Minotaur's Maze is the first card of the dungeon, it "kills" the hero when they are moved 2 spaces back. The minotaur's maze should just have them repeat the maze when it is at the beginning. Don't forget to deal with the count (which skips the durability for 2 rooms when firstTimeInMaze is false)...
 
-    Centipede Tunnel currently can be used to swap rooms long after you click "OK", since the boolean value stays true until you swap rooms. Maybe have it change back to false in a useEffect which runs upon changes to the playerDungeon (player played another card in their dungeon).
     

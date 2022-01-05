@@ -34,7 +34,6 @@ function Dungeon() {
 
 
     const renderHeroAtPosition = () => {
-        // return [<Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>,<Card cardObj={heroesAtStartOfDungeon[0]} className="hero"/>]
         let renderHeroArray = []
         for (let roomIndex = 5; roomIndex >= 0; roomIndex--) {
             if (heroRoomPosition===roomIndex) {
@@ -159,10 +158,10 @@ function Dungeon() {
             // "When you build this room, you may swap the placement of two Rooms in any one dungeon."
                 break
             case "Centipede Tunnel":
-                let userWantsToSwapRooms = window.confirm("The Centipede Tunnel allows you to swap the placement of two Rooms in your dungeon. Click OK if you want to swap rooms or cancel if not.")
+                let userWantsToSwapRooms = window.confirm('The Centipede Tunnel allows you to swap the placement of two Rooms in your dungeon. Click "OK" if you want to swap rooms or cancel if not.')
                 if(userWantsToSwapRooms){
                     dispatch(changeUseButtonSwapping())
-                    alert('To swap rooms, select the first room you want to swap by clicking it. Next, click the "USE" button and then select a second room to swap them.')
+                    alert('Select the first room you wish to swap, click the "SWAP" button, and then select the second room.')
                 }
                 break
             default:

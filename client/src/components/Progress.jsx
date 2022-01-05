@@ -12,9 +12,9 @@ function Progress() {
         const timer = setInterval(() => {
             setCountOfProgress((oldProgress) => {
                 if (100 == oldProgress) return navigate('/game');
-                return Math.min(oldProgress + Math.random() * 10, 100);
+                return Math.min(oldProgress + Math.random() * 90, 100);
             });
-        }, 150);
+        }, 400);
 
     }, []);
 

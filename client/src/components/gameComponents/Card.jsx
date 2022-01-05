@@ -12,7 +12,7 @@ function Card({cardObj, className}) {
     if(!swapRoomsMode){
       dispatch(selectCard(cardObj, className, cardObj.id))
     }
-    else if(swapRoomsMode && className!="room"){
+    else if(swapRoomsMode && className !== "room"){
       alert("You can only swap card in your dungeon.")
     }
   }

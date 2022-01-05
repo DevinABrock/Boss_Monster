@@ -36,8 +36,9 @@ export const bossDeck = [
     subtitle: "Progenitor Lich",
     xp: 750,
     treasure: "Cleric",
-    description:
-      "Choose two cards from the discard pile and put them into your hand.",
+    // description:
+    //   "Choose two cards from the discard pile and put them into your hand.",
+    description: "Level-Up functionality coming soon.",
     image: "/card-images/bosses/xyzax.svg",
   },
   {
@@ -46,8 +47,9 @@ export const bossDeck = [
     subtitle: "Sultan of the Sewers",
     xp: 800,
     treasure: "Fighter",
-    description:
-      "You may search the Room Deck or discard pile for an Advanced Monster Room. You may immediately build the room (over a room with a matching Treasure type).",
+    // description:
+    //   "You may search the Room Deck or discard pile for an Advanced Monster Room. You may immediately build the room (over a room with a matching Treasure type).",
+    description: "Level-Up functionality coming soon.",
     image: "/card-images/bosses/king-croak.svg",
   },
   // {
@@ -85,8 +87,9 @@ export const bossDeck = [
     subtitle: "Mother of Mummies",
     xp: 850,
     treasure: "Thief",
-    description:
-      "You may search the Room Deck or discard pile for an Advanced Trap Room. You may immediately build the room (over a room with a matching Treasure type).",
+    // description:
+    //   "You may search the Room Deck or discard pile for an Advanced Trap Room. You may immediately build the room (over a room with a matching Treasure type).",
+    description: "Level-Up functionality coming soon.",
     image: "/card-images/bosses/cleopatra.svg",
   },
   {
@@ -95,8 +98,9 @@ export const bossDeck = [
     subtitle: "Queen of Medusia",
     xp: 500,
     treasure: "Thief",
-    description:
-      "Choose a Hero in town. Immediately destroy that Hero and place it face-down in your scorekeeping area.",
+    // description:
+    //   "Choose a Hero in town. Immediately destroy that Hero and place it face-down in your scorekeeping area.",
+    description: "Level-Up functionality coming soon.",
     image: "/card-images/bosses/gorgona.svg",
   },
 ];
@@ -635,27 +639,27 @@ export const roomDeck = [
       "If the next room in your dungeon is a Trap room, it has +2 damage.",
     image: "/card-images/rooms/dizzygas-hallway.svg",
   },
-  // {
-  //   id: "R53",
-  //   name: "Dizzygas Hallway",
-  //   subtitle: "Trap Room",
-  //   dmg: 1,
-  //   treasure: "Thief",
-  //   description:
-  //     "If the next room in your dungeon is a Trap room, it has +2 damage.",
-  //   image: "/card-images/rooms/dizzygas-hallway.svg",
-  // },
-  // ----- Jackpot Stash 3 ----- //
   {
-    id: "R54",
-    name: "Jackpot Stash",
+    id: "R53",
+    name: "Dizzygas Hallway",
     subtitle: "Trap Room",
     dmg: 1,
-    treasure: "Thief x2",
+    treasure: "Thief",
     description:
-      "Destroy this room: Double the treasure value of your dungeon's Rooms until end of turn.",
-    image: "/card-images/rooms/jackpot-stash.svg",
+      "If the next room in your dungeon is a Trap room, it has +2 damage.",
+    image: "/card-images/rooms/dizzygas-hallway.svg",
   },
+  // ----- Jackpot Stash 3 ----- //
+  // {
+  //   id: "R54",
+  //   name: "Jackpot Stash",
+  //   subtitle: "Trap Room",
+  //   dmg: 1,
+  //   treasure: "Thief x2",
+  //   description:
+  //     "Destroy this room: Double the treasure value of your dungeon's Rooms until end of turn.",
+  //   image: "/card-images/rooms/jackpot-stash.svg",
+  // },
   // {
   //   id: "R55",
   //   name: "Jackpot Stash",
@@ -698,26 +702,26 @@ export const roomDeck = [
     image: "/card-images/rooms/recycling-center.svg",
   },
   // ----- The Crushinator 2 ----- //
-  // {
-  //   id: "R59",
-  //   name: "The Crushinator",
-  //   subtitle: "Advanced Trap Room",
-  //   dmg: 2,
-  //   treasure: "Thief",
-  //   description:
-  //     "Destroy another room in your dungeon: Until end of turn, your Rooms have +2 damage. Revised: Once per turn, you may destroy another Room in your dungeon to give all your Rooms +2 until end of turn.",
-  //   image: "/card-images/rooms/the-crushinator.svg",
-  // },
-  // {
-  //   id: "R60",
-  //   name: "The Crushinator",
-  //   subtitle: "Advanced Trap Room",
-  //   dmg: 2,
-  //   treasure: "Thief",
-  //   description:
-  //     "Destroy another room in your dungeon: Until end of turn, your Rooms have +2 damage. Revised: Once per turn, you may destroy another Room in your dungeon to give all your Rooms +2 until end of turn.",
-  //   image: "/card-images/rooms/the-crushinator.svg",
-  // },
+  {
+    id: "R59",
+    name: "The Crushinator",
+    subtitle: "Advanced Trap Room",
+    dmg: 2,
+    treasure: "Thief",
+    description:
+      "Destroy another room in your dungeon: Until end of turn, your Rooms have +2 damage.",
+    image: "/card-images/rooms/the-crushinator.svg",
+  },
+  {
+    id: "R60",
+    name: "The Crushinator",
+    subtitle: "Advanced Trap Room",
+    dmg: 2,
+    treasure: "Thief",
+    description:
+      "Destroy another room in your dungeon: Until end of turn, your Rooms have +2 damage.",
+    image: "/card-images/rooms/the-crushinator.svg",
+  },
   // ----- Centipede Tunnel 2 ----- //
   {
     id: "R61",

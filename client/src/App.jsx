@@ -6,15 +6,26 @@ import { useNavigate } from 'react-router-dom';
 
 
 function App() {
-  const [username, setUsername] = useState()
+
+  const [username, setUsername] = useState("")
   const dispatch = useDispatch()
+
   useEffect(() => {
     localStorage.setItem('username', JSON.stringify(username));
   }, [username])
   let navigate = useNavigate();
 
+  // event listener on enter key to submit username and nagivate to game page
+  const listener = (e) => {
+    if (e.key === "Enter"){
+      handleFormSubmit()
+    }
+  }
+  window.addEventListener("keydown", listener)
+
   const handleFormSubmit = () => {
-    console.log('running handleFormSubmit');
+    // console.log('running handleFormSubmit');
+    // console.log(username);
     dispatch(addUsername(username))
     navigate("/progress")
   }

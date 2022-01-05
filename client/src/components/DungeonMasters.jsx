@@ -28,7 +28,7 @@ function DungeonMasters() {
         getScores()
     }, [])
 
-    console.log(highScores);
+    // console.log(highScores);
     return (
         <div className='dmBody'>
             {/* -- TITLE AREA -- */}

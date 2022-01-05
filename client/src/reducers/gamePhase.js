@@ -15,7 +15,7 @@ const gamePhase = (state = initialState, action) => {
                 gamePhase: state.gamePhase+1
             }
         case NEXT_ROUND:
-            console.log('changing round')
+            // console.log('changing round')
             return {
                 ...state,
                 gamePhase: 2,

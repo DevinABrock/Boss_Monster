@@ -6,8 +6,7 @@ function Event() {
     const health = useSelector(state => state.playerStats.health)
     const souls = useSelector(state => state.playerStats.souls)
     const builds = useSelector(state => state.playerStats.buildActions)
-
-    
+    const gameRound = useSelector(state => state.gamePhase.gameRound)
 
     return (
         <div className='eventBody'>
@@ -30,6 +29,10 @@ function Event() {
             <div className='souls'>
                 Builds:
                 <div className='soul'>{builds}</div>
+            </div>
+            <div className='rounds'>
+                Round:
+                <div className='round'>{gameRound}</div>
             </div>
         </div>
     )
