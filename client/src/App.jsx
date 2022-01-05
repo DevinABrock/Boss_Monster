@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import '../src/components/css/front.css';
-// import './components/css/mediaQueries.css';
-// import {Link} from 'react-router-dom'
 import { addUsername } from './actions/sampleActions';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -25,17 +23,13 @@ function App() {
     <>
       <div className="homeBody">
         <div className="homeBanner">
-        <img className="dmBackground" src='/homeBannerNoWords.png' alt="" />
-        <img className='homeLogo' src="/logo.png" alt="" />
+          <img className="dmBackground" src='/homeBannerNoWords.png' alt="" />
+          <img className='homeLogo' src="/logo.png" alt="" />
           <form className='startButtonContainer'>
-            <input className="inputUsername" placeholder="Enter Username" type="text" required value={username} onChange={(e)=>setUsername(e.target.value)} name="username"/>
+            <input className="inputUsername" placeholder="Enter Username" type="text" required value={username} onChange={(e) => setUsername(e.target.value)} name="username" />
             <div className='homeButton' type="submit" value="Submit" onClick={handleFormSubmit} >Start Game</div>
-            {/* <Link to="/progress" className='homeButton'><div >Start Game</div></Link> */}
           </form>
         </div>
-        {/* <div className='homeBottomContainer'>
-                <img className="rocks" src='/rocks.png' alt="" />
-            </div> */}
       </div>
     </>
   )
