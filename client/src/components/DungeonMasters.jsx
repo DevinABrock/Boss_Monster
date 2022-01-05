@@ -8,7 +8,7 @@ function DungeonMasters() {
 
     useEffect(() => {
         const getScores = async () => {
-            let response = await fetch('/getscores');
+            let response = await fetch('https://bossmonsterserver.herokuapp.com/getscores');
             let records = await response.json();
 
             function compareScores(a, b) {
