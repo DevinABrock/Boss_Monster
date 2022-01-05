@@ -15,25 +15,25 @@ const initialState = {
     heroesAtStartOfDungeon: [],
     playerBoss: {},
     playerRooms: [
-        // {
-        //     id: "R59",
-        //     name: "The Crushinator",
-        //     subtitle: "Advanced Trap Room",
-        //     dmg: 2,
-        //     treasure: "Thief",
-        //     description:
-        //         "Destroy another room in your dungeon: Until end of turn, your Rooms have +2 damage.",
-        //     image: "/card-images/rooms/the-crushinator.svg",
-        // },
-        // {
-        //     id: "R58",
-        //     name: "Recycling Center",
-        //     subtitle: "Advanced Trap Room",
-        //     dmg: 3,
-        //     treasure: "Thief",
-        //     description: "When another room in your dungeon is destroyed, you may draw two Room cards.",
-        //     image: "/card-images/rooms/recycling-center.svg",
-        // },
+        {
+            id: "R59",
+            name: "The Crushinator",
+            subtitle: "Advanced Trap Room",
+            dmg: 2,
+            treasure: "Thief",
+            description:
+                "Destroy another room in your dungeon: Until end of turn, your Rooms have +2 damage.",
+            image: "/card-images/rooms/the-crushinator.svg",
+        },
+        {
+            id: "R58",
+            name: "Recycling Center",
+            subtitle: "Advanced Trap Room",
+            dmg: 3,
+            treasure: "Thief",
+            description: "When another room in your dungeon is destroyed, you may draw two Room cards.",
+            image: "/card-images/rooms/recycling-center.svg",
+        },
         // {
         //     id: "R28",
         //     name: "Beast Menagerie",
@@ -53,36 +53,36 @@ const initialState = {
         //     description: "Monster Rooms adjacent to this room deal +1 damage.",
         //     image: "/card-images/rooms/goblin-armory.svg",
         // },
-        // {
-        //     id: "R61",
-        //     name: "Centipede Tunnel",
-        //     subtitle: "Monster Room",
-        //     dmg: 1,
-        //     treasure: "Fighter + Mage",
-        //     description:
-        //     "When you build this room, you may swap the placement of two Rooms in any one dungeon.",
-        //     image: "/card-images/rooms/centipede-tunnel.svg",
-        // },
-        // {
-        //     id: "R51",
-        //     name: "Dizzygas Hallway",
-        //     subtitle: "Trap Room",
-        //     dmg: 1,
-        //     treasure: "Thief",
-        //     description:
-        //     "If the next room in your dungeon is a Trap room, it has +2 damage.",
-        //     image: "/card-images/rooms/dizzygas-hallway.svg",
-        // },
-        // {
-        //     id: "R63",
-        //     name: "Construction Zone",
-        //     subtitle: "Trap Room",
-        //     dmg: 1,
-        //     treasure: "Fighter + Thief",
-        //     description:
-        //     "When you build this room, you may immediately build an additional Room.",
-        //     image: "/card-images/rooms/construction-zone.svg",
-        // },
+        {
+            id: "R61",
+            name: "Centipede Tunnel",
+            subtitle: "Monster Room",
+            dmg: 1,
+            treasure: "Fighter + Mage",
+            description:
+            "When you build this room, you may swap the placement of two Rooms in any one dungeon.",
+            image: "/card-images/rooms/centipede-tunnel.svg",
+        },
+        {
+            id: "R51",
+            name: "Dizzygas Hallway",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Thief",
+            description:
+            "If the next room in your dungeon is a Trap room, it has +2 damage.",
+            image: "/card-images/rooms/dizzygas-hallway.svg",
+        },
+        {
+            id: "R63",
+            name: "Construction Zone",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Fighter + Thief",
+            description:
+            "When you build this room, you may immediately build an additional Room.",
+            image: "/card-images/rooms/construction-zone.svg",
+        },
         // {
         //     id: "R49",
         //     name: "Boulder Ramp",
@@ -113,33 +113,33 @@ const initialState = {
         //     "Destroy this Room: Choose one card from the discard pile and put it into your hand.",
         //     image: "/card-images/rooms/dark-altar.svg",
         // },
-        // {
-        //     id: "R65",
-        //     name: "Dragon Hatchery",
-        //     subtitle: "Monster Room",
-        //     dmg: 0,
-        //     treasure: "Cleric + Mage + Fighter + Thief",
-        //     description: "(This room contains all four treasure types.)",
-        //     image: "/card-images/rooms/dragon-hatchery.svg",
-        // },
-        // {
-        //     id: "R66",
-        //     name: "Dragon Hatchery",
-        //     subtitle: "Monster Room",
-        //     dmg: 0,
-        //     treasure: "Cleric + Mage + Fighter + Thief",
-        //     description: "(This room contains all four treasure types.)",
-        //     image: "/card-images/rooms/dragon-hatchery.svg",
-        // },
-        // {
-        //     id: "R67",
-        //     name: "Dragon Hatchery",
-        //     subtitle: "Monster Room",
-        //     dmg: 0,
-        //     treasure: "Cleric + Mage + Fighter + Thief",
-        //     description: "(This room contains all four treasure types.)",
-        //     image: "/card-images/rooms/dragon-hatchery.svg",
-        // },
+        {
+            id: "R65",
+            name: "Dragon Hatchery",
+            subtitle: "Monster Room",
+            dmg: 0,
+            treasure: "Cleric + Mage + Fighter + Thief",
+            description: "(This room contains all four treasure types.)",
+            image: "/card-images/rooms/dragon-hatchery.svg",
+        },
+        {
+            id: "R66",
+            name: "Dragon Hatchery",
+            subtitle: "Monster Room",
+            dmg: 0,
+            treasure: "Cleric + Mage + Fighter + Thief",
+            description: "(This room contains all four treasure types.)",
+            image: "/card-images/rooms/dragon-hatchery.svg",
+        },
+        {
+            id: "R67",
+            name: "Dragon Hatchery",
+            subtitle: "Monster Room",
+            dmg: 0,
+            treasure: "Cleric + Mage + Fighter + Thief",
+            description: "(This room contains all four treasure types.)",
+            image: "/card-images/rooms/dragon-hatchery.svg",
+        },
         // {
         //     id: "R63",
         //     name: "Construction Zone",
@@ -453,8 +453,7 @@ const cardDecks = (state = initialState, action) => {
                 ...state,
                 playerDungeon: state.playerDungeon.map(roomArr => {
                     if(action.roomID === roomArr[0].id){
-                        // roomArr[0].durability -= 100 
-                        // roomArr[0].durability -= 20
+                        roomArr[0].durability -= 20
                     }
                     return roomArr
                 })

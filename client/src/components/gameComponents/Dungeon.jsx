@@ -51,7 +51,7 @@ function Dungeon() {
         // console.log("e.target.className", e.target.className);
 
         // if the state is in swapping mode and the user clicks to swap
-        if(swapRoomsMode && e.target.className==="room" && selectedCardClass==='room'){
+        if(swapRoomsMode && e.target.className==="room" && e.target.className==="roomStack" && selectedCardClass==='room' && selectedCardClass==='roomStack'){
             // console.log('swapping rooms');
             // console.log(e.target);
             dispatch(swapRooms(selectedCard.id, e.target.id))
