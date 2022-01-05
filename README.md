@@ -68,5 +68,7 @@ Solutions
 - Limiting the responsiveness to iPad or larger screen due to time constraints.
 - Working with the team to build the room card logic consistently.
 
+![Alt text](/client/public/codeSnippet.png)
+
 
 
