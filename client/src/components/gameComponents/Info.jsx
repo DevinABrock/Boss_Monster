@@ -124,7 +124,7 @@ console.log("discardPile", discardPile);
         }
         else if (openGrave && roomName === "Open Grave") {
             if (discardPile.length > 0) {
-                alert('The hero dies in the Open Grave. Select Room Card below and click the "USE" button to add it to your hand.')
+                alert('The hero dies in the Open Grave. Select a Room Card below and click the "USE" button to add it to your hand.')
                 dispatch(changeShowDiscardPile("Room Card"))
                 setOpenGrave(false)
             }
@@ -495,14 +495,11 @@ console.log("discardPile", discardPile);
             if (useButtonSwapping) {
                 // console.log("swapping is allowed");
                 dispatch(changeSwapRoomsMode())
+                return
             }
             // if in swapping rooms mode and the selected card is NOT in the dungeon
             else if (useButtonSwapping && selectedCardClass != "room") {
                 alert("You must select a room from your dungeon first.");
-            }
-            if (selectedCard.name === "Dracolich Lair" && dracolichLair) {
-                setUsingDracolichLair(true)
-                alert('You must discard two cards from your hand. Select one card and click the "USE" button, then select the second card and click the "USE" button.')
             }
             if (usingDracolichLair && selectedCardClass === "handCard") {
                 if (countDracolichLair > 0) {
@@ -517,6 +514,7 @@ console.log("discardPile", discardPile);
                         dispatch(changeShowDiscardPile("Room Card"))
                     }
                 }
+                return
             }
             if (showDiscardPile) {
                 if (roomCardFromDiscard && selectedCard.subtitle.includes("Room")) {
@@ -534,9 +532,14 @@ console.log("discardPile", discardPile);
                 else {
                     alert('Please select an appropriate card from the discard pile and then click the "USE" button.')
                 }
+                return
+            }
+            if (selectedCard.name === "Dracolich Lair" && dracolichLair && (selectedCardClass === "roomStack" || selectedCardClass === "builtRoom")) {
+                setUsingDracolichLair(true)
+                alert('You must discard two cards from your hand. Select one card and click the "USE" button, then select the second card and click the "USE" button.')
             }
             // if user selects a card that allows them to destroy a room
-            if (selectedCard.name === "Boulder Ramp") {
+            else if (selectedCard.name === "Boulder Ramp") {
                 // console.log("bouler room use effect");
                 if (!destroyMode && gamePhase === 7) {
                     dispatch(ableToDestroy())
@@ -547,7 +550,7 @@ console.log("discardPile", discardPile);
                     setTempMessage("You can only destroy rooms during the Adventure Phase.")
                 }
             }
-            if (selectedCard.name === "Bottomless Pit") {
+            else if (selectedCard.name === "Bottomless Pit") {
                 if (!destroyMode && gamePhase === 7) {
                     dispatch(ableToDestroy())
                     setBottomlessPit(true)
@@ -557,7 +560,7 @@ console.log("discardPile", discardPile);
                     setTempMessage("You can only destroy rooms during the Adventure Phase.")
                 }
             }
-            if (selectedCard.name === "The Crushinator") {
+            else if (selectedCard.name === "The Crushinator") {
                 if (!destroyMode && gamePhase === 7) {
                     dispatch(ableToDestroy())
                     setCrushinator(true)
@@ -566,6 +569,16 @@ console.log("discardPile", discardPile);
                 if (!destroyMode && gamePhase != 7) {
                     setTempMessage("You can only destroy rooms during the Adventure Phase.")
                 }
+            }
+            else if(selectedCard.name === "Dark Altar"){
+                let roomIndex = null;
+                playerDungeon.forEach((array, index) => {
+                    if (array[0] === selectedCard) {
+                        roomIndex = index;
+                    }
+                })
+                dispatch(destroyRoom(roomIndex))
+                dispatch(changeShowDiscardPile())
             }
             // if the button is in the destroy mode and the user has already selected a card in the dungeon
             if (destroyMode && selectedCardClass === "room") {
@@ -606,16 +619,6 @@ console.log("discardPile", discardPile);
                     setCrushinator(false)
                     setCrushinatorDamageModifier(true)
                 }
-            }
-            if(selectedCard.name === "Dark Altar"){
-                let roomIndex = null;
-                playerDungeon.forEach((array, index) => {
-                    if (array[0] === selectedCard) {
-                        roomIndex = index;
-                    }
-                })
-                dispatch(destroyRoom(roomIndex))
-                dispatch(changeShowDiscardPile())
             }
         }
         else {

@@ -56,6 +56,16 @@ const initialState = {
         //     image: "/card-images/rooms/boulder-ramp.svg",
         // },
         {
+            id: "R13",
+            name: "Dracolich Lair",
+            subtitle: "Advanced Monster Room",
+            dmg: 3,
+            treasure: "Cleric",
+            description:
+            "Once per turn, you may discard two Room cards to choose one Room card from the discard pile and put it into your hand.",
+            image: "/card-images/rooms/dracolich-lair.svg",
+        },
+        {
             id: "R1",
             name: "Dark Altar",
             subtitle: "Trap Room",
@@ -65,15 +75,15 @@ const initialState = {
             "Destroy this Room: Choose one card from the discard pile and put it into your hand.",
             image: "/card-images/rooms/dark-altar.svg",
         },
-        // {
-        //     id: "R65",
-        //     name: "Dragon Hatchery",
-        //     subtitle: "Monster Room",
-        //     dmg: 0,
-        //     treasure: "Cleric + Mage + Fighter + Thief",
-        //     description: "(This room contains all four treasure types.)",
-        //     image: "/card-images/rooms/dragon-hatchery.svg",
-        // },
+        {
+            id: "R65",
+            name: "Dragon Hatchery",
+            subtitle: "Monster Room",
+            dmg: 0,
+            treasure: "Cleric + Mage + Fighter + Thief",
+            description: "(This room contains all four treasure types.)",
+            image: "/card-images/rooms/dragon-hatchery.svg",
+        },
         {
             id: "R66",
             name: "Dragon Hatchery",
@@ -103,16 +113,16 @@ const initialState = {
                 "When you build this room, you may swap the placement of two Rooms in any one dungeon.",
             image: "/card-images/rooms/centipede-tunnel.svg",
         },
-        // {
-        //     id: "R4",
-        //     name: "Open Grave",
-        //     subtitle: "Trap Room",
-        //     dmg: 2,
-        //     treasure: "Cleric",
-        //     description:
-        //     "Once per turn, if a Hero dies in this room, choose one Room card from the discard pile and put into your hand.",
-        //     image: "/card-images/rooms/open-grave.svg",
-        // },
+        {
+            id: "R4",
+            name: "Open Grave",
+            subtitle: "Trap Room",
+            dmg: 2,
+            treasure: "Cleric",
+            description:
+            "Once per turn, if a Hero dies in this room, choose one Room card from the discard pile and put into your hand.",
+            image: "/card-images/rooms/open-grave.svg",
+        },
         // {
         //     id: "R22",
         //     name: "Minotaur's Maze",

@@ -21,8 +21,8 @@ function HowToPlay() {
                 <div className='ruleDescription'>You will be limited to 6 dungeon rooms. These rooms will fend off any pesky heroes searching for loot.</div>
                 <div className='ruleDescription'>When all 6 rooms have been built, your boss will level up. You will then be able to use their ability, but only once.</div>
                 <div className='ruleDescription'>Your dungeon's rooms start with 100% durability. Each hero that enters that room will lower the durability by 20%. Once it reaches 0, it will be destroyed at the end of the round.</div>
-                <div className='ruleDescription'>For every two rooms destroyed in the manner listed above, you will draws one Room Card and will be able to build one additional room in the next build phase.</div>
-                <div className='ruleDescription'>Advanced Rooms only be built on top of another room with that same type. Monster on monster, trap on trap.</div>
+                <div className='ruleDescription'>For every two rooms destroyed in the manner listed above, you will draw one Room Card and will be able to build one additional room in the next build phase.</div>
+                <div className='ruleDescription'>Advanced Rooms can only be built on top of another room with that same type. Monster on monster, trap on trap.</div>
 
                 <div className='ruleTitle'>Gameplay</div>
                 <div className='ruleDescription'>1. Pre-game phase: You will be randomly given a boss monster and 5 room cards. You will have the chance to then build one room to the left of your boss monster.</div>
