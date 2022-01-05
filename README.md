@@ -32,6 +32,7 @@ Boss Monster uses a backend that stores users' names and scores. They are then r
 ## Work Summary
 
 ### Logic
+Each card's logic was writen in javascript aswell as the gameplay.
 
 ### Design
 This application was designed to look more like a game than a website. This was achievable with CSS positioning, Flexbox and image editing softwares such as Photoshop and MS Paint. 
