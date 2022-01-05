@@ -692,7 +692,7 @@ console.log("discardPile", discardPile);
                     souls: playerSouls,
                     win
                 }
-                let response = await fetch('/savescore', {
+                let response = await fetch('https://bossmonsterserver.herokuapp.com/savescore', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
