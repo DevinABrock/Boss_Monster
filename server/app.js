@@ -23,7 +23,10 @@ app.post('/savescore', async (req, res) => {
     res.json(records)
 })
 
+app.get('/', async(req, res) =>{
+    res.send('hello')
+})
 
-app.listen(port, () => {
+app.listen(process.env.PORT||port, () => {
     console.log(`listening on port ${port}`)
 })

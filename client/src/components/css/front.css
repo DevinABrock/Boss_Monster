@@ -5,9 +5,7 @@ body{
 }
 
 .homeBody{
-    /* background-color: #1f1011; */
     height: 93.5vh;
-    /* width: 100vw; */
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -33,26 +31,6 @@ body{
     position: absolute;
     margin-top: 10rem;
 }
-
-/* .inputName{
-    height: 60px;
-    width: 300px;
-    border-radius: 10px;
-    margin-top: 5%;
-    margin-left: 40%;
-} */
-
-/* .playGame{
-    display: flex;
-    flex-direction: row;
-    height: 5%;
-    width: 15%;
-    border-radius: 25px;
-    background-color: #8A2E1E;
-    color: #1f1011;
-    margin-top: 5%;
-    margin-left: 42%;
-} */
 
 .startButtonContainer{
     display: block;
