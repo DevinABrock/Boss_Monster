@@ -3,12 +3,12 @@ import { DECREASE_PLAYER_HEALTH, UPDATE_PLAYER_TREASURE, RESET_GAME, HERO_KILLED
 
 const initialState = {
     username: "username",
-    health: 99,
+    health: 5,
     souls: 0,
     treasureCleric: 0,
     treasureFighter: 0,
     treasureThief: 0,
-    buildActions: 99,
+    buildActions: 1,
     useButtonSwapping: false,
     swapRoomsMode: false,
     destroyMode: false,
