@@ -1,5 +1,5 @@
 # Boss_Monster
-## Build your dungeon and defend your loot from heroes.
+## Build your dungeon and steal the souls of heroes.
 
 ![Alt text](/client/public/homeScreen.jpg)
  <br/>
