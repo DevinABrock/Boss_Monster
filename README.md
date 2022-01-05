@@ -15,7 +15,9 @@ This version of Boss Monster plays similar to the original, but with new feature
 - Spell cards are used against you by chance of dice roll.
 - Some cards have been removed and others duplicated in order to make the game single player.
 
-{Game Page Img}
+![Alt text](/client/public/gameScreen.png)
+ <br/>
+
 
 ### How To Play
 The how to play page gives a full overview of the game.
