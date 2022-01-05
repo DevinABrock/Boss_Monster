@@ -71,7 +71,6 @@
     justify-content: flex-start;
     align-items: center;
     height: 8%;
-    /* overflow-y: scroll; */
     height: 90%;
 }
 
@@ -83,7 +82,6 @@
     align-items: center;
     width: 100%;
     height: 18%;
-    /* margin-bottom: .5rem; */
 }
 .dmRank{
     width: 10%;
@@ -277,7 +275,6 @@
         justify-content: flex-start;
         align-items: center;
         height: 8%;
-        /* overflow-y: scroll; */
         height: 90%;
     }
     
@@ -289,7 +286,6 @@
         align-items: center;
         width: 100%;
         height: 18%;
-        /* margin-bottom: .5rem; */
     }
     .dmRank{
         width: 10%;
@@ -437,7 +433,6 @@
         width: 100vw;
         position: relative;
         top: 2rem;
-        /* display: none; */
     }
     
     /* -- TITLE AREA -- */
@@ -484,7 +479,6 @@
         justify-content: flex-start;
         align-items: center;
         height: 8%;
-        /* overflow-y: scroll; */
         height: 90%;
     }
     
@@ -496,7 +490,6 @@
         align-items: center;
         width: 100%;
         height: 18%;
-        /* margin-bottom: .5rem; */
     }
     .dmRank{
         width: 10%;
