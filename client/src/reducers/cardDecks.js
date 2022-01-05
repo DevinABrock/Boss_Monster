@@ -53,16 +53,16 @@ const initialState = {
         //     description: "Monster Rooms adjacent to this room deal +1 damage.",
         //     image: "/card-images/rooms/goblin-armory.svg",
         // },
-        {
-            id: "R61",
-            name: "Centipede Tunnel",
-            subtitle: "Monster Room",
-            dmg: 1,
-            treasure: "Fighter + Mage",
-            description:
-            "When you build this room, you may swap the placement of two Rooms in any one dungeon.",
-            image: "/card-images/rooms/centipede-tunnel.svg",
-        },
+        // {
+        //     id: "R61",
+        //     name: "Centipede Tunnel",
+        //     subtitle: "Monster Room",
+        //     dmg: 1,
+        //     treasure: "Fighter + Mage",
+        //     description:
+        //     "When you build this room, you may swap the placement of two Rooms in any one dungeon.",
+        //     image: "/card-images/rooms/centipede-tunnel.svg",
+        // },
         // {
         //     id: "R51",
         //     name: "Dizzygas Hallway",
@@ -83,16 +83,16 @@ const initialState = {
         //     "When you build this room, you may immediately build an additional Room.",
         //     image: "/card-images/rooms/construction-zone.svg",
         // },
-        {
-            id: "R49",
-            name: "Boulder Ramp",
-            subtitle: "Trap Room",
-            dmg: 1,
-            treasure: "Thief",
-            description:
-            "Destroy another room in your dungeon: Deal 5 damage to a hero in this room.",
-            image: "/card-images/rooms/boulder-ramp.svg",
-        },
+        // {
+        //     id: "R49",
+        //     name: "Boulder Ramp",
+        //     subtitle: "Trap Room",
+        //     dmg: 1,
+        //     treasure: "Thief",
+        //     description:
+        //     "Destroy another room in your dungeon: Deal 5 damage to a hero in this room.",
+        //     image: "/card-images/rooms/boulder-ramp.svg",
+        // },
         // {
         //     id: "R13",
         //     name: "Dracolich Lair",
@@ -151,16 +151,16 @@ const initialState = {
         //         "When you build this room, you may swap the placement of two Rooms in any one dungeon.",
         //     image: "/card-images/rooms/centipede-tunnel.svg",
         // },
-        {
-            id: "R50",
-            name: "Boulder Ramp",
-            subtitle: "Trap Room",
-            dmg: 1,
-            treasure: "Thief",
-            description:
-            "Destroy another room in your dungeon: Deal 5 damage to a hero in this room.",
-            image: "/card-images/rooms/boulder-ramp.svg",
-        },
+        // {
+        //     id: "R50",
+        //     name: "Boulder Ramp",
+        //     subtitle: "Trap Room",
+        //     dmg: 1,
+        //     treasure: "Thief",
+        //     description:
+        //     "Destroy another room in your dungeon: Deal 5 damage to a hero in this room.",
+        //     image: "/card-images/rooms/boulder-ramp.svg",
+        // },
         // {
         //     id: "R4",
         //     name: "Open Grave",
@@ -201,15 +201,33 @@ const initialState = {
         //         "When you build this room, choose one Monster Room from the discard pile and put it in your hand.",
         //     image: "/card-images/rooms/monstrous-monument.svg",
         // },
-        // {
-        //     id: "R46",
-        //     name: "Bottomless Pit",
-        //     subtitle: "Trap Room",
-        //     dmg: 1,
-        //     treasure: "Thief",
-        //     description: "Destroy this room: Kill a Hero in this room.",
-        //     image: "/card-images/rooms/bottomless-pit.svg",
-        // },
+        {
+            id: "R46",
+            name: "Bottomless Pit",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Thief",
+            description: "Destroy this room: Kill a Hero in this room.",
+            image: "/card-images/rooms/bottomless-pit.svg",
+        },
+        {
+            id: "R47",
+            name: "Bottomless Pit",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Thief",
+            description: "Destroy this room: Kill a Hero in this room.",
+            image: "/card-images/rooms/bottomless-pit.svg",
+        },
+        {
+            id: "R48",
+            name: "Bottomless Pit",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Thief",
+            description: "Destroy this room: Kill a Hero in this room.",
+            image: "/card-images/rooms/bottomless-pit.svg",
+        },
     ],
     playerDungeon: [
         // [{

@@ -1,13 +1,12 @@
 
 SJD - 
-    
-    Info.jsx line 686 - right now, the game let's you destroy the other boulder ramp and the hero is damaged even when they are not in the boulder room you activated. There's no real reason why you would destroy a room with the boulder room when the hero isn't in the boulder room (you don't get the damage buff).
+
 
 Tests
     
 
 
 Bugs to work out: 
-    
+
 
     

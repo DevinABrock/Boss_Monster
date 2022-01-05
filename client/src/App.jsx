@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 function App() {
 
-  const [username, setUsername] = useState()
+  const [username, setUsername] = useState("")
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -18,21 +18,16 @@ function App() {
   let navigate = useNavigate();
 
   // event listener on enter key to submit username and nagivate to game page
-  useEffect(() => {
-    const listener = (e) => {
-      if (e.key === "Enter"){
-        handleFormSubmit()
-      }
+  const listener = (e) => {
+    if (e.key === "Enter"){
+      handleFormSubmit()
     }
-    window.addEventListener("keydown", listener)
-
-    return () => {
-      window.removeEventListener("keydown", listener)
-    }
-  }, [])
+  }
+  window.addEventListener("keydown", listener)
 
   const handleFormSubmit = () => {
     console.log('running handleFormSubmit');
+    console.log(username);
     dispatch(addUsername(username))
     navigate("/progress")
   }

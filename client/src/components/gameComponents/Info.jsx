@@ -569,6 +569,7 @@ console.log("discardPile", discardPile);
                 if (!destroyMode && gamePhase === 7) {
                     dispatch(ableToDestroy())
                     setBottomlessPit(true)
+                    setUsedCardID(selectedCard.id)
                     setTempMessage("You are able to destroy the Bottomless Pit. Select this room and click 'destroy'.")
                 }
                 if (!destroyMode && gamePhase != 7) {
@@ -613,21 +614,23 @@ console.log("discardPile", discardPile);
             }
 
             // if the button is in the destroy mode and the user has already selected a card in the dungeon
-            // todo do we need to check selectedCardClass here??? we are checking in the outermost if-statement
-            // todo if (destroyMode && selectedCardClass === "room" || selectedCardClass === "roomStack") {
             if (destroyMode) {
-                // todo this will allow the user to destroy any Bottomless Pit in their dungeon
                 if (bottomlessPit && selectedCard.name === "Bottomless Pit") {
-                    checkRoomDestroyEffects()
-                    let roomIndex = null;
-                    playerDungeon.forEach((array, index) => {
-                        if (array[0] === selectedCard) {
-                            roomIndex = index;
-                        }
-                    })
-                    dispatch(destroyRoom(roomIndex))
-                    dispatch(ableToDestroy())
-                    setBottomlessPit(false)
+                    if(usedCardID === selectedCard.id){
+                        checkRoomDestroyEffects()
+                        let roomIndex = null;
+                        playerDungeon.forEach((array, index) => {
+                            if (array[0] === selectedCard) {
+                                roomIndex = index;
+                            }
+                        })
+                        dispatch(destroyRoom(roomIndex))
+                        dispatch(ableToDestroy())
+                        setBottomlessPit(false)
+                    }
+                    else{
+                        alert("You can only destroy the current room with the Bottomless Pit's ability")
+                    }
                 }
                 else if (boulderRamp) {
                     if(usedCardID !== selectedCard.id){
@@ -682,10 +685,9 @@ console.log("discardPile", discardPile);
             }
         })
         // dont run this if the crushinator is active so the player doesnt get both buffs (crushinator damage and these rooms' damage)
-        if(!crushinator) {
+        if(!crushinator && usedCardID === playerDungeon[heroRoomPosition][0].id) {
             // these check if hero is on a room that has an effect when other rooms are destroyed
             switch (playerDungeon[heroRoomPosition][0].name) {
-                // todo right now, the game let's you destroy the other boulder ramp and the hero is damaged even when they are not in the boulder room you activated.
                 case "Boulder Ramp":
                     console.log('hero on boulder ramp when destroyed');
                     if (heroHealth <= 5) {
