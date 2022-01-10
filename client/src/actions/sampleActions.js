@@ -176,10 +176,11 @@ export const ableToDestroy = () => {
         type: ABLE_TO_DESTROY
     }
 }
-export const destroyRoom = (roomIndex) => {
+export const destroyRoom = (roomIndex, roomClassName) => {
     return {
         type: DESTROY_ROOM,
-        roomIndex
+        roomIndex,
+        roomClassName
     }
 }
 

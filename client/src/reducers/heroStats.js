@@ -35,7 +35,7 @@ const heroStats = (state = initialState, action) => {
             }
         case DESTROY_ROOM:
             let newHeroPosition = null;
-            if (action.roomIndex <= state.heroRoomPosition) {
+            if (action.roomIndex <= state.heroRoomPosition && action.roomClassName === "room") {
                 newHeroPosition = state.heroRoomPosition - 1
             }
             else{

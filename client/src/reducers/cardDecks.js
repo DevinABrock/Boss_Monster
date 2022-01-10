@@ -15,228 +15,218 @@ const initialState = {
     heroesAtStartOfDungeon: [],
     playerBoss: {},
     playerRooms: [
-        // {
-        //     id: "R59",
-        //     name: "The Crushinator",
-        //     subtitle: "Advanced Trap Room",
-        //     dmg: 2,
-        //     treasure: "Thief",
-        //     description:
-        //         "Destroy another room in your dungeon: Until end of turn, your Rooms have +2 damage.",
-        //     image: "/card-images/rooms/the-crushinator.svg",
-        // },
-        // {
-        //     id: "R58",
-        //     name: "Recycling Center",
-        //     subtitle: "Advanced Trap Room",
-        //     dmg: 3,
-        //     treasure: "Thief",
-        //     description: "When another room in your dungeon is destroyed, you may draw two Room cards.",
-        //     image: "/card-images/rooms/recycling-center.svg",
-        // },
-        // {
-        //     id: "R28",
-        //     name: "Beast Menagerie",
-        //     subtitle: "Advanced Monster Room",
-        //     dmg: 4,
-        //     treasure: "Fighter",
-        //     description:
-        //         "Once per turn when you build another Monster room, draw a Room card.",
-        //     image: "/card-images/rooms/beast-menagerie.svg",
-        // },
-        // {
-        //     id: "R16",
-        //     name: "Goblin Armory",
-        //     subtitle: "Monster Room",
-        //     dmg: 1,
-        //     treasure: "Fighter x2",
-        //     description: "Monster Rooms adjacent to this room deal +1 damage.",
-        //     image: "/card-images/rooms/goblin-armory.svg",
-        // },
-        // {
-        //     id: "R61",
-        //     name: "Centipede Tunnel",
-        //     subtitle: "Monster Room",
-        //     dmg: 1,
-        //     treasure: "Fighter + Mage",
-        //     description:
-        //     "When you build this room, you may swap the placement of two Rooms in any one dungeon.",
-        //     image: "/card-images/rooms/centipede-tunnel.svg",
-        // },
-        // {
-        //     id: "R51",
-        //     name: "Dizzygas Hallway",
-        //     subtitle: "Trap Room",
-        //     dmg: 1,
-        //     treasure: "Thief",
-        //     description:
-        //     "If the next room in your dungeon is a Trap room, it has +2 damage.",
-        //     image: "/card-images/rooms/dizzygas-hallway.svg",
-        // },
-        // {
-        //     id: "R63",
-        //     name: "Construction Zone",
-        //     subtitle: "Trap Room",
-        //     dmg: 1,
-        //     treasure: "Fighter + Thief",
-        //     description:
-        //     "When you build this room, you may immediately build an additional Room.",
-        //     image: "/card-images/rooms/construction-zone.svg",
-        // },
-        // {
-        //     id: "R49",
-        //     name: "Boulder Ramp",
-        //     subtitle: "Trap Room",
-        //     dmg: 1,
-        //     treasure: "Thief",
-        //     description:
-        //     "Destroy another room in your dungeon: Deal 5 damage to a hero in this room.",
-        //     image: "/card-images/rooms/boulder-ramp.svg",
-        // },
-        // {
-        //     id: "R13",
-        //     name: "Dracolich Lair",
-        //     subtitle: "Advanced Monster Room",
-        //     dmg: 3,
-        //     treasure: "Cleric",
-        //     description:
-        //     "Once per turn, you may discard two Room cards to choose one Room card from the discard pile and put it into your hand.",
-        //     image: "/card-images/rooms/dracolich-lair.svg",
-        // },
-        // {
-        //     id: "R1",
-        //     name: "Dark Altar",
-        //     subtitle: "Trap Room",
-        //     dmg: 1,
-        //     treasure: "Cleric x2",
-        //     description:
-        //     "Destroy this Room: Choose one card from the discard pile and put it into your hand.",
-        //     image: "/card-images/rooms/dark-altar.svg",
-        // },
-        // {
-        //     id: "R65",
-        //     name: "Dragon Hatchery",
-        //     subtitle: "Monster Room",
-        //     dmg: 0,
-        //     treasure: "Cleric + Mage + Fighter + Thief",
-        //     description: "(This room contains all four treasure types.)",
-        //     image: "/card-images/rooms/dragon-hatchery.svg",
-        // },
-        // {
-        //     id: "R66",
-        //     name: "Dragon Hatchery",
-        //     subtitle: "Monster Room",
-        //     dmg: 0,
-        //     treasure: "Cleric + Mage + Fighter + Thief",
-        //     description: "(This room contains all four treasure types.)",
-        //     image: "/card-images/rooms/dragon-hatchery.svg",
-        // },
-        // {
-        //     id: "R67",
-        //     name: "Dragon Hatchery",
-        //     subtitle: "Monster Room",
-        //     dmg: 0,
-        //     treasure: "Cleric + Mage + Fighter + Thief",
-        //     description: "(This room contains all four treasure types.)",
-        //     image: "/card-images/rooms/dragon-hatchery.svg",
-        // },
-        // {
-        //     id: "R63",
-        //     name: "Construction Zone",
-        //     subtitle: "Trap Room",
-        //     dmg: 1,
-        //     treasure: "Fighter + Thief",
-        //     description:
-        //         "When you build this room, you may immediately build an additional Room.",
-        //     image: "/card-images/rooms/construction-zone.svg",
-        // },
-        // {
-        //     id: "R62",
-        //     name: "Centipede Tunnel",
-        //     subtitle: "Monster Room",
-        //     dmg: 1,
-        //     treasure: "Fighter + Mage",
-        //     description:
-        //         "When you build this room, you may swap the placement of two Rooms in any one dungeon.",
-        //     image: "/card-images/rooms/centipede-tunnel.svg",
-        // },
-        // {
-        //     id: "R50",
-        //     name: "Boulder Ramp",
-        //     subtitle: "Trap Room",
-        //     dmg: 1,
-        //     treasure: "Thief",
-        //     description:
-        //     "Destroy another room in your dungeon: Deal 5 damage to a hero in this room.",
-        //     image: "/card-images/rooms/boulder-ramp.svg",
-        // },
-        // {
-        //     id: "R4",
-        //     name: "Open Grave",
-        //     subtitle: "Trap Room",
-        //     dmg: 2,
-        //     treasure: "Cleric",
-        //     description:
-        //     "Once per turn, if a Hero dies in this room, choose one Room card from the discard pile and put into your hand.",
-        //     image: "/card-images/rooms/open-grave.svg",
-        // },
-        // {
-        //     id: "R22",
-        //     name: "Minotaur's Maze",
-        //     subtitle: "Monster Room",
-        //     dmg: 0,
-        //     treasure: "Fighter",
-        //     description:
-        //     "The first time a Hero enters this room, send it back to the previous room.",
-        //     image: "/card-images/rooms/minotaurs-maze(1).svg",
-        // },
-        // {
-        //     id: "R29",
-        //     name: "Monster's Ballroom",
-        //     subtitle: "Advanced Monster Room",
-        //     dmg: "*",
-        //     treasure: "Fighter",
-        //     description:
-        //         "This room's damage is equal to the number of Monster rooms in your dungeon.",
-        //     image: "/card-images/rooms/monsters-ballroom.svg",
-        // },
-        // {
-        //     id: "R70",
-        //     name: "Monstrous Monument",
-        //     subtitle: "Trap Room",
-        //     dmg: 1,
-        //     treasure: "Cleric + Fighter",
-        //     description:
-        //         "When you build this room, choose one Monster Room from the discard pile and put it in your hand.",
-        //     image: "/card-images/rooms/monstrous-monument.svg",
-        // },
-        // {
-        //     id: "R46",
-        //     name: "Bottomless Pit",
-        //     subtitle: "Trap Room",
-        //     dmg: 1,
-        //     treasure: "Thief",
-        //     description: "Destroy this room: Kill a Hero in this room.",
-        //     image: "/card-images/rooms/bottomless-pit.svg",
-        // },
-        // {
-        //     id: "R47",
-        //     name: "Bottomless Pit",
-        //     subtitle: "Trap Room",
-        //     dmg: 1,
-        //     treasure: "Thief",
-        //     description: "Destroy this room: Kill a Hero in this room.",
-        //     image: "/card-images/rooms/bottomless-pit.svg",
-        // },
-        // {
-        //     id: "R48",
-        //     name: "Bottomless Pit",
-        //     subtitle: "Trap Room",
-        //     dmg: 1,
-        //     treasure: "Thief",
-        //     description: "Destroy this room: Kill a Hero in this room.",
-        //     image: "/card-images/rooms/bottomless-pit.svg",
-        // },
+        {
+            id: "R59",
+            name: "The Crushinator",
+            subtitle: "Advanced Trap Room",
+            dmg: 2,
+            treasure: "Thief",
+            description:
+                "Destroy another room in your dungeon: Until end of turn, your Rooms have +2 damage.",
+            image: "/card-images/rooms/the-crushinator.svg",
+        },
+        {
+            id: "R58",
+            name: "Recycling Center",
+            subtitle: "Advanced Trap Room",
+            dmg: 3,
+            treasure: "Thief",
+            description: "When another room in your dungeon is destroyed, you may draw two Room cards.",
+            image: "/card-images/rooms/recycling-center.svg",
+        },
+        {
+            id: "R28",
+            name: "Beast Menagerie",
+            subtitle: "Advanced Monster Room",
+            dmg: 4,
+            treasure: "Fighter",
+            description:
+                "Once per turn when you build another Monster room, draw a Room card.",
+            image: "/card-images/rooms/beast-menagerie.svg",
+        },
+        {
+            id: "R16",
+            name: "Goblin Armory",
+            subtitle: "Monster Room",
+            dmg: 1,
+            treasure: "Fighter x2",
+            description: "Monster Rooms adjacent to this room deal +1 damage.",
+            image: "/card-images/rooms/goblin-armory.svg",
+        },
+        {
+            id: "R61",
+            name: "Centipede Tunnel",
+            subtitle: "Monster Room",
+            dmg: 1,
+            treasure: "Fighter + Mage",
+            description:
+            "When you build this room, you may swap the placement of two Rooms in any one dungeon.",
+            image: "/card-images/rooms/centipede-tunnel.svg",
+        },
+        {
+            id: "R51",
+            name: "Dizzygas Hallway",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Thief",
+            description:
+            "If the next room in your dungeon is a Trap room, it has +2 damage.",
+            image: "/card-images/rooms/dizzygas-hallway.svg",
+        },
+        {
+            id: "R63",
+            name: "Construction Zone",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Fighter + Thief",
+            description:
+            "When you build this room, you may immediately build an additional Room.",
+            image: "/card-images/rooms/construction-zone.svg",
+        },
+        {
+            id: "R49",
+            name: "Boulder Ramp",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Thief",
+            description:
+            "Destroy another room in your dungeon: Deal 5 damage to a hero in this room.",
+            image: "/card-images/rooms/boulder-ramp.svg",
+        },
+        {
+            id: "R13",
+            name: "Dracolich Lair",
+            subtitle: "Advanced Monster Room",
+            dmg: 3,
+            treasure: "Cleric",
+            description:
+            "Once per turn, you may discard two Room cards to choose one Room card from the discard pile and put it into your hand.",
+            image: "/card-images/rooms/dracolich-lair.svg",
+        },
+        {
+            id: "R1",
+            name: "Dark Altar",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Cleric x2",
+            description:
+            "Destroy this Room: Choose one card from the discard pile and put it into your hand.",
+            image: "/card-images/rooms/dark-altar.svg",
+        },
+        {
+            id: "R65",
+            name: "Dragon Hatchery",
+            subtitle: "Monster Room",
+            dmg: 0,
+            treasure: "Cleric + Mage + Fighter + Thief",
+            description: "(This room contains all four treasure types.)",
+            image: "/card-images/rooms/dragon-hatchery.svg",
+        },
+        {
+            id: "R66",
+            name: "Dragon Hatchery",
+            subtitle: "Monster Room",
+            dmg: 0,
+            treasure: "Cleric + Mage + Fighter + Thief",
+            description: "(This room contains all four treasure types.)",
+            image: "/card-images/rooms/dragon-hatchery.svg",
+        },
+        {
+            id: "R67",
+            name: "Dragon Hatchery",
+            subtitle: "Monster Room",
+            dmg: 0,
+            treasure: "Cleric + Mage + Fighter + Thief",
+            description: "(This room contains all four treasure types.)",
+            image: "/card-images/rooms/dragon-hatchery.svg",
+        },
+        {
+            id: "R62",
+            name: "Centipede Tunnel",
+            subtitle: "Monster Room",
+            dmg: 1,
+            treasure: "Fighter + Mage",
+            description:
+                "When you build this room, you may swap the placement of two Rooms in any one dungeon.",
+            image: "/card-images/rooms/centipede-tunnel.svg",
+        },
+        {
+            id: "R50",
+            name: "Boulder Ramp",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Thief",
+            description:
+            "Destroy another room in your dungeon: Deal 5 damage to a hero in this room.",
+            image: "/card-images/rooms/boulder-ramp.svg",
+        },
+        {
+            id: "R4",
+            name: "Open Grave",
+            subtitle: "Trap Room",
+            dmg: 2,
+            treasure: "Cleric",
+            description:
+            "Once per turn, if a Hero dies in this room, choose one Room card from the discard pile and put into your hand.",
+            image: "/card-images/rooms/open-grave.svg",
+        },
+        {
+            id: "R22",
+            name: "Minotaur's Maze",
+            subtitle: "Monster Room",
+            dmg: 0,
+            treasure: "Fighter",
+            description:
+            "The first time a Hero enters this room, send it back to the previous room.",
+            image: "/card-images/rooms/minotaurs-maze(1).svg",
+        },
+        {
+            id: "R29",
+            name: "Monster's Ballroom",
+            subtitle: "Advanced Monster Room",
+            dmg: "*",
+            treasure: "Fighter",
+            description:
+                "This room's damage is equal to the number of Monster rooms in your dungeon.",
+            image: "/card-images/rooms/monsters-ballroom.svg",
+        },
+        {
+            id: "R70",
+            name: "Monstrous Monument",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Cleric + Fighter",
+            description:
+                "When you build this room, choose one Monster Room from the discard pile and put it in your hand.",
+            image: "/card-images/rooms/monstrous-monument.svg",
+        },
+        {
+            id: "R46",
+            name: "Bottomless Pit",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Thief",
+            description: "Destroy this room: Kill a Hero in this room.",
+            image: "/card-images/rooms/bottomless-pit.svg",
+        },
+        {
+            id: "R47",
+            name: "Bottomless Pit",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Thief",
+            description: "Destroy this room: Kill a Hero in this room.",
+            image: "/card-images/rooms/bottomless-pit.svg",
+        },
+        {
+            id: "R48",
+            name: "Bottomless Pit",
+            subtitle: "Trap Room",
+            dmg: 1,
+            treasure: "Thief",
+            description: "Destroy this room: Kill a Hero in this room.",
+            image: "/card-images/rooms/bottomless-pit.svg",
+        },
     ],
     playerDungeon: [
         // [{
@@ -268,16 +258,6 @@ const initialState = {
         //       "Destroy another room in your dungeon: Until end of turn, your Rooms have +2 damage. Revised: Once per turn, you may destroy another Room in your dungeon to give all your Rooms +2 until end of turn.",
         //     image: "/card-images/rooms/the-crushinator.svg",
         //   },],
-        // [{
-        //     id: "R29",
-        //     name: "Monster's Ballroom",
-        //     subtitle: "Advanced Monster Room",
-        //     dmg: "*",
-        //     treasure: "Fighter",
-        //     description:
-        //         "This room's damage is equal to the number of Monster rooms in your dungeon.",
-        //     image: "/card-images/rooms/monsters-ballroom.svg",
-        // }],
         // [
         //     {
         //         id: "R14",
@@ -462,20 +442,24 @@ const cardDecks = (state = initialState, action) => {
             // console.log('destroying room', action.roomIndex)
 
             let destroyedDungeon = [...state.playerDungeon]
+            let newDiscardPile = []
             // if the array only has one room then destroy the whole array and add a blank room on the end
             // console.log(roomIndex)
             if (state.playerDungeon[action.roomIndex].length === 1) {
-                destroyedDungeon.splice(action.roomIndex, 1)
+                let destroyedRoomArr = destroyedDungeon.splice(action.roomIndex, 1)[0]
+                newDiscardPile.push(destroyedRoomArr[0])
                 destroyedDungeon.push([dungeonBack])
             }
             // if the array has multiple rooms then remove the top room
             else {
-                destroyedDungeon[action.roomIndex].splice(0, 1)
+                let destroyedRoomArr = destroyedDungeon[action.roomIndex].splice(0, 1)
+                newDiscardPile.push(destroyedRoomArr[0])
             }
             // console.log(destroyedDungeon)
             return {
                 ...state,
-                playerDungeon: destroyedDungeon
+                playerDungeon: destroyedDungeon,
+                discardPile: [...state.discardPile].concat(newDiscardPile) 
             }
         case DEAL_ROOM_CARD:
             return {
@@ -590,18 +574,18 @@ const cardDecks = (state = initialState, action) => {
 
             let newPlayerDungeon = []
             let numRoomsDestroyed = 0
-            let newDiscardPile = []
+            let newDiscardPile2 = []
 
             state.playerDungeon.forEach(roomArr => {
                 let tempArr = [...roomArr]
                 if (tempArr[0].durability === 0) {
                     if (tempArr.length > 1) {
-                        newDiscardPile.push(tempArr.splice(0, 1)[0])
+                        newDiscardPile2.push(tempArr.splice(0, 1)[0])
                         newPlayerDungeon.push(tempArr)
                         numRoomsDestroyed += 1
                     }
                     else {
-                        newDiscardPile.push(tempArr[0])
+                        newDiscardPile2.push(tempArr[0])
                         numRoomsDestroyed += 1
                     }
                 }
@@ -627,7 +611,7 @@ const cardDecks = (state = initialState, action) => {
                 cardsToDraw.push(newRoomDeck.splice(-1)) // one card is added
             }
 
-            // console.log("newDiscardPile", newDiscardPile)
+            // console.log("newDiscardPile2", newDiscardPile2)
             // console.log("cardsToDraw", cardsToDraw)
 
             // console.log(newPlayerDungeon)
@@ -638,14 +622,14 @@ const cardDecks = (state = initialState, action) => {
                     playerDungeon: newPlayerDungeon,
                     roomDeck: newRoomDeck,
                     playerRooms: state.playerRooms.concat(cardsToDraw[0]),
-                    discardPile: [...state.discardPile].concat(newDiscardPile) 
+                    discardPile: [...state.discardPile].concat(newDiscardPile2) 
                 }
             }
             else { // no cards added to players hand
                 return {
                     ...state,
                     playerDungeon: newPlayerDungeon,
-                    discardPile: [...state.discardPile].concat(newDiscardPile) 
+                    discardPile: [...state.discardPile].concat(newDiscardPile2) 
                 }
             }
         case CHANGE_SHOW_DISCARD_PILE:
