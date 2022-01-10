@@ -612,7 +612,7 @@ function Info() {
                                 roomIndex = index;
                             }
                         })
-                        dispatch(destroyRoom(roomIndex))
+                        dispatch(destroyRoom(roomIndex, selectedCardClass))
                         dispatch(changeShowDiscardPile())
                     }
                 }
@@ -629,7 +629,7 @@ function Info() {
                                 roomIndex = index;
                             }
                         })
-                        dispatch(destroyRoom(roomIndex))
+                        dispatch(destroyRoom(roomIndex, selectedCardClass))
                         dispatch(ableToDestroy())
                         setBottomlessPit(false)
                     }
@@ -646,7 +646,7 @@ function Info() {
                                 roomIndex = index;
                             }
                         })
-                        dispatch(destroyRoom(roomIndex))
+                        dispatch(destroyRoom(roomIndex, selectedCardClass))
                         dispatch(ableToDestroy())
                         setBoulderRamp(false)
                     }
@@ -663,7 +663,7 @@ function Info() {
                                 roomIndex = index;
                             }
                         })
-                        dispatch(destroyRoom(roomIndex))
+                        dispatch(destroyRoom(roomIndex, selectedCardClass))
                         dispatch(ableToDestroy())
                         setCrushinator(false)
                         setCrushinatorDamageModifier(true)
