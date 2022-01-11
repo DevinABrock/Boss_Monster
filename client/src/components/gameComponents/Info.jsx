@@ -6,13 +6,14 @@ import { nextGamePhase, dealHeroesToTown, dealRoomCard, updatePlayerTreasure, ba
 import { diceRoll } from '../gameLogic/diceRoll';
 import { blankCard } from '../../assets/cards';
 
-import { shuffleAllDecks, dealInitialCards } from '../gameLogic/initializingDeck';
-import { shuffleAllDecksAction, dealInitialCardsAction } from '../../actions/sampleActions';
-import { Navigate } from 'react-router-dom';
+import { shuffleAllDecks} from '../gameLogic/initializingDeck';
+import { shuffleAllDecksAction} from '../../actions/sampleActions';
+import { useNavigate } from 'react-router-dom';
 
 function Info() {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate()
 
     const gamePhase = useSelector(state => state.gamePhase.gamePhase)
     const gameRound = useSelector(state => state.gamePhase.gameRound)
@@ -61,6 +62,8 @@ function Info() {
     const [crushinatorDamageModifier, setCrushinatorDamageModifier] = useState(false)
     const [usedCardID, setUsedCardID] = useState(null)
 
+    console.log(playerDungeon);
+
     useEffect(() => {
         // used to reset the once per turn values
         setGolemFactory(true)
@@ -74,12 +77,6 @@ function Info() {
         dispatch(updatePlayerTreasure(playerDungeon))
         // console.log('updating treasure');
     }, [playerDungeon])
-
-    // useEffect(() => {
-    //     // resets the values used for the Dracolich Lair ability
-    //     setCountDracolichLair(2)
-    //     setUsingDracolichLair(false)
-    // }, [discardPile])
 
     useEffect(() => {
         setCardCount(0)
@@ -247,11 +244,6 @@ function Info() {
                         message += "The Hero loses their way in the maze and returns to the previous room. "
                     }
                 }
-                
-                // console.log('room damage dealt to hero', damage);
-                // console.log('hero health', heroHealth);
-                let remainingHealth = heroHealth - damage;
-                // reduces room durability by 20 the first time a hero enters a room
                 if (firstTimeInMaze || countMinotaursMaze === 0) {
                     if (playerDungeon[heroRoomPosition][0].durability > 0) {
                         dispatch(damageRoom(playerDungeon[heroRoomPosition][0].id))
@@ -262,6 +254,11 @@ function Info() {
                     setCountMinotaursMaze(countMinotaursMaze - 1)
                     // console.log("countMinotaursMaze incremented to", countMinotaursMaze);
                 }
+                
+                // console.log('room damage dealt to hero', damage);
+                // console.log('hero health', heroHealth);
+                let remainingHealth = heroHealth - damage;
+                // reduces room durability by 20 the first time a hero enters a room
 
                 // if hero has health after passing through the last room
                 if (heroRoomPosition === 0 && (remainingHealth > 0 || (damage === '*' && damage === 0))) {
@@ -390,7 +387,7 @@ function Info() {
             case 7:
                 return <div className='messageBox'><div className='message'>{tempMessage ? tempMessage : "The hero is fighting your dungeon. Use spells or effect to help your rooms."}</div></div>
             case 10:
-                return <div className='messageBox'><div className='message'>{win === "L" ? `You have been defeated and your loot looted! You made it through ${gameRound - 1} ${(gameRound !== 2) ? "rounds" : "round"} and collected ${playerSouls} ${(playerSouls !== 1) ? "souls" : "soul"}.` : `You managed to survive the heroes' attacks until you finally decide to retire from being a boss...satisfied, and letting a new boss take your place. You were able to collect ${playerSouls} ${(playerSouls !== 1) ? "souls" : "soul"}! Click "NEXT" to start a New Game.`}</div></div>
+                return <div className='messageBox'><div className='message'>{win === "L" ? `You have been defeated! You made it through ${gameRound - 1} ${(gameRound !== 2) ? "rounds" : "round"} and collected ${playerSouls} ${(playerSouls !== 1) ? "souls" : "soul"}. Click "SAVE" to save your score or click "NEXT" to start a New Game.` : `You managed to survive the heroes' attacks until you finally decide to retire from being a boss...satisfied, and letting a new boss take your place. You were able to collect ${playerSouls} ${(playerSouls !== 1) ? "souls" : "soul"}! Click "SAVE" to save your score or click "NEXT" to start a New Game.`}</div></div>
             default:
                 break;
         }
@@ -484,19 +481,20 @@ function Info() {
             // console.log("Dizzygas Hallway");
         }
         // if current room is monster room & previous room is Goblin Armory, damage is buffed
-        if (i < 5 && (playerDungeon[i][0].subtitle === "Monster Room" || playerDungeon[i][0].subtitle === "Advanced Monster Room") && playerDungeon[i + 1][0].name === "Goblin Armory") {
+        else if (i < 5 && (playerDungeon[i][0].subtitle === "Monster Room" || playerDungeon[i][0].subtitle === "Advanced Monster Room") && playerDungeon[i + 1][0].name === "Goblin Armory") {
             damageBuff += 1
             // console.log("Goblin Armory")
         }
         // if current room is monster room & next room is Goblin Armory, damage is buffed
-        if (i > 0 && (playerDungeon[i][0].subtitle === "Monster Room" || playerDungeon[i][0].subtitle === "Advanced Monster Room") && playerDungeon[i - 1][0].name === "Goblin Armory") {
+        else if (i > 0 && (playerDungeon[i][0].subtitle === "Monster Room" || playerDungeon[i][0].subtitle === "Advanced Monster Room") && playerDungeon[i - 1][0].name === "Goblin Armory") {
             damageBuff += 1
             // console.log("Goblin Armory")
         }
-        else if (playerDungeon[i][0].name === "Monster's Ballroom") {
+        // if current room is Monster's Ballroom, damage is buffed based on number of Monster or Advanced Monster Rooms in dungeon
+        if (playerDungeon[i][0].name === "Monster's Ballroom") {
             let numberOfMonsterRooms = 0
             playerDungeon.forEach(cardArr => {
-                if (cardArr[0].subtitle === "Monster Room" || cardArr[0].subtitle === "Advanced Monster Room") {
+                if (cardArr[0].subtitle.includes("Monster")) {
                     numberOfMonsterRooms += 1
                 }
             })
@@ -514,12 +512,9 @@ function Info() {
         // if in swapping rooms mode and the selected card is in the dungeon
         if (selectedCardClass === "room" || selectedCardClass === "roomStack" ||  selectedCardClass === "discardCard" || selectedCardClass === "builtRoom" || (usingDracolichLair && selectedCardClass === "handCard")) {
             if (useButtonSwapping) {
-                // console.log("swapping is allowed");
+                console.log("swapping is allowed");
                 dispatch(changeSwapRoomsMode())
-            }
-            // if in swapping rooms mode and the selected card is NOT in the dungeon
-            else if (useButtonSwapping && selectedCardClass != "room") {
-                alert("You must select a room from your dungeon first.");
+                return
             }
 
             if (usingDracolichLair && selectedCardClass === "handCard") {
@@ -557,12 +552,13 @@ function Info() {
                 return
             }
 
-            if (selectedCard.name === "Dracolich Lair" && dracolichLair && (selectedCardClass === "roomStack" || selectedCardClass === "builtRoom")) {
+            if (!crushinator && selectedCard.name === "Dracolich Lair" && dracolichLair && (selectedCardClass === "roomStack" || selectedCardClass === "builtRoom")) {
                 setUsingDracolichLair(true)
                 alert('You must discard two cards from your hand. Select one card and click the "USE" button, then select the second card and click the "USE" button.')
+                return
             }
             // if user selects a card that allows them to destroy a room
-            else if (selectedCard.name === "Boulder Ramp") {
+            else if (!swapRoomsMode && selectedCard.name === "Boulder Ramp") {
                 // console.log("bouler room use effect");
                 if (!destroyMode && gamePhase === 7) {
                     dispatch(ableToDestroy())
@@ -570,7 +566,7 @@ function Info() {
                     setUsedCardID(selectedCard.id)
                     setTempMessage("You are able to destroy a room in your dungeon. Select a room and click 'destroy'.")
                 }
-                if (!destroyMode && gamePhase != 7) {
+                if (!destroyMode && gamePhase !== 7) {
                     setTempMessage("You can only destroy rooms during the Adventure Phase.")
                 }
             }
@@ -581,7 +577,7 @@ function Info() {
                     setUsedCardID(selectedCard.id)
                     setTempMessage("You are able to destroy the Bottomless Pit. Select this room and click 'destroy'.")
                 }
-                if (!destroyMode && gamePhase != 7) {
+                if (!destroyMode && gamePhase !== 7) {
                     setTempMessage("You can only destroy rooms during the Adventure Phase.")
                 }
             }
@@ -592,7 +588,7 @@ function Info() {
                     setUsedCardID(selectedCard.id)
                     setTempMessage("You are able to destroy another room in order to buff the rest of your rooms.")
                 }
-                if (!destroyMode && gamePhase != 7) {
+                else if (!destroyMode && gamePhase !== 7) {
                     setTempMessage("You can only destroy rooms during the Adventure Phase.")
                 }
             }
@@ -604,7 +600,7 @@ function Info() {
                             roomIndex = index;
                         }
                     })
-                    dispatch(destroyRoom(roomIndex))
+                    dispatch(destroyRoom(roomIndex, selectedCardClass))
                     dispatch(changeShowDiscardPile())
                 }
                 else{
@@ -616,7 +612,7 @@ function Info() {
                                 roomIndex = index;
                             }
                         })
-                        dispatch(destroyRoom(roomIndex))
+                        dispatch(destroyRoom(roomIndex, selectedCardClass))
                         dispatch(changeShowDiscardPile())
                     }
                 }
@@ -633,7 +629,7 @@ function Info() {
                                 roomIndex = index;
                             }
                         })
-                        dispatch(destroyRoom(roomIndex))
+                        dispatch(destroyRoom(roomIndex, selectedCardClass))
                         dispatch(ableToDestroy())
                         setBottomlessPit(false)
                     }
@@ -650,7 +646,7 @@ function Info() {
                                 roomIndex = index;
                             }
                         })
-                        dispatch(destroyRoom(roomIndex))
+                        dispatch(destroyRoom(roomIndex, selectedCardClass))
                         dispatch(ableToDestroy())
                         setBoulderRamp(false)
                     }
@@ -667,7 +663,7 @@ function Info() {
                                 roomIndex = index;
                             }
                         })
-                        dispatch(destroyRoom(roomIndex))
+                        dispatch(destroyRoom(roomIndex, selectedCardClass))
                         dispatch(ableToDestroy())
                         setCrushinator(false)
                         setCrushinatorDamageModifier(true)
@@ -761,7 +757,7 @@ function Info() {
                 await response.json();
             }
             saveScore();
-            // Navigate('/dungeon-masters')
+            navigate('/dungeon-masters') 
         }
         if (destroyMode) {
             dispatch(ableToDestroy())
@@ -825,13 +821,13 @@ function Info() {
 
             {/* -- BUTTON AREA -- */}
             <div className='buttonArea'>
-                <div className='phaseInfo'>Phase: {renderGamePhaseSwitch(gamePhase)} {gamePhase == 7 ? `Hero HP: ${heroHealth}` : null}</div>
+                <div className='phaseInfo'>Phase: {renderGamePhaseSwitch(gamePhase)} {gamePhase === 7 ? `Hero HP: ${heroHealth}` : null}</div>
                 <div className='buttonList'>
                     {/* <div className='button'>STORE</div> */}
-                    {(showDiscardPile || destroyMode) ? <div className='button' onClick={handleCancelClick}>CANCEL</div> : null}
-                    <div onClick={handleUseButtonClick} className={swapRoomsMode ? 'buttonBuild' : 'button'}>{gamePhase === 10 ? "SAVE" : destroyMode ? "DESTROY" : useButtonSwapping ? "SWAP" : "USE"}</div>
-                    {!useButtonSwapping && <div className={buildingModeState ? 'buttonBuild' : 'button'} onClick={() => handleBuildButtonClick(selectedCardClass)}>BUILD</div>}
-                    {!useButtonSwapping && <div onClick={() => handleNextButtonClick()} className='button'>NEXT</div>}
+                    {(gamePhase === 10 || showDiscardPile || destroyMode) ? <div className='button' onClick={handleCancelClick}>{gamePhase === 10 ? "SAVE" : "CANCEL"}</div> : null}
+                    {gamePhase === 10 ? null : <div onClick={handleUseButtonClick} className={swapRoomsMode ? 'buttonBuild' : 'button'}>{destroyMode ? "DESTROY" : useButtonSwapping ? "SWAP" : "USE"}</div>}
+                    {useButtonSwapping || gamePhase === 10 ? null : <div className={buildingModeState ? 'buttonBuild' : 'button'} onClick={() => handleBuildButtonClick(selectedCardClass)}>BUILD</div>}
+                    {useButtonSwapping ? null : <div onClick={() => handleNextButtonClick()} className='button'>NEXT</div> }
                 </div>
             </div>
 
