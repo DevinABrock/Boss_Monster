@@ -8,6 +8,7 @@ export const cardBack = {
 export const dungeonBack = {
   id: "D1",
   name: "cardBack",
+  subtitle: "blankCard",
   image: "/card-images/card-backs/blank_dungeon.svg",
   treasure: "",
 }

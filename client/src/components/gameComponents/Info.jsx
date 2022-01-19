@@ -494,6 +494,7 @@ function Info() {
         if (playerDungeon[i][0].name === "Monster's Ballroom") {
             let numberOfMonsterRooms = 0
             playerDungeon.forEach(cardArr => {
+                console.log(cardArr[0])
                 if (cardArr[0].subtitle.includes("Monster")) {
                     numberOfMonsterRooms += 1
                 }
