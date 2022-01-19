@@ -51,12 +51,16 @@ function Dungeon() {
         // console.log("e.target.className", e.target.className);
 
         // if the state is in swapping mode and the user clicks to swap
-        if(swapRoomsMode && e.target.className==="room" && selectedCardClass==='room'){
-            // console.log('swapping rooms');
-            // console.log(e.target);
-            dispatch(swapRooms(selectedCard.id, e.target.id))
-            dispatch(changeSwapRoomsMode())
-            dispatch(changeUseButtonSwapping())
+        if(swapRoomsMode && (e.target.className === "room" || e.target.className === "roomStack") && (selectedCardClass === 'room' || selectedCardClass === 'roomStack')){
+            // Make is so player can't swap with empty room.
+            if(e.target.id !== "D1" && selectedCard.id !== "D1"){
+                // console.log('swapping rooms');
+                // console.log(e.target);
+                dispatch(swapRooms(selectedCard.id, e.target.id))
+                dispatch(changeSwapRoomsMode())
+                dispatch(changeUseButtonSwapping())
+                return
+            }
         }
         
         // if the state is in building mode
@@ -107,7 +111,7 @@ function Dungeon() {
             else if(buildingModeState && e.target.id !== ""){
                 let monsterCardsInDiscard = false
                 discardPile.forEach(cardObj => {
-                    if(cardObj.subtitle.includes("Monster")){
+                    if(cardObj.subtitle === "Monster Room" || cardObj.subtitle === "Advanced Monster Room"){
                         monsterCardsInDiscard = true
                     }
                 })
@@ -158,12 +162,12 @@ function Dungeon() {
             // "When you build this room, you may swap the placement of two Rooms in any one dungeon."
                 break
             case "Centipede Tunnel":
-                let userWantsToSwapRooms = window.confirm('The Centipede Tunnel allows you to swap the placement of two Rooms in your dungeon. Click "OK" if you want to swap rooms or cancel if not.')
+                let userWantsToSwapRooms = window.confirm('The Centipede Tunnel allows you to swap the placement of two Rooms in your dungeon. Click "OK" if you want to swap rooms or "Cancel" if not.')
                 if(userWantsToSwapRooms){
                     dispatch(changeUseButtonSwapping())
                     alert('Select the first room you wish to swap, click the "SWAP" button, and then select the second room.')
                 }
-                break
+                break 
             default:
                 return
         }
