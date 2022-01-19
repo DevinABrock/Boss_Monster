@@ -48,7 +48,7 @@ function DungeonMasters() {
                     </div>
                     <div className='dmUserDisplay'>
 
-                        {/* -- SEPERATE USER -- */}
+                        {/* -- SEPARATE USER -- */}
 
                         {highScores.map((playerRecord, index) => {
                             

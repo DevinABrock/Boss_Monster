@@ -141,16 +141,6 @@ const initialState = {
         //     image: "/card-images/rooms/dragon-hatchery.svg",
         // },
         // {
-        //     id: "R63",
-        //     name: "Construction Zone",
-        //     subtitle: "Trap Room",
-        //     dmg: 1,
-        //     treasure: "Fighter + Thief",
-        //     description:
-        //         "When you build this room, you may immediately build an additional Room.",
-        //     image: "/card-images/rooms/construction-zone.svg",
-        // },
-        // {
         //     id: "R62",
         //     name: "Centipede Tunnel",
         //     subtitle: "Monster Room",
@@ -268,16 +258,6 @@ const initialState = {
         //       "Destroy another room in your dungeon: Until end of turn, your Rooms have +2 damage. Revised: Once per turn, you may destroy another Room in your dungeon to give all your Rooms +2 until end of turn.",
         //     image: "/card-images/rooms/the-crushinator.svg",
         //   },],
-        // [{
-        //     id: "R29",
-        //     name: "Monster's Ballroom",
-        //     subtitle: "Advanced Monster Room",
-        //     dmg: "*",
-        //     treasure: "Fighter",
-        //     description:
-        //         "This room's damage is equal to the number of Monster rooms in your dungeon.",
-        //     image: "/card-images/rooms/monsters-ballroom.svg",
-        // }],
         // [
         //     {
         //         id: "R14",
@@ -462,20 +442,24 @@ const cardDecks = (state = initialState, action) => {
             // console.log('destroying room', action.roomIndex)
 
             let destroyedDungeon = [...state.playerDungeon]
+            let newDiscardPile = []
             // if the array only has one room then destroy the whole array and add a blank room on the end
             // console.log(roomIndex)
             if (state.playerDungeon[action.roomIndex].length === 1) {
-                destroyedDungeon.splice(action.roomIndex, 1)
+                let destroyedRoomArr = destroyedDungeon.splice(action.roomIndex, 1)[0]
+                newDiscardPile.push(destroyedRoomArr[0])
                 destroyedDungeon.push([dungeonBack])
             }
             // if the array has multiple rooms then remove the top room
             else {
-                destroyedDungeon[action.roomIndex].splice(0, 1)
+                let destroyedRoomArr = destroyedDungeon[action.roomIndex].splice(0, 1)
+                newDiscardPile.push(destroyedRoomArr[0])
             }
             // console.log(destroyedDungeon)
             return {
                 ...state,
-                playerDungeon: destroyedDungeon
+                playerDungeon: destroyedDungeon,
+                discardPile: [...state.discardPile].concat(newDiscardPile) 
             }
         case DEAL_ROOM_CARD:
             return {
@@ -590,18 +574,18 @@ const cardDecks = (state = initialState, action) => {
 
             let newPlayerDungeon = []
             let numRoomsDestroyed = 0
-            let newDiscardPile = []
+            let newDiscardPile2 = []
 
             state.playerDungeon.forEach(roomArr => {
                 let tempArr = [...roomArr]
                 if (tempArr[0].durability === 0) {
                     if (tempArr.length > 1) {
-                        newDiscardPile.push(tempArr.splice(0, 1)[0])
+                        newDiscardPile2.push(tempArr.splice(0, 1)[0])
                         newPlayerDungeon.push(tempArr)
                         numRoomsDestroyed += 1
                     }
                     else {
-                        newDiscardPile.push(tempArr[0])
+                        newDiscardPile2.push(tempArr[0])
                         numRoomsDestroyed += 1
                     }
                 }
@@ -627,7 +611,7 @@ const cardDecks = (state = initialState, action) => {
                 cardsToDraw.push(newRoomDeck.splice(-1)) // one card is added
             }
 
-            // console.log("newDiscardPile", newDiscardPile)
+            // console.log("newDiscardPile2", newDiscardPile2)
             // console.log("cardsToDraw", cardsToDraw)
 
             // console.log(newPlayerDungeon)
@@ -638,14 +622,14 @@ const cardDecks = (state = initialState, action) => {
                     playerDungeon: newPlayerDungeon,
                     roomDeck: newRoomDeck,
                     playerRooms: state.playerRooms.concat(cardsToDraw[0]),
-                    discardPile: [...state.discardPile].concat(newDiscardPile) 
+                    discardPile: [...state.discardPile].concat(newDiscardPile2) 
                 }
             }
             else { // no cards added to players hand
                 return {
                     ...state,
                     playerDungeon: newPlayerDungeon,
-                    discardPile: [...state.discardPile].concat(newDiscardPile) 
+                    discardPile: [...state.discardPile].concat(newDiscardPile2) 
                 }
             }
         case CHANGE_SHOW_DISCARD_PILE:
