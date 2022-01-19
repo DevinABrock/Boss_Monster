@@ -511,6 +511,25 @@ function Info() {
     // console.log("selectedCardClass", selectedCardClass)
 
     const handleUseButtonClick = () => {
+        if (gamePhase === 10) {
+            const saveScore = async () => {
+                let userInfo = {
+                    username,
+                    souls: playerSouls,
+                    win
+                }
+                let response = await fetch('https://bossmonsterserver.herokuapp.com/savescore', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userInfo)
+                });
+                await response.json();
+            }
+            saveScore();
+            // Navigate('/dungeon-masters')
+        }
         // if in swapping rooms mode and the selected card is in the dungeon
         if (selectedCardClass === "room" || selectedCardClass === "roomStack" ||  selectedCardClass === "discardCard" || selectedCardClass === "builtRoom" || (usingDracolichLair && selectedCardClass === "handCard")) {
             if (useButtonSwapping) {
@@ -743,25 +762,6 @@ function Info() {
         }
         if (roomCardFromDiscard) {
             dispatch(changeShowDiscardPile())
-        }
-        if (gamePhase === 10) {
-            const saveScore = async () => {
-                let userInfo = {
-                    username,
-                    souls: playerSouls,
-                    win
-                }
-                let response = await fetch('https://bossmonsterserver.herokuapp.com/savescore', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(userInfo)
-                });
-                await response.json();
-            }
-            saveScore();
-            // Navigate('/dungeon-masters')
         }
         if (destroyMode) {
             dispatch(ableToDestroy())
