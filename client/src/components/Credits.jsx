@@ -20,7 +20,7 @@ function Credits() {
                 </div>
                 <div className='creditsPerson'>
                     <div className='creditInfo'>
-                        James Ivy <br /> Design <a className='creditsLink' target='_blank' href="https://github.com/jameskivy">GitHub</a> <a className='creditsLink' target='_blank' href="https://www.linkedin.com/in/james-k-ivy/">LinkedIn</a>  <a className='creditsLink' target='_blank' href="https://jameskivy.github.io/portfolio/">Portfolio</a>
+                        James Ivy <br /> Design <a className='creditsLink' target='_blank' href="https://github.com/jameskivy">GitHub</a> <a className='creditsLink' target='_blank' href="https://www.linkedin.com/in/james-k-ivy/">LinkedIn</a>  <a className='creditsLink' target='_blank' href="https://jameskivy.github.io/my-portfolio/">Portfolio</a>
                     </div>
                 </div>
                 <div className='creditsPerson'>
